@@ -68,21 +68,7 @@ export the `AGE-SECRET-KEY-...` as `SOPS_AGE_KEY`
 ```shell
 kubectl create ns argocd
 kubectl -n argocd create secret generic argo-sops-secret --from-literal SOPS_AGE_KEY=${SOPS_AGE_KEY} --from-literal AVP_TYPE=SOPS
-# for each cluster
-# export CLUSTER=demo
-# cat >secrets/cluster.${CLUSTER}.yaml << EOF
-# server: $(kubectl config view --minify --output jsonpath="{.clusters[*].cluster.server}")
-# config: |
-#     {
-#       "bearerToken": "$(kubectl config view --raw --minify --output jsonpath="{.users[*].user.token}")",
-#       "tlsClientConfig": {
-#         "insecure": false,
-#         "caData": "$(kubectl config view --raw --minify --output jsonpath="{.clusters[*].cluster.certificate-authority-data}")"
-#       }
-#     }
-# EOF
-```
-The secret is referenced in `prototypes/argocd/ytt/argocd-vault-plugin.ytt.yaml`
+# The secret is referenced in `prototypes/argocd/ytt/argocd-vault-plugin.ytt.yaml`
 
 ## install argo cd
 
@@ -96,34 +82,5 @@ find . \
   -printf '---\n' \
   -exec cat {} \; \
 | argocd-vault-plugin generate - | kubectl apply -n argocd -f - 
-# TODO: kube-system issue?
 ```
 
-```shell
-export CLUSTER=demo
-token=$(kubectl get secret -n argocd token-argocd-incluster -o jsonpath='{.data.token}'|base64 -d) 
-caData=$(kubectl get secret -n argocd token-argocd-incluster -o jsonpath='{.data.ca\.crt}')
-kubectl apply -f - << EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    argocd.argoproj.io/secret-type: cluster
-  name: cluster-$CLUSTER
-  namespace: argocd
-type: Opaque          
-stringData:
-  config: |-
-    {
-      "bearerToken":"$token",
-      "tlsClientConfig":
-      {
-        "insecure":false,
-        "caData":"$caData"
-      }
-    }
-  name: $CLUSTER
-  project: $CLUSTER
-  server: https://kubernetes.default.svc
-EOF
-```
