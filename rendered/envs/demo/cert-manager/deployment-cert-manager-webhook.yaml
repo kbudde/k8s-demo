@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - args:
-            - --v=2
+            - --v=6
             - --secure-port=10250
             - --dynamic-serving-ca-secret-namespace=$(POD_NAMESPACE)
             - --dynamic-serving-ca-secret-name=cert-manager-webhook-ca

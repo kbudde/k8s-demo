@@ -1,3 +1,5 @@
+global:
+  logLevel: 6
 installCRDs: true
 
 prometheus:

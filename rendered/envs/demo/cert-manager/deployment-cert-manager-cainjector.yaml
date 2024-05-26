@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - args:
-            - --v=2
+            - --v=6
             - --leader-election-namespace=kube-system
           env:
             - name: POD_NAMESPACE
