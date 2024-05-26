@@ -1,0 +1,11 @@
+controller:
+  enableAnnotationValidations: true
+  replicaCount: 1
+  minAvailable: 
+  maxUnavailable: 1
+  admissionWebhooks:
+    certManager:
+      enabled: true
+
+defaultBackend:
+  enabled: true

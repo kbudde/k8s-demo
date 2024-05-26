@@ -1,0 +1,49 @@
+#@ load("@ytt:data", "data")
+#@ domain = "traefik." + data.values.shared.domain
+#@ traefikLB = "lb." + data.values.shared.domain
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+  annotations:
+    external-dns.alpha.kubernetes.io/target: #@ traefikLB
+    kubernetes.io/ingress.class: traefik
+spec:
+  routes:
+  - match: #@ "Host(`{}`)".format(domain)
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
+    middlewares:
+      - name: auth-dashboard
+  tls:
+    secretName: #@ domain.replace(".", "-") + "-tls"
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: auth-dashboard
+spec:
+  basicAuth:
+    secret: auth-dashboard
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: #@ domain.replace(".", "-")
+spec:
+  secretName: #@ domain.replace(".", "-") + "-tls"
+  issuerRef:
+    name: designate-letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - #@ domain
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: auth-dashboard
+stringData:
+  users: <path:static/user.yaml#DASHBOARD_USER>

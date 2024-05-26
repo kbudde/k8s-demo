@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: victoria-logs-single
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: fluent-bit
+    app.kubernetes.io/version: 3.0.4
+    helm.sh/chart: fluent-bit-0.46.7
+  name: victoria-logs-single-fluent-bit
+  namespace: victoria-logs-single
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: victoria-logs-single
+      app.kubernetes.io/name: fluent-bit
+  template:
+    metadata:
+      annotations:
+        checksum/config: 99a28abddedd4552758d3a627331384a4ea9a23af3046adcfb97144f0f9753c1
+      labels:
+        app.kubernetes.io/instance: victoria-logs-single
+        app.kubernetes.io/name: fluent-bit
+    spec:
+      containers:
+        - args:
+            - --workdir=/fluent-bit/etc
+            - --config=/fluent-bit/etc/conf/fluent-bit.conf
+          command:
+            - /fluent-bit/bin/fluent-bit
+          image: cr.fluentbit.io/fluent/fluent-bit:3.0.4
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          name: fluent-bit
+          ports:
+            - containerPort: 2020
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+          volumeMounts:
+            - mountPath: /fluent-bit/etc/conf
+              name: config
+            - mountPath: /var/log
+              name: varlog
+            - mountPath: /var/lib/docker/containers
+              name: varlibdockercontainers
+              readOnly: true
+      dnsPolicy: ClusterFirst
+      hostNetwork: false
+      serviceAccountName: victoria-logs-single-fluent-bit
+      volumes:
+        - configMap:
+            name: victoria-logs-single-fluent-bit
+          name: config
+        - hostPath:
+            path: /var/log
+          name: varlog
+        - hostPath:
+            path: /var/lib/docker/containers
+          name: varlibdockercontainers

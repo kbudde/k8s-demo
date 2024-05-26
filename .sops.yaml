@@ -1,0 +1,4 @@
+creation_rules:
+  - path_regex: .*/static/.*\.ya?ml$
+    encryption_method: age
+    age: 'age18vdqq99qpl8gyql3ggu2d4ull2d0694sv9v9keg687jh8csjm5rqws9rmk'

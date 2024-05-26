@@ -1,0 +1,14 @@
+#@ load("@ytt:overlay", "overlay")
+#! Prevent argo syncing all the time. The two fields are added by kubernetes and are not present in the original yaml.
+
+
+#@overlay/match by=overlay.subset({"kind": "StatefulSet"})
+---
+spec:
+  volumeClaimTemplates:
+    #@overlay/match by=overlay.all, expects="1+"
+    - 
+      #@overlay/match missing_ok=True
+      apiVersion: v1
+      #@overlay/match missing_ok=True
+      kind: PersistentVolumeClaim

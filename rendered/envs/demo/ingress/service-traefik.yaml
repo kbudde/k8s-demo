@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    external-dns.alpha.kubernetes.io/hostname: lb.demo.budd.ee
+  labels:
+    app.kubernetes.io/instance: traefik-ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: traefik
+    helm.sh/chart: traefik-28.1.0
+  name: traefik
+  namespace: ingress
+spec:
+  ports:
+    - name: web
+      port: 80
+      protocol: TCP
+      targetPort: web
+    - name: websecure
+      port: 443
+      protocol: TCP
+      targetPort: websecure
+  selector:
+    app.kubernetes.io/instance: traefik-ingress
+    app.kubernetes.io/name: traefik
+  type: LoadBalancer

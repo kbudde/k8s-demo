@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: designate-letsencrypt
+spec:
+  acme:
+    email: demo@kris.budd.ee
+    privateKeySecretRef:
+      name: designate-private-key
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          webhook:
+            groupName: acme.syseleven.de
+            solverName: designatedns
+        selector:
+          dnsZones:
+            - demo.budd.ee

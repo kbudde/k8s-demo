@@ -1,0 +1,15 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+#! TODO: add renovate config
+prototypes:
+    - name: external-dns
+      kind: helm
+      source: git
+      url: https://github.com/kubernetes-sigs/external-dns
+      version: v0.14.2
+      newRootPath: charts/external-dns
+
+
+

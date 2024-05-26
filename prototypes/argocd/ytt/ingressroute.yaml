@@ -1,0 +1,53 @@
+#@ load("@ytt:data", "data")
+#@ domain = "argocd." + data.values.shared.domain
+#@ traefikLB = "lb." + data.values.shared.domain
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server-route
+  namespace: argocd
+  annotations:
+    external-dns.alpha.kubernetes.io/target: #@ traefikLB
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+  - websecure
+  routes:
+    - kind: Rule
+      match: #@ "Host(`{}`)".format(domain)
+      priority: 10
+      services:
+        - name: argocd-server
+          port: 443
+          scheme: https
+          serversTransport: insecure-skip-verify
+    - kind: Rule
+      match: #@ "Host(`{}`) && Header(`Content-Type`, `application/grpc`)".format(domain)
+      priority: 11
+      services:
+        - name: argocd-server
+          port: 443
+          scheme: h2c
+          serversTransport: insecure-skip-verify
+  tls:
+    secretName: argocd-server-route-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: #@ domain.replace(".", "-")
+spec:
+  secretName: argocd-server-route-tls
+  issuerRef:
+    name: designate-letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - #@ domain
+---
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: insecure-skip-verify
+spec:
+  insecureSkipVerify: true

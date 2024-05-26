@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: traefik-demo-budd-ee
+spec:
+  dnsNames:
+    - traefik.demo.budd.ee
+  issuerRef:
+    kind: ClusterIssuer
+    name: designate-letsencrypt
+  secretName: traefik-demo-budd-ee-tls

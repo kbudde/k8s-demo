@@ -1,0 +1,10 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"kind": "ConfigMap", "metadata": {"name": "argocd-cm"}})
+---
+#@overlay/match missing_ok=True
+data:
+  application.resourceTrackingMethod: annotation+label
+  application.instanceLabelKey: argocd.argoproj.io/instance
+  #! server.insecure: "true" #! Disable redirect. Traefik will handle this.

@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    meta.helm.sh/release-name: reloader
+    meta.helm.sh/release-namespace: reloader
+    reloader.stakater.com/auto: "true"
+  labels:
+    app: reloader-reloader
+    app.kubernetes.io/managed-by: Helm
+    chart: reloader-1.0.97
+    group: com.stakater.platform
+    heritage: Helm
+    provider: stakater
+    release: reloader
+    version: v1.0.97
+  name: reloader-reloader
+  namespace: reloader
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: reloader-reloader
+      release: reloader
+  template:
+    metadata:
+      labels:
+        app: reloader-reloader
+        app.kubernetes.io/managed-by: Helm
+        chart: reloader-1.0.97
+        group: com.stakater.platform
+        heritage: Helm
+        provider: stakater
+        release: reloader
+        version: v1.0.97
+    spec:
+      containers:
+        - image: ghcr.io/stakater/reloader:v1.0.97
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /live
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          name: reloader-reloader
+          ports:
+            - containerPort: 9090
+              name: http
+          readinessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /metrics
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          securityContext: {}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: reloader-reloader

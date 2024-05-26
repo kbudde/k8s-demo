@@ -1,0 +1,32 @@
+apiVersion: v1
+data:
+  apiservice.yaml: |
+    apiVersion: apiregistration.k8s.io/v1
+    kind: APIService
+    metadata:
+      name: v1alpha1.acme.syseleven.de
+      labels:
+        app: designate-certmanager-webhook
+        chart: designate-certmanager-webhook-0.6.1
+        release: designate-certmanager-webhook
+        heritage: Helm
+      annotations:
+        cert-manager.io/inject-ca-from: "designate-certmanager-webhook/designate-certmanager-webhook-webhook-tls"
+    spec:
+      group: acme.syseleven.de
+      groupPriorityMinimum: 1000
+      versionPriority: 15
+      service:
+        name: designate-certmanager-webhook
+        namespace: designate-certmanager-webhook
+      version: v1alpha1
+kind: ConfigMap
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app: designate-certmanager-webhook
+    chart: designate-certmanager-webhook-0.6.1
+    heritage: Helm
+    release: designate-certmanager-webhook
+  name: designate-certmanager-webhook-apiservice

@@ -1,0 +1,31 @@
+#@ load("@ytt:data", "data")
+---
+
+sources:
+  - service
+  - ingress
+  - traefik-proxy
+
+provider:
+  name: designate
+
+policy: sync
+txtOwnerId: #@ data.values.environment.id
+domainFilters:
+  - #@ data.values.shared.domain
+
+triggerLoopOnEvent: true
+#! increased from 1m to 5m as we react to changes in the environment
+interval: 5m
+
+txtPrefix: "%{record_type}--"
+
+extraVolumes: []
+extraVolumeMounts: []
+extraArgs: 
+- --traefik-disable-legacy #! will crash if crd is not present. As we are using traefik v3, we can disable the legacy provider
+
+#! TODO: Remove after https://github.com/kubernetes-sigs/external-dns/pull/4502 go released
+image:
+  repository: kbudde/tmp
+  tag: exdns-865f1775-dirty

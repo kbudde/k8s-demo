@@ -1,0 +1,25 @@
+#@data/values
+---
+environment:
+  id: demo
+  applications:
+  - proto: argocd
+  - proto: cert-manager
+  - proto: designate-certmanager-webhook
+  - proto: external-dns
+  - proto: ingress/traefik
+    name: ingress
+  - proto: reloader
+  - proto: victoria-logs-single
+  - proto: goldpinger
+shared:
+  domain: "demo.budd.ee"
+
+helm:
+  kubeVersion: "1.29"
+  capabilities:
+    - "monitoring.coreos.com/v1"
+    - "policy/v1/PodDisruptionBudget"
+argocd:
+  env:
+    generateSecret: false

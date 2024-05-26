@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-reloader
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  annotations:
+    myks.dev/environment: demo
+    app.kubernetes.io/source: https://github.com/kbudde/k8s-demo
+spec:
+  project: demo
+  destination:
+    name: demo
+    namespace: reloader
+  source:
+    path: rendered/envs/demo/reloader
+    plugin:
+      name: argocd-vault-plugin
+    repoURL: https://github.com/kbudde/k8s-demo
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

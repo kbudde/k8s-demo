@@ -1,0 +1,41 @@
+#@ load("@ytt:data", "data")
+#@ traefikLB = "lb." + data.values.shared.domain
+---
+deployment:
+  replicas: 1
+
+podDisruptionBudget:
+  enabled: false
+
+providers:
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: false
+    publishedService:
+      enabled: true
+
+globalArguments:
+- "--global.checknewversion"
+#! - "--global.sendanonymoususage"
+
+logs:
+  general:
+    level: DEBUG
+  access:
+    enabled: true
+
+service:
+  enabled: true
+  #!# -- Single service is using `MixedProtocolLBService` feature gate.
+  #!# -- When set to false, it will create two Service, one for TCP and one for UDP.
+  single: false
+  annotations: 
+    external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
+
+ingressRoute:
+  dashboard:
+    enabled: false
+
+image:
+  tag: "v3.0.1"

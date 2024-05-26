@@ -1,0 +1,12 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@ deployment = overlay.subset({"kind": "Deployment"})
+#@ daemonset = overlay.subset({"kind": "DaemonSet"})
+#@ statefulset = overlay.subset({"kind": "StatefulSet"})
+
+#@overlay/match by=overlay.or_op(deployment, daemonset, statefulset), expects="1+"
+---
+#@overlay/match-child-defaults missing_ok=True
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"

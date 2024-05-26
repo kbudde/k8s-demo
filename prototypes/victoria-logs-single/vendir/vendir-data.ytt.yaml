@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+    - name: victoria-logs-single
+      kind: helm
+      source: helmChart
+      url: https://victoriametrics.github.io/helm-charts/
+      version: 0.5.0
+

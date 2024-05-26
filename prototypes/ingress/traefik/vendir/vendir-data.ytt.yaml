@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+    - name: traefik
+      kind: helm
+      source: helmChart
+      url: https://traefik.github.io/charts
+      version: 28.1.0
+

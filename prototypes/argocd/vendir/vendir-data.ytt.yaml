@@ -1,0 +1,14 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+#! TODO: add renovate config
+prototypes:
+    - name: argocd
+      kind: ytt
+      source: git
+      url: https://github.com/argoproj/argo-cd
+      version: v2.11.2
+      includePaths:
+        - manifests/ha/install.yaml
+      newRootPath: manifests/ha

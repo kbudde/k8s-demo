@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+    - name: reloader
+      kind: helm
+      source: helmChart
+      url: https://stakater.github.io/stakater-charts
+      version: 1.0.97
+
