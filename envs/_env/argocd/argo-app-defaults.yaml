@@ -1,0 +1,24 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+
+#@overlay/match by=overlay.subset({"kind": "Application"}), expects="0+"
+---
+#@overlay/match-child-defaults missing_ok=True
+spec:
+  info:
+  - name: 'environment:'
+    value: #@ data.values.environment.id
+  - name: 'source:'
+    value: #@ data.values.myks.gitRepoUrl
+  syncPolicy:
+    syncOptions:
+    - PruneLast=true #! Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
+    - RespectIgnoreDifferences=true #! When syncing changes, respect fields ignored by the ignoreDifferences configuration
+    - ApplyOutOfSyncOnly=true #! Only sync out-of-sync resources, rather than applying every object in the application
+    retry:
+      limit: 5 #! number of failed sync attempt retries; unlimited number of attempts if less than 0
+      backoff:
+        duration: 5s #! the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        factor: 2 #! a factor to multiply the base duration after each failed retry
+        maxDuration: 3m #! the maximum amount of time allowed for the backoff strategy
+

@@ -26,3 +26,17 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
+    - PruneLast=true
+    - RespectIgnoreDifferences=true
+    - ApplyOutOfSyncOnly=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  info:
+  - name: 'environment:'
+    value: demo
+  - name: 'source:'
+    value: https://github.com/kbudde/k8s-demo
