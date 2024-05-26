@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: base
+spec:
+  generators:
+    - git:
+        directories:
+          - path: rendered/argocd/*
+        repoURL: https://github.com/kbudde/k8s-demo.git
+        revision: HEAD
+        values:
+          cluster: '{{.path.basename}}'
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  template:
+    metadata:
+      name: base-{{.values.cluster}}
+    spec:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: default
+      source:
+        path: '{{.path.path}}'
+        plugin:
+          name: argocd-vault-plugin
+        repoURL: https://github.com/kbudde/k8s-demo.git
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
