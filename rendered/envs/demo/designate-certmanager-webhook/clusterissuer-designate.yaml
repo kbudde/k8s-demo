@@ -3,12 +3,12 @@ kind: ClusterIssuer
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-  name: designate-letsencrypt
+  name: designate
 spec:
   acme:
     email: demo@kris.budd.ee
     privateKeySecretRef:
-      name: designate-private-key
+      name: designate-private-key-letsencrypt
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
       - dns01:

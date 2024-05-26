@@ -9,5 +9,5 @@ spec:
     - traefik.demo.budd.ee
   issuerRef:
     kind: ClusterIssuer
-    name: designate-letsencrypt
+    name: designate
   secretName: traefik-demo-budd-ee-tls

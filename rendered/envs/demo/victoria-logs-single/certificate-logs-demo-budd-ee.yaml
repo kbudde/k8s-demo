@@ -9,5 +9,5 @@ spec:
     - logs.demo.budd.ee
   issuerRef:
     kind: ClusterIssuer
-    name: designate-letsencrypt
+    name: designate
   secretName: logs-demo-budd-ee-tls

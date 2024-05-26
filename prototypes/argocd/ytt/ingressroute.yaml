@@ -40,7 +40,7 @@ metadata:
 spec:
   secretName: argocd-server-route-tls
   issuerRef:
-    name: designate-letsencrypt
+    name: designate
     kind: ClusterIssuer
   dnsNames:
     - #@ domain

@@ -30,7 +30,7 @@ metadata:
 spec:
   secretName: #@ domain.replace(".", "-") + "-tls"
   issuerRef:
-    name: designate-letsencrypt
+    name: designate
     kind: ClusterIssuer
   dnsNames:
     - #@ domain

@@ -1,0 +1,21 @@
+EAB_HMAC_KEY: ENC[AES256_GCM,data:CBficeMtAANQHthc+X/JLe1r3cbMLmF0sg2GNP4WsqgQj9kf0X70SJPqfBU/S7L4uyXKlnxxQMDARoGZpyFkVYgbjsJSrWPB8z4KS84Xv87u7QR+2Cw=,iv:MfzRErtEtWlgXd2C5WyxqomXMF1PbMaTKmftgcLbtII=,tag:tVBh0H/DEgeIVgsxMlpcHg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18vdqq99qpl8gyql3ggu2d4ull2d0694sv9v9keg687jh8csjm5rqws9rmk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQNGR1K3NWdmxsenpocTAz
+            cVJDcVVUZVB5R3NSRC9YckJoQk95UHNCTHdNCkZKOWhmckxwSCtSbW5lcjh3NHBo
+            MVdDUThZWHk0WUc2aUNZR1BkbFhWelkKLS0tIEFoVEZXd0xOTm9hUjN3eld6SDZ2
+            NGpiV0psV21BZEdsRDhBM0w1bGxZMmMKGrgUO7IdGBj5G18SGf4xhJspafCH/Rrs
+            kGsJHYKiI+iYY93X8jGoJaFvUKk6W0wsRJ0q0RmaTsV2vQBqDCfesA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-05-26T11:10:35Z"
+    mac: ENC[AES256_GCM,data:8NamuXn2IRyrvyB9gzgY22EG+TFRtFV/oLG+WyCRRteaHzuIP1UBYul3saenZeMTb9xTRvSNldJuHI3GEuDGpNbfuP5VpkmkOojoRKwXhhmTB+5ILTNgdVSVGONO/HB62QYpZOa+2VsCKyr9OGDl4YpQmewGqqTa3EftkORJxn8=,iv:gULSLAjBsbiS7zTKODFQzKvQ+tvUNiwm1hfo65NktiI=,tag:g/DKwr4Kl3OHKx7t8P4gqw==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1

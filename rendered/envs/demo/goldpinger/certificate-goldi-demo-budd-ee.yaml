@@ -9,5 +9,5 @@ spec:
     - goldi.demo.budd.ee
   issuerRef:
     kind: ClusterIssuer
-    name: designate-letsencrypt
+    name: designate
   secretName: goldi-demo-budd-ee-tls

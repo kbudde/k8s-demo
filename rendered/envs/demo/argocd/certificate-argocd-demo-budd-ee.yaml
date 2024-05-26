@@ -9,5 +9,5 @@ spec:
     - argocd.demo.budd.ee
   issuerRef:
     kind: ClusterIssuer
-    name: designate-letsencrypt
+    name: designate
   secretName: argocd-server-route-tls

@@ -3,3 +3,10 @@
 #@overlay/match-child-defaults missing_ok=True
 application:
   email: demo@kris.budd.ee
+
+  #@schema/validation one_of=("letsencrypt", "zerossl")
+  acme: letsencrypt
+
+  zerossl:
+    #! for each cert-manager new EAB credencials are required
+    eab_key_id: <path:static/zerossl.yaml#EAB_HMAC_KEY>
