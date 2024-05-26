@@ -13,7 +13,7 @@ spec:
     privateKeySecretRef:
       name: designate-private-key-zerossl
     externalAccountBinding:
-      keyID: YOUR_ZEROSSL_EAB_KEY_ID
+      keyID: #@ data.values.application.zerossl.eab_key_id
       keySecretRef:
         name: zero-ssl-eabsecret
         key: secret
@@ -32,7 +32,8 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: zero-ssl-eabsecret
-data:
-  secret: #@ data.values.application.zerossl.eab_key_id
+  namespace: cert-manager
+stringData:
+  secret: #@ data.values.application.zerossl.eab_hmac_key
 
 #@ end

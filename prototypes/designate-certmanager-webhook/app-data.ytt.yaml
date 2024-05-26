@@ -5,8 +5,9 @@ application:
   email: demo@kris.budd.ee
 
   #@schema/validation one_of=("letsencrypt", "zerossl")
-  acme: letsencrypt
+  acme: zerossl
 
   zerossl:
     #! for each cert-manager new EAB credencials are required
-    eab_key_id: <path:static/zerossl.yaml#EAB_HMAC_KEY>
+    eab_key_id: <path:static/zerossl.yaml#EAB_KID>
+    eab_hmac_key: <path:static/zerossl.yaml#EAB_HMAC_KEY>

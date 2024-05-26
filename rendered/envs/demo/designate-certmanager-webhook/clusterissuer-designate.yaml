@@ -7,9 +7,15 @@ metadata:
 spec:
   acme:
     email: demo@kris.budd.ee
+    externalAccountBinding:
+      keyAlgorithm: HS256
+      keyID: <path:static/zerossl.yaml#EAB_KID>
+      keySecretRef:
+        key: secret
+        name: zero-ssl-eabsecret
     privateKeySecretRef:
-      name: designate-private-key-letsencrypt
-    server: https://acme-v02.api.letsencrypt.org/directory
+      name: designate-private-key-zerossl
+    server: https://acme.zerossl.com/v2/DV90
     solvers:
       - dns01:
           webhook:
