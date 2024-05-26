@@ -88,7 +88,6 @@ The secret is referenced in `prototypes/argocd/ytt/argocd-vault-plugin.ytt.yaml`
 
 ```shell
 export AVP_TYPE=sops
-export AVP_TYPE="sops"
 cd rendered/envs/demo/argocd/
 find . \
   -regextype egrep \
