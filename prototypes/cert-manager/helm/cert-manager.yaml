@@ -13,5 +13,5 @@ webhook:
   podDisruptionBudget:
     enabled: true
 
-dns01RecursiveNameservers: 1.1.1.1:53,8.8.8.8:53
+dns01RecursiveNameservers: 185.116.244.45:53,185.116.244.46:53
 dns01RecursiveNameserversOnly: true
