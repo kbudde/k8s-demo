@@ -73,14 +73,16 @@ kubectl -n argocd create secret generic argo-sops-secret --from-literal SOPS_AGE
 ## install argo cd
 
 ```shell
-export AVP_TYPE=sops
-cd rendered/envs/demo/argocd/
-find . \
-  -regextype egrep \
-  -iregex '.*\.(yaml|yml)' \
-  -not -path "./static/*" \
-  -printf '---\n' \
-  -exec cat {} \; \
-| argocd-vault-plugin generate - | kubectl apply -n argocd -f - 
+( 
+  export AVP_TYPE=sops
+  cd rendered/envs/demo/argocd/
+  find . \
+    -regextype egrep \
+    -iregex '.*\.(yaml|yml)' \
+    -not -path "./static/*" \
+    -printf '---\n' \
+    -exec cat {} \; \
+  | argocd-vault-plugin generate - | kubectl apply -n argocd -f - 
+)
 ```
 
