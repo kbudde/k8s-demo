@@ -88,9 +88,15 @@ The secret is referenced in `prototypes/argocd/ytt/argocd-vault-plugin.ytt.yaml`
 
 ```shell
 export AVP_TYPE=sops
-cat rendered/argocd/demo/* | argocd-vault-plugin generate - | kubectl apply -n argocd -f - 
-kubectl apply -n argocd -f rendered/envs/demo/argocd/
-kubectl apply -n argocd -f argocd-base/
+export AVP_TYPE="sops"
+cd rendered/envs/demo/argocd/
+find . \
+  -regextype egrep \
+  -iregex '.*\.(yaml|yml)' \
+  -not -path "./static/*" \
+  -printf '---\n' \
+  -exec cat {} \; \
+| argocd-vault-plugin generate - | kubectl apply -n argocd -f - 
 # TODO: kube-system issue?
 ```
 

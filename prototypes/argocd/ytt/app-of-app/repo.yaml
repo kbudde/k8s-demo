@@ -1,3 +1,5 @@
+#@ load("@ytt:data", "data")
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -7,4 +9,4 @@ metadata:
 type: Opaque
 stringData:
   type: git
-  url: https://github.com/kbudde/k8s-demo.git
+  url: #@ data.values.myks.gitRepoUrl + ".git"

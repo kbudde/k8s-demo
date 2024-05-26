@@ -1,3 +1,5 @@
+#@ load("@ytt:data", "data")
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -7,7 +9,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git: 
-      repoURL: https://github.com/kbudde/k8s-demo.git
+      repoURL: #@ data.values.myks.gitRepoUrl + ".git"
       revision: HEAD
       directories:
       - path: rendered/argocd/*
@@ -15,11 +17,11 @@ spec:
         cluster: '{{.path.basename}}'
   template:
     metadata:
-      name: 'base-{{.values.cluster}}'
+      name: 'cluster-{{.values.cluster}}'
     spec:
       project: 'default'
       source:
-        repoURL: https://github.com/kbudde/k8s-demo.git
+        repoURL: #@ data.values.myks.gitRepoUrl + ".git"
         targetRevision: HEAD
         path: '{{.path.path}}'
         plugin: 
