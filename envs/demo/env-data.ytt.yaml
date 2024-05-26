@@ -23,6 +23,6 @@ helm:
 argocd:
   env:
     generateSecret: false
-  app:
-    source:
-      targetRevision: develop/demo
+#!  app:
+#!    source:
+#!      targetRevision: develop/demo
