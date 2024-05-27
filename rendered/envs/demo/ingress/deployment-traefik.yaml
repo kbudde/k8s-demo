@@ -48,7 +48,7 @@ spec:
             - --metrics.prometheus.entrypoint=metrics
             - --providers.kubernetescrd
             - --entryPoints.websecure.http.tls=true
-            - --log.level=DEBUG
+            - --log.level=INFO
             - --accesslog=true
             - --accesslog.fields.defaultmode=keep
             - --accesslog.fields.headers.defaultmode=drop
