@@ -15,6 +15,4 @@ spec:
       priority: 10
       services:
         - name: rancher
-          port: 444
-          scheme: https
-          serversTransport: insecure-skip-verify
+          port: 80

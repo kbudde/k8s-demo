@@ -6,6 +6,5 @@ hostname: #@ "rancher." + data.values.shared.domain
 ingress:
   enabled: false
   tls:
-    source: rancher
-    secretName: tls-rancher-ingress
+    source: secret
 bootstrapPassword: #@ data.values.application.bootstrapPassword
