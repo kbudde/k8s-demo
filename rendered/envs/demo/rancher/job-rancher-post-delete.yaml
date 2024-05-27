@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    helm.sh/hook: post-delete
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+    helm.sh/hook-weight: "3"
+  labels:
+    app: rancher
+    chart: rancher-2.9.0-alpha2
+    heritage: Helm
+    release: rancher
+  name: rancher-post-delete
+  namespace: rancher
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        app: rancher
+        chart: rancher-2.9.0-alpha2
+        heritage: Helm
+        release: rancher
+      name: rancher-post-delete
+    spec:
+      containers:
+        - command:
+            - /scripts/post-delete-hook.sh
+          env:
+            - name: NAMESPACES
+              value: cattle-fleet-system cattle-system rancher-operator-system
+            - name: RANCHER_NAMESPACE
+              value: rancher
+            - name: TIMEOUT
+              value: "120"
+            - name: IGNORETIMEOUTERROR
+              value: "false"
+          image: rancher/shell:v0.1.23
+          imagePullPolicy: IfNotPresent
+          name: rancher-post-delete
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - mountPath: /scripts
+              name: config-volume
+      restartPolicy: OnFailure
+      serviceAccountName: rancher-post-delete
+      volumes:
+        - configMap:
+            defaultMode: 511
+            name: rancher-post-delete
+          name: config-volume

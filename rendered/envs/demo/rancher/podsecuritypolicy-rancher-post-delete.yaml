@@ -1,0 +1,37 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    helm.sh/hook: post-delete
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded,hook-failed
+    helm.sh/hook-weight: "1"
+  labels:
+    app: rancher
+    chart: rancher-2.9.0-alpha2
+    heritage: Helm
+    release: rancher
+  name: rancher-post-delete
+spec:
+  fsGroup:
+    ranges:
+      - max: 65535
+        min: 1
+    rule: MustRunAs
+  hostIPC: false
+  hostNetwork: false
+  hostPID: false
+  privileged: false
+  readOnlyRootFilesystem: false
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    ranges:
+      - max: 65535
+        min: 1
+    rule: MustRunAs
+  volumes:
+    - secret
+    - configMap

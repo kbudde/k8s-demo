@@ -1,5 +1,5 @@
-apiVersion: v1
-kind: ServiceAccount
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
@@ -10,5 +10,17 @@ metadata:
     chart: designate-certmanager-webhook-0.6.1
     heritage: Helm
     release: designate-certmanager-webhook
-  name: designate-certmanager-webhook
-  namespace: default
+  name: designate-certmanager-webhook:uninstall
+rules:
+  - apiGroups:
+      - acme.syseleven.de
+    resources:
+      - '*'
+    verbs:
+      - create
+  - apiGroups:
+      - apiregistration.k8s.io
+    resources:
+      - apiservices
+    verbs:
+      - '*'
