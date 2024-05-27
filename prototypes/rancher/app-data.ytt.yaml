@@ -2,6 +2,6 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 application:
-  bootstrapPassword: "<path:static/rancher#bootstrapPassword>"
+  bootstrapPassword: "<path:static/rancher.yaml#bootstrapPassword>"
 
 
