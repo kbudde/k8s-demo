@@ -27,5 +27,3 @@ spec:
           port: 443
           scheme: h2c
           serversTransport: insecure-skip-verify
-  tls:
-    secretName: argocd-server-route-tls
