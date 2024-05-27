@@ -18,5 +18,3 @@ spec:
       services:
         - name: victoria-logs-single-server
           port: 9428
-  tls:
-    secretName: logs-demo-budd-ee-tls
