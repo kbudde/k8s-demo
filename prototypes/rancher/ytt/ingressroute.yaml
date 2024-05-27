@@ -1,0 +1,30 @@
+#@ load("@ytt:data", "data")
+#@ domain = "rancher." + data.values.shared.domain
+#@ traefikLB = "lb." + data.values.shared.domain
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: rancher
+  annotations:
+    external-dns.alpha.kubernetes.io/target: #@ traefikLB
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+  - websecure
+  routes:
+    - kind: Rule
+      match: #@ "Host(`{}`)".format(domain)
+      priority: 10
+      services:
+        - name: rancher
+          port: 444
+          scheme: https
+          serversTransport: insecure-skip-verify
+---
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: insecure-skip-verify
+spec:
+  insecureSkipVerify: true

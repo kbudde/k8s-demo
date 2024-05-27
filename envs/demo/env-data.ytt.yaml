@@ -7,16 +7,19 @@ environment:
   - proto: cert-manager
   - proto: designate-certmanager-webhook
   - proto: external-dns
+  - proto: goldpinger
   - proto: ingress/traefik
     name: ingress
+  - proto: rancher
   - proto: reloader
   - proto: victoria-logs-single
-  - proto: goldpinger
 shared:
   domain: "demo.budd.ee"
 
 helm:
-  kubeVersion: "1.29"
+  #! rancher (helm chart) is not yet compatible with k8s 1.29
+  #! let's pretend we have k8s 1.28
+  kubeVersion: "1.28"
   capabilities:
     - "monitoring.coreos.com/v1"
     - "policy/v1/PodDisruptionBudget"

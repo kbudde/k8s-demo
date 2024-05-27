@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+    - name: rancher
+      kind: helm
+      source: helmChart
+      url: https://releases.rancher.com/server-charts/alpha
+      version: 2.9.0-alpha2 #! still does not support k8s 1.29 but 🤷
+

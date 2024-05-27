@@ -1,0 +1,9 @@
+#@ load("@ytt:data", "data")
+---
+
+hostname: #@ "rancher." + data.values.shared.domain
+
+ingress:
+  enabled: false
+
+bootstrapPassword: #@ data.values.application.bootstrapPassword
