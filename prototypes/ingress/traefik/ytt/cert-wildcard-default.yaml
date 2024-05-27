@@ -1,0 +1,25 @@
+#@ load("@ytt:data", "data")
+#@ domain = "traefik." + data.values.shared.domain
+---
+apiVersion: traefik.io/v1alpha1
+kind: TLSStore
+metadata:
+  name: default
+
+spec:
+  defaultCertificate:
+    secretName: default-certificate
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: default-certificate
+spec:
+  secretName: default-certificate
+  issuerRef:
+    name: designate
+    kind: ClusterIssuer
+  dnsNames:
+    - #@ data.values.shared.domain
+    - #@ "*." + data.values.shared.domain
+---
