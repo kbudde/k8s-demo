@@ -16,5 +16,3 @@ spec:
       services:
         - name: goldpinger
           port: 8080
-  tls:
-    secretName: goldi-demo-budd-ee-tls
