@@ -5,6 +5,7 @@ environment:
   applications:
   - proto: argocd
   - proto: cert-manager
+  - proto: crossplane
   - proto: designate-certmanager-webhook
   - proto: external-dns
   - proto: goldpinger

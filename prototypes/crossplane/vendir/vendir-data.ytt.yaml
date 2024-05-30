@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+    - name: crossplane
+      kind: helm
+      source: helmChart
+      url: https://charts.crossplane.io/stable
+      version: 1.16.0
+
