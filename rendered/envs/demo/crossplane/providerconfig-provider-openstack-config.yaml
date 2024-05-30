@@ -9,4 +9,5 @@ spec:
     secretRef:
       key: config
       name: provider-openstack-config
+      namespace: crossplane
     source: Secret
