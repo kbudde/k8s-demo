@@ -12,3 +12,5 @@ spec:
     adminStateUp: true
     description: managed by crossplane
     name: network_1
+  providerConfigRef:
+    name: openstack-shared
