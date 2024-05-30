@@ -8,6 +8,6 @@ metadata:
   name: network-1
 spec:
   forProvider:
-    adminStateUp: "true"
+    adminStateUp: true
     name: network_1
     description: "managed by crossplane"
