@@ -110,7 +110,7 @@ spec:
             - core
             - init
             - --provider
-            - map[package:xpkg.upbound.io/crossplane-contrib/provider-openstack:v0.3.0]
+            - xpkg.upbound.io/crossplane-contrib/provider-openstack:v0.3.0
           env:
             - name: GOMAXPROCS
               valueFrom:
