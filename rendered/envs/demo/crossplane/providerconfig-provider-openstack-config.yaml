@@ -1,0 +1,12 @@
+apiVersion: openstack.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: provider-openstack-config
+spec:
+  credentials:
+    secretRef:
+      key: config
+      name: provider-openstack-config
+    source: Secret

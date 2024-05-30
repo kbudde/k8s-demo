@@ -1,0 +1,25 @@
+---
+apiVersion: openstack.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: provider-openstack-config
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      key: config
+      name: provider-openstack-config
+      #!namespace: crossplane
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: provider-openstack-config
+type: Opaque
+stringData:
+  config: |-
+    {
+      "auth_url": "<path:static/openstack.yaml#OS_AUTH_URL>",
+      "application_credential_id": "<path:static/openstack.yaml#OS_APPLICATION_CREDENTIAL_ID>",
+      "application_credential_secret": "<path:static/openstack.yaml#OS_APPLICATION_CREDENTIAL_SECRET>"
+    }
