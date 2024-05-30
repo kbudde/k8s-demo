@@ -1,0 +1,34 @@
+apiVersion: networking.openstack.crossplane.io/v1alpha1
+kind: SubnetV2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: networking/v1alpha1/subnetv2
+  labels:
+    testing.upbound.io/example-name: network_1
+  name: subnetwork-1-v4
+spec:
+  forProvider:
+    name: subnetwork_1
+    description: "managed by crossplane"
+    networkIdRef:
+      name: network-1
+  providerConfigRef:
+    name: openstack-shared
+---
+apiVersion: networking.openstack.crossplane.io/v1alpha1
+kind: SubnetV2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: networking/v1alpha1/subnetv2
+  labels:
+    testing.upbound.io/example-name: network_1
+  name: subnetwork-1-v6
+spec:
+  forProvider:
+    name: subnetwork_1-v6
+    description: "managed by crossplane"
+    ipVersion: 6
+    networkIdRef:
+      name: network-1
+  providerConfigRef:
+    name: openstack-shared

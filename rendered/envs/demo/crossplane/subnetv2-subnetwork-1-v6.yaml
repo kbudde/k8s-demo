@@ -1,0 +1,18 @@
+apiVersion: networking.openstack.crossplane.io/v1alpha1
+kind: SubnetV2
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    meta.upbound.io/example-id: networking/v1alpha1/subnetv2
+  labels:
+    testing.upbound.io/example-name: network_1
+  name: subnetwork-1-v6
+spec:
+  forProvider:
+    description: managed by crossplane
+    ipVersion: 6
+    name: subnetwork_1-v6
+    networkIdRef:
+      name: network-1
+  providerConfigRef:
+    name: openstack-shared
