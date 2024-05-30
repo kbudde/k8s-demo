@@ -7,19 +7,19 @@
 apiVersion: openstack.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: provider-openstack-config
+  name: openstack-shared
 spec:
   credentials:
     source: Secret
     secretRef:
       key: config
-      name: provider-openstack-config
+      name: openstack-shared
       namespace: #@ ns
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: provider-openstack-config
+  name: openstack-shared
 type: Opaque
 stringData:
   config: |-
