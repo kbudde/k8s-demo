@@ -9,6 +9,7 @@ metadata:
   name: subnetwork-1-v4
 spec:
   forProvider:
+    cidr: 172.31.0.0/28
     description: managed by crossplane
     name: subnetwork_1
     networkIdRef:

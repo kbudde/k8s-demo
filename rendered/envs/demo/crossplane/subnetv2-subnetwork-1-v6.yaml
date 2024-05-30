@@ -14,5 +14,6 @@ spec:
     name: subnetwork_1-v6
     networkIdRef:
       name: network-1
+    subnetpoolId: f541f3b6-af22-435a-9cbb-b233d12e74f4
   providerConfigRef:
     name: openstack-shared
