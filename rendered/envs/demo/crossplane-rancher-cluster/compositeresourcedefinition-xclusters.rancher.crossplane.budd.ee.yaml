@@ -3,7 +3,7 @@ kind: CompositeResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-  name: rancher-cluster
+  name: xclusters.rancher.crossplane.budd.ee
 spec:
   group: rancher.crossplane.budd.ee
   names:

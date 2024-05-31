@@ -2,7 +2,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: rancher-cluster
+  name: xclusters.rancher.crossplane.budd.ee
 spec:
   group: rancher.crossplane.budd.ee
   names:
