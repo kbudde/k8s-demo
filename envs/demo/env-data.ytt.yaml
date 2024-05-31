@@ -6,6 +6,7 @@ environment:
   - proto: argocd
   - proto: cert-manager
   - proto: crossplane
+  - proto: crossplane-openstack
   - proto: designate-certmanager-webhook
   - proto: external-dns
   - proto: goldpinger

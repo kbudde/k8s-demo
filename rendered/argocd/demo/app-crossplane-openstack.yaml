@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-crossplane-openstack
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  annotations:
+    myks.dev/environment: demo
+    app.kubernetes.io/source: https://github.com/kbudde/k8s-demo
+spec:
+  project: demo
+  destination:
+    name: demo
+    namespace: crossplane
+  source:
+    path: rendered/envs/demo/crossplane-openstack
+    plugin:
+      name: argocd-vault-plugin
+    repoURL: https://github.com/kbudde/k8s-demo
+    targetRevision: develop/demo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    - PruneLast=true
+    - RespectIgnoreDifferences=true
+    - ApplyOutOfSyncOnly=true
+    retry:
+      limit: -1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 10m
+  info:
+  - name: 'environment:'
+    value: demo
+  - name: 'source:'
+    value: https://github.com/kbudde/k8s-demo

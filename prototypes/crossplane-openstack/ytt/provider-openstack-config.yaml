@@ -1,7 +1,7 @@
 #@ load("@ytt:data", "data")
 #@ ns = data.values.myks.context.app
 #@ if data.values.argocd.app.destination.namespace!="":
-#@   ns = data.values.argocd.app.destination.namspace
+#@   ns = data.values.argocd.app.destination.namespace
 #@ end
 ---
 apiVersion: openstack.crossplane.io/v1beta1
