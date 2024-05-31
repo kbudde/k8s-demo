@@ -11,6 +11,7 @@ spec:
     plural: xclusters
   versions:
     - name: v1alpha1
+      referenceable: true
       schema:
         openAPIV3Schema:
           properties:
@@ -22,3 +23,4 @@ spec:
                 - providerConfig
               type: object
           type: object
+      served: true
