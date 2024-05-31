@@ -36,5 +36,5 @@ echo "MYKS_RENDERED_APP_DIR: $MYKS_RENDERED_APP_DIR"
  echo -n "lint manifests: "
 kube-linter lint --config .kubelint.yaml --with-color "$MYKS_RENDERED_APP_DIR" \
     --ignore-paths "./$MYKS_RENDERED_APP_DIR/static/*" \
-    --fail-if-no-objects-found
     # --fail-on-invalid-resource # CRDs are not supported
+    # --fail-if-no-objects-found # if only CRs are shipped, it will fail
