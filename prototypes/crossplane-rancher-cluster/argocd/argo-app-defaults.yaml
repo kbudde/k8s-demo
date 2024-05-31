@@ -1,0 +1,12 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+
+#@overlay/match by=overlay.subset({"kind": "Application"}), expects="0+"
+---
+#@overlay/match-child-defaults missing_ok=True
+spec:
+  ignoreDifferences:
+  - group: apiextensions.crossplane.io/v1
+    kind: Composition
+    jsonPointers:
+    - /spec/resources[].readinessChecks
