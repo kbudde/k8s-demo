@@ -24,7 +24,7 @@ spec:
       labels:
         app: goldpinger
     spec:
-      serviceAccount: goldpinger-serviceaccount
+      serviceAccountName: goldpinger-serviceaccount
       tolerations:
         - key: node-role.kubernetes.io/control-plane
           effect: NoSchedule
