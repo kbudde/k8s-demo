@@ -4,7 +4,7 @@
 #@ daemonset = overlay.subset({"kind": "DaemonSet"})
 #@ statefulset = overlay.subset({"kind": "StatefulSet"})
 
-#@overlay/match by=overlay.or_op(deployment, daemonset, statefulset), expects="1+"
+#@overlay/match by=overlay.or_op(deployment, daemonset, statefulset), expects="0+"
 ---
 #@overlay/match-child-defaults missing_ok=True
 metadata:
