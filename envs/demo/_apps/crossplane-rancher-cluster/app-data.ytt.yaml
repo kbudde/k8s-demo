@@ -1,0 +1,6 @@
+#@data/values
+---
+application:
+  cluster:
+    - name: "new-cluster"
+      providerConfig: "openstack-shared"
