@@ -1,0 +1,24 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: rancher-cluster
+spec:
+  group: rancher.crossplane.budd.ee
+  names:
+    kind: XCluster
+    plural: xclusters
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          properties:
+            spec:
+              properties:
+                providerConfig:
+                  type: string
+              required:
+                - providerConfig
+              type: object
+          type: object

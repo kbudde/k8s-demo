@@ -1,4 +1,26 @@
-#@ load("app.star", "namespace")
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: rancher-cluster
+spec:
+  group: rancher.crossplane.budd.ee
+  names:
+    kind: XCluster
+    plural: xclusters
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              providerConfig:
+                type: string
+            required:
+              - providerConfig
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
