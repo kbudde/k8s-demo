@@ -6,7 +6,7 @@
 #@overlay/match-child-defaults missing_ok=True
 spec:
   ignoreDifferences:
-  - group: apiextensions.crossplane.io/v1
-    kind: Composition
-    jsonPointers:
-    - /spec/resources[].readinessChecks
+  - group: "apiextensions.crossplane.io"
+    kind: "Composition"
+    jqPathExpressions:
+    - '.spec.resources[]?.readinessChecks'

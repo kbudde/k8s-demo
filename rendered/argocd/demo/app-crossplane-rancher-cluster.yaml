@@ -36,10 +36,10 @@ spec:
         factor: 2
         maxDuration: 10m
   ignoreDifferences:
-  - group: apiextensions.crossplane.io/v1
+  - group: apiextensions.crossplane.io
     kind: Composition
-    jsonPointers:
-    - /spec/resources[].readinessChecks
+    jqPathExpressions:
+    - .spec.resources[]?.readinessChecks
   info:
   - name: 'environment:'
     value: demo
