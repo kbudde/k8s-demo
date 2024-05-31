@@ -1,0 +1,6 @@
+#@data/values
+---
+application:
+  cluster:
+    - name: "demo"
+      providerConfig: "openstack-shared"

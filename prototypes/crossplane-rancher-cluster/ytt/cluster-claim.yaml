@@ -1,0 +1,12 @@
+#@ load("@ytt:data", "data")
+
+#@ for cluster in data.values.application.cluster:
+---
+apiVersion: rancher.crossplane.budd.ee/v1alpha1
+kind: XCluster
+metadata:
+  name: #@ cluster.name
+spec:
+  providerConfig: #@ cluster.providerConfig
+
+#@ end
