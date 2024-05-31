@@ -1,0 +1,12 @@
+#@data/values-schema
+---
+argocd:
+  app:
+    destination:
+      namespace: crossplane
+
+#@overlay/match-child-defaults missing_ok=True
+application:
+  cluster:
+    - name: "cluster-name"
+      providerConfig: "openstack-shared"

@@ -1,0 +1,39 @@
+#@ load("app.star", "namespace")
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: rancher-cluster
+spec:
+  compositeTypeRef:
+    apiVersion: rancher.crossplane.budd.ee/v1alpha1
+    kind: XCluster
+  resources:
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      kind: NetworkV2
+      metadata:
+        labels:
+          testing.upbound.io/example-name: network_1
+        name: network-1
+      spec:
+        forProvider:
+          adminStateUp: true
+          name: network_1
+          description: "managed by crossplane"
+        providerConfigRef:
+          name: openstack-shared
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      kind: SubnetV2
+      metadata:
+        labels:
+          testing.upbound.io/example-name: subnet_1
+        name: subnet-1
+      spec:
+        forProvider:
+          name: subnet_1
+          description: "managed by crossplane"
+          cidr: 172.31.0.0/24
+          networkIdSelector:
+            matchControllerRef: true
+        providerConfigRef:
+          name: openstack-shared

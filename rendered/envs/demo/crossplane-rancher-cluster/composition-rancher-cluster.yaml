@@ -1,0 +1,39 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: rancher-cluster
+spec:
+  compositeTypeRef:
+    apiVersion: rancher.crossplane.budd.ee/v1alpha1
+    kind: XCluster
+  resources:
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      kind: NetworkV2
+      metadata:
+        labels:
+          testing.upbound.io/example-name: network_1
+        name: network-1
+      spec:
+        forProvider:
+          adminStateUp: true
+          description: managed by crossplane
+          name: network_1
+        providerConfigRef:
+          name: openstack-shared
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      kind: SubnetV2
+      metadata:
+        labels:
+          testing.upbound.io/example-name: subnet_1
+        name: subnet-1
+      spec:
+        forProvider:
+          cidr: 172.31.0.0/24
+          description: managed by crossplane
+          name: subnet_1
+          networkIdSelector:
+            matchControllerRef: true
+        providerConfigRef:
+          name: openstack-shared
