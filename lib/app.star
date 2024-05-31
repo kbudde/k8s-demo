@@ -9,3 +9,12 @@ def enabled(proto):
     end
     return False
 end
+
+# return the namespace of the application
+def namespace():
+    ns = data.values.myks.context.app
+    if data.values.argocd.app.destination.namespace!="":
+        ns = data.values.argocd.app.destination.namespace
+    end
+    return ns
+end

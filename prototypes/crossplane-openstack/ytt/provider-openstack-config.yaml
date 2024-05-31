@@ -1,8 +1,5 @@
-#@ load("@ytt:data", "data")
-#@ ns = data.values.myks.context.app
-#@ if data.values.argocd.app.destination.namespace!="":
-#@   ns = data.values.argocd.app.destination.namespace
-#@ end
+#@ load("app.star", "namespace")
+
 ---
 apiVersion: openstack.crossplane.io/v1beta1
 kind: ProviderConfig
@@ -14,7 +11,7 @@ spec:
     secretRef:
       key: config
       name: openstack-shared
-      namespace: #@ ns
+      namespace: #@ namespace()
 ---
 apiVersion: v1
 kind: Secret
