@@ -2,5 +2,5 @@
 ---
 application:
   cluster:
-    - name: "demo"
+    - name: "new-cluster"
       providerConfig: "openstack-shared"
