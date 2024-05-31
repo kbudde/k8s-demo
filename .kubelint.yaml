@@ -1,0 +1,33 @@
+# customChecks defines custom checks.
+customChecks:
+- name: "required-repo-annotation"
+  template: "required-annotation"
+  params:
+    key: "a8r.io/repository"
+checks:
+  # if doNotAutoAddDefaults is true, default checks are not automatically added.
+  #doNotAutoAddDefaults: false
+
+  # addAllBuiltIn, if set, adds all built-in checks. This allows users to
+  # explicitly opt-out of checks that are not relevant using Exclude.
+  # Takes precedence over doNotAutoAddDefaults, if both are set.
+  #addAllBuiltIn: false
+
+  # include explicitly adds checks, by name. You can reference any of the built-in checks.
+  # Note that customChecks defined above are included automatically.
+  include:
+  - "required-repo-annotation"
+  # exclude explicitly excludes checks, by name. exclude has the highest priority: if a check is
+  # in exclude, then it is not considered, even if it is in include as well.
+  # TODO: clean up the list of excluded checks
+  exclude:
+    - env-var-secret
+    - unset-cpu-requirements
+    - unset-memory-requirements
+    - liveness-port
+    - readiness-port
+    - no-read-only-root-fs
+    - run-as-non-root
+    - dangling-service
+    - pdb-min-available
+    - latest-tag
