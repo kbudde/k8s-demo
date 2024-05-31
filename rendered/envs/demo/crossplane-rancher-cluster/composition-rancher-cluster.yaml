@@ -13,28 +13,22 @@ spec:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: NetworkV2
         metadata:
-          labels:
-            testing.upbound.io/example-name: network_1
           name: network-1
         spec:
           forProvider:
             adminStateUp: true
             description: managed by crossplane
-            name: network_1
           providerConfigRef:
             name: openstack-shared
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SubnetV2
         metadata:
-          labels:
-            testing.upbound.io/example-name: subnet_1
           name: subnet-1
         spec:
           forProvider:
             cidr: 172.31.0.0/24
             description: managed by crossplane
-            name: subnet_1
             networkIdSelector:
               matchControllerRef: true
           providerConfigRef:

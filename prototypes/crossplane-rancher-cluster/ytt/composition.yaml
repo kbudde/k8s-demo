@@ -36,6 +36,7 @@ spec:
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: NetworkV2
+        metadata:
           name: network-1
         spec:
           forProvider:
