@@ -23,8 +23,6 @@ spec:
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: NetworkV2
-        metadata:
-          name: network-1
         spec:
           forProvider:
             adminStateUp: true
@@ -40,8 +38,6 @@ spec:
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SubnetV2
-        metadata:
-          name: subnet-1
         spec:
           forProvider:
             cidr: 172.31.0.0/24
@@ -59,8 +55,6 @@ spec:
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: RouterV2
-        metadata:
-          name: router-1
         spec:
           forProvider:
             adminStateUp: true
