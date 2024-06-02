@@ -121,9 +121,6 @@ spec:
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -136,12 +133,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -154,12 +151,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -172,12 +169,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -190,12 +187,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -208,12 +205,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -226,12 +223,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -244,12 +241,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -262,12 +259,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -280,12 +277,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -298,12 +295,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -316,12 +313,12 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
-        patches:
-          - patchSetName: providerConfig
-            type: PatchSet
         spec:
           forProvider:
             description: managed by crossplane
@@ -334,3 +331,6 @@ spec:
             securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet

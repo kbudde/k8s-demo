@@ -161,9 +161,9 @@ spec:
             portRangeMax: 22
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -179,9 +179,9 @@ spec:
             portRangeMax: 53
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -197,9 +197,9 @@ spec:
             portRangeMax: 179
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -215,9 +215,9 @@ spec:
             portRangeMax: 6443
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -233,9 +233,9 @@ spec:
             portRangeMax: 2380
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -251,9 +251,9 @@ spec:
             portRangeMax: 7080
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -269,9 +269,9 @@ spec:
             portRangeMax: 8472
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -287,9 +287,9 @@ spec:
             portRangeMax: 8080
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -305,9 +305,9 @@ spec:
             portRangeMax: 9100
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -323,9 +323,9 @@ spec:
             portRangeMax: 10250
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -341,9 +341,9 @@ spec:
             portRangeMax: 32767
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -359,6 +359,6 @@ spec:
             portRangeMax: 8472
           providerConfigRef:
             name: default
-        patches:
-        - type: PatchSet
-          patchSetName: providerConfig
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
