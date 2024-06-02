@@ -328,7 +328,9 @@ spec:
             portRangeMin: 8472
             protocol: udp
             remoteIpPrefix: 0.0.0.0/0
-            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            securityGroupIdRef:
+              nameSelector:
+                matchControllerRef: true
           providerConfigRef:
             name: default
       patches:
