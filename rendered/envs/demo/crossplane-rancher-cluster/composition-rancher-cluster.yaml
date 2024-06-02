@@ -70,6 +70,8 @@ spec:
           forProvider:
             description: managed by crossplane
             name: ""
+            routerIdSelector:
+              matchControllerRef: true
             subnetIdSelector:
               matchControllerRef: true
           providerConfigRef:

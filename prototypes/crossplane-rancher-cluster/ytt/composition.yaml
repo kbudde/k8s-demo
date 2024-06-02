@@ -99,6 +99,8 @@ spec:
             name: ""
             subnetIdSelector:
               matchControllerRef: true
+            routerIdSelector:
+              matchControllerRef: true
           providerConfigRef:
             name: default
       patches:
