@@ -26,6 +26,11 @@ spec:
               required:
                 - providerConfig
                 - externalNetworkId
+            status:
+              type: object
+              properties:
+                securityGroupId:
+                  type: string
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
@@ -127,6 +132,9 @@ spec:
           patchSetName: naming
         - type: PatchSet
           patchSetName: providerConfig
+        - type: ToCompositeFieldPath
+          fromFieldPath: metadata.annotations["crossplane.io/external-name"]
+          toFieldPath: status.securityGroupId
     #! - base:
     #!     apiVersion: networking.openstack.crossplane.io/v1alpha1
     #!     kind: SecgroupRuleV2
@@ -332,8 +340,7 @@ spec:
         spec:
           forProvider:
             description: "managed by crossplane"
-            securityGroupIdSelector:
-              matchControllerRef: true
+            securityGroupId: "patch me"
             protocol: tcp
             direction: ingress
             ethertype: IPv4
@@ -345,14 +352,16 @@ spec:
       patches:
       - type: PatchSet
         patchSetName: providerConfig
+      - type: FromCompositeFieldPath
+        fromFieldPath: status.securityGroupId
+        toFieldPath: spec.forProvider.securityGroupId
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
         spec:
           forProvider:
             description: "managed by crossplane"
-            securityGroupIdSelector:
-              matchControllerRef: true
+            securityGroupId: "patch me"
             protocol: udp
             direction: ingress
             ethertype: IPv4
@@ -364,3 +373,6 @@ spec:
       patches:
       - type: PatchSet
         patchSetName: providerConfig
+      - type: FromCompositeFieldPath
+        fromFieldPath: status.securityGroupId
+        toFieldPath: spec.forProvider.securityGroupId

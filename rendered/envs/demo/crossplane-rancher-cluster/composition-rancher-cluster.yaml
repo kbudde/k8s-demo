@@ -100,6 +100,9 @@ spec:
           type: PatchSet
         - patchSetName: providerConfig
           type: PatchSet
+        - fromFieldPath: metadata.annotations["crossplane.io/external-name"]
+          toFieldPath: status.securityGroupId
+          type: ToCompositeFieldPath
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -112,13 +115,15 @@ spec:
             portRangeMin: 30000
             protocol: tcp
             remoteIpPrefix: 0.0.0.0/0
-            securityGroupIdSelector:
-              matchControllerRef: true
+            securityGroupId: patch me
           providerConfigRef:
             name: default
       patches:
         - patchSetName: providerConfig
           type: PatchSet
+        - fromFieldPath: status.securityGroupId
+          toFieldPath: spec.forProvider.securityGroupId
+          type: FromCompositeFieldPath
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -131,10 +136,12 @@ spec:
             portRangeMin: 8472
             protocol: udp
             remoteIpPrefix: 0.0.0.0/0
-            securityGroupIdSelector:
-              matchControllerRef: true
+            securityGroupId: patch me
           providerConfigRef:
             name: default
       patches:
         - patchSetName: providerConfig
           type: PatchSet
+        - fromFieldPath: status.securityGroupId
+          toFieldPath: spec.forProvider.securityGroupId
+          type: FromCompositeFieldPath
