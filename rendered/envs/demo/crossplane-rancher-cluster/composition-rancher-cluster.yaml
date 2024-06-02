@@ -111,8 +111,8 @@ spec:
             description: managed by crossplane. Internode communication
             direction: ingress
             ethertype: IPv4
+            remoteIpPrefix: ""
             securityGroupId: patch me
-            self: true
           providerConfigRef:
             name: default
       patches:

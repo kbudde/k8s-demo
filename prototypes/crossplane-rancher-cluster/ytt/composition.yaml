@@ -142,12 +142,9 @@ spec:
           forProvider:
             description: "managed by crossplane. Internode communication"
             securityGroupId: "patch me"
-            #! protocol: any
             direction: ingress
             ethertype: IPv4
-            #! portRangeMin: 30000
-            #! portRangeMax: 32767
-            self: true
+            remoteIpPrefix: ""
           providerConfigRef:
             name: default
       patches:
