@@ -145,6 +145,7 @@ spec:
             direction: ingress
             ethertype: IPv4
             remoteIpPrefix: ""
+            remoteGroupId: "patch me"
           providerConfigRef:
             name: default
       patches:
@@ -153,6 +154,9 @@ spec:
       - type: FromCompositeFieldPath
         fromFieldPath: status.securityGroupId
         toFieldPath: spec.forProvider.securityGroupId
+      - type: FromCompositeFieldPath
+        fromFieldPath: status.securityGroupId
+        toFieldPath: spec.forProvider.remoteGroupId
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2

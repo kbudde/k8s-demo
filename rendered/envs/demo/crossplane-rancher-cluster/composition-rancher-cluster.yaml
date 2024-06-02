@@ -111,6 +111,7 @@ spec:
             description: managed by crossplane. Internode communication
             direction: ingress
             ethertype: IPv4
+            remoteGroupId: patch me
             remoteIpPrefix: ""
             securityGroupId: patch me
           providerConfigRef:
@@ -120,6 +121,9 @@ spec:
           type: PatchSet
         - fromFieldPath: status.securityGroupId
           toFieldPath: spec.forProvider.securityGroupId
+          type: FromCompositeFieldPath
+        - fromFieldPath: status.securityGroupId
+          toFieldPath: spec.forProvider.remoteGroupId
           type: FromCompositeFieldPath
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
