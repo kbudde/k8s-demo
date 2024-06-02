@@ -90,6 +90,11 @@ spec:
             name: ""
           providerConfigRef:
             name: default
+      patches:
+        - type: PatchSet
+          patchSetName: naming
+        - type: PatchSet
+          patchSetName: providerConfig
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: RouterInterfaceV2
