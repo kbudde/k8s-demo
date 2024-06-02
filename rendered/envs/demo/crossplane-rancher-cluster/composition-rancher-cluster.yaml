@@ -112,7 +112,7 @@ spec:
             portRangeMin: 30000
             protocol: tcp
             remoteIpPrefix: 0.0.0.0/0
-            securityGroupIdRef:
+            securityGroupIdSelector:
               matchControllerRef: true
           providerConfigRef:
             name: default
@@ -131,7 +131,7 @@ spec:
             portRangeMin: 8472
             protocol: udp
             remoteIpPrefix: 0.0.0.0/0
-            securityGroupIdRef:
+            securityGroupIdSelector:
               matchControllerRef: true
           providerConfigRef:
             name: default
