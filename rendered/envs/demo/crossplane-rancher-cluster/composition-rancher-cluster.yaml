@@ -90,30 +90,41 @@ spec:
               - fromPort: 1
                 ipProtocol: icmp
                 toPort: 65535
-              - ipProtocol: tcp
+              - fromPort: 22
+                ipProtocol: tcp
                 toPort: 22
-              - ipProtocol: tcp
+              - fromPort: 53
+                ipProtocol: tcp
                 toPort: 53
-              - ipProtocol: tcp
+              - fromPort: 179
+                ipProtocol: tcp
                 toPort: 179
-              - ipProtocol: tcp
+              - fromPort: 6443
+                ipProtocol: tcp
                 toPort: 6443
-              - ipProtocol: tcp
+              - fromPort: 2380
+                ipProtocol: tcp
                 toPort: 2380
-              - ipProtocol: tcp
+              - fromPort: 7080
+                ipProtocol: tcp
                 toPort: 7080
-              - ipProtocol: tcp
+              - fromPort: 8472
+                ipProtocol: tcp
                 toPort: 8472
-              - ipProtocol: tcp
+              - fromPort: 8080
+                ipProtocol: tcp
                 toPort: 8080
-              - ipProtocol: tcp
+              - fromPort: 9100
+                ipProtocol: tcp
                 toPort: 9100
-              - ipProtocol: tcp
+              - fromPort: 10250
+                ipProtocol: tcp
                 toPort: 10250
               - fromPort: 30000
                 ipProtocol: tcp
                 toPort: 32767
-              - ipProtocol: udp
+              - fromPort: 8472
+                ipProtocol: udp
                 toPort: 8472
           providerConfigRef:
             name: default
