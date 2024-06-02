@@ -106,7 +106,6 @@ spec:
         spec:
           forProvider:
             description: managed by crossplane
-            name: ""
             portRangeMax: 65535
             portRangeMin: 1
             protocol: icmp
@@ -126,7 +125,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 22
           portRangeMin: 22
           protocol: tcp
@@ -143,7 +141,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 53
           portRangeMin: 53
           protocol: tcp
@@ -160,7 +157,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 179
           portRangeMin: 179
           protocol: tcp
@@ -177,7 +173,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 6443
           portRangeMin: 6443
           protocol: tcp
@@ -194,7 +189,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 2380
           portRangeMin: 2380
           protocol: tcp
@@ -211,7 +205,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 7080
           portRangeMin: 7080
           protocol: tcp
@@ -228,7 +221,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 8472
           portRangeMin: 8472
           protocol: tcp
@@ -245,7 +237,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 8080
           portRangeMin: 8080
           protocol: tcp
@@ -262,7 +253,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 9100
           portRangeMin: 9100
           protocol: tcp
@@ -279,7 +269,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 10250
           portRangeMin: 10250
           protocol: tcp
@@ -296,7 +285,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 32767
           portRangeMin: 30000
           protocol: tcp
@@ -313,7 +301,6 @@ spec:
         spec:
           description: managed by crossplane
           forProvider: null
-          name: ""
           portRangeMax: 8472
           portRangeMin: 8472
           protocol: udp

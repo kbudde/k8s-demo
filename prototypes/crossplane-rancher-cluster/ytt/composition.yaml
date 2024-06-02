@@ -133,7 +133,6 @@ spec:
         spec:
           forProvider:
             description: "managed by crossplane"
-            name: ""
             securityGroupIdSelector:
               matchControllerRef: true
             protocol: icmp
@@ -151,7 +150,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -168,7 +166,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -185,7 +182,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -202,7 +198,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -219,7 +214,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -236,7 +230,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -253,7 +246,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -270,7 +262,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -287,7 +278,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -304,7 +294,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -321,7 +310,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: tcp
@@ -338,7 +326,6 @@ spec:
         spec:
           forProvider:
           description: "managed by crossplane"
-          name: ""
           securityGroupIdSelector:
             matchControllerRef: true
           protocol: udp
