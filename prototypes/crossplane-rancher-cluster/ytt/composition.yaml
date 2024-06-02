@@ -40,7 +40,7 @@ spec:
     patches:
     - type: FromCompositeFieldPath
       fromFieldPath: metadata.name
-      toFieldPath: spec.forProvider.nam
+      toFieldPath: spec.forProvider.name
   - name: providerConfig
     patches:
     - type: FromCompositeFieldPath

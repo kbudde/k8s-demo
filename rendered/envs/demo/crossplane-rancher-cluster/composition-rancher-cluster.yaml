@@ -12,7 +12,7 @@ spec:
     - name: naming
       patches:
         - fromFieldPath: metadata.name
-          toFieldPath: spec.forProvider.nam
+          toFieldPath: spec.forProvider.name
           type: FromCompositeFieldPath
     - name: providerConfig
       patches:
