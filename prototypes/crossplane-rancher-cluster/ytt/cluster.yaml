@@ -5,7 +5,6 @@
 apiVersion: rancher.crossplane.budd.ee/v1alpha1
 kind: XCluster
 metadata:
-  generateName: #@ cluster.name +"-"
   name: #@ cluster.name
 spec:
   providerConfig: #@ cluster.providerConfig
