@@ -108,7 +108,26 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-            description: managed by crossplane
+            description: managed by crossplane. Internode communication
+            direction: ingress
+            ethertype: IPv4
+            protocol: any
+            securityGroupId: patch me
+            self: true
+          providerConfigRef:
+            name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+        - fromFieldPath: status.securityGroupId
+          toFieldPath: spec.forProvider.securityGroupId
+          type: FromCompositeFieldPath
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: SecgroupRuleV2
+        spec:
+          forProvider:
+            description: managed by crossplane. Node ports
             direction: ingress
             ethertype: IPv4
             portRangeMax: 32767
@@ -129,12 +148,33 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-            description: managed by crossplane
+            description: managed by crossplane. Node ports
             direction: ingress
             ethertype: IPv4
-            portRangeMax: 8472
-            portRangeMin: 8472
+            portRangeMax: 32767
+            portRangeMin: 30000
             protocol: udp
+            remoteIpPrefix: 0.0.0.0/0
+            securityGroupId: patch me
+          providerConfigRef:
+            name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+        - fromFieldPath: status.securityGroupId
+          toFieldPath: spec.forProvider.securityGroupId
+          type: FromCompositeFieldPath
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: SecgroupRuleV2
+        spec:
+          forProvider:
+            description: managed by crossplane. K8s API server
+            direction: ingress
+            ethertype: IPv4
+            portRangeMax: 6443
+            portRangeMin: 6443
+            protocol: tcp
             remoteIpPrefix: 0.0.0.0/0
             securityGroupId: patch me
           providerConfigRef:

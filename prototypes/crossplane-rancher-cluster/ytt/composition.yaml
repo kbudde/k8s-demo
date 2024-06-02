@@ -339,7 +339,28 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-            description: "managed by crossplane"
+            description: "managed by crossplane. Internode communication"
+            securityGroupId: "patch me"
+            protocol: any
+            direction: ingress
+            ethertype: IPv4
+            # portRangeMin: 30000
+            # portRangeMax: 32767
+            self: true
+          providerConfigRef:
+            name: default
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
+      - type: FromCompositeFieldPath
+        fromFieldPath: status.securityGroupId
+        toFieldPath: spec.forProvider.securityGroupId
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: SecgroupRuleV2
+        spec:
+          forProvider:
+            description: "managed by crossplane. Node ports"
             securityGroupId: "patch me"
             protocol: tcp
             direction: ingress
@@ -360,14 +381,35 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-            description: "managed by crossplane"
+            description: "managed by crossplane. Node ports"
             securityGroupId: "patch me"
             protocol: udp
             direction: ingress
             ethertype: IPv4
             remoteIpPrefix: 0.0.0.0/0
-            portRangeMin: 8472
-            portRangeMax: 8472
+            portRangeMin: 30000
+            portRangeMax: 32767
+          providerConfigRef:
+            name: default
+      patches:
+      - type: PatchSet
+        patchSetName: providerConfig
+      - type: FromCompositeFieldPath
+        fromFieldPath: status.securityGroupId
+        toFieldPath: spec.forProvider.securityGroupId
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: SecgroupRuleV2
+        spec:
+          forProvider:
+            description: "managed by crossplane. K8s API server"
+            securityGroupId: "patch me"
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 6443
+            portRangeMax: 6443
           providerConfigRef:
             name: default
       patches:
