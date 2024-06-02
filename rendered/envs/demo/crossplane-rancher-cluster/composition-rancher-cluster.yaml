@@ -151,6 +151,27 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
+            description: managed by crossplane. SSH
+            direction: ingress
+            ethertype: IPv4
+            portRangeMax: 22
+            portRangeMin: 22
+            protocol: tcp
+            remoteIpPrefix: 0.0.0.0/0
+            securityGroupId: patch me
+          providerConfigRef:
+            name: default
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+        - fromFieldPath: status.securityGroupId
+          toFieldPath: spec.forProvider.securityGroupId
+          type: FromCompositeFieldPath
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: SecgroupRuleV2
+        spec:
+          forProvider:
             description: managed by crossplane. Node ports
             direction: ingress
             ethertype: IPv4
