@@ -90,11 +90,63 @@ spec:
             name: ""
           providerConfigRef:
             name: default
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: RouterInterfaceV2
+        spec:
+          forProvider:
+            description: "managed by crossplane"
+            name: ""
+            subnetIdSelector:
+              matchControllerRef: true
+          providerConfigRef:
+            name: default
       patches:
         - type: PatchSet
           patchSetName: naming
         - type: PatchSet
           patchSetName: providerConfig
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.externalNetworkId
-          toFieldPath: spec.forProvider.externalNetworkId
+    - base:
+        apiVersion: compute.openstack.crossplane.io/v1alpha1
+        kind: SecgroupV2
+        spec:
+          forProvider:
+            description: "managed by crossplane"
+            name: ""
+            rule:
+            - ipProtocol: icmp
+              fromPort: 1
+              toPort: 65535
+            - ipProtocol: tcp
+              toPort: 22
+            - ipProtocol: tcp
+              toPort: 53
+            - ipProtocol: tcp
+              toPort: 179
+            - ipProtocol: tcp
+              toPort: 6443
+            - ipProtocol: tcp
+              toPort: 2380
+            - ipProtocol: tcp
+              toPort: 7080
+            - ipProtocol: tcp
+              toPort: 8472
+            - ipProtocol: tcp
+              toPort: 8080
+            - ipProtocol: tcp
+              toPort: 9100
+            - ipProtocol: tcp
+              toPort: 10250
+            - ipProtocol: tcp
+              fromPort: 30000
+              toPort: 32767
+            - ipProtocol: udp
+              toPort: 8472
+
+          providerConfigRef:
+            name: default
+      patches:
+        - type: PatchSet
+          patchSetName: naming
+        - type: PatchSet
+          patchSetName: providerConfig
