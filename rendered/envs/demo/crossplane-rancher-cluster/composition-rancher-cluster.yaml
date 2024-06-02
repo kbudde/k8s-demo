@@ -82,52 +82,69 @@ spec:
         - patchSetName: providerConfig
           type: PatchSet
     - base:
-        apiVersion: compute.openstack.crossplane.io/v1alpha1
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupV2
         spec:
           forProvider:
             description: managed by crossplane
             name: ""
+          providerConfigRef:
+            name: default
+      patches:
+        - patchSetName: naming
+          type: PatchSet
+        - patchSetName: providerConfig
+          type: PatchSet
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: SecgroupRuleV2
+        spec:
+          forProvider:
+            description: managed by crossplane
+            name: ""
             rule:
-              - fromPort: 1
-                ipProtocol: icmp
-                toPort: 65535
-              - fromPort: 22
-                ipProtocol: tcp
-                toPort: 22
-              - fromPort: 53
-                ipProtocol: tcp
-                toPort: 53
-              - fromPort: 179
-                ipProtocol: tcp
-                toPort: 179
-              - fromPort: 6443
-                ipProtocol: tcp
-                toPort: 6443
-              - fromPort: 2380
-                ipProtocol: tcp
-                toPort: 2380
-              - fromPort: 7080
-                ipProtocol: tcp
-                toPort: 7080
-              - fromPort: 8472
-                ipProtocol: tcp
-                toPort: 8472
-              - fromPort: 8080
-                ipProtocol: tcp
-                toPort: 8080
-              - fromPort: 9100
-                ipProtocol: tcp
-                toPort: 9100
-              - fromPort: 10250
-                ipProtocol: tcp
-                toPort: 10250
-              - fromPort: 30000
-                ipProtocol: tcp
-                toPort: 32767
-              - fromPort: 8472
-                ipProtocol: udp
-                toPort: 8472
+              - portRangeMax: 65535
+                portRangeMin: 1
+                protocol: icmp
+                self: true
+              - portRangeMax: 22
+                portRangeMin: 22
+                protocol: tcp
+              - portRangeMax: 53
+                portRangeMin: 53
+                protocol: tcp
+              - portRangeMax: 179
+                portRangeMin: 179
+                protocol: tcp
+              - portRangeMax: 6443
+                portRangeMin: 6443
+                protocol: tcp
+              - portRangeMax: 2380
+                portRangeMin: 2380
+                protocol: tcp
+              - portRangeMax: 7080
+                portRangeMin: 7080
+                protocol: tcp
+              - portRangeMax: 8472
+                portRangeMin: 8472
+                protocol: tcp
+              - portRangeMax: 8080
+                portRangeMin: 8080
+                protocol: tcp
+              - portRangeMax: 9100
+                portRangeMin: 9100
+                protocol: tcp
+              - portRangeMax: 10250
+                portRangeMin: 10250
+                protocol: tcp
+              - portRangeMax: 32767
+                portRangeMin: 30000
+                protocol: tcp
+              - portRangeMax: 8472
+                portRangeMin: 8472
+                protocol: udp
+            securityGroupIdSelector:
+              matchControllerRef: true
           providerConfigRef:
             name: default
       patches:
