@@ -70,6 +70,8 @@ spec:
             adminStateUp: true
             externalNetworkId: ""
             name: my_router
+          providerConfigRef:
+            name: openstack-shared
       patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.externalNetworkId
