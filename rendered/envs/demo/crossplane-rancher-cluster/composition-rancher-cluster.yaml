@@ -8,6 +8,17 @@ spec:
   compositeTypeRef:
     apiVersion: rancher.crossplane.budd.ee/v1alpha1
     kind: XCluster
+  patchSets:
+    - name: naming
+      patches:
+        - fromFieldPath: metadata.name
+          toFieldPath: spec.forProvider.nam
+          type: FromCompositeFieldPath
+    - name: providerConfig
+      patches:
+        - fromFieldPath: spec.providerConfig
+          toFieldPath: spec.providerConfigRef.name
+          type: FromCompositeFieldPath
   resources:
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
@@ -20,6 +31,11 @@ spec:
             description: managed by crossplane
           providerConfigRef:
             name: openstack-shared
+      patches:
+        - patchSetName: naming
+          type: PatchSet
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SubnetV2
@@ -33,6 +49,11 @@ spec:
               matchControllerRef: true
           providerConfigRef:
             name: openstack-shared
+      patches:
+        - patchSetName: naming
+          type: PatchSet
+        - patchSetName: providerConfig
+          type: PatchSet
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: RouterV2
@@ -45,6 +66,10 @@ spec:
           providerConfigRef:
             name: openstack-shared
       patches:
+        - patchSetName: naming
+          type: PatchSet
+        - patchSetName: providerConfig
+          type: PatchSet
         - fromFieldPath: spec.externalNetworkId
           toFieldPath: spec.forProvider.externalNetworkId
           type: FromCompositeFieldPath
