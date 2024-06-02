@@ -8,5 +8,6 @@ metadata:
   name: #@ cluster.name
 spec:
   providerConfig: #@ cluster.providerConfig
+  externalNetworkId: #@ cluster.externalNetworkId
 
 #@ end

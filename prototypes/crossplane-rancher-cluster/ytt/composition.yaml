@@ -9,20 +9,23 @@ spec:
     kind: XCluster
     plural: xclusters
   versions:
-  - name: v1alpha1
-    served: true
-    referenceable: true
-    schema:
-      openAPIV3Schema:
-        type: object
-        properties:
-          spec:
-            type: object
-            properties:
-              providerConfig:
-                type: string
-            required:
-              - providerConfig
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                providerConfig:
+                  type: string
+                externalNetworkId:
+                  type: string
+              required:
+                - providerConfig
+                - externalNetworkId
 ---
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
@@ -57,3 +60,17 @@ spec:
               matchControllerRef: true
           providerConfigRef:
             name: openstack-shared
+    - base:
+        apiVersion: networking.openstack.crossplane.io/v1alpha1
+        kind: RouterV2
+        metadata:
+          name: router-1
+        spec:
+          forProvider:
+            adminStateUp: true
+            externalNetworkId: ""
+            name: my_router
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.externalNetworkId
+          toFieldPath: spec.forProvider.externalNetworkId

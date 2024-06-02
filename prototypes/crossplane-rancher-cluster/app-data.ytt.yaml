@@ -10,3 +10,4 @@ application:
   cluster:
     - name: "cluster-name"
       providerConfig: "openstack-shared"
+      externalNetworkId: "some-id-of-an-external-network"
