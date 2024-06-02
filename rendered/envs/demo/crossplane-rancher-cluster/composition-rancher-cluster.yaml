@@ -102,53 +102,217 @@ spec:
           forProvider:
             description: managed by crossplane
             name: ""
-            rule:
-              - portRangeMax: 65535
-                portRangeMin: 1
-                protocol: icmp
-                self: true
-              - portRangeMax: 22
-                portRangeMin: 22
-                protocol: tcp
-              - portRangeMax: 53
-                portRangeMin: 53
-                protocol: tcp
-              - portRangeMax: 179
-                portRangeMin: 179
-                protocol: tcp
-              - portRangeMax: 6443
-                portRangeMin: 6443
-                protocol: tcp
-              - portRangeMax: 2380
-                portRangeMin: 2380
-                protocol: tcp
-              - portRangeMax: 7080
-                portRangeMin: 7080
-                protocol: tcp
-              - portRangeMax: 8472
-                portRangeMin: 8472
-                protocol: tcp
-              - portRangeMax: 8080
-                portRangeMin: 8080
-                protocol: tcp
-              - portRangeMax: 9100
-                portRangeMin: 9100
-                protocol: tcp
-              - portRangeMax: 10250
-                portRangeMin: 10250
-                protocol: tcp
-              - portRangeMax: 32767
-                portRangeMin: 30000
-                protocol: tcp
-              - portRangeMax: 8472
-                portRangeMin: 8472
-                protocol: udp
+            portRangeMax: 65535
+            portRangeMin: 1
+            protocol: icmp
             securityGroupIdSelector:
               matchControllerRef: true
           providerConfigRef:
             name: default
       patches:
-        - patchSetName: naming
-          type: PatchSet
         - patchSetName: providerConfig
           type: PatchSet
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 22
+        portRangeMin: 22
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 53
+        portRangeMin: 53
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 179
+        portRangeMin: 179
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 6443
+        portRangeMin: 6443
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 2380
+        portRangeMin: 2380
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 7080
+        portRangeMin: 7080
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 8472
+        portRangeMin: 8472
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 8080
+        portRangeMin: 8080
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 9100
+        portRangeMin: 9100
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 10250
+        portRangeMin: 10250
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 32767
+        portRangeMin: 30000
+        protocol: tcp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
+    - apiVersion: networking.openstack.crossplane.io/v1alpha1
+      base: null
+      kind: SecgroupRuleV2
+      patches:
+        - patchSetName: providerConfig
+          type: PatchSet
+      spec:
+        description: managed by crossplane
+        forProvider: null
+        name: ""
+        portRangeMax: 8472
+        portRangeMin: 8472
+        protocol: udp
+        providerConfigRef:
+          name: default
+        securityGroupIdSelector:
+          matchControllerRef: true
