@@ -29,8 +29,9 @@ spec:
           forProvider:
             adminStateUp: true
             description: managed by crossplane
+            name: ""
           providerConfigRef:
-            name: openstack-shared
+            name: default
       patches:
         - patchSetName: naming
           type: PatchSet
@@ -45,10 +46,11 @@ spec:
           forProvider:
             cidr: 172.31.0.0/24
             description: managed by crossplane
+            name: ""
             networkIdSelector:
               matchControllerRef: true
           providerConfigRef:
-            name: openstack-shared
+            name: default
       patches:
         - patchSetName: naming
           type: PatchSet
@@ -62,9 +64,11 @@ spec:
         spec:
           forProvider:
             adminStateUp: true
+            description: managed by crossplane
             externalNetworkId: ""
+            name: ""
           providerConfigRef:
-            name: openstack-shared
+            name: default
       patches:
         - patchSetName: naming
           type: PatchSet
