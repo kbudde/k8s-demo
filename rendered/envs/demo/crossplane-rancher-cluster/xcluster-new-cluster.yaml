@@ -1,9 +1,0 @@
-apiVersion: rancher.crossplane.budd.ee/v1alpha1
-kind: XCluster
-metadata:
-  annotations:
-    a8r.io/repository: https://github.com/kbudde/k8s-demo
-  name: new-cluster
-spec:
-  externalNetworkId: 54258498-a513-47da-9369-1a644e4be692
-  providerConfig: openstack-shared
