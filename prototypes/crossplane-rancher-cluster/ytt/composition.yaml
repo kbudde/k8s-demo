@@ -151,14 +151,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 22
-          portRangeMax: 22
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 22
+            portRangeMax: 22
           providerConfigRef:
             name: default
         patches:
@@ -169,14 +169,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 53
-          portRangeMax: 53
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 53
+            portRangeMax: 53
           providerConfigRef:
             name: default
         patches:
@@ -187,14 +187,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 179
-          portRangeMax: 179
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 179
+            portRangeMax: 179
           providerConfigRef:
             name: default
         patches:
@@ -205,14 +205,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 6443
-          portRangeMax: 6443
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 6443
+            portRangeMax: 6443
           providerConfigRef:
             name: default
         patches:
@@ -223,14 +223,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 2380
-          portRangeMax: 2380
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 2380
+            portRangeMax: 2380
           providerConfigRef:
             name: default
         patches:
@@ -241,14 +241,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 7080
-          portRangeMax: 7080
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 7080
+            portRangeMax: 7080
           providerConfigRef:
             name: default
         patches:
@@ -259,14 +259,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 8472
-          portRangeMax: 8472
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 8472
+            portRangeMax: 8472
           providerConfigRef:
             name: default
         patches:
@@ -277,14 +277,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 8080
-          portRangeMax: 8080
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 8080
+            portRangeMax: 8080
           providerConfigRef:
             name: default
         patches:
@@ -295,14 +295,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 9100
-          portRangeMax: 9100
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 9100
+            portRangeMax: 9100
           providerConfigRef:
             name: default
         patches:
@@ -313,14 +313,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 10250
-          portRangeMax: 10250
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 10250
+            portRangeMax: 10250
           providerConfigRef:
             name: default
         patches:
@@ -331,14 +331,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: tcp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 30000
-          portRangeMax: 32767
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: tcp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 30000
+            portRangeMax: 32767
           providerConfigRef:
             name: default
         patches:
@@ -349,14 +349,14 @@ spec:
         kind: SecgroupRuleV2
         spec:
           forProvider:
-          description: "managed by crossplane"
-          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
-          protocol: udp
-          direction: ingress
-          ethertype: IPv4
-          remoteIpPrefix: 0.0.0.0/0
-          portRangeMin: 8472
-          portRangeMax: 8472
+            description: "managed by crossplane"
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
+            protocol: udp
+            direction: ingress
+            ethertype: IPv4
+            remoteIpPrefix: 0.0.0.0/0
+            portRangeMin: 8472
+            portRangeMax: 8472
           providerConfigRef:
             name: default
         patches:
