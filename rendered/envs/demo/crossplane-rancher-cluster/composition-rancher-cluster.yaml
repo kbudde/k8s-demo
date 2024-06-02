@@ -106,11 +106,13 @@ spec:
         spec:
           forProvider:
             description: managed by crossplane
+            direction: ingress
+            ethertype: IPv4
             portRangeMax: 65535
             portRangeMin: 1
             protocol: icmp
-            securityGroupIdSelector:
-              matchControllerRef: true
+            remoteIpPrefix: 0.0.0.0/0
+            securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
           providerConfigRef:
             name: default
       patches:
@@ -124,14 +126,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 22
           portRangeMin: 22
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -140,14 +144,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 53
           portRangeMin: 53
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -156,14 +162,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 179
           portRangeMin: 179
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -172,14 +180,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 6443
           portRangeMin: 6443
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -188,14 +198,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 2380
           portRangeMin: 2380
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -204,14 +216,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 7080
           portRangeMin: 7080
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -220,14 +234,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 8472
           portRangeMin: 8472
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -236,14 +252,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 8080
           portRangeMin: 8080
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -252,14 +270,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 9100
           portRangeMin: 9100
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -268,14 +288,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 10250
           portRangeMin: 10250
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -284,14 +306,16 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 32767
           portRangeMin: 30000
           protocol: tcp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
     - base:
         apiVersion: networking.openstack.crossplane.io/v1alpha1
         kind: SecgroupRuleV2
@@ -300,11 +324,13 @@ spec:
             type: PatchSet
         spec:
           description: managed by crossplane
+          direction: ingress
+          ethertype: IPv4
           forProvider: null
           portRangeMax: 8472
           portRangeMin: 8472
           protocol: udp
           providerConfigRef:
             name: default
-          securityGroupIdSelector:
-            matchControllerRef: true
+          remoteIpPrefix: 0.0.0.0/0
+          securityGroupId: 0376ad67-e3a2-40e1-90d2-a5320c140186
