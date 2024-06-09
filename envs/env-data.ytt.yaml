@@ -13,12 +13,20 @@ shared:
   #@schema/validation min_len=1
   domain: ""
 
+environment:
+  #@overlay/match missing_ok=True
+  #! source branch of app list: rendered/argocd/_demo_/
+  #! allows adding apps in a branch
+  branch: main
+
 argocd:
   app:
     source:
       plugin:
         name: argocd-vault-plugin
       repoURL: https://github.com/kbudde/k8s-demo
+      #! define the source branch of generated apps, rendered/envs/demo/_app_/
+      targetRevision: main
 
 myks:
   gitRepoUrl: https://github.com/kbudde/k8s-demo

@@ -5,6 +5,7 @@ kind: Secret
 metadata:
   labels:
     argocd.argoproj.io/secret-type: cluster
+    branch: #@ data.values.environment.branch
   name: #@ "cluster-" + data.values.environment.id
 type: Opaque
 stringData:

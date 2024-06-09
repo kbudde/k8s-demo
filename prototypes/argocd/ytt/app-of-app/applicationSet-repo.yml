@@ -8,23 +8,21 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - git: 
-      repoURL: #@ data.values.myks.gitRepoUrl + ".git"
-      revision: HEAD
-      directories:
-      - path: rendered/argocd/*
+  - clusters:
       values:
-        cluster: '{{.path.basename}}'
+        branch: '{{index .metadata.labels "branch"}}'
+        repo: '{{index .metadata.annotations "a8r.io/repository"}}'
+        clusterName: '{{.name}}'
   template:
     metadata:
-      name: 'cluster-{{.values.cluster}}'
+      name: '{{.values.clusterName}}'
     spec:
       project: 'default'
       source:
-        repoURL: #@ data.values.myks.gitRepoUrl + ".git"
-        targetRevision: HEAD
-        path: '{{.path.path}}'
-        plugin: 
+        repoURL: '{{.values.repo}}.git'
+        targetRevision: '{{or .values.branch "HEAD" }}'
+        path: 'rendered/argocd/{{slice .values.clusterName 8}}' #! drop 'cluster-' prefix
+        plugin:
           name: argocd-vault-plugin
       destination:
         server: https://kubernetes.default.svc
@@ -36,4 +34,3 @@ spec:
         syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
-

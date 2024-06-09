@@ -6,30 +6,28 @@ metadata:
   name: base
 spec:
   generators:
-    - git:
-        directories:
-          - path: rendered/argocd/*
-        repoURL: https://github.com/kbudde/k8s-demo.git
-        revision: HEAD
+    - clusters:
         values:
-          cluster: '{{.path.basename}}'
+          branch: '{{index .metadata.labels "branch"}}'
+          clusterName: '{{.name}}'
+          repo: '{{index .metadata.annotations "a8r.io/repository"}}'
   goTemplate: true
   goTemplateOptions:
     - missingkey=error
   template:
     metadata:
-      name: cluster-{{.values.cluster}}
+      name: '{{.values.clusterName}}'
     spec:
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
       project: default
       source:
-        path: '{{.path.path}}'
+        path: rendered/argocd/{{slice .values.clusterName 8}}
         plugin:
           name: argocd-vault-plugin
-        repoURL: https://github.com/kbudde/k8s-demo.git
-        targetRevision: HEAD
+        repoURL: '{{.values.repo}}.git'
+        targetRevision: '{{or .values.branch "HEAD" }}'
       syncPolicy:
         automated:
           prune: true

@@ -2,6 +2,9 @@
 ---
 environment:
   id: demo
+  #! source branch of app list: rendered/argocd/_demo_/
+  #! allows adding apps in a branch
+  branch: develop/demo
   applications:
   - proto: argocd
   - proto: cert-manager
@@ -32,4 +35,5 @@ argocd:
     generateSecret: false
   app:
     source:
+      #! define the source branch of generated apps, rendered/envs/demo/_app_/
       targetRevision: develop/demo
