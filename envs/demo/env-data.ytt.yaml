@@ -1,10 +1,11 @@
 #@data/values
+#@ branch="main"
 ---
 environment:
   id: demo
   #! source branch of app list: rendered/argocd/_demo_/
   #! allows adding apps in a branch
-  branch: develop/demo
+  branch: #@ branch
   applications:
   - proto: argocd
   - proto: cert-manager
@@ -36,4 +37,4 @@ argocd:
   app:
     source:
       #! define the source branch of generated apps, rendered/envs/demo/_app_/
-      targetRevision: develop/demo
+      targetRevision: #@ branch
