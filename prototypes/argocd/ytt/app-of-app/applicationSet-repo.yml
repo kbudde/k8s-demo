@@ -12,16 +12,15 @@ spec:
       values:
         branch: '{{index .metadata.annotations "branch"}}'
         repo: '{{index .metadata.annotations "a8r.io/repository"}}'
-        clusterName: '{{.name}}'
   template:
     metadata:
-      name: '{{.values.clusterName}}'
+      name: 'cluster-{{.nameNormalized}}'
     spec:
       project: 'default'
       source:
         repoURL: '{{.values.repo}}.git'
         targetRevision: '{{or .values.branch "HEAD" }}'
-        path: 'rendered/argocd/{{slice .values.clusterName 8}}' #! drop 'cluster-' prefix
+        path: 'rendered/argocd/{{ .name }}' #! drop 'cluster-' prefix
         plugin:
           name: argocd-vault-plugin
       destination:

@@ -9,21 +9,20 @@ spec:
     - clusters:
         values:
           branch: '{{index .metadata.annotations "branch"}}'
-          clusterName: '{{.name}}'
           repo: '{{index .metadata.annotations "a8r.io/repository"}}'
   goTemplate: true
   goTemplateOptions:
     - missingkey=error
   template:
     metadata:
-      name: '{{.values.clusterName}}'
+      name: cluster-{{.nameNormalized}}
     spec:
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
       project: default
       source:
-        path: rendered/argocd/{{slice .values.clusterName 8}}
+        path: rendered/argocd/{{ .name }}
         plugin:
           name: argocd-vault-plugin
         repoURL: '{{.values.repo}}.git'
