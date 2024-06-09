@@ -8,7 +8,7 @@ spec:
   generators:
     - clusters:
         values:
-          branch: '{{index .metadata.labels "branch"}}'
+          branch: '{{index .metadata.annotations "branch"}}'
           clusterName: '{{.name}}'
           repo: '{{index .metadata.annotations "a8r.io/repository"}}'
   goTemplate: true

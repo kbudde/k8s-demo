@@ -3,9 +3,10 @@
 apiVersion: v1
 kind: Secret
 metadata:
+  annotations:
+    branch: #@ data.values.environment.branch
   labels:
     argocd.argoproj.io/secret-type: cluster
-    branch: #@ data.values.environment.branch
   name: #@ "cluster-" + data.values.environment.id
 type: Opaque
 stringData:
