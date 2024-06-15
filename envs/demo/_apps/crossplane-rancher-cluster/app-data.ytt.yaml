@@ -1,0 +1,7 @@
+#@data/values
+---
+application:
+  cluster:
+    - name: "test"
+      providerConfig: "openstack-shared"
+      externalNetworkId: "54258498-a513-47da-9369-1a644e4be692"
