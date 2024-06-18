@@ -7,5 +7,4 @@ prototypes:
       kind: helm
       source: helmChart
       url: https://releases.rancher.com/server-charts/alpha
-      version: 2.9.0-alpha2 #! still does not support k8s 1.29 but 🤷
-
+      version: 2.9.0-alpha5 #! still does not support k8s 1.29 but 🤷

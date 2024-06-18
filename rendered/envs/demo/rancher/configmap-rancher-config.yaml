@@ -8,7 +8,7 @@ metadata:
   labels:
     app: rancher
     app.kubernetes.io/part-of: rancher
-    chart: rancher-2.9.0-alpha2
+    chart: rancher-2.9.0-alpha5
     heritage: Helm
     release: rancher
   name: rancher-config
