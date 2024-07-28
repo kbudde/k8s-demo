@@ -26,9 +26,6 @@ shared:
   domain: "demo.budd.ee"
 
 helm:
-  #! rancher (helm chart) is not yet compatible with k8s 1.29
-  #! let's pretend we have k8s 1.28
-  kubeVersion: "1.28"
   capabilities:
     - "monitoring.coreos.com/v1"
     - "policy/v1/PodDisruptionBudget"

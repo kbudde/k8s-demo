@@ -8,7 +8,7 @@ metadata:
     helm.sh/hook-weight: "1"
   labels:
     app: rancher
-    chart: rancher-2.9.0-alpha5
+    chart: rancher-2.9.0-alpha7
     heritage: Helm
     release: rancher
   name: rancher-post-delete
@@ -81,19 +81,6 @@ rules:
       - get
       - list
       - delete
-  - apiGroups:
-      - policy
-    resources:
-      - podsecuritypolicies
-    verbs:
-      - delete
-      - create
-  - apiGroups:
-      - policy
-    resources:
-      - podsecuritypolicies
-    verbs:
-      - use
   - apiGroups:
       - networking.k8s.io
     resources:
