@@ -42,7 +42,7 @@ spec:
                 secretKeyRef:
                   key: auth
                   name: argocd-redis
-          image: redis:7.0.14-alpine
+          image: redis:7.0.15-alpine
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -102,7 +102,7 @@ spec:
                 secretKeyRef:
                   key: auth
                   name: argocd-redis
-          image: redis:7.0.14-alpine
+          image: redis:7.0.15-alpine
           imagePullPolicy: IfNotPresent
           lifecycle: {}
           livenessProbe:
@@ -160,7 +160,7 @@ spec:
                 secretKeyRef:
                   key: auth
                   name: argocd-redis
-          image: redis:7.0.14-alpine
+          image: redis:7.0.15-alpine
           imagePullPolicy: IfNotPresent
           name: split-brain-fix
           resources: {}
@@ -195,7 +195,7 @@ spec:
                 secretKeyRef:
                   key: auth
                   name: argocd-redis
-          image: redis:7.0.14-alpine
+          image: redis:7.0.15-alpine
           imagePullPolicy: IfNotPresent
           name: config-init
           securityContext:

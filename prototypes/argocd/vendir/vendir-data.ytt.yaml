@@ -8,7 +8,7 @@ prototypes:
       kind: ytt
       source: git
       url: https://github.com/argoproj/argo-cd
-      version: v2.11.3
+      version: v2.11.7
       includePaths:
         - manifests/ha/install.yaml
       newRootPath: manifests/ha
