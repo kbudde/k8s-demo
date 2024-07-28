@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: tetragon
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: tetragon-operator
+    app.kubernetes.io/version: 1.1.2
+    helm.sh/chart: tetragon-1.1.2
+  name: tetragon-operator
+  namespace: tetragon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: tetragon
+      app.kubernetes.io/name: tetragon-operator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: tetragon
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: tetragon-operator
+        app.kubernetes.io/version: 1.1.2
+        helm.sh/chart: tetragon-1.1.2
+    spec:
+      containers:
+        - args:
+            - serve
+            - --config-dir=/etc/tetragon/operator.conf.d/
+            - --metrics-bind-address=:2113
+          command:
+            - /usr/bin/tetragon-operator
+          image: quay.io/cilium/tetragon-operator:v1.1.2
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          name: tetragon-operator
+          ports:
+            - containerPort: 2113
+              name: metrics
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - mountPath: /etc/tetragon/operator.conf.d/
+              name: tetragon-operator-config
+              readOnly: true
+      serviceAccountName: tetragon-operator-service-account
+      terminationGracePeriodSeconds: 10
+      tolerations:
+        - operator: Exists
+      volumes:
+        - configMap:
+            name: tetragon-operator-config
+          name: tetragon-operator-config

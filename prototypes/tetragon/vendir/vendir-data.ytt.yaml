@@ -1,0 +1,10 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+    - name: tetragon
+      kind: helm
+      source: helmChart
+      url: https://helm.cilium.io
+      version: v1.1.2

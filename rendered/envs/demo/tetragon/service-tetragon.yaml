@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: tetragon
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: tetragon
+    app.kubernetes.io/version: 1.1.2
+    helm.sh/chart: tetragon-1.1.2
+  name: tetragon
+  namespace: tetragon
+spec:
+  ports:
+    - name: metrics
+      port: 2112
+      protocol: TCP
+      targetPort: 2112
+  selector:
+    app.kubernetes.io/instance: tetragon
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: tetragon
+    app.kubernetes.io/version: 1.1.2
+    helm.sh/chart: tetragon-1.1.2
+  type: ClusterIP

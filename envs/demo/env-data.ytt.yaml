@@ -21,6 +21,7 @@ environment:
   - proto: rancher
   - proto: reloader
   - proto: victoria-logs-single
+  - proto: tetragon
 shared:
   domain: "demo.budd.ee"
 

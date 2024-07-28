@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+  enable-k8s-api: "true"
+  enable-pod-info: "false"
+  enable-policy-filter: "true"
+  enable-process-cred: "false"
+  enable-process-ns: "false"
+  enable-tracing-policy-crd: "true"
+  export-allowlist: '{"event_set":["PROCESS_EXEC", "PROCESS_EXIT", "PROCESS_KPROBE", "PROCESS_UPROBE", "PROCESS_TRACEPOINT"]}'
+  export-denylist: |-
+    {"health_check":true}
+    {"namespace":["", "cilium", "kube-system"]}
+  export-file-compress: "false"
+  export-file-max-backups: "5"
+  export-file-max-size-mb: "10"
+  export-file-perm: "600"
+  export-filename: /var/run/cilium/tetragon/tetragon.log
+  export-rate-limit: "-1"
+  field-filters: ""
+  gops-address: localhost:8118
+  health-server-address: :6789
+  health-server-interval: "10"
+  metrics-label-filter: namespace,workload,pod,binary
+  metrics-server: :2112
+  process-cache-size: "65536"
+  procfs: /procRoot
+  redaction-filters: ""
+  server-address: localhost:54321
+kind: ConfigMap
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: tetragon
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: tetragon
+    app.kubernetes.io/version: 1.1.2
+    helm.sh/chart: tetragon-1.1.2
+  name: tetragon-config
+  namespace: tetragon
