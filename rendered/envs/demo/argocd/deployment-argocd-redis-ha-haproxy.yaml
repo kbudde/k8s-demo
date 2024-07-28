@@ -42,7 +42,7 @@ spec:
                 secretKeyRef:
                   key: auth
                   name: argocd-redis
-          image: haproxy:2.6.14-alpine
+          image: public.ecr.aws/docker/library/haproxy:2.6.17-alpine
           imagePullPolicy: IfNotPresent
           lifecycle: {}
           livenessProbe:
@@ -81,7 +81,7 @@ spec:
             - argocd
             - admin
             - redis-initial-password
-          image: quay.io/argoproj/argocd:v2.11.7
+          image: quay.io/argoproj/argocd:v2.12.0-rc4
           imagePullPolicy: IfNotPresent
           name: secret-init
           securityContext:
@@ -97,7 +97,7 @@ spec:
             - /readonly/haproxy_init.sh
           command:
             - sh
-          image: haproxy:2.6.14-alpine
+          image: public.ecr.aws/docker/library/haproxy:2.6.17-alpine
           imagePullPolicy: IfNotPresent
           name: config-init
           securityContext:
