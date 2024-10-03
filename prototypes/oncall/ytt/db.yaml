@@ -1,0 +1,2 @@
+#@ load("cnpg-db.lib.yaml", "cnpg_db")
+--- #@ cnpg_db(name="oncall-db", instances=2, size="5Gi")

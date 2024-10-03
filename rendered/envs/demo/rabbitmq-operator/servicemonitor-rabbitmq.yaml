@@ -1,0 +1,43 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: rabbitmq
+spec:
+  endpoints:
+    - interval: 15s
+      port: prometheus
+      scheme: http
+      scrapeTimeout: 14s
+    - interval: 15s
+      port: prometheus-tls
+      scheme: https
+      scrapeTimeout: 14s
+      tlsConfig:
+        insecureSkipVerify: true
+    - interval: 15s
+      params:
+        family:
+          - queue_coarse_metrics
+          - queue_metrics
+      path: /metrics/detailed
+      port: prometheus
+      scheme: http
+      scrapeTimeout: 14s
+    - interval: 15s
+      params:
+        family:
+          - queue_coarse_metrics
+          - queue_metrics
+      path: /metrics/detailed
+      port: prometheus-tls
+      scheme: https
+      scrapeTimeout: 14s
+      tlsConfig:
+        insecureSkipVerify: true
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: rabbitmq

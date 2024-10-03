@@ -1,0 +1,26 @@
+#@ def rabbitmq_cluster(name, size="1Gi", instances=3):
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: #@ name
+spec:
+  replicas: #@ instances
+  persistence:
+    storage: #@ size
+  rabbitmq:
+    additionalPlugins:
+      - rabbitmq_top
+      - rabbitmq_shovel
+  terminationGracePeriodSeconds: 600
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: #@ name
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: #@ name
+#@ end

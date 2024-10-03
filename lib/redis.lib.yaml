@@ -1,0 +1,28 @@
+#@ def redis(name, size="1Gi", instances=3):
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta1
+kind: RedisReplication
+metadata:
+  name:  #@ name
+spec:
+  clusterSize: #@ instances
+  securityContext:
+    runAsUser: 1000
+  kubernetesConfig:
+    image: quay.io/opstree/redis:v7.0.5
+    imagePullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 101m
+        memory: 128Mi
+      limits:
+        memory: 128Mi
+  storage:
+    volumeClaimTemplate:
+      spec:
+        #! storageClassName: standard
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: #@ size
+#@ end

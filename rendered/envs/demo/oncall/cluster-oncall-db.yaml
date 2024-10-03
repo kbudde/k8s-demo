@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: oncall-db
+spec:
+  instances: 2
+  maxSyncReplicas: 0
+  minSyncReplicas: 0
+  primaryUpdateMethod: switchover
+  replicationSlots:
+    highAvailability:
+      enabled: true
+  storage:
+    size: 5Gi

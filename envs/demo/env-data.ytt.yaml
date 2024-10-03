@@ -24,6 +24,7 @@ environment:
   - proto: rabbitmq-operator
   - proto: cloudnative-pg
   - proto: redis-operator
+  - proto: oncall
   #! - proto: tetragon
 shared:
   domain: "demo.budd.ee"

@@ -1,0 +1,4 @@
+#@ load("@ytt:template", "template")
+
+#@ load("redis.lib.yaml", "redis")
+#!--- #@ template.replace(redis(name="redis", instances=3, size="5Gi"))
