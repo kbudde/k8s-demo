@@ -40,3 +40,8 @@ spec:
     value: demo
   - name: 'source:'
     value: https://github.com/kbudde/k8s-demo
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jqPathExpressions:
+    - .spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor

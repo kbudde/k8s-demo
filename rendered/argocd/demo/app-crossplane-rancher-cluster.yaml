@@ -40,6 +40,10 @@ spec:
     kind: Composition
     jqPathExpressions:
     - .spec.resources[]?.readinessChecks
+  - group: apps
+    kind: Deployment
+    jqPathExpressions:
+    - .spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor
   info:
   - name: 'environment:'
     value: demo

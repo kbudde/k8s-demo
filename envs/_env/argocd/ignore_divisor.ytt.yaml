@@ -1,0 +1,13 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+
+#@overlay/match by=overlay.subset({"kind": "Application"}), expects="0+"
+---
+#@overlay/match-child-defaults missing_ok=True
+spec:
+  ignoreDifferences:
+  #@overlay/append
+  - group: apps
+    kind: Deployment
+    jqPathExpressions:
+    - '.spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor'
