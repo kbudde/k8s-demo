@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: rancher
-      kind: helm
-      repo: helmChart
-      url: https://releases.rancher.com/server-charts/latest
-      version: 2.9.0
+  - name: rancher
+    kind: helm
+    repo: helmChart
+    url: https://releases.rancher.com/server-charts/latest
+    version: 2.9.2
+
