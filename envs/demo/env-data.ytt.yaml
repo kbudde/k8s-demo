@@ -21,6 +21,9 @@ environment:
   - proto: rancher
   - proto: reloader
   - proto: victoria-logs-single
+  - proto: rabbitmq-operator
+  - proto: cloudnative-pg
+  - proto: redis-operator
   #! - proto: tetragon
 shared:
   domain: "demo.budd.ee"

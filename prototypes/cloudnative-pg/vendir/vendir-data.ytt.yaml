@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+  - name: cloudnative-pg
+    kind: helm
+    repo: helmChart
+    url: https://cloudnative-pg.github.io/charts
+    version: 0.22.0
+

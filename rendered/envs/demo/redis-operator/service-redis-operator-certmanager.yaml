@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app: certmanager
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: redis-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: certmanager
+    app.kubernetes.io/version: v1.12.4
+    helm.sh/chart: certmanager-v1.12.4
+  name: redis-operator-certmanager
+  namespace: redis-operator
+spec:
+  ports:
+    - name: tcp-prometheus-servicemonitor
+      port: 9402
+      protocol: TCP
+      targetPort: 9402
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: redis-operator
+    app.kubernetes.io/name: certmanager
+  type: ClusterIP

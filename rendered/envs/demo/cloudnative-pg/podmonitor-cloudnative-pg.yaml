@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: cloudnative-pg
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: cloudnative-pg
+    app.kubernetes.io/version: 1.24.0
+    helm.sh/chart: cloudnative-pg-0.22.0
+  name: cloudnative-pg
+spec:
+  podMetricsEndpoints:
+    - port: metrics
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: cloudnative-pg
+      app.kubernetes.io/name: cloudnative-pg

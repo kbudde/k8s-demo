@@ -1,0 +1,11 @@
+clusterOperator:
+  metrics:
+    serviceMonitor:
+      enabled: true
+
+msgTopologyOperator:
+  metrics:
+    serviceMonitor:
+      enabled: true
+
+useCertManager: true

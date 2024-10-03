@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+  - name: rabbitmq-cluster-operator
+    kind: helm
+    repo: helmChart
+    url: https://charts.bitnami.com/bitnami
+    version: 4.3.24
+

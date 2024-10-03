@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+    helm.sh/hook-weight: "1"
+  labels:
+    app: startupapicheck
+    app.kubernetes.io/component: startupapicheck
+    app.kubernetes.io/instance: redis-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: startupapicheck
+    app.kubernetes.io/version: v1.12.4
+    helm.sh/chart: certmanager-v1.12.4
+  name: redis-operator-certmanager-startupapicheck
+  namespace: redis-operator
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      labels:
+        app: startupapicheck
+        app.kubernetes.io/component: startupapicheck
+        app.kubernetes.io/instance: redis-operator
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: startupapicheck
+        app.kubernetes.io/version: v1.12.4
+        helm.sh/chart: certmanager-v1.12.4
+    spec:
+      containers:
+        - args:
+            - check
+            - api
+            - --wait=1m
+          image: quay.io/jetstack/cert-manager-ctl:v1.12.4
+          imagePullPolicy: IfNotPresent
+          name: certmanager-startupapicheck
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+      nodeSelector:
+        kubernetes.io/os: linux
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: redis-operator-certmanager-startupapicheck

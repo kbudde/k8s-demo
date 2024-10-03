@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/component: certificate
+    app.kubernetes.io/instance: redis-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: redis-operator
+    app.kubernetes.io/part-of: redis-operator
+    app.kubernetes.io/version: 0.18.0
+    helm.sh/chart: redis-operator-0.18.3
+  name: serving-cert
+  namespace: redis-operator
+spec:
+  dnsNames:
+    - webhook-service.redis-operator.svc
+    - webhook-service.redis-operator.svc.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: redis-operator-issuer
+  secretName: webhook-server-cert

@@ -1,0 +1,22 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/component: messaging-topology-operator
+    app.kubernetes.io/instance: rabbitmq-cluster-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: rabbitmq-cluster-operator
+    app.kubernetes.io/part-of: rabbitmq
+    app.kubernetes.io/version: 2.10.0
+    helm.sh/chart: rabbitmq-cluster-operator-4.3.24
+  name: rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator
+  namespace: rabbitmq-operator
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: messaging-topology-operator
+      app.kubernetes.io/instance: rabbitmq-cluster-operator
+      app.kubernetes.io/name: rabbitmq-cluster-operator

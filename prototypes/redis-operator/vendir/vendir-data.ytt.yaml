@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+  - name: redis-operator
+    kind: helm
+    repo: helmChart
+    url: https://ot-container-kit.github.io/helm-charts/
+    version: 0.18.3
+
