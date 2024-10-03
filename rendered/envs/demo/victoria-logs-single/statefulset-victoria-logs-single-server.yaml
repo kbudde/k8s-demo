@@ -37,7 +37,7 @@ spec:
             - --loggerFormat=json
             - --retentionPeriod=1
             - --storageDataPath=/storage
-          image: victoriametrics/victoria-logs:v0.12.0-victorialogs
+          image: victoriametrics/victoria-logs:v0.29.0-victorialogs
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
