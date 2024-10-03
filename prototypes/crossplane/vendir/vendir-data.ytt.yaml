@@ -5,7 +5,6 @@
 prototypes:
     - name: crossplane
       kind: helm
-      source: helmChart
+      repo: helmChart
       url: https://charts.crossplane.io/stable
       version: 1.16.0
-

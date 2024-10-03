@@ -5,10 +5,9 @@
 prototypes:
     - name: designate-certmanager-webhook
       kind: helm
-      source: git
+      repo: git
       url: https://github.com/syseleven/designate-certmanager-webhook
       version: helm-0.6.1
       newRootPath: helm/designate-certmanager-webhook
       includePaths:
         - helm/designate-certmanager-webhook/**/*
-

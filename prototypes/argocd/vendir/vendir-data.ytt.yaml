@@ -6,7 +6,7 @@
 prototypes:
     - name: argocd
       kind: ytt
-      source: git
+      repo: git
       url: https://github.com/argoproj/argo-cd
       version: v2.12.0-rc4 #!v2.11.7
       includePaths:

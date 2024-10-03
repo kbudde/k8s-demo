@@ -5,6 +5,6 @@
 prototypes:
     - name: tetragon
       kind: helm
-      source: helmChart
+      repo: helmChart
       url: https://helm.cilium.io
       version: v1.1.2
