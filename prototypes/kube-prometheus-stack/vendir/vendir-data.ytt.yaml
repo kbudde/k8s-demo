@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: kube-prometheus-stack
-      kind: helm
-      repo: helmChart
-      url: https://prometheus-community.github.io/helm-charts
-      version: 59.1.0
+  - name: kube-prometheus-stack
+    kind: helm
+    repo: helmChart
+    url: https://prometheus-community.github.io/helm-charts
+    version: 65.0.0
+

@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 59.1.0
-    chart: kube-prometheus-stack-59.1.0
+    app.kubernetes.io/version: 65.0.0
+    chart: kube-prometheus-stack-65.0.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-prometheus
@@ -37,6 +37,15 @@ spec:
             summary: Failed Prometheus SD refresh.
           expr: increase(prometheus_sd_refresh_failures_total{job="kube-prometheus-stack-prometheus",namespace="kube-prometheus-stack"}[10m]) > 0
           for: 20m
+          labels:
+            severity: warning
+        - alert: PrometheusKubernetesListWatchFailures
+          annotations:
+            description: Kubernetes service discovery of Prometheus {{$labels.namespace}}/{{$labels.pod}} is experiencing {{ printf "%.0f" $value }} failures with LIST/WATCH requests to the Kubernetes API in the last 5 minutes.
+            runbook_url: https://runbooks.prometheus-operator.dev/runbooks/prometheus/prometheuskuberneteslistwatchfailures
+            summary: Requests in Kubernetes SD are failing.
+          expr: increase(prometheus_sd_kubernetes_failures_total{job="kube-prometheus-stack-prometheus",namespace="kube-prometheus-stack"}[5m]) > 0
+          for: 15m
           labels:
             severity: warning
         - alert: PrometheusNotificationQueueRunningFull

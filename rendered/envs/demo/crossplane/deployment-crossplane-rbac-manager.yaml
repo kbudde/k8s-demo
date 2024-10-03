@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: crossplane
     app.kubernetes.io/part-of: crossplane
-    app.kubernetes.io/version: 1.16.0
-    helm.sh/chart: crossplane-1.16.0
+    app.kubernetes.io/version: 1.17.1
+    helm.sh/chart: crossplane-1.17.1
     release: crossplane
   name: crossplane-rbac-manager
   namespace: crossplane
@@ -33,8 +33,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: crossplane
         app.kubernetes.io/part-of: crossplane
-        app.kubernetes.io/version: 1.16.0
-        helm.sh/chart: crossplane-1.16.0
+        app.kubernetes.io/version: 1.17.1
+        helm.sh/chart: crossplane-1.17.1
         release: crossplane
     spec:
       containers:
@@ -57,7 +57,7 @@ spec:
                   resource: limits.memory
             - name: LEADER_ELECTION
               value: "true"
-          image: xpkg.upbound.io/crossplane/crossplane:v1.16.0
+          image: xpkg.upbound.io/crossplane/crossplane:v1.17.1
           imagePullPolicy: IfNotPresent
           name: crossplane
           resources:
@@ -89,7 +89,7 @@ spec:
                   containerName: crossplane-init
                   divisor: "1"
                   resource: limits.memory
-          image: xpkg.upbound.io/crossplane/crossplane:v1.16.0
+          image: xpkg.upbound.io/crossplane/crossplane:v1.17.1
           imagePullPolicy: IfNotPresent
           name: crossplane-init
           resources:

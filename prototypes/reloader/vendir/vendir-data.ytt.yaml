@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: reloader
-      kind: helm
-      repo: helmChart
-      url: https://stakater.github.io/stakater-charts
-      version: 1.0.97
+  - name: reloader
+    kind: helm
+    repo: helmChart
+    url: https://stakater.github.io/stakater-charts
+    version: 1.1.0
+

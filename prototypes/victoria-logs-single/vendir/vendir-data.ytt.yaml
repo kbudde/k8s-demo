@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: victoria-logs-single
-      kind: helm
-      repo: helmChart
-      url: https://victoriametrics.github.io/helm-charts/
-      version: 0.5.0
+  - name: victoria-logs-single
+    kind: helm
+    repo: helmChart
+    url: https://victoriametrics.github.io/helm-charts/
+    version: 0.6.4
+

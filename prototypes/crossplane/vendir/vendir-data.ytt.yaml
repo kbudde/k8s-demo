@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: crossplane
-      kind: helm
-      repo: helmChart
-      url: https://charts.crossplane.io/stable
-      version: 1.16.0
+  - name: crossplane
+    kind: helm
+    repo: helmChart
+    url: https://charts.crossplane.io/stable
+    version: 1.17.1
+

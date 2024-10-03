@@ -9,12 +9,12 @@ metadata:
   labels:
     app: reloader-reloader
     app.kubernetes.io/managed-by: Helm
-    chart: reloader-1.0.97
+    chart: reloader-1.1.0
     group: com.stakater.platform
     heritage: Helm
     provider: stakater
     release: reloader
-    version: v1.0.97
+    version: v1.1.0
   name: reloader-reloader
   namespace: reloader
 spec:
@@ -29,15 +29,24 @@ spec:
       labels:
         app: reloader-reloader
         app.kubernetes.io/managed-by: Helm
-        chart: reloader-1.0.97
+        chart: reloader-1.1.0
         group: com.stakater.platform
         heritage: Helm
         provider: stakater
         release: reloader
-        version: v1.0.97
+        version: v1.1.0
     spec:
       containers:
-        - image: ghcr.io/stakater/reloader:v1.0.97
+        - env:
+            - name: GOMAXPROCS
+              valueFrom:
+                resourceFieldRef:
+                  resource: limits.cpu
+            - name: GOMEMLIMIT
+              valueFrom:
+                resourceFieldRef:
+                  resource: limits.memory
+          image: ghcr.io/stakater/reloader:v1.1.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 5

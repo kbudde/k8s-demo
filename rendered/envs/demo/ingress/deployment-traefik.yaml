@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: traefik-ingress
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: traefik
-    helm.sh/chart: traefik-28.1.0
+    helm.sh/chart: traefik-32.0.0
   name: traefik
   namespace: ingress
 spec:
@@ -33,8 +33,9 @@ spec:
         app.kubernetes.io/instance: traefik-ingress
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: traefik
-        helm.sh/chart: traefik-28.1.0
+        helm.sh/chart: traefik-32.0.0
     spec:
+      automountServiceAccountToken: true
       containers:
         - args:
             - --global.checknewversion
@@ -47,6 +48,7 @@ spec:
             - --metrics.prometheus=true
             - --metrics.prometheus.entrypoint=metrics
             - --providers.kubernetescrd
+            - --providers.kubernetescrd.allowEmptyServices=true
             - --entryPoints.websecure.http.tls=true
             - --log.level=INFO
             - --accesslog=true
@@ -112,7 +114,6 @@ spec:
               name: tmp
       hostNetwork: false
       securityContext:
-        fsGroupChangePolicy: OnRootMismatch
         runAsGroup: 65532
         runAsNonRoot: true
         runAsUser: 65532

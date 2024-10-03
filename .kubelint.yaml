@@ -31,3 +31,7 @@ checks:
     - dangling-service
     - pdb-min-available
     - latest-tag
+    # TODO: allow only to certain apps (e.g. prometheus-stack)
+    - sensitive-host-mounts
+    - host-pid
+    - host-network

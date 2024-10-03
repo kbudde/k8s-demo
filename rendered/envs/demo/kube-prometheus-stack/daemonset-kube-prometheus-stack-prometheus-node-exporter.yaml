@@ -10,9 +10,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-node-exporter
     app.kubernetes.io/part-of: prometheus-node-exporter
-    app.kubernetes.io/version: 1.8.0
-    helm.sh/chart: prometheus-node-exporter-4.34.0
-    jobLabel: node-exporter
+    app.kubernetes.io/version: 1.8.2
+    helm.sh/chart: prometheus-node-exporter-4.39.0
     release: kube-prometheus-stack
   name: kube-prometheus-stack-prometheus-node-exporter
   namespace: kube-prometheus-stack
@@ -32,8 +31,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: prometheus-node-exporter
         app.kubernetes.io/part-of: prometheus-node-exporter
-        app.kubernetes.io/version: 1.8.0
-        helm.sh/chart: prometheus-node-exporter-4.34.0
+        app.kubernetes.io/version: 1.8.2
+        helm.sh/chart: prometheus-node-exporter-4.39.0
         jobLabel: node-exporter
         release: kube-prometheus-stack
     spec:
@@ -50,7 +49,7 @@ spec:
           env:
             - name: HOST_IP
               value: 0.0.0.0
-          image: quay.io/prometheus/node-exporter:v1.8.0
+          image: quay.io/prometheus/node-exporter:v1.8.2
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -92,6 +91,7 @@ spec:
               mountPropagation: HostToContainer
               name: root
               readOnly: true
+      hostIPC: false
       hostNetwork: true
       hostPID: true
       nodeSelector:

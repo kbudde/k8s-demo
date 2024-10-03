@@ -8,7 +8,7 @@ metadata:
   labels:
     app: reloader-reloader
     app.kubernetes.io/managed-by: Helm
-    chart: reloader-1.0.97
+    chart: reloader-1.1.0
     heritage: Helm
     release: reloader
   name: reloader-reloader-role

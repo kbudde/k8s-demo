@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: cert-manager
-      kind: helm
-      repo: helmChart
-      url: https://charts.jetstack.io
-      version: v1.14.5
+  - name: cert-manager
+    kind: helm
+    repo: helmChart
+    url: https://charts.jetstack.io
+    version: v1.15.3
+

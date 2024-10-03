@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 59.1.0
-    chart: kube-prometheus-stack-59.1.0
+    app.kubernetes.io/version: 65.0.0
+    chart: kube-prometheus-stack-65.0.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-kubernetes-apps
@@ -121,7 +121,7 @@ spec:
             summary: StatefulSet update has not been rolled out.
           expr: |-
             (
-              max without (revision) (
+              max by (namespace, statefulset, job, cluster) (
                 kube_statefulset_status_current_revision{job="kube-state-metrics", namespace=~".*"}
                   unless
                 kube_statefulset_status_update_revision{job="kube-state-metrics", namespace=~".*"}

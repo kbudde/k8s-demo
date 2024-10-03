@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: traefik
-      kind: helm
-      repo: helmChart
-      url: https://traefik.github.io/charts
-      version: 28.1.0
+  - name: traefik
+    kind: helm
+    repo: helmChart
+    url: https://traefik.github.io/charts
+    version: 32.0.0
+

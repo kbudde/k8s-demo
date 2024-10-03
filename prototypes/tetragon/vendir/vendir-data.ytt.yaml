@@ -3,8 +3,9 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 prototypes:
-    - name: tetragon
-      kind: helm
-      repo: helmChart
-      url: https://helm.cilium.io
-      version: v1.1.2
+  - name: tetragon
+    kind: helm
+    repo: helmChart
+    url: https://helm.cilium.io
+    version: 1.2.0
+
