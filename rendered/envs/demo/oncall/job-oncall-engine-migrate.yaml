@@ -1,0 +1,145 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-weight: "-1"
+  labels:
+    app.kubernetes.io/component: engine
+    app.kubernetes.io/instance: oncall
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: oncall
+    app.kubernetes.io/version: v1.10.0
+    helm.sh/chart: oncall-1.10.0
+  name: oncall-engine-migrate
+spec:
+  backoffLimit: 15
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: engine
+        app.kubernetes.io/instance: oncall
+        app.kubernetes.io/name: oncall
+      name: oncall-engine-migrate
+    spec:
+      containers:
+        - command:
+            - /bin/sh
+            - -c
+            - |
+              until (nc -vz $DATABASE_HOST $DATABASE_PORT);
+              do
+                  echo "waiting for PostgreSQL"; sleep 1;
+              done
+              python manage.py migrate
+          env:
+            - name: BASE_URL
+              value: https://oncall.demo.budd.ee
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: SECRET_KEY
+                  name: oncall
+            - name: MIRAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: MIRAGE_SECRET_KEY
+                  name: oncall
+            - name: MIRAGE_CIPHER_IV
+              value: 1234567890abcdef
+            - name: DJANGO_SETTINGS_MODULE
+              value: settings.helm
+            - name: AMIXR_DJANGO_ADMIN_PATH
+              value: admin
+            - name: OSS
+              value: "True"
+            - name: DETACHED_INTEGRATIONS_SERVER
+              value: "False"
+            - name: UWSGI_LISTEN
+              value: "1024"
+            - name: BROKER_TYPE
+              value: rabbitmq
+            - name: GRAFANA_API_URL
+              value: http://oncall-grafana
+            - name: FEATURE_EMAIL_INTEGRATION_ENABLED
+              value: "True"
+            - name: EMAIL_HOST
+              value: null
+            - name: EMAIL_PORT
+              value: "587"
+            - name: EMAIL_HOST_USER
+              value: null
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: smtp-password
+                  name: oncall-smtp
+                  optional: true
+            - name: EMAIL_USE_TLS
+              value: "True"
+            - name: EMAIL_USE_SSL
+              value: "False"
+            - name: EMAIL_FROM_ADDRESS
+              value: null
+            - name: EMAIL_NOTIFICATIONS_LIMIT
+              value: "200"
+            - name: FEATURE_PROMETHEUS_EXPORTER_ENABLED
+              value: "False"
+            - name: DATABASE_TYPE
+              value: postgresql
+            - name: DATABASE_HOST
+              value: oncall-db-rw
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_NAME
+              value: app
+            - name: DATABASE_USER
+              value: app
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: oncall-db-app
+            - name: REDIS_PROTOCOL
+              value: redis
+            - name: REDIS_HOST
+              value: oncall-redis-master
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_DATABASE
+              value: "0"
+            - name: REDIS_USERNAME
+              value: ""
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: redis-password
+                  name: oncall-redis
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: oncall-queue-default-user
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: oncall-queue-default-user
+            - name: RABBITMQ_HOST
+              value: oncall-queue
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_PROTOCOL
+              value: amqp
+            - name: RABBITMQ_VHOST
+              value: /
+          image: grafana/oncall:v1.10.0
+          imagePullPolicy: Always
+          name: oncall-migrate
+          resources: {}
+          securityContext: {}
+      restartPolicy: Never
+      securityContext: {}
+      serviceAccountName: oncall
+  ttlSecondsAfterFinished: 20

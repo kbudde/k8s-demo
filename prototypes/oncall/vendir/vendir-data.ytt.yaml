@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes:
+  - name: oncall
+    kind: helm
+    repo: helmChart
+    url: https://grafana.github.io/helm-charts
+    version: 1.10.0
+
