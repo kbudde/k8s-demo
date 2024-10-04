@@ -11,3 +11,14 @@ spec:
     kind: Deployment
     jqPathExpressions:
     - '.spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor'
+  #! - group: monitoring.coreos.com
+  #!   kind: ServiceMonitor
+  #!   jqPathExpressions:
+  #!     - '.spec.endpoints[]?.relabelings[]?.action'
+
+  #! https://github.com/argoproj/argo-cd/issues/11143
+  - group: apps
+    kind: StatefulSet
+    jqPathExpressions:
+      - '.spec.volumeClaimTemplates[]?.apiVersion'
+      - '.spec.volumeClaimTemplates[]?.kind'
