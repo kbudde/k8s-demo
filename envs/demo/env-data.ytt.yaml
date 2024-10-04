@@ -23,9 +23,8 @@ environment:
   - proto: victoria-logs-single
   - proto: rabbitmq-operator
   - proto: cloudnative-pg
-  - proto: redis-operator
   - proto: oncall
-  #! - proto: tetragon
+
 shared:
   domain: "demo.budd.ee"
 

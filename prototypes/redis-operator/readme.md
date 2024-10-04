@@ -1,1 +1,0 @@
-https://ot-redis-operator.netlify.app/docs/
