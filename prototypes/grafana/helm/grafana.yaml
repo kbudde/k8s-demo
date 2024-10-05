@@ -57,6 +57,12 @@ grafana.ini:
     url: https://grafana.net
   server:
     domain: #@ domain
+  feature_toggles:
+    externalServiceAccounts: true
+    featureToggleAdminPage: true
+  feature_management:
+    allow_editing: true
+
 
 sidecar:
   alerts:

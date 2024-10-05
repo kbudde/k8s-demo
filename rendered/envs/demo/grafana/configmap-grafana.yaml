@@ -3,6 +3,11 @@ data:
   grafana.ini: |
     [analytics]
     check_for_updates = false
+    [feature_management]
+    allow_editing = true
+    [feature_toggles]
+    externalServiceAccounts = true
+    featureToggleAdminPage = true
     [grafana_net]
     url = https://grafana.net
     [log]
