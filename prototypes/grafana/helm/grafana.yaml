@@ -57,6 +57,7 @@ grafana.ini:
     url: https://grafana.net
   server:
     domain: #@ domain
+    root_url: #@ "https://" + domain
   feature_toggles:
     externalServiceAccounts: true
     featureToggleAdminPage: true
