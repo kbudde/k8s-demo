@@ -25,6 +25,7 @@ environment:
   - proto: cloudnative-pg
   - proto: oncall
   - proto: grafana
+  - proto: gitpod
 
 shared:
   domain: "demo.budd.ee"

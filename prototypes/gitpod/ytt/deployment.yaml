@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitpod-1
+spec:
+  selector:
+    matchLabels:
+      app: gitpod-1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: gitpod-1
+    spec:
+      terminationGracePeriodSeconds: 5
+      initContainers:
+      #! move the .openvscode-server to a shared location
+      - name: share-vscode
+        image: gitpod/openvscode-server:1.93.1
+        volumeMounts:
+        - name: openvscode-server
+          mountPath: /home/openvscode-server-shared
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+        command: 
+        - "/bin/bash"
+        - "-c"
+        - |
+          cp -r /home/.openvscode-server /home/openvscode-server-shared/
+
+      - name: init-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /home/workspace"]
+        volumeMounts:
+        - name: workspace
+          mountPath: /home/workspace
+       
+      containers:
+      - name: gitpod
+        image: kbudde/tmp:openvscode-python
+        volumeMounts:
+        - name: openvscode-server
+          mountPath: /home/.openvscode-server
+          subPath: .openvscode-server
+        - name: workspace
+          mountPath: /home/workspace
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            memory: "1024Mi"
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+
+      volumes:
+      - name: workspace
+        persistentVolumeClaim:
+          claimName: gitpod-1
+      - name: openvscode-server
+        emptyDir: {}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitpod-1
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
