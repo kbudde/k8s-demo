@@ -61,7 +61,7 @@ spec:
             - name: BROKER_TYPE
               value: rabbitmq
             - name: GRAFANA_API_URL
-              value: http://oncall-grafana
+              value: https://grafana.demo.budd.ee
             - name: FEATURE_EMAIL_INTEGRATION_ENABLED
               value: "True"
             - name: EMAIL_HOST

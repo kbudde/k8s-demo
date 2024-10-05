@@ -67,7 +67,7 @@ spec:
             - name: BROKER_TYPE
               value: rabbitmq
             - name: GRAFANA_API_URL
-              value: http://oncall-grafana
+              value: https://grafana.demo.budd.ee
             - name: FEATURE_SLACK_INTEGRATION_ENABLED
               value: "False"
             - name: FEATURE_TELEGRAM_INTEGRATION_ENABLED
@@ -191,7 +191,7 @@ spec:
             - name: BROKER_TYPE
               value: rabbitmq
             - name: GRAFANA_API_URL
-              value: http://oncall-grafana
+              value: https://grafana.demo.budd.ee
             - name: DATABASE_TYPE
               value: postgresql
             - name: DATABASE_HOST

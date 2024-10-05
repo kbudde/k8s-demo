@@ -74,11 +74,12 @@ redis:
   auth:
     existingSecret: oncall-redis
     existingSecretPasswordKey: redis-password
-#! TODO: Install grafana and disable it here
+
 grafana:
-  enabled: true
-  adminUser: admin
-  adminPassword: stay-secure
+  enabled: false
+
+externalGrafana:
+  url: #@ "https://grafana." + data.values.shared.domain
 
 prometheus:
   enabled: false
