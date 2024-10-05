@@ -1,0 +1,13 @@
+
+alertmanager:
+  alertmanagerSpec:
+    replicas: 2
+    logFormat: json
+    externalUrl:
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+    maxUnavailable: ""
+
+grafana:
+  enabled: false

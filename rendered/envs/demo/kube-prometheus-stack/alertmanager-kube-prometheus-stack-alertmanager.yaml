@@ -21,11 +21,11 @@ spec:
   externalUrl: http://kube-prometheus-stack-alertmanager.kube-prometheus-stack:9093
   image: quay.io/prometheus/alertmanager:v0.27.0
   listenLocal: false
-  logFormat: logfmt
+  logFormat: json
   logLevel: info
   paused: false
   portName: http-web
-  replicas: 1
+  replicas: 2
   retention: 120h
   routePrefix: /
   securityContext:
