@@ -9,9 +9,9 @@ environment:
   applications:
   - proto: argocd
   - proto: cert-manager
-  - proto: crossplane
-  - proto: crossplane-openstack
-  - proto: crossplane-rancher-cluster
+  #!- proto: crossplane
+  #!- proto: crossplane-openstack
+  #!- proto: crossplane-rancher-cluster
   - proto: designate-certmanager-webhook
   - proto: external-dns
   - proto: goldpinger
