@@ -1,0 +1,17 @@
+#! It is still required to install the plugin in Grafana
+apiVersion: v1
+data:
+  grafana-oncall-app-provisioning.yaml: |
+    apps:
+      - type: grafana-oncall-app
+        name: grafana-oncall-app
+        disabled: false
+        jsonData:
+          stackId: 5
+          orgId: 100
+          onCallApiUrl: http://oncall-engine.oncall.svc.cluster.local.:8080
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_plugin: "1"
+  name: oncall-app-settings
