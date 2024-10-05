@@ -14,6 +14,7 @@ data:
     provisioning = /etc/grafana/provisioning
     [server]
     domain = grafana.demo.budd.ee
+  plugins: https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/v0.2.1/victorialogs-datasource-v0.2.1.zip;victorialogs-datasource,grafana-oncall-app
 kind: ConfigMap
 metadata:
   annotations:

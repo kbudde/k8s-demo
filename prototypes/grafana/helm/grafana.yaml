@@ -25,7 +25,14 @@ admin:
   userKey: user
   passwordKey: password
 
-plugins: []
+#! env:
+#!   GF_INSTALL_PLUGINS: "https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/v0.2.1/victorialogs-datasource-v0.2.1.zip;victorialogs-datasource"
+#!   GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: "victorialogs-datasource"
+
+plugins:
+- https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/v0.2.1/victorialogs-datasource-v0.2.1.zip;victorialogs-datasource
+- grafana-oncall-app
+
   #! - digrich-bubblechart-panel
   #! - grafana-clock-panel
   #!# You can also use other plugin download URL, as long as they are valid zip files,

@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 15eb3b956da8046cc4990c4ba071032ca0f52cc7dfdc99fdcc95d3c542bd6f68
+        checksum/config: c8b2f8197320b3068981a4e83ec83792f78d6e9a3c21cbc5f3bb09d905959c4b
         checksum/sc-dashboard-provider-config: e70bf6a851099d385178a76de9757bb0bef8299da6d8443602590e44f05fdf24
         kubectl.kubernetes.io/default-container: grafana
       labels:
@@ -238,6 +238,11 @@ spec:
                 secretKeyRef:
                   key: password
                   name: kbudde-user
+            - name: GF_INSTALL_PLUGINS
+              valueFrom:
+                configMapKeyRef:
+                  key: plugins
+                  name: grafana
             - name: GF_RENDERING_SERVER_URL
               value: http://grafana-image-renderer.grafana:8081/render
             - name: GF_RENDERING_CALLBACK_URL
