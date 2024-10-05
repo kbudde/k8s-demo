@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
@@ -14,18 +14,17 @@ metadata:
   namespace: grafana
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app.kubernetes.io/instance: grafana
       app.kubernetes.io/name: grafana
-  strategy:
-    type: RollingUpdate
+  serviceName: grafana-headless
   template:
     metadata:
       annotations:
-        checksum/config: c8b2f8197320b3068981a4e83ec83792f78d6e9a3c21cbc5f3bb09d905959c4b
-        checksum/sc-dashboard-provider-config: e70bf6a851099d385178a76de9757bb0bef8299da6d8443602590e44f05fdf24
+        checksum/config: d4ccbaedb324a8142eaa7250877e8bfa44f6ea49f9ca58c3674f02a865476735
+        checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+        checksum/sc-dashboard-provider-config: 5fcd185be0c94a9028f80bed77574387312a4578e6e36d9bb0830770ff768eee
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
@@ -255,6 +254,8 @@ spec:
               value: /var/lib/grafana/plugins
             - name: GF_PATHS_PROVISIONING
               value: /etc/grafana/provisioning
+            - name: GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS
+              value: victorialogs-datasource
           image: docker.io/grafana/grafana:11.2.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
@@ -354,3 +355,15 @@ spec:
           name: sc-plugins-volume
         - emptyDir: {}
           name: sc-notifiers-volume
+  volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: null

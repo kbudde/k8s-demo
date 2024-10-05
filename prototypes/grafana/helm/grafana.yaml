@@ -25,9 +25,9 @@ admin:
   userKey: user
   passwordKey: password
 
-#! env:
+env:
+  GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: "victorialogs-datasource"
 #!   GF_INSTALL_PLUGINS: "https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/v0.2.1/victorialogs-datasource-v0.2.1.zip;victorialogs-datasource"
-#!   GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: "victorialogs-datasource"
 
 plugins:
 - https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/v0.2.1/victorialogs-datasource-v0.2.1.zip;victorialogs-datasource
@@ -91,3 +91,5 @@ initChownData:
     capabilities:
       drop:
         - NET_RAW
+
+useStatefulSet: true
