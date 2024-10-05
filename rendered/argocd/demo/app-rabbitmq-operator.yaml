@@ -45,3 +45,8 @@ spec:
     kind: Deployment
     jqPathExpressions:
     - .spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor
+  - group: apps
+    kind: StatefulSet
+    jqPathExpressions:
+    - .spec.volumeClaimTemplates[]?.apiVersion
+    - .spec.volumeClaimTemplates[]?.kind

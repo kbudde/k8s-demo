@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo-rancher
+  name: demo-grafana
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -12,9 +12,9 @@ spec:
   project: demo
   destination:
     name: demo
-    namespace: rancher
+    namespace: grafana
   source:
-    path: rendered/envs/demo/rancher
+    path: rendered/envs/demo/grafana
     plugin:
       name: argocd-vault-plugin
     repoURL: https://github.com/kbudde/k8s-demo
