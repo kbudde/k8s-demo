@@ -39,6 +39,8 @@ spec:
       containers:
         - args:
             - --global.checknewversion
+            - --experimental.plugins.traefik-plugin-query-modification.modulename=github.com/kingjan1999/traefik-plugin-query-modification
+            - --experimental.plugins.traefik-plugin-query-modification.version=v1.0.0
             - --entryPoints.metrics.address=:9100/tcp
             - --entryPoints.traefik.address=:9000/tcp
             - --entryPoints.web.address=:8000/tcp

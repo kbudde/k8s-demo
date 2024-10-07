@@ -5,15 +5,18 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
     kubernetes.io/ingress.class: traefik
-  name: vmauth-gitpod
+  name: gitpod-1
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
       match: Host(`python.demo.budd.ee`)
+      middlewares:
+        - name: gitpod-1
+        - name: set-project
       priority: 10
       services:
-        - name: vmauth-gitpod
-          port: 8427
+        - name: gitpod-1
+          port: 3000
           scheme: http
