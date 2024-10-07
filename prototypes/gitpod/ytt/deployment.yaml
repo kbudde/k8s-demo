@@ -40,7 +40,7 @@ spec:
           mountPath: /home/workspace
 
       containers:
-      - name: gitpod
+      - name: vscode
         image: kbudde/tmp:openvscode-python
         volumeMounts:
         - name: openvscode-server
@@ -57,10 +57,10 @@ spec:
           protocol: TCP
         resources:
           limits:
-            memory: "1024Mi"
+            memory: "1.5Gi"
           requests:
-            memory: "512Mi"
-            cpu: "0.5"
+            memory: "768Mi"
+            cpu: "1"
 
       volumes:
       - name: workspace

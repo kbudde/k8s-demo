@@ -1,6 +1,6 @@
 #@ load("@ytt:data", "data")
-#@ domain = "python." + data.values.shared.domain
-#@ domainWeb = "python-web." + data.values.shared.domain
+#@ domain = "s1.python." + data.values.shared.domain
+#@ domainWeb = "s1.python-web." + data.values.shared.domain
 #@ redirect = "https://" + domainWeb + "/?folder=/home/workspace/projects"
 #@ traefikLB = "lb." + data.values.shared.domain
 ---
@@ -56,4 +56,4 @@ kind: Secret
 metadata:
   name: gitpod-1
 stringData:
-  users: <path:static/user.yaml#gitpod-1>
+  users: <path:static/user.yaml#s1>

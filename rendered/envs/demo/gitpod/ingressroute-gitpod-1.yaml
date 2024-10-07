@@ -11,7 +11,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`python-web.demo.budd.ee`)
+      match: Host(`s1.python-web.demo.budd.ee`)
       middlewares:
         - name: gitpod-1
       priority: 10
@@ -20,7 +20,7 @@ spec:
           port: 3000
           scheme: http
     - kind: Rule
-      match: Host(`python.demo.budd.ee`)
+      match: Host(`s1.python.demo.budd.ee`)
       middlewares:
         - name: set-project
       priority: 10
