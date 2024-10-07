@@ -39,8 +39,6 @@ spec:
       containers:
         - args:
             - --global.checknewversion
-            - --experimental.plugins.traefik-plugin-query-modification.modulename=github.com/kingjan1999/traefik-plugin-query-modification
-            - --experimental.plugins.traefik-plugin-query-modification.version=v1.0.0
             - --entryPoints.metrics.address=:9100/tcp
             - --entryPoints.traefik.address=:9000/tcp
             - --entryPoints.web.address=:8000/tcp
@@ -49,6 +47,8 @@ spec:
             - --ping=true
             - --metrics.prometheus=true
             - --metrics.prometheus.entrypoint=metrics
+            - --experimental.plugins.traefik-plugin-query-modification.moduleName=github.com/kingjan1999/traefik-plugin-query-modification
+            - --experimental.plugins.traefik-plugin-query-modification.version=v1.0.0
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowEmptyServices=true
             - --entryPoints.websecure.http.tls=true
@@ -114,6 +114,8 @@ spec:
               name: data
             - mountPath: /tmp
               name: tmp
+            - mountPath: /plugins-storage
+              name: plugins
       hostNetwork: false
       securityContext:
         runAsGroup: 65532
@@ -126,3 +128,5 @@ spec:
           name: data
         - emptyDir: {}
           name: tmp
+        - emptyDir: {}
+          name: plugins
