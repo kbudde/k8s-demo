@@ -1,0 +1,15 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMUser
+metadata:
+  name: anton
+  labels:
+    app: gitpod
+spec:
+  password: "anton"
+  default_url:
+  - "http://gitpod-1.gitpod.svc.cluster.local:3000/?folder=/home/workspace/projects"
+  targetRefs:
+  - paths:
+    - "/"
+    static:
+      url: "http://gitpod-1.gitpod.svc.cluster.local:3000/?folder=/home/workspace/projects"

@@ -1,0 +1,17 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMUser
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app: gitpod
+  name: anton
+spec:
+  default_url:
+    - http://gitpod-1.gitpod.svc.cluster.local:3000/?folder=/home/workspace/projects
+  password: anton
+  targetRefs:
+    - paths:
+        - /
+      static:
+        url: http://gitpod-1.gitpod.svc.cluster.local:3000/?folder=/home/workspace/projects

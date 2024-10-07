@@ -1,0 +1,12 @@
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAuth
+metadata:
+  name: gitpod
+  labels:
+    app: gitpod-vmauth
+spec:
+  unauthorizedAccessConfig: []
+  userSelector:
+    matchLabels:
+      app: gitpod
