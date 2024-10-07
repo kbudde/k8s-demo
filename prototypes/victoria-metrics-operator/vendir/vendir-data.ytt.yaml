@@ -1,0 +1,11 @@
+#! This file is managed by myks
+#@data/values
+---
+#@overlay/match-child-defaults missing_ok=True
+prototypes-test:
+  - name: victoria-metrics-operator
+    kind: helm
+    repo: helmChart
+    url: https://victoriametrics.github.io/helm-charts/
+    version: 0.35.2
+
