@@ -4,4 +4,5 @@ TODOs:
 - add multiple containers (one for each user)
 - set passwords
 - create docs
-- Test if http -> https is working
+- check dns entries (duplicated?)
+- add workspace config for each users
