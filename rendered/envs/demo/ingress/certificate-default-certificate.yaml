@@ -8,6 +8,7 @@ spec:
   dnsNames:
     - demo.budd.ee
     - '*.demo.budd.ee'
+    - '*.python.demo.budd.ee'
   issuerRef:
     kind: ClusterIssuer
     name: designate

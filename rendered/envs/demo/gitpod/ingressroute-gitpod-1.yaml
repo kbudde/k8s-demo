@@ -11,7 +11,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`s1.python-web.demo.budd.ee`)
+      match: Host(`python-web-s1.demo.budd.ee`)
       middlewares:
         - name: gitpod-1
       priority: 10

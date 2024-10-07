@@ -1,6 +1,6 @@
 #@ load("@ytt:data", "data")
 #@ domain = "s1.python." + data.values.shared.domain
-#@ domainWeb = "s1.python-web." + data.values.shared.domain
+#@ domainWeb = "python-web-s1." + data.values.shared.domain
 #@ redirect = "https://" + domainWeb + "/?folder=/home/workspace/projects"
 #@ traefikLB = "lb." + data.values.shared.domain
 ---
