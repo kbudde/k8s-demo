@@ -6,7 +6,6 @@ metadata:
   name: default-certificate
 spec:
   dnsNames:
-    - demo.budd.ee
     - '*.demo.budd.ee'
     - '*.python.demo.budd.ee'
   issuerRef:
