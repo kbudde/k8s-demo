@@ -5,8 +5,6 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
   name: set-project
 spec:
-  plugin:
-    traefik-plugin-query-modification:
-      NewValue: /home/workspace/projects
-      ParamName: folder
-      Type: modify
+  redirectRegex:
+    regex: .*
+    replacement: https://python-web.demo.budd.ee/?folder=/home/workspace/projects
