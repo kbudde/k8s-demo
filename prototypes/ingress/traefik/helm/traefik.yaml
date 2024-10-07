@@ -18,6 +18,7 @@ providers:
 globalArguments:
 - "--global.checknewversion"
 #! - "--global.sendanonymoususage"
+- "--entrypoints.web.http.redirections.entrypoint.scheme=https"
 
 experimental:
 #! https://plugins.traefik.io/plugins/628c9f24ffc0cd18356a97bd/query-paramter-modification

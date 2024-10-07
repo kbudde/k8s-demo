@@ -9,6 +9,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - web
   routes:
     - kind: Rule
       match: Host(`python-web-s1.demo.budd.ee`)

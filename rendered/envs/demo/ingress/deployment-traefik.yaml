@@ -39,6 +39,7 @@ spec:
       containers:
         - args:
             - --global.checknewversion
+            - --entrypoints.web.http.redirections.entrypoint.scheme=https
             - --entryPoints.metrics.address=:9100/tcp
             - --entryPoints.traefik.address=:9000/tcp
             - --entryPoints.web.address=:8000/tcp
