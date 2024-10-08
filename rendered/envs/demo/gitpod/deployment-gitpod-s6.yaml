@@ -4,18 +4,18 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     reloader.stakater.com/auto: "true"
-  name: gitpod-1
+  name: gitpod-s6
 spec:
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: gitpod-1
+      app: gitpod-s6
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: gitpod-1
+        app: gitpod-s6
     spec:
       containers:
         - image: kbudde/tmp:openvscode-python
@@ -66,6 +66,6 @@ spec:
       volumes:
         - name: workspace
           persistentVolumeClaim:
-            claimName: gitpod-1
+            claimName: gitpod-s6
         - emptyDir: {}
           name: openvscode-server

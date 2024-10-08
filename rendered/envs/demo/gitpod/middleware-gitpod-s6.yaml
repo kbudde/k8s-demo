@@ -3,7 +3,7 @@ kind: Middleware
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-  name: gitpod-1
+  name: gitpod-s6
 spec:
   basicAuth:
-    secret: gitpod-1
+    secret: gitpod-s6

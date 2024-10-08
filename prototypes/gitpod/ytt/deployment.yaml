@@ -1,19 +1,28 @@
+#@ load("@ytt:data", "data")
+#@ traefikLB = "lb.{}".format(data.values.shared.domain)
+
+
+#@ for username in data.values.application.usernames:
+#@ domain = "{}.python.{}".format(username, data.values.shared.domain)
+#@ domainWeb = "python-web-{}.{}".format(username, data.values.shared.domain)
+#@ redirect = "https://{}/?folder=/home/workspace/projects".format(domainWeb)
+#@ appName = "gitpod-{}".format(username)
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gitpod-1
+  name: #@ appName
 spec:
   selector:
     matchLabels:
-      app: gitpod-1
+      app: #@ appName
   strategy:
     type: Recreate
   revisionHistoryLimit: 1
   template:
     metadata:
       labels:
-        app: gitpod-1
+        app: #@ appName
     spec:
       terminationGracePeriodSeconds: 5
       initContainers:
@@ -65,14 +74,14 @@ spec:
       volumes:
       - name: workspace
         persistentVolumeClaim:
-          claimName: gitpod-1
+          claimName: #@ appName
       - name: openvscode-server
         emptyDir: {}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gitpod-1
+  name: #@ appName
   finalizers:
     - kubernetes.io/pvc-protection
 spec:
@@ -86,24 +95,18 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitpod-1
+  name: #@ appName
 spec:
   selector:
-    app: gitpod-1
+    app: #@ appName
   ports:
   - port: 3000
     targetPort: 3000
 ---
-#@ load("@ytt:data", "data")
-#@ domain = "s1.python." + data.values.shared.domain
-#@ domainWeb = "python-web-s1." + data.values.shared.domain
-#@ redirect = "https://" + domainWeb + "/?folder=/home/workspace/projects"
-#@ traefikLB = "lb." + data.values.shared.domain
----
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: gitpod-1
+  name: #@ appName
   annotations:
     external-dns.alpha.kubernetes.io/target: #@ traefikLB
     kubernetes.io/ingress.class: traefik
@@ -116,25 +119,25 @@ spec:
     match: #@ "Host(`{}`)".format(domainWeb)
     priority: 10
     services:
-      - name: gitpod-1
+      - name: #@ appName
         port: 3000
         scheme: http
     middlewares:
-    - name: gitpod-1
+    - name: #@ appName
   - kind: Rule
     match: #@ "Host(`{}`)".format(domain)
     priority: 10
     services:
-      - name: gitpod-1
+      - name: #@ appName
         port: 3000
         scheme: http
     middlewares:
-    - name: set-project
+    - name: #@ "redirect-{}".format(username)
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: set-project
+  name: #@ "redirect-{}".format(username)
 spec:
   redirectRegex:
     regex: ".*"
@@ -143,14 +146,16 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: gitpod-1
+  name: #@ appName
 spec:
   basicAuth:
-    secret: gitpod-1
+    secret: #@ appName
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: gitpod-1
+  name: #@ appName
 stringData:
-  users: <path:static/user.yaml#s1>
+  users: #@ "<path:static/user.yaml#{}>".format(username)
+
+#@ end

@@ -5,27 +5,27 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
     kubernetes.io/ingress.class: traefik
-  name: gitpod-1
+  name: gitpod-s3
 spec:
   entryPoints:
     - websecure
     - web
   routes:
     - kind: Rule
-      match: Host(`python-web-s1.demo.budd.ee`)
+      match: Host(`python-web-s3.demo.budd.ee`)
       middlewares:
-        - name: gitpod-1
+        - name: gitpod-s3
       priority: 10
       services:
-        - name: gitpod-1
+        - name: gitpod-s3
           port: 3000
           scheme: http
     - kind: Rule
-      match: Host(`s1.python.demo.budd.ee`)
+      match: Host(`s3.python.demo.budd.ee`)
       middlewares:
-        - name: set-project
+        - name: redirect-s3
       priority: 10
       services:
-        - name: gitpod-1
+        - name: gitpod-s3
           port: 3000
           scheme: http

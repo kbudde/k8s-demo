@@ -5,7 +5,7 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
   finalizers:
     - kubernetes.io/pvc-protection
-  name: gitpod-1
+  name: gitpod-s1
 spec:
   accessModes:
     - ReadWriteOnce

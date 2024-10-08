@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
+    kubernetes.io/ingress.class: traefik
+  name: gitpod-s2
+spec:
+  entryPoints:
+    - websecure
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`python-web-s2.demo.budd.ee`)
+      middlewares:
+        - name: gitpod-s2
+      priority: 10
+      services:
+        - name: gitpod-s2
+          port: 3000
+          scheme: http
+    - kind: Rule
+      match: Host(`s2.python.demo.budd.ee`)
+      middlewares:
+        - name: redirect-s2
+      priority: 10
+      services:
+        - name: gitpod-s2
+          port: 3000
+          scheme: http

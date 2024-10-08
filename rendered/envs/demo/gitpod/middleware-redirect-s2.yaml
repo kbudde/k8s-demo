@@ -3,8 +3,8 @@ kind: Middleware
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-  name: set-project
+  name: redirect-s2
 spec:
   redirectRegex:
     regex: .*
-    replacement: https://python-web-s1.demo.budd.ee/?folder=/home/workspace/projects
+    replacement: https://python-web-s2.demo.budd.ee/?folder=/home/workspace/projects
