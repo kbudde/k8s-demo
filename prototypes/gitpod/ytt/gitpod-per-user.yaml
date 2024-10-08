@@ -5,7 +5,7 @@
 #@ for username in data.values.application.usernames:
 #@ domain = "{}.python.{}".format(username, data.values.shared.domain)
 #@ domainWeb = "python-web-{}.{}".format(username, data.values.shared.domain)
-#@ redirect = "https://{}/?folder=/home/workspace/Projekt".format(domainWeb)
+#@ redirect = "https://{}/?workspace=/opt/workspace/Projekt.code-workspace".format(domainWeb)
 #@ appName = "gitpod-{}".format(username)
 ---
 apiVersion: apps/v1
@@ -62,6 +62,12 @@ spec:
           subPath: .openvscode-server
         - name: workspace
           mountPath: /home/workspace
+        - name: examples
+          readOnly: true
+          mountPath: /opt/examples
+        - name: workspace-settings
+          mountPath: /opt/workspace
+          readOnly: true
         securityContext:
           runAsUser: 1000
           runAsGroup: 1000
@@ -82,6 +88,12 @@ spec:
           claimName: #@ appName
       - name: openvscode-server
         emptyDir: {}
+      - name: examples
+        configMap:
+          name: examples
+      - name: workspace-settings
+        configMap:
+          name: workspace-settings
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

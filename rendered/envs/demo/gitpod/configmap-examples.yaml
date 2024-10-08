@@ -1,0 +1,30 @@
+apiVersion: v1
+data:
+  ausgeben.py: |
+    # Gib "Hallo Welt" aus
+    print("Hallo Welt")
+  einlesen.py: |
+    # Eingabe vom Benutzer anfordern. Input ist englisch für Eingabe
+    eingabe = input("Gib etwas ein: ")
+    # Ausgabe der Benutzereingabe
+    print("Du hast eingegeben:", eingabe)
+  rechnen.py: |
+    # Erste Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
+    # int ist die Abkürzung für Integer, was Ganzzahl bedeutet
+    zahl1 = int(input("Gib die erste Zahl ein: "))
+    # Zweite Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
+    zahl2 = int(input("Gib die zweite Zahl ein: "))
+    # Summe der beiden Zahlen berechnen und ausgeben
+    print("Summe:", zahl1 + zahl2)
+
+    # Tests:
+    # - Gib zwei Zahlen ein, z.B. 5 und 7 und prüfe das Ergebnis
+    # - Gib zwei negative Zahlen ein, z.B. -5 und -7 und prüfe das Ergebnis
+    # - Gib eine positive und eine negative Zahl ein, z.B. 5 und -7 und prüfe das Ergebnis
+    # - Gib einen Buchstaben ein und prüfe das Ergebnis
+    # - Gib "eins" und "zwei" ein und prüfe das Ergebnis
+kind: ConfigMap
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: examples

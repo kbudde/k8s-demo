@@ -39,6 +39,12 @@ spec:
               subPath: .openvscode-server
             - mountPath: /home/workspace
               name: workspace
+            - mountPath: /opt/examples
+              name: examples
+              readOnly: true
+            - mountPath: /opt/workspace
+              name: workspace-settings
+              readOnly: true
       initContainers:
         - command:
             - /bin/bash
@@ -71,3 +77,9 @@ spec:
             claimName: gitpod-s1
         - emptyDir: {}
           name: openvscode-server
+        - configMap:
+            name: examples
+          name: examples
+        - configMap:
+            name: workspace-settings
+          name: workspace-settings
