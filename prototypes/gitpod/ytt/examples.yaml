@@ -3,15 +3,15 @@ kind: ConfigMap
 metadata:
   name: examples
 data:
-  ausgeben.py: |
+  1.Ausgeben.py: |
     # Gib "Hallo Welt" aus
     print("Hallo Welt")
-  einlesen.py: |
+  2.Einlesen.py: |
     # Eingabe vom Benutzer anfordern. Input ist englisch für Eingabe
     eingabe = input("Gib etwas ein: ")
     # Ausgabe der Benutzereingabe
     print("Du hast eingegeben:", eingabe)
-  rechnen.py: |
+  3.Rechnen.py: |
     # Erste Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
     # int ist die Abkürzung für Integer, was Ganzzahl bedeutet
     zahl1 = int(input("Gib die erste Zahl ein: "))
@@ -27,7 +27,7 @@ data:
     # - Gib einen Buchstaben ein und prüfe das Ergebnis
     # - Gib "eins" und "zwei" ein und prüfe das Ergebnis
 
-  funktionen.py: |
+  4.Funktionen.py: |
     # Wenn Programme kompliziert werden, können Funktionen helfen, den Code zu strukturieren
     # Eine Funktion ist ein Codeblock, der eine bestimmte Aufgabe erfüllt
     # Die Funktion kann Parameter entgegennehmen und ein Ergebnis zurückgeben
@@ -49,7 +49,17 @@ data:
     gruessen("Welt")
     gruessen("Python")
 
-  schleifen.py: |
+
+    # Noch nützlicher wird es, wenn man Werte zurückgibt
+    def addiere(a,b):
+        '''Addiere zwei Zahlen'''
+        return a + b # return heißt "gib zurück"
+
+    ergebnis=addiere(3,4)
+    print("3 + 4 =", ergebnis)
+
+
+  5.Schleifen.py: |
     # Schleifen sind ein wichtiges Konzept in der Programmierung
     # Sie erlauben es, Code mehrmals auszuführen
     # Es gibt verschiedene Arten von Schleifen, z.B. die for-Schleife und die while-Schleife
@@ -59,18 +69,27 @@ data:
         print("Hallo Welt")
         print("Das ist die", i+1, ". Runde")
 
-  Buchstaben.py: |
+  7.Buchstaben.py: |
     # Was wenn man etwas für jeden Buchstaben in einem Wort machen möchte?
     # Dafür gibt es die for-Schleife
     # Sie erlaubt es, über jedes Element in einer Liste zu iterieren (drüber zu laufen)
     for buchstabe in "Hallo":
         print("Buchstabe:", buchstabe)
 
-    # Rechnen mit Buchstaben geht auch:
+    # Kann man mit Buchstaben auch rechnen?:
     print("Buchstabe 'a' + Buchstabe 'b' =", 'a' + 'b')
     # Welcher Buchstabe kommt dabei raus?
 
-  Bedingungen.py: |
+    # Komische Sachen mit Buchstaben
+    print(ord("A"))
+    print(ord("a"))
+
+    print("a".upper())
+
+    # Mach das gleiche mit anderen Buchstaben
+
+
+  6.Bedingungen.py: |
     # Bedingungen sind ein weiteres wichtiges Konzept in der Programmierung
     # Sie erlauben es, Code nur unter bestimmten Bedingungen auszuführen
     # Es gibt verschiedene Arten von Bedingungen, z.B. if-Bedingungen und else-Bedingungen

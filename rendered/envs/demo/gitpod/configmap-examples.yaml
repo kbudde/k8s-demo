@@ -1,6 +1,39 @@
 apiVersion: v1
 data:
-  Bedingungen.py: |
+  1.Ausgeben.py: |
+    # Gib "Hallo Welt" aus
+    print("Hallo Welt")
+  2.Einlesen.py: |
+    # Eingabe vom Benutzer anfordern. Input ist englisch für Eingabe
+    eingabe = input("Gib etwas ein: ")
+    # Ausgabe der Benutzereingabe
+    print("Du hast eingegeben:", eingabe)
+  3.Rechnen.py: |
+    # Erste Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
+    # int ist die Abkürzung für Integer, was Ganzzahl bedeutet
+    zahl1 = int(input("Gib die erste Zahl ein: "))
+    # Zweite Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
+    zahl2 = int(input("Gib die zweite Zahl ein: "))
+    # Summe der beiden Zahlen berechnen und ausgeben
+    print("Summe:", zahl1 + zahl2)
+
+    # Tests:
+    # - Gib zwei Zahlen ein, z.B. 5 und 7 und prüfe das Ergebnis
+    # - Gib zwei negative Zahlen ein, z.B. -5 und -7 und prüfe das Ergebnis
+    # - Gib eine positive und eine negative Zahl ein, z.B. 5 und -7 und prüfe das Ergebnis
+    # - Gib einen Buchstaben ein und prüfe das Ergebnis
+    # - Gib "eins" und "zwei" ein und prüfe das Ergebnis
+  4.Funktionen.py: "# Wenn Programme kompliziert werden, können Funktionen helfen, den Code zu strukturieren\n# Eine Funktion ist ein Codeblock, der eine bestimmte Aufgabe erfüllt\n# Die Funktion kann Parameter entgegennehmen und ein Ergebnis zurückgeben\n# Funktionen können an verschiedenen Stellen im Programm aufgerufen werden\n\ndef links():\n    print(\"Ich gehe nach links\")\n    print(\"und dann nach links\")\n    print(\"und nochmal nach links\")\n\n# Wie nutzt man Funktionen?\nlinks()\nlinks()\n\n# Die Funktion kann auch Parameter entgegennehmen\ndef gruessen(name):\n    print(\"Hallo\", name)\n  \ngruessen(\"Welt\")\ngruessen(\"Python\")\n\n\n# Noch nützlicher wird es, wenn man Werte zurückgibt\ndef addiere(a,b):\n    '''Addiere zwei Zahlen'''\n    return a + b # return heißt \"gib zurück\"\n\nergebnis=addiere(3,4)\nprint(\"3 + 4 =\", ergebnis)\n"
+  5.Schleifen.py: |
+    # Schleifen sind ein wichtiges Konzept in der Programmierung
+    # Sie erlauben es, Code mehrmals auszuführen
+    # Es gibt verschiedene Arten von Schleifen, z.B. die for-Schleife und die while-Schleife
+
+    # Die for-Schleife wird verwendet
+    for i in range(5):
+        print("Hallo Welt")
+        print("Das ist die", i+1, ". Runde")
+  6.Bedingungen.py: |
     # Bedingungen sind ein weiteres wichtiges Konzept in der Programmierung
     # Sie erlauben es, Code nur unter bestimmten Bedingungen auszuführen
     # Es gibt verschiedene Arten von Bedingungen, z.B. if-Bedingungen und else-Bedingungen
@@ -16,49 +49,24 @@ data:
     # Aufgabe:
     # - Ändere die Zahl und schau, was passiert
     # - Frage den Benutzer nach einer Zahl und prüfe, ob sie größer als 0 ist
-  Buchstaben.py: |
+  7.Buchstaben.py: |
     # Was wenn man etwas für jeden Buchstaben in einem Wort machen möchte?
     # Dafür gibt es die for-Schleife
     # Sie erlaubt es, über jedes Element in einer Liste zu iterieren (drüber zu laufen)
     for buchstabe in "Hallo":
         print("Buchstabe:", buchstabe)
 
-    # Rechnen mit Buchstaben geht auch:
+    # Kann man mit Buchstaben auch rechnen?:
     print("Buchstabe 'a' + Buchstabe 'b' =", 'a' + 'b')
     # Welcher Buchstabe kommt dabei raus?
-  ausgeben.py: |
-    # Gib "Hallo Welt" aus
-    print("Hallo Welt")
-  einlesen.py: |
-    # Eingabe vom Benutzer anfordern. Input ist englisch für Eingabe
-    eingabe = input("Gib etwas ein: ")
-    # Ausgabe der Benutzereingabe
-    print("Du hast eingegeben:", eingabe)
-  funktionen.py: "# Wenn Programme kompliziert werden, können Funktionen helfen, den Code zu strukturieren\n# Eine Funktion ist ein Codeblock, der eine bestimmte Aufgabe erfüllt\n# Die Funktion kann Parameter entgegennehmen und ein Ergebnis zurückgeben\n# Funktionen können an verschiedenen Stellen im Programm aufgerufen werden\n\ndef links():\n    print(\"Ich gehe nach links\")\n    print(\"und dann nach links\")\n    print(\"und nochmal nach links\")\n\n# Wie nutzt man Funktionen?\nlinks()\nlinks()\n\n# Die Funktion kann auch Parameter entgegennehmen\ndef gruessen(name):\n    print(\"Hallo\", name)\n  \ngruessen(\"Welt\")\ngruessen(\"Python\")\n"
-  rechnen.py: |
-    # Erste Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
-    # int ist die Abkürzung für Integer, was Ganzzahl bedeutet
-    zahl1 = int(input("Gib die erste Zahl ein: "))
-    # Zweite Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
-    zahl2 = int(input("Gib die zweite Zahl ein: "))
-    # Summe der beiden Zahlen berechnen und ausgeben
-    print("Summe:", zahl1 + zahl2)
 
-    # Tests:
-    # - Gib zwei Zahlen ein, z.B. 5 und 7 und prüfe das Ergebnis
-    # - Gib zwei negative Zahlen ein, z.B. -5 und -7 und prüfe das Ergebnis
-    # - Gib eine positive und eine negative Zahl ein, z.B. 5 und -7 und prüfe das Ergebnis
-    # - Gib einen Buchstaben ein und prüfe das Ergebnis
-    # - Gib "eins" und "zwei" ein und prüfe das Ergebnis
-  schleifen.py: |
-    # Schleifen sind ein wichtiges Konzept in der Programmierung
-    # Sie erlauben es, Code mehrmals auszuführen
-    # Es gibt verschiedene Arten von Schleifen, z.B. die for-Schleife und die while-Schleife
+    # Komische Sachen mit Buchstaben
+    print(ord("A"))
+    print(ord("a"))
 
-    # Die for-Schleife wird verwendet
-    for i in range(5):
-        print("Hallo Welt")
-        print("Das ist die", i+1, ". Runde")
+    print("a".upper())
+
+    # Mach das gleiche mit anderen Buchstaben
 kind: ConfigMap
 metadata:
   annotations:
