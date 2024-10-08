@@ -56,7 +56,9 @@ spec:
         - command:
             - sh
             - -c
-            - chown -R 1000:1000 /home/workspace
+            - |
+              mkdir -p /home/workspace/Projekt
+              chown -R 1000:1000 /home/workspace
           image: busybox
           name: init-permissions
           volumeMounts:

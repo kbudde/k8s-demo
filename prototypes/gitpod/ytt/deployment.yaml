@@ -5,7 +5,7 @@
 #@ for username in data.values.application.usernames:
 #@ domain = "{}.python.{}".format(username, data.values.shared.domain)
 #@ domainWeb = "python-web-{}.{}".format(username, data.values.shared.domain)
-#@ redirect = "https://{}/?folder=/home/workspace/projects".format(domainWeb)
+#@ redirect = "https://{}/?folder=/home/workspace/Projekt".format(domainWeb)
 #@ appName = "gitpod-{}".format(username)
 ---
 apiVersion: apps/v1
@@ -43,7 +43,12 @@ spec:
 
       - name: init-permissions
         image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /home/workspace"]
+        command: 
+        - "sh"
+        - "-c"
+        - |
+          mkdir -p /home/workspace/Projekt
+          chown -R 1000:1000 /home/workspace
         volumeMounts:
         - name: workspace
           mountPath: /home/workspace

@@ -7,4 +7,4 @@ metadata:
 spec:
   redirectRegex:
     regex: .*
-    replacement: https://python-web-s3.demo.budd.ee/?folder=/home/workspace/projects
+    replacement: https://python-web-s3.demo.budd.ee/?folder=/home/workspace/Projekt
