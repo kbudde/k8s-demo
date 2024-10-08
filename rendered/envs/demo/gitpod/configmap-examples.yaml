@@ -1,5 +1,31 @@
 apiVersion: v1
 data:
+  Bedingungen.py: |
+    # Bedingungen sind ein weiteres wichtiges Konzept in der Programmierung
+    # Sie erlauben es, Code nur unter bestimmten Bedingungen auszuführen
+    # Es gibt verschiedene Arten von Bedingungen, z.B. if-Bedingungen und else-Bedingungen
+
+    # Die if-Bedingung wird verwendet
+    zahl = 5
+    if zahl > 0:
+        print("Die Zahl ist größer als 0")
+    else:
+        print("Die Zahl ist kleiner oder gleich 0")
+
+    # PS: if heißt auf Deutsch "wenn" und else heißt "sonst"
+    # Aufgabe:
+    # - Ändere die Zahl und schau, was passiert
+    # - Frage den Benutzer nach einer Zahl und prüfe, ob sie größer als 0 ist
+  Buchstaben.py: |
+    # Was wenn man etwas für jeden Buchstaben in einem Wort machen möchte?
+    # Dafür gibt es die for-Schleife
+    # Sie erlaubt es, über jedes Element in einer Liste zu iterieren (drüber zu laufen)
+    for buchstabe in "Hallo":
+        print("Buchstabe:", buchstabe)
+
+    # Rechnen mit Buchstaben geht auch:
+    print("Buchstabe 'a' + Buchstabe 'b' =", 'a' + 'b')
+    # Welcher Buchstabe kommt dabei raus?
   ausgeben.py: |
     # Gib "Hallo Welt" aus
     print("Hallo Welt")
@@ -8,6 +34,7 @@ data:
     eingabe = input("Gib etwas ein: ")
     # Ausgabe der Benutzereingabe
     print("Du hast eingegeben:", eingabe)
+  funktionen.py: "# Wenn Programme kompliziert werden, können Funktionen helfen, den Code zu strukturieren\n# Eine Funktion ist ein Codeblock, der eine bestimmte Aufgabe erfüllt\n# Die Funktion kann Parameter entgegennehmen und ein Ergebnis zurückgeben\n# Funktionen können an verschiedenen Stellen im Programm aufgerufen werden\n\ndef links():\n    print(\"Ich gehe nach links\")\n    print(\"und dann nach links\")\n    print(\"und nochmal nach links\")\n\n# Wie nutzt man Funktionen?\nlinks()\nlinks()\n\n# Die Funktion kann auch Parameter entgegennehmen\ndef gruessen(name):\n    print(\"Hallo\", name)\n  \ngruessen(\"Welt\")\ngruessen(\"Python\")\n"
   rechnen.py: |
     # Erste Zahl vom Benutzer anfordern und in eine Ganzzahl umwandeln
     # int ist die Abkürzung für Integer, was Ganzzahl bedeutet
@@ -23,6 +50,15 @@ data:
     # - Gib eine positive und eine negative Zahl ein, z.B. 5 und -7 und prüfe das Ergebnis
     # - Gib einen Buchstaben ein und prüfe das Ergebnis
     # - Gib "eins" und "zwei" ein und prüfe das Ergebnis
+  schleifen.py: |
+    # Schleifen sind ein wichtiges Konzept in der Programmierung
+    # Sie erlauben es, Code mehrmals auszuführen
+    # Es gibt verschiedene Arten von Schleifen, z.B. die for-Schleife und die while-Schleife
+
+    # Die for-Schleife wird verwendet
+    for i in range(5):
+        print("Hallo Welt")
+        print("Das ist die", i+1, ". Runde")
 kind: ConfigMap
 metadata:
   annotations:
