@@ -1,7 +1,8 @@
 #@data/values-schema
 ---
 #@overlay/match-child-defaults missing_ok=True
-application:
-  users:
-    count: 6
-    prefix: s
+application: 
+  #@schema/default ["s1", "s2", "s3", "s4", "s5", "s6"]
+  usernames:
+    - s1
+
