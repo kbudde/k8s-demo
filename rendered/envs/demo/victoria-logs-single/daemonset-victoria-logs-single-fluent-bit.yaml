@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: victoria-logs-single
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: fluent-bit
-    app.kubernetes.io/version: 3.1.7
-    helm.sh/chart: fluent-bit-0.47.9
+    app.kubernetes.io/version: 3.1.9
+    helm.sh/chart: fluent-bit-0.47.10
   name: victoria-logs-single-fluent-bit
   namespace: victoria-logs-single
 spec:
@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 006b3aff592140e1a24b3c3e5f60fed3d30a894f2616a6b38dc566872162ab81
+        checksum/config: b1d1927c1fd0567f0137334770f82ac219508ad38e14add687066064c3b6fa09
       labels:
         app.kubernetes.io/instance: victoria-logs-single
         app.kubernetes.io/name: fluent-bit
@@ -31,7 +31,7 @@ spec:
             - --config=/fluent-bit/etc/conf/fluent-bit.conf
           command:
             - /fluent-bit/bin/fluent-bit
-          image: cr.fluentbit.io/fluent/fluent-bit:3.1.7
+          image: cr.fluentbit.io/fluent/fluent-bit:3.1.9
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
