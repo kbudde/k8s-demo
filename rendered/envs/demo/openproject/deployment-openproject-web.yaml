@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/env-core: fef63344c68db6c21144c784a439debedfafbb8e0bc3ff1860253681503288e9
+        checksum/env-core: 6ecb3d8bb3051547334aa6582e4df32a21c526c80d78d7c10a865d92d9427368
         checksum/env-environment: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
         checksum/env-memcached: 27fe1449e5754ecf5d02931b1fb5b6825ec28917e178a4df457cd856aaa00130
         checksum/env-oidc: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b

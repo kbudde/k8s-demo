@@ -1,0 +1,4 @@
+host: openproject.demo.budd.ee
+
+openproject:
+  https: false
