@@ -1,0 +1,147 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: openproject
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: openproject
+    app.kubernetes.io/version: 14.6.3
+    helm.sh/chart: openproject-8.3.2
+    openproject/process: worker-default
+  name: openproject-worker-default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: openproject
+      app.kubernetes.io/name: openproject
+      openproject/process: worker-default
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        checksum/env-core: fef63344c68db6c21144c784a439debedfafbb8e0bc3ff1860253681503288e9
+        checksum/env-environment: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+        checksum/env-memcached: 27fe1449e5754ecf5d02931b1fb5b6825ec28917e178a4df457cd856aaa00130
+        checksum/env-oidc: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+        checksum/env-s3: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+      labels:
+        app.kubernetes.io/instance: openproject
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: openproject
+        app.kubernetes.io/version: 14.6.3
+        helm.sh/chart: openproject-8.3.2
+        openproject/process: worker-default
+    spec:
+      containers:
+        - command:
+            - bash
+            - /app/docker/prod/worker
+          env:
+            - name: OPENPROJECT_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: openproject-postgresql
+            - name: OPENPROJECT_GOOD_JOB_QUEUES
+              value: ""
+          envFrom:
+            - secretRef:
+                name: openproject-core
+            - secretRef:
+                name: openproject-memcached
+          image: docker.io/openproject/openproject:14.6.3-slim
+          imagePullPolicy: Always
+          name: openproject
+          resources:
+            limits:
+              cpu: "4"
+              memory: 4Gi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /app/tmp
+              name: app-tmp
+            - mountPath: /var/openproject/assets
+              name: data
+      initContainers:
+        - command:
+            - bash
+            - /app/docker/prod/wait-for-db
+          env:
+            - name: OPENPROJECT_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: openproject-postgresql
+          envFrom:
+            - secretRef:
+                name: openproject-core
+            - secretRef:
+                name: openproject-memcached
+          image: docker.io/openproject/openproject:14.6.3-slim
+          imagePullPolicy: Always
+          name: wait-for-db
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile:
+              type: RuntimeDefault
+      securityContext:
+        fsGroup: 1000
+      serviceAccountName: openproject
+      volumes:
+        - ephemeral:
+            volumeClaimTemplate:
+              metadata:
+                creationTimestamp: null
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 5Gi
+          name: tmp
+        - ephemeral:
+            volumeClaimTemplate:
+              metadata:
+                creationTimestamp: null
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 5Gi
+          name: app-tmp
+        - name: data
+          persistentVolumeClaim:
+            claimName: openproject

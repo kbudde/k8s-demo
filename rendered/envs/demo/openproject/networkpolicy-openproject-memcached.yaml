@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: openproject
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: memcached
+    app.kubernetes.io/version: 1.6.24
+    helm.sh/chart: memcached-6.14.0
+  name: openproject-memcached
+  namespace: openproject
+spec:
+  egress:
+    - {}
+  ingress:
+    - ports:
+        - port: 11211
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: openproject
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: memcached
+      app.kubernetes.io/version: 1.6.24
+      helm.sh/chart: memcached-6.14.0
+  policyTypes:
+    - Ingress
+    - Egress

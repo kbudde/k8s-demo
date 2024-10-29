@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: openproject
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: openproject
+    app.kubernetes.io/version: 14.6.3
+    helm.sh/chart: openproject-8.3.2
+  name: openproject
+spec:
+  rules:
+    - host: openproject.example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: openproject
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - openproject.example.com
+      secretName: ""
