@@ -27,7 +27,6 @@ environment:
   - proto: grafana
   - proto: gitpod
   - proto: victoria-metrics-operator
-  - proto: openproject
 shared:
   domain: "demo.budd.ee"
 
