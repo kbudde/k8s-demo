@@ -14,6 +14,10 @@ spec:
       labels:
         app: task
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       volumes:
         - name: task
           persistentVolumeClaim:
@@ -21,10 +25,6 @@ spec:
       containers:
       - image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
         name: taskchampion-sync-server
-        securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
-          fsGroup: 1000
         args:
           - "--data-dir"
           - /data

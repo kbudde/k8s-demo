@@ -30,13 +30,13 @@ spec:
             - containerPort: 8080
               name: http
               protocol: TCP
-          securityContext:
-            fsGroup: 1000
-            runAsGroup: 1000
-            runAsUser: 1000
           volumeMounts:
             - mountPath: /data
               name: task
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsUser: 1000
       volumes:
         - name: task
           persistentVolumeClaim:
