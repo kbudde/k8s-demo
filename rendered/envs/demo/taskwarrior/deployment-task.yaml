@@ -20,9 +20,9 @@ spec:
       containers:
         - args:
             - --data-dir
-            - /var/lib/taskchampion-sync-server
+            - /data
             - --allow-client-id
-            - 465600ee-b5a5-11ef-894c-d7569779cf2c
+            - 465600e-b5a5-11ef-894c-d7569779cf2c
           image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
           imagePullPolicy: Always
           name: taskchampion-sync-server
@@ -34,7 +34,7 @@ spec:
             runAsGroup: 1000
             runAsUser: 1000
           volumeMounts:
-            - mountPath: /var/lib/taskchampion-sync-server
+            - mountPath: /data
               name: task
       volumes:
         - name: task
