@@ -28,7 +28,7 @@ spec:
           - "--data-dir"
           - /data
           - "--allow-client-id"
-          - "465600e-b5a5-11ef-894c-d7569779cf2c"
+          - "465600ef-b5a5-11ef-894c-d7569779cf2c"
         imagePullPolicy: Always
         volumeMounts:
           - name: task

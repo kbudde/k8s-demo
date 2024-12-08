@@ -22,7 +22,7 @@ spec:
             - --data-dir
             - /data
             - --allow-client-id
-            - 465600e-b5a5-11ef-894c-d7569779cf2c
+            - 465600ef-b5a5-11ef-894c-d7569779cf2c
           image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
           imagePullPolicy: Always
           name: taskchampion-sync-server
