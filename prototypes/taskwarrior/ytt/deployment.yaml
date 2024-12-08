@@ -15,9 +15,9 @@ spec:
         app: task
     spec:
       volumes:
-        - name: syncdata
+        - name: task
           persistentVolumeClaim:
-            claimName: syncdata
+            claimName: task
       containers:
       - image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
         name: taskchampion-sync-server
@@ -26,12 +26,12 @@ spec:
           - "465600ee-b5a5-11ef-894c-d7569779cf2c"
         imagePullPolicy: Always
         volumeMounts:
-          - name: syncdata
+          - name: task
             mountPath: /var/lib/taskchampion-sync-server
         ports:
           - name: http
             containerPort: 8080
-            protocol: tcp
+            protocol: TCP
 
 
 
