@@ -19,6 +19,8 @@ spec:
     spec:
       containers:
         - args:
+            - --data-dir
+            - /var/lib/taskchampion-sync-server
             - --allow-client-id
             - 465600ee-b5a5-11ef-894c-d7569779cf2c
           image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
