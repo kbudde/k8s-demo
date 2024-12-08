@@ -25,7 +25,7 @@ environment:
   - proto: cloudnative-pg
   - proto: oncall
   - proto: grafana
-  - proto: gitpod
+  #!  - proto: gitpod
   - proto: victoria-metrics-operator
 shared:
   domain: "demo.budd.ee"
