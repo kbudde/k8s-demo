@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app: task
+  name: task
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task
+  template:
+    metadata:
+      labels:
+        app: task
+    spec:
+      containers:
+        - args:
+            - --allow-client-id
+            - 465600ee-b5a5-11ef-894c-d7569779cf2c
+          image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
+          imagePullPolicy: Always
+          name: taskchampion-sync-server
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: tcp
+          volumeMounts:
+            - mountPath: /var/lib/taskchampion-sync-server
+              name: syncdata
+      volumes:
+        - name: syncdata
+          persistentVolumeClaim:
+            claimName: syncdata

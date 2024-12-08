@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app: task
+  name: task
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+  selector:
+    app: task
+  type: LoadBalancer
