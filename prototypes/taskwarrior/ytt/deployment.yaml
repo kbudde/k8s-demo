@@ -29,7 +29,7 @@ spec:
           - "--data-dir"
           - /data
           - "--allow-client-id"
-          - "465600ef-b5a5-11ef-894c-d7569779cf2c"
+          - "<path:static/taskwarrior.yaml#client-id>"
         imagePullPolicy: Always
         volumeMounts:
           - name: task
