@@ -26,6 +26,7 @@ environment:
   - proto: oncall
   - proto: taskwarrior 
   - proto: grafana
+  - proto: n8n 
   #!  - proto: gitpod
   - proto: victoria-metrics-operator
 shared:

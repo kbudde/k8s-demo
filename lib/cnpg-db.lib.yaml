@@ -9,6 +9,12 @@ spec:
     size: #@ size
   maxSyncReplicas: 0
   minSyncReplicas: 0
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1024Mi
   primaryUpdateMethod: switchover
   replicationSlots:
     highAvailability:
