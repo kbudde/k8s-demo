@@ -81,7 +81,7 @@ yttPkg:
 render:
   includeNamespace: false
 myks:
-  gitRepoBranch: update_argo
+  gitRepoBranch: main
   gitRepoUrl: https://github.com/kbudde/k8s-demo
   context:
     app: ""
