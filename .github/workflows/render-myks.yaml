@@ -35,6 +35,7 @@ jobs:
         uses: mykso/setup-action@364507111daa4bd012d419baf071f7ea78d1f205 # v3.0.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: edit_prototypes # experimental
       - name: Render
         env:
           MYKS_SMART_MODE_BASE_REVISION: ${{ github.base_ref && format('origin/{0}', github.base_ref) || env.NX_BASE }}
