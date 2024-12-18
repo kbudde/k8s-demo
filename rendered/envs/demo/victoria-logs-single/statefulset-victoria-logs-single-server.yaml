@@ -9,7 +9,8 @@ metadata:
     app.kubernetes.io/instance: victoria-logs-single
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-logs-single
-    helm.sh/chart: victoria-logs-single-0.6.5
+    app.kubernetes.io/version: v1.3.2-victorialogs
+    helm.sh/chart: victoria-logs-single-0.8.11
   name: victoria-logs-single-server
   namespace: victoria-logs-single
 spec:
@@ -28,16 +29,16 @@ spec:
         app.kubernetes.io/instance: victoria-logs-single
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: victoria-logs-single
-        helm.sh/chart: victoria-logs-single-0.6.5
     spec:
       containers:
         - args:
-            - --envflag.enable=true
+            - --envflag.enable
             - --envflag.prefix=VM_
+            - --httpListenAddr=:9428
             - --loggerFormat=json
             - --retentionPeriod=1
             - --storageDataPath=/storage
-          image: victoriametrics/victoria-logs:v0.29.0-victorialogs
+          image: victoriametrics/victoria-logs:v1.3.2-victorialogs
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10

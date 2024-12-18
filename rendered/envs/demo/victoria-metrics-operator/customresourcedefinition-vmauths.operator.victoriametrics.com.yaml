@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.15.0
+    controller-gen.kubebuilder.io/version: v0.16.4
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,7 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    helm.sh/chart: victoria-metrics-operator-0.35.2
+    app.kubernetes.io/version: v0.50.0
+    helm.sh/chart: victoria-metrics-operator-0.39.1
   name: vmauths.operator.victoriametrics.com
 spec:
   conversion:
@@ -37,6 +38,13 @@ spec:
           jsonPath: .status.updateStatus
           name: Status
           type: string
+        - jsonPath: .metadata.creationTimestamp
+          name: Age
+          type: date
+        - description: The desired replicas number of Alertmanagers
+          jsonPath: .spec.replicaCount
+          name: ReplicaCount
+          type: integer
       name: v1beta1
       schema:
         openAPIV3Schema:
@@ -94,10 +102,8 @@ spec:
                         Claims lists the names of resources, defined in spec.resourceClaims,
                         that are used by this container.
 
-
                         This is an alpha field and requires enabling the
                         DynamicResourceAllocation feature gate.
-
 
                         This field is immutable. It can only be set for containers.
                       items:
@@ -148,6 +154,7 @@ spec:
                     configuration must be inside secret key: config.yaml.
                     It must be created and managed manually.
                     If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
+                    Deprecated, use externalConfig.secretRef instead
                   type: string
                 containers:
                   description: |-
@@ -228,6 +235,39 @@ spec:
                     DropSrcPathPrefixParts is the number of `/`-delimited request path prefix parts to drop before proxying the request to backend.
                     See [here](https://docs.victoriametrics.com/vmauth#dropping-request-path-prefix) for more details.
                   type: integer
+                externalConfig:
+                  description: |-
+                    ExternalConfig defines a source of external VMAuth configuration.
+                    If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
+                  properties:
+                    localPath:
+                      description: |-
+                        LocalPath contains static path to a config, which is managed externally for cases
+                        when using secrets is not applicable, e.g.: Vault sidecar.
+                      type: string
+                    secretRef:
+                      description: SecretRef defines selector for externally managed secret which contains configuration
+                      properties:
+                        key:
+                          description: The key of the secret to select from.  Must be a valid secret key.
+                          type: string
+                        name:
+                          default: ""
+                          description: |-
+                            Name of the referent.
+                            This field is effectively required, but due to backwards compatibility is
+                            allowed to be empty. Instances of this type with an empty value here are
+                            almost certainly wrong.
+                            More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                          type: string
+                        optional:
+                          description: Specify whether the Secret or its key must be defined
+                          type: boolean
+                      required:
+                        - key
+                      type: object
+                      x-kubernetes-map-type: atomic
+                  type: object
                 extraArgs:
                   additionalProperties:
                     type: string
@@ -352,9 +392,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -398,7 +436,6 @@ spec:
                               Incoming requests are matched against the host before the
                               IngressRuleValue. If the host is unspecified, the Ingress routes all
                               traffic based on the specified IngressRuleValue.
-
 
                               host can be "precise" which is a domain name without the terminating dot of
                               a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name
@@ -631,9 +668,7 @@ spec:
                             This field is effectively required, but due to backwards compatibility is
                             allowed to be empty. Instances of this type with an empty value here are
                             almost certainly wrong.
-                            TODO: Add other useful fields. apiVersion, kind, uid?
                             More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                            TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                           type: string
                         optional:
                           description: Specify whether the Secret or its key must be defined
@@ -791,10 +826,8 @@ spec:
                         Claims lists the names of resources, defined in spec.resourceClaims,
                         that are used by this container.
 
-
                         This is an alpha field and requires enabling the
                         DynamicResourceAllocation feature gate.
-
 
                         This field is immutable. It can only be set for containers.
                       items:
@@ -976,9 +1009,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the ConfigMap or its key must be defined
@@ -1000,9 +1031,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -1031,9 +1060,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the ConfigMap or its key must be defined
@@ -1055,9 +1082,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -1089,9 +1114,7 @@ spec:
                             This field is effectively required, but due to backwards compatibility is
                             allowed to be empty. Instances of this type with an empty value here are
                             almost certainly wrong.
-                            TODO: Add other useful fields. apiVersion, kind, uid?
                             More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                            TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                           type: string
                         optional:
                           description: Specify whether the Secret or its key must be defined
@@ -1383,9 +1406,7 @@ spec:
                           RecursiveReadOnly specifies whether read-only mounts should be handled
                           recursively.
 
-
                           If ReadOnly is false, this field has no meaning and must be unspecified.
-
 
                           If ReadOnly is true, and this field is set to Disabled, the mount is not made
                           recursively read-only.  If this field is set to IfPossible, the mount is made
@@ -1394,10 +1415,8 @@ spec:
                           supported by the container runtime, otherwise the pod will not be started and
                           an error will be generated to indicate the reason.
 
-
                           If this field is set to IfPossible or Enabled, MountPropagation must be set to
                           None (or be unspecified, which defaults to None).
-
 
                           If this field is not specified, it is treated as an equivalent of Disabled.
                         type: string
@@ -1434,11 +1453,17 @@ spec:
             status:
               description: VMAuthStatus defines the observed state of VMAuth
               properties:
+                observedGeneration:
+                  description: |-
+                    ObservedGeneration defines current generation picked by operator for the
+                    reconcile
+                  format: int64
+                  type: integer
                 reason:
-                  description: Reason defines fail reason for update process, effective only for statefulMode
+                  description: Reason defines fail reason for reconcile process
                   type: string
                 updateStatus:
-                  description: UpdateStatus defines a status for update rollout, effective only for statefulMode
+                  description: UpdateStatus defines a status for update rollout
                   type: string
               type: object
           type: object

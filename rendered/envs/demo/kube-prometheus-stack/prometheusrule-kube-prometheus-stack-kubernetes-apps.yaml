@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 65.1.0
-    chart: kube-prometheus-stack-65.1.0
+    app.kubernetes.io/version: 67.3.0
+    chart: kube-prometheus-stack-67.3.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-kubernetes-apps
@@ -142,7 +142,7 @@ spec:
             severity: warning
         - alert: KubeDaemonSetRolloutStuck
           annotations:
-            description: DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} has not finished or progressed for at least 15 minutes.
+            description: DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} has not finished or progressed for at least 15m.
             runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubedaemonsetrolloutstuck
             summary: DaemonSet rollout is stuck.
           expr: |-
@@ -174,10 +174,10 @@ spec:
             severity: warning
         - alert: KubeContainerWaiting
           annotations:
-            description: pod/{{ $labels.pod }} in namespace {{ $labels.namespace }} on container {{ $labels.container}} has been in waiting state for longer than 1 hour.
+            description: 'pod/{{ $labels.pod }} in namespace {{ $labels.namespace }} on container {{ $labels.container}} has been in waiting state for longer than 1 hour. (reason: "{{ $labels.reason }}").'
             runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubecontainerwaiting
             summary: Pod container waiting longer than 1 hour
-          expr: sum by (namespace, pod, container, cluster) (kube_pod_container_status_waiting_reason{job="kube-state-metrics", namespace=~".*"}) > 0
+          expr: kube_pod_container_status_waiting_reason{reason!="CrashLoopBackOff", job="kube-state-metrics", namespace=~".*"} > 0
           for: 1h
           labels:
             severity: warning

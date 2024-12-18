@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 65.1.0
-    chart: kube-prometheus-stack-65.1.0
+    app.kubernetes.io/version: 67.3.0
+    chart: kube-prometheus-stack-67.3.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-kube-apiserver-availability.rules
@@ -29,14 +29,14 @@ spec:
           labels:
             verb: write
           record: code:apiserver_request_total:increase30d
-        - expr: sum by (cluster, verb, scope) (increase(apiserver_request_sli_duration_seconds_count{job="apiserver"}[1h]))
-          record: cluster_verb_scope:apiserver_request_sli_duration_seconds_count:increase1h
-        - expr: sum by (cluster, verb, scope) (avg_over_time(cluster_verb_scope:apiserver_request_sli_duration_seconds_count:increase1h[30d]) * 24 * 30)
-          record: cluster_verb_scope:apiserver_request_sli_duration_seconds_count:increase30d
         - expr: sum by (cluster, verb, scope, le) (increase(apiserver_request_sli_duration_seconds_bucket[1h]))
           record: cluster_verb_scope_le:apiserver_request_sli_duration_seconds_bucket:increase1h
         - expr: sum by (cluster, verb, scope, le) (avg_over_time(cluster_verb_scope_le:apiserver_request_sli_duration_seconds_bucket:increase1h[30d]) * 24 * 30)
           record: cluster_verb_scope_le:apiserver_request_sli_duration_seconds_bucket:increase30d
+        - expr: sum by (cluster, verb, scope) (cluster_verb_scope_le:apiserver_request_sli_duration_seconds_bucket:increase1h{le="+Inf"})
+          record: cluster_verb_scope:apiserver_request_sli_duration_seconds_count:increase1h
+        - expr: sum by (cluster, verb, scope) (cluster_verb_scope_le:apiserver_request_sli_duration_seconds_bucket:increase30d{le="+Inf"})
+          record: cluster_verb_scope:apiserver_request_sli_duration_seconds_count:increase30d
         - expr: |-
             1 - (
               (

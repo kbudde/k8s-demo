@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.15.0
+    controller-gen.kubebuilder.io/version: v0.16.4
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,7 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    helm.sh/chart: victoria-metrics-operator-0.35.2
+    app.kubernetes.io/version: v0.50.0
+    helm.sh/chart: victoria-metrics-operator-0.39.1
   name: vmrules.operator.victoriametrics.com
 spec:
   conversion:
@@ -206,7 +207,7 @@ spec:
                       type:
                         description: |-
                           Type defines datasource type for enterprise version of vmalert
-                          possible values - prometheus,graphite
+                          possible values - prometheus,graphite,vlogs
                         type: string
                     required:
                       - name

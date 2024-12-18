@@ -1,0 +1,6 @@
+#@data/values-schema
+---
+#@overlay/match-child-defaults missing_ok=True
+application:
+  #! renovate: datasource=docker
+  image: docker.io/bloomberg/goldpinger:v3.8.0" 

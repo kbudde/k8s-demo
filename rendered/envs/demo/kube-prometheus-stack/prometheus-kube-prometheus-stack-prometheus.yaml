@@ -8,13 +8,29 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 65.1.0
-    chart: kube-prometheus-stack-65.1.0
+    app.kubernetes.io/version: 67.3.0
+    chart: kube-prometheus-stack-67.3.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-prometheus
   namespace: kube-prometheus-stack
 spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - prometheus
+                - key: prometheus
+                  operator: In
+                  values:
+                    - kube-prometheus-stack-prometheus
+            topologyKey: kubernetes.io/hostname
+          weight: 100
   alerting:
     alertmanagers:
       - apiVersion: v2
@@ -26,7 +42,7 @@ spec:
   enableAdminAPI: false
   externalUrl: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090
   hostNetwork: false
-  image: quay.io/prometheus/prometheus:v2.54.1
+  image: quay.io/prometheus/prometheus:v3.0.1
   listenLocal: false
   logFormat: logfmt
   logLevel: info
@@ -66,5 +82,5 @@ spec:
   shards: 1
   tsdb:
     outOfOrderTimeWindow: 0s
-  version: v2.54.1
+  version: v3.0.1
   walCompression: true

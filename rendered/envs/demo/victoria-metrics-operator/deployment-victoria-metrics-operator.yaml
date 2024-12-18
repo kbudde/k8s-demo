@@ -8,7 +8,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    helm.sh/chart: victoria-metrics-operator-0.35.2
+    app.kubernetes.io/version: v0.50.0
+    helm.sh/chart: victoria-metrics-operator-0.39.1
   name: victoria-metrics-operator
   namespace: victoria-metrics-operator
 spec:
@@ -21,6 +22,7 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/instance: victoria-metrics-operator
+        app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: victoria-metrics-operator
     spec:
       containers:
@@ -38,7 +40,7 @@ spec:
               value: victoria-metrics-operator
             - name: VM_ENABLEDPROMETHEUSCONVERTEROWNERREFERENCES
               value: "false"
-          image: victoriametrics/operator:v0.48.3
+          image: victoriametrics/operator:v0.50.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -68,11 +70,14 @@ spec:
             periodSeconds: 15
             timeoutSeconds: 5
           resources: {}
+          securityContext: {}
           volumeMounts:
             - mountPath: /tmp/k8s-webhook-server/serving-certs
               name: cert
               readOnly: true
+      securityContext: {}
       serviceAccountName: victoria-metrics-operator
+      terminationGracePeriodSeconds: 30
       volumes:
         - name: cert
           secret:

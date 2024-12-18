@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: reloader
+            repository:
+                url: https://stakater.github.io/stakater-charts
+            version: 1.2.0
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-reloader-1.2.0-3be3310f07f6f069/data
+      permissions: null
+kind: Config
