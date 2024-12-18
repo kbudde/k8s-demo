@@ -1,0 +1,41 @@
+# This workflow approves pull requests automatically if the diff of the rendered manifests is insignificant.
+---
+name: Auto-approve
+
+"on":
+  workflow_call:
+  pull_request:
+    types:
+      - converted_to_draft
+      - ready_for_review
+      - reopened
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}'
+      cancel-in-progress: true
+    env:
+      GH_TOKEN: ${{ secrets.KBUDDE_BOT_GITHUB_TOKEN }}
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+      - name: Approve or dismiss approval
+        id: decision
+        run: |
+          export PR_NUMBER=${{ github.event.pull_request.number }}
+          export PR_STATE=${{ github.event.pull_request.state }}
+          export PR_DRAFT=${{ github.event.pull_request.draft }}
+          export PR_MERGEABLE=${{ github.event.pull_request.mergeable }}
+
+          ./.github/scripts/auto-approve.sh

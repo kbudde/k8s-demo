@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/rabbitmq-cluster-operator
+  contents:
+  - path: .
+    helmChart:
+      name: rabbitmq-cluster-operator
+      version: 4.3.24
+      repository:
+        url: https://charts.bitnami.com/bitnami
+    lazy: true

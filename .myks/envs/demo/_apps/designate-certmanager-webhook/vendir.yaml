@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/designate-certmanager-webhook
+  contents:
+  - path: .
+    git:
+      url: https://github.com/syseleven/designate-certmanager-webhook
+      ref: helm-0.6.1
+    lazy: true
+    newRootPath: helm/designate-certmanager-webhook
+    includePaths:
+    - helm/designate-certmanager-webhook/**/*

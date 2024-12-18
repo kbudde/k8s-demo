@@ -1,0 +1,75 @@
+---
+name: Render with myks
+
+"on":
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
+      statuses: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
+          # use more powerful token to trigger subsequent workflows
+          token: ${{ secrets.KBUDDE_BOT_GITHUB_TOKEN }}
+      - name: Derive appropriate SHAs for base and head for myks Smart Mode
+        uses: nrwl/nx-set-shas@e2e6dc8bce4b0387a05eb687735c39c41580b792 # v4
+      - run: |
+          echo "BASE: ${{ env.NX_BASE }}"
+          echo "HEAD: ${{ env.NX_HEAD }}"
+      - name: Setup myks
+        uses: mykso/setup-action@364507111daa4bd012d419baf071f7ea78d1f205 # v3.0.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Render
+        env:
+          MYKS_SMART_MODE_BASE_REVISION: ${{ github.base_ref && format('origin/{0}', github.base_ref) || env.NX_BASE }}
+        run: |
+          myks all
+          myks cleanup --cache
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5 # v6
+        with:
+          gpg_private_key: ${{ secrets.KBUDDE_BOT_GPG_PRIVATE_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+      - name: Commit changes
+        id: commit
+        uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5
+        with:
+          commit_message: "chore: render with myks"
+          commit_user_name:  "KBudde Bot 🤖"
+          commit_user_email: bot@kris.budd.ee 
+      - name: Set commit status
+        uses: myrotvorets/set-commit-status-action@3730c0a348a2ace3c110851bed53331bc6406e9f # v2.0.1
+        with:
+          context: myks
+          description:
+            ${{ steps.commit.outputs.changes_detected == 'true' && 'New changes have been committed' || 'Rendered files
+            are up to date' }}
+          # When running on a PR, set the commit status on the latest commit in
+          # the branch. Otherwise, the PR will be waiting for the commit status
+          # indefinitely. This, in particular, blocks Renovate from merging PRs
+          # automatically.
+          # If running on a push, set the commit status on the current commit.
+          sha: ${{ steps.commit.outputs.commit_hash || github.event.pull_request.head.sha || github.sha }}
+          status: success
+  auto-approve:
+    needs: render
+    if: ${{ github.event_name == 'pull_request' }}
+    uses: ./.github/workflows/auto-approve.yaml
+    secrets: inherit

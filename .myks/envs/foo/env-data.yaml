@@ -1,0 +1,58 @@
+application: {}
+prototypes: []
+argocd:
+  enabled: true
+  namespace: argocd
+  app:
+    name: ""
+    prefix: ""
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+    destination:
+      name: ""
+      server: ""
+      namespace: ""
+    source:
+      path: ""
+      plugin:
+        name: argocd-vault-plugin
+      repoURL: https://github.com/kbudde/k8s-demo
+      targetRevision: develop/demo
+  env:
+    name: ""
+    prefix: ""
+    generateSecret: false
+  project:
+    name: ""
+    prefix: ""
+    destination:
+      name: ""
+      server: ""
+      namespace: '*'
+environment:
+  id: foo
+  applications:
+  - proto: ccm
+    name: ""
+  branch: develop/demo
+helm:
+  capabilities:
+  - monitoring.coreos.com/v1
+  - policy/v1/PodDisruptionBudget
+  includeCRDs: true
+  kubeVersion: "1.30"
+  namespace: ""
+  buildDependencies: false
+yttPkg:
+  dirs: []
+render:
+  includeNamespace: false
+myks:
+  gitRepoBranch: develop/demo
+  gitRepoUrl: https://github.com/kbudde/k8s-demo
+  context:
+    app: ""
+    prototype: ""
+    step: ""
+shared:
+  domain: foo.budd.ee

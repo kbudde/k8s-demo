@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: victoria-metrics-operator
+            repository:
+                url: https://victoriametrics.github.io/helm-charts/
+            version: 0.35.2
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-victoria-metrics-operator-0.35.2-91bd2f27073c5aa9/data
+      permissions: null
+kind: Config

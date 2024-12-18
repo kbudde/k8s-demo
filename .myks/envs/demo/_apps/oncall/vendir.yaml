@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/oncall
+  contents:
+  - path: .
+    helmChart:
+      name: oncall
+      version: 1.10.2
+      repository:
+        url: https://grafana.github.io/helm-charts
+    lazy: true

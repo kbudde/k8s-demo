@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/redis-operator
+  contents:
+  - path: .
+    helmChart:
+      name: redis-operator
+      version: 0.18.3
+      repository:
+        url: https://ot-container-kit.github.io/helm-charts/
+    lazy: true

@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - git:
+            ref: v0.14.2
+            url: https://github.com/kubernetes-sigs/external-dns
+          lazy: true
+          newRootPath: charts/external-dns
+          path: .
+      path: .myks/vendir-cache/git-external-dns-v0.14.2-8d6b1af35141cb67/data
+      permissions: null
+kind: Config

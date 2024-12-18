@@ -1,0 +1,11 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/external-dns
+  contents:
+  - path: .
+    git:
+      url: https://github.com/kubernetes-sigs/external-dns
+      ref: v0.14.2
+    lazy: true
+    newRootPath: charts/external-dns

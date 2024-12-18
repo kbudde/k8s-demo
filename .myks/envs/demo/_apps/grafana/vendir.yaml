@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/grafana
+  contents:
+  - path: .
+    helmChart:
+      name: grafana
+      version: 8.5.2
+      repository:
+        url: https://grafana.github.io/helm-charts
+    lazy: true

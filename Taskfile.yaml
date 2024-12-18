@@ -1,0 +1,59 @@
+# https://taskfile.dev
+---
+version: "3"
+
+silent: true
+set: [pipefail]
+shopt: [globstar]
+
+tasks:
+  default: ${GOTASK_BIN:-task} run 
+  
+  run:
+    desc: Run myks to download, render and validate the manifests
+    summary: |
+      Runs myks to download, render and validate the manifests.
+      Example:
+
+        task run
+    cmds:
+      - myks it
+
+  git:diff:
+    desc: Shows filtered git diff
+    summary: |
+      Shows git diff filtered using ./hack/git/git-diff-ignore-versions.sh script.
+      Accepts the same arguments as git diff.
+      Example:
+
+        task git:diff -- origin/main...origin/feature/123
+    env:
+      GIT_CONFIG_SYSTEM:
+        sh: echo "$(git rev-parse --show-toplevel)/hack/git/gitconfig"
+    cmds:
+      - git diff {{.CLI_ARGS}}
+
+  git:diff:pr:
+    desc: Shows filtered git diff for a pull request
+    summary: |
+      Shows filtered git diff. See git:diff task for details.
+      Accepts the number of pull request and git diff arguments.
+      Example:
+
+        # shows diff for pull request #123 in rendered directory
+        task git:diff:pr -- 123 rendered
+
+      Tip: you can use `gh pr list` to get the list of pull requests.
+    cmds:
+      - task: git:diff
+        vars:
+          CLI_ARGS:
+            sh: |
+              {{ $pr_number := .CLI_ARGS|splitArgs|first }}
+              {{ $pr_args := .CLI_ARGS|splitArgs|rest }}
+              echo "$( \
+                gh pr view \
+                  --json baseRefName,headRefName \
+                  --jq '"origin/" + .baseRefName + "...origin/" + .headRefName' \
+                  {{ $pr_number }} \
+              ){{ range $pr_args }} {{ .|shellQuote }}{{ end }}"
