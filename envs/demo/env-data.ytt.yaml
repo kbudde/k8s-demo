@@ -43,3 +43,6 @@ argocd:
     source:
       #! define the source branch of generated apps, rendered/envs/demo/_app_/
       targetRevision: #@ branch
+
+myks:
+  gitRepoBranch: #@ branch
