@@ -7,5 +7,5 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://victoriametrics.github.io/helm-charts/
-    version: 0.35.2
+    version: 0.39.1
 

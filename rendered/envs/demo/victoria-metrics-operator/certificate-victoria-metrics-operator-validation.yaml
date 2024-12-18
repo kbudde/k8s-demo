@@ -10,6 +10,7 @@ spec:
     - victoria-metrics-operator
     - victoria-metrics-operator.victoria-metrics-operator
     - victoria-metrics-operator.victoria-metrics-operator.svc
+    - victoria-metrics-operator.victoria-metrics-operator.svc.cluster.local.
   duration: 45800h0m0s
   issuerRef:
     name: victoria-metrics-operator-issuer

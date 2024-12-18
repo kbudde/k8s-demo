@@ -8,13 +8,29 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 65.1.0
-    chart: kube-prometheus-stack-65.1.0
+    app.kubernetes.io/version: 67.3.0
+    chart: kube-prometheus-stack-67.3.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-alertmanager
   namespace: kube-prometheus-stack
 spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - alertmanager
+                - key: alertmanager
+                  operator: In
+                  values:
+                    - kube-prometheus-stack-alertmanager
+            topologyKey: kubernetes.io/hostname
+          weight: 100
   alertmanagerConfigNamespaceSelector: {}
   alertmanagerConfigSelector: {}
   automountServiceAccountToken: true

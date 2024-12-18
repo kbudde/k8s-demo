@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 65.1.0
-    chart: kube-prometheus-stack-65.1.0
+    app.kubernetes.io/version: 67.3.0
+    chart: kube-prometheus-stack-67.3.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-kubelet
@@ -34,6 +34,7 @@ spec:
     - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
       honorLabels: true
       honorTimestamps: true
+      interval: 10s
       metricRelabelings:
         - action: drop
           regex: container_cpu_(cfs_throttled_seconds_total|load_average_10s|system_seconds_total|user_seconds_total)
@@ -71,6 +72,7 @@ spec:
       tlsConfig:
         caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         insecureSkipVerify: true
+      trackTimestampsStaleness: true
     - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
       honorLabels: true
       honorTimestamps: true

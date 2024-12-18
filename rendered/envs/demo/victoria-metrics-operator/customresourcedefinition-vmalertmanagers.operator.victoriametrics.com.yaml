@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.15.0
+    controller-gen.kubebuilder.io/version: v0.16.4
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,7 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    helm.sh/chart: victoria-metrics-operator-0.35.2
+    app.kubernetes.io/version: v0.50.0
+    helm.sh/chart: victoria-metrics-operator-0.39.1
   name: vmalertmanagers.operator.victoriametrics.com
 spec:
   conversion:
@@ -35,10 +36,6 @@ spec:
   scope: Namespaced
   versions:
     - additionalPrinterColumns:
-        - description: The version of VMAlertmanager
-          jsonPath: .spec.image.tag
-          name: Version
-          type: string
         - description: The desired replicas number of Alertmanagers
           jsonPath: .spec.replicaCount
           name: ReplicaCount
@@ -337,7 +334,6 @@ spec:
                               Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                               reserved and hence may not be used.
 
-
                               ClaimResourceStatus can be in any of following states:
                               	- ControllerResizeInProgress:
                               		State set when resize controller starts resizing the volume in control-plane.
@@ -359,12 +355,10 @@ spec:
                                    - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed"
                               When this field is not set, it means that no resize operation is in progress for the given PVC.
 
-
                               A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus
                               should ignore the update for the purpose it was designed. For example - a controller that
                               only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                               resources associated with PVC.
-
 
                               This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                             type: object
@@ -385,7 +379,6 @@ spec:
                               Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                               reserved and hence may not be used.
 
-
                               Capacity reported here may be larger than the actual capacity when a volume expansion operation
                               is requested.
                               For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.
@@ -394,12 +387,10 @@ spec:
                               lowered if there are no expansion operations in progress and if the actual volume capacity
                               is equal or lower than the requested capacity.
 
-
                               A controller that receives PVC update with previously unknown resourceName
                               should ignore the update for the purpose it was designed. For example - a controller that
                               only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                               resources associated with PVC.
-
 
                               This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                             type: object
@@ -581,10 +572,8 @@ spec:
                         Claims lists the names of resources, defined in spec.resourceClaims,
                         that are used by this container.
 
-
                         This is an alpha field and requires enabling the
                         DynamicResourceAllocation feature gate.
-
 
                         This field is immutable. It can only be set for containers.
                       items:
@@ -831,9 +820,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -862,9 +849,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -898,9 +883,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -936,9 +919,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -985,9 +966,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -1023,9 +1002,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -1139,9 +1116,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -1306,10 +1281,8 @@ spec:
                         Claims lists the names of resources, defined in spec.resourceClaims,
                         that are used by this container.
 
-
                         This is an alpha field and requires enabling the
                         DynamicResourceAllocation feature gate.
-
 
                         This field is immutable. It can only be set for containers.
                       items:
@@ -1780,7 +1753,6 @@ spec:
                                 Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                                 reserved and hence may not be used.
 
-
                                 ClaimResourceStatus can be in any of following states:
                                 	- ControllerResizeInProgress:
                                 		State set when resize controller starts resizing the volume in control-plane.
@@ -1802,12 +1774,10 @@ spec:
                                      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed"
                                 When this field is not set, it means that no resize operation is in progress for the given PVC.
 
-
                                 A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus
                                 should ignore the update for the purpose it was designed. For example - a controller that
                                 only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                                 resources associated with PVC.
-
 
                                 This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                               type: object
@@ -1828,7 +1798,6 @@ spec:
                                 Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                                 reserved and hence may not be used.
 
-
                                 Capacity reported here may be larger than the actual capacity when a volume expansion operation
                                 is requested.
                                 For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.
@@ -1837,12 +1806,10 @@ spec:
                                 lowered if there are no expansion operations in progress and if the actual volume capacity
                                 is equal or lower than the requested capacity.
 
-
                                 A controller that receives PVC update with previously unknown resourceName
                                 should ignore the update for the purpose it was designed. For example - a controller that
                                 only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                                 resources associated with PVC.
-
 
                                 This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                               type: object
@@ -1947,9 +1914,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     required:
                       - key
@@ -2066,9 +2031,7 @@ spec:
                           RecursiveReadOnly specifies whether read-only mounts should be handled
                           recursively.
 
-
                           If ReadOnly is false, this field has no meaning and must be unspecified.
-
 
                           If ReadOnly is true, and this field is set to Disabled, the mount is not made
                           recursively read-only.  If this field is set to IfPossible, the mount is made
@@ -2077,10 +2040,8 @@ spec:
                           supported by the container runtime, otherwise the pod will not be started and
                           an error will be generated to indicate the reason.
 
-
                           If this field is set to IfPossible or Enabled, MountPropagation must be set to
                           None (or be unspecified, which defaults to None).
-
 
                           If this field is not specified, it is treated as an equivalent of Disabled.
                         type: string
@@ -2162,9 +2123,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -2211,9 +2170,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -2249,9 +2206,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -2290,11 +2245,17 @@ spec:
                 Operator API itself. More info:
                 https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
               properties:
+                observedGeneration:
+                  description: |-
+                    ObservedGeneration defines current generation picked by operator for the
+                    reconcile
+                  format: int64
+                  type: integer
                 reason:
-                  description: Reason has non empty reason for update failure
+                  description: Reason defines fail reason for reconcile process
                   type: string
                 updateStatus:
-                  description: Status defines a status of object update
+                  description: UpdateStatus defines a status for update rollout
                   type: string
               type: object
           required:

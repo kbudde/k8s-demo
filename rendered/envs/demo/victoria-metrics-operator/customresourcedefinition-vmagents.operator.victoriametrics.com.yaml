@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.15.0
+    controller-gen.kubebuilder.io/version: v0.16.4
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,7 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    helm.sh/chart: victoria-metrics-operator-0.35.2
+    app.kubernetes.io/version: v0.50.0
+    helm.sh/chart: victoria-metrics-operator-0.39.1
   name: vmagents.operator.victoriametrics.com
 spec:
   conversion:
@@ -45,6 +46,9 @@ spec:
           jsonPath: .status.updateStatus
           name: Status
           type: string
+        - jsonPath: .metadata.creationTimestamp
+          name: Age
+          type: date
       name: v1beta1
       schema:
         openAPIV3Schema:
@@ -95,9 +99,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -131,9 +133,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -162,9 +162,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -204,9 +202,7 @@ spec:
                                     This field is effectively required, but due to backwards compatibility is
                                     allowed to be empty. Instances of this type with an empty value here are
                                     almost certainly wrong.
-                                    TODO: Add other useful fields. apiVersion, kind, uid?
                                     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                    TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                   type: string
                                 optional:
                                   description: Specify whether the ConfigMap or its key must be defined
@@ -228,9 +224,7 @@ spec:
                                     This field is effectively required, but due to backwards compatibility is
                                     allowed to be empty. Instances of this type with an empty value here are
                                     almost certainly wrong.
-                                    TODO: Add other useful fields. apiVersion, kind, uid?
                                     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                    TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                   type: string
                                 optional:
                                   description: Specify whether the Secret or its key must be defined
@@ -259,9 +253,7 @@ spec:
                                     This field is effectively required, but due to backwards compatibility is
                                     allowed to be empty. Instances of this type with an empty value here are
                                     almost certainly wrong.
-                                    TODO: Add other useful fields. apiVersion, kind, uid?
                                     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                    TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                   type: string
                                 optional:
                                   description: Specify whether the ConfigMap or its key must be defined
@@ -283,9 +275,7 @@ spec:
                                     This field is effectively required, but due to backwards compatibility is
                                     allowed to be empty. Instances of this type with an empty value here are
                                     almost certainly wrong.
-                                    TODO: Add other useful fields. apiVersion, kind, uid?
                                     More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                    TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                   type: string
                                 optional:
                                   description: Specify whether the Secret or its key must be defined
@@ -317,9 +307,7 @@ spec:
                                 This field is effectively required, but due to backwards compatibility is
                                 allowed to be empty. Instances of this type with an empty value here are
                                 almost certainly wrong.
-                                TODO: Add other useful fields. apiVersion, kind, uid?
                                 More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                               type: string
                             optional:
                               description: Specify whether the Secret or its key must be defined
@@ -353,9 +341,7 @@ spec:
                         This field is effectively required, but due to backwards compatibility is
                         allowed to be empty. Instances of this type with an empty value here are
                         almost certainly wrong.
-                        TODO: Add other useful fields. apiVersion, kind, uid?
                         More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                        TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                       type: string
                     optional:
                       description: Specify whether the Secret or its key must be defined
@@ -628,7 +614,6 @@ spec:
                               Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                               reserved and hence may not be used.
 
-
                               ClaimResourceStatus can be in any of following states:
                               	- ControllerResizeInProgress:
                               		State set when resize controller starts resizing the volume in control-plane.
@@ -650,12 +635,10 @@ spec:
                                    - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed"
                               When this field is not set, it means that no resize operation is in progress for the given PVC.
 
-
                               A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus
                               should ignore the update for the purpose it was designed. For example - a controller that
                               only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                               resources associated with PVC.
-
 
                               This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                             type: object
@@ -676,7 +659,6 @@ spec:
                               Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                               reserved and hence may not be used.
 
-
                               Capacity reported here may be larger than the actual capacity when a volume expansion operation
                               is requested.
                               For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.
@@ -685,12 +667,10 @@ spec:
                               lowered if there are no expansion operations in progress and if the actual volume capacity
                               is equal or lower than the requested capacity.
 
-
                               A controller that receives PVC update with previously unknown resourceName
                               should ignore the update for the purpose it was designed. For example - a controller that
                               only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                               resources associated with PVC.
-
 
                               This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                             type: object
@@ -805,10 +785,8 @@ spec:
                         Claims lists the names of resources, defined in spec.resourceClaims,
                         that are used by this container.
 
-
                         This is an alpha field and requires enabling the
                         DynamicResourceAllocation feature gate.
-
 
                         This field is immutable. It can only be set for containers.
                       items:
@@ -1049,9 +1027,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -1197,9 +1173,7 @@ spec:
                             This field is effectively required, but due to backwards compatibility is
                             allowed to be empty. Instances of this type with an empty value here are
                             almost certainly wrong.
-                            TODO: Add other useful fields. apiVersion, kind, uid?
                             More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                            TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                           type: string
                         optional:
                           description: Specify whether the Secret or its key must be defined
@@ -1874,9 +1848,7 @@ spec:
                         This field is effectively required, but due to backwards compatibility is
                         allowed to be empty. Instances of this type with an empty value here are
                         almost certainly wrong.
-                        TODO: Add other useful fields. apiVersion, kind, uid?
                         More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                        TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                       type: string
                     optional:
                       description: Specify whether the ConfigMap or its key must be defined
@@ -1912,9 +1884,7 @@ spec:
                                   This field is effectively required, but due to backwards compatibility is
                                   allowed to be empty. Instances of this type with an empty value here are
                                   almost certainly wrong.
-                                  TODO: Add other useful fields. apiVersion, kind, uid?
                                   More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                  TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                 type: string
                               optional:
                                 description: Specify whether the Secret or its key must be defined
@@ -1943,9 +1913,7 @@ spec:
                                   This field is effectively required, but due to backwards compatibility is
                                   allowed to be empty. Instances of this type with an empty value here are
                                   almost certainly wrong.
-                                  TODO: Add other useful fields. apiVersion, kind, uid?
                                   More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                  TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                 type: string
                               optional:
                                 description: Specify whether the Secret or its key must be defined
@@ -1968,9 +1936,7 @@ spec:
                               This field is effectively required, but due to backwards compatibility is
                               allowed to be empty. Instances of this type with an empty value here are
                               almost certainly wrong.
-                              TODO: Add other useful fields. apiVersion, kind, uid?
                               More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                              TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                             type: string
                           optional:
                             description: Specify whether the Secret or its key must be defined
@@ -1979,6 +1945,9 @@ spec:
                           - key
                         type: object
                         x-kubernetes-map-type: atomic
+                      forceVMProto:
+                        description: ForceVMProto forces using VictoriaMetrics protocol for sending data to -remoteWrite.url
+                        type: boolean
                       headers:
                         description: |-
                           Headers allow configuring custom http headers
@@ -2059,6 +2028,9 @@ spec:
                               type: string
                           type: object
                         type: array
+                      maxDiskUsage:
+                        description: MaxDiskUsage defines the maximum file-based buffer size in bytes for -remoteWrite.url
+                        type: string
                       oauth2:
                         description: OAuth2 defines auth configuration
                         properties:
@@ -2078,9 +2050,7 @@ spec:
                                       This field is effectively required, but due to backwards compatibility is
                                       allowed to be empty. Instances of this type with an empty value here are
                                       almost certainly wrong.
-                                      TODO: Add other useful fields. apiVersion, kind, uid?
                                       More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                      TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                     type: string
                                   optional:
                                     description: Specify whether the ConfigMap or its key must be defined
@@ -2102,9 +2072,7 @@ spec:
                                       This field is effectively required, but due to backwards compatibility is
                                       allowed to be empty. Instances of this type with an empty value here are
                                       almost certainly wrong.
-                                      TODO: Add other useful fields. apiVersion, kind, uid?
                                       More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                      TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                     type: string
                                   optional:
                                     description: Specify whether the Secret or its key must be defined
@@ -2127,9 +2095,7 @@ spec:
                                   This field is effectively required, but due to backwards compatibility is
                                   allowed to be empty. Instances of this type with an empty value here are
                                   almost certainly wrong.
-                                  TODO: Add other useful fields. apiVersion, kind, uid?
                                   More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                  TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                 type: string
                               optional:
                                 description: Specify whether the Secret or its key must be defined
@@ -2179,9 +2145,7 @@ spec:
                                   This field is effectively required, but due to backwards compatibility is
                                   allowed to be empty. Instances of this type with an empty value here are
                                   almost certainly wrong.
-                                  TODO: Add other useful fields. apiVersion, kind, uid?
                                   More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                  TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                 type: string
                               optional:
                                 description: Specify whether the ConfigMap or its key must be defined
@@ -2219,9 +2183,7 @@ spec:
                                   description: |-
                                     By is an optional list of labels for grouping input series.
 
-
                                     See also Without.
-
 
                                     If neither By nor Without are set, then the Outputs are calculated
                                     individually per each input time series.
@@ -2234,7 +2196,6 @@ spec:
                                 drop_input_labels:
                                   description: |-
                                     DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples.
-
 
                                     Labels are dropped before de-duplication and aggregation.
                                   items:
@@ -2334,7 +2295,6 @@ spec:
                                   description: |-
                                     Match is a label selector (or list of label selectors) for filtering time series for the given selector.
 
-
                                     If the match isn't set, then all the input time series are processed.
                                   x-kubernetes-preserve-unknown-fields: true
                                 no_align_flush_to_interval:
@@ -2418,9 +2378,7 @@ spec:
                                   description: |-
                                     Outputs is a list of output aggregate functions to produce.
 
-
                                     The following names are allowed:
-
 
                                     - total - aggregates input counters
                                     - increase - counts the increase over input counters
@@ -2436,9 +2394,7 @@ spec:
                                     - histogram_bucket - creates VictoriaMetrics histogram for input samples
                                     - quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1]
 
-
                                     The output time series will have the following names:
-
 
                                       input_name:aggr_<interval>_<output>
                                   items:
@@ -2453,9 +2409,7 @@ spec:
                                   description: |-
                                     Without is an optional list of labels, which must be excluded when grouping input series.
 
-
                                     See also By.
-
 
                                     If neither By nor Without are set, then the Outputs are calculated
                                     individually per each input time series.
@@ -2487,9 +2441,7 @@ spec:
                                       This field is effectively required, but due to backwards compatibility is
                                       allowed to be empty. Instances of this type with an empty value here are
                                       almost certainly wrong.
-                                      TODO: Add other useful fields. apiVersion, kind, uid?
                                       More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                      TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                     type: string
                                   optional:
                                     description: Specify whether the ConfigMap or its key must be defined
@@ -2511,9 +2463,7 @@ spec:
                                       This field is effectively required, but due to backwards compatibility is
                                       allowed to be empty. Instances of this type with an empty value here are
                                       almost certainly wrong.
-                                      TODO: Add other useful fields. apiVersion, kind, uid?
                                       More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                      TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                     type: string
                                   optional:
                                     description: Specify whether the Secret or its key must be defined
@@ -2542,9 +2492,7 @@ spec:
                                       This field is effectively required, but due to backwards compatibility is
                                       allowed to be empty. Instances of this type with an empty value here are
                                       almost certainly wrong.
-                                      TODO: Add other useful fields. apiVersion, kind, uid?
                                       More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                      TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                     type: string
                                   optional:
                                     description: Specify whether the ConfigMap or its key must be defined
@@ -2566,9 +2514,7 @@ spec:
                                       This field is effectively required, but due to backwards compatibility is
                                       allowed to be empty. Instances of this type with an empty value here are
                                       almost certainly wrong.
-                                      TODO: Add other useful fields. apiVersion, kind, uid?
                                       More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                      TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                     type: string
                                   optional:
                                     description: Specify whether the Secret or its key must be defined
@@ -2600,9 +2546,7 @@ spec:
                                   This field is effectively required, but due to backwards compatibility is
                                   allowed to be empty. Instances of this type with an empty value here are
                                   almost certainly wrong.
-                                  TODO: Add other useful fields. apiVersion, kind, uid?
                                   More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                                  TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                                 type: string
                               optional:
                                 description: Specify whether the Secret or its key must be defined
@@ -2631,9 +2575,7 @@ spec:
                               This field is effectively required, but due to backwards compatibility is
                               allowed to be empty. Instances of this type with an empty value here are
                               almost certainly wrong.
-                              TODO: Add other useful fields. apiVersion, kind, uid?
                               More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                              TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                             type: string
                           optional:
                             description: Specify whether the ConfigMap or its key must be defined
@@ -2697,10 +2639,8 @@ spec:
                         Claims lists the names of resources, defined in spec.resourceClaims,
                         that are used by this container.
 
-
                         This is an alpha field and requires enabling the
                         DynamicResourceAllocation feature gate.
-
 
                         This field is immutable. It can only be set for containers.
                       items:
@@ -3549,7 +3489,6 @@ spec:
                                 Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                                 reserved and hence may not be used.
 
-
                                 ClaimResourceStatus can be in any of following states:
                                 	- ControllerResizeInProgress:
                                 		State set when resize controller starts resizing the volume in control-plane.
@@ -3571,12 +3510,10 @@ spec:
                                      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed"
                                 When this field is not set, it means that no resize operation is in progress for the given PVC.
 
-
                                 A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus
                                 should ignore the update for the purpose it was designed. For example - a controller that
                                 only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                                 resources associated with PVC.
-
 
                                 This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                               type: object
@@ -3597,7 +3534,6 @@ spec:
                                 Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered
                                 reserved and hence may not be used.
 
-
                                 Capacity reported here may be larger than the actual capacity when a volume expansion operation
                                 is requested.
                                 For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.
@@ -3606,12 +3542,10 @@ spec:
                                 lowered if there are no expansion operations in progress and if the actual volume capacity
                                 is equal or lower than the requested capacity.
 
-
                                 A controller that receives PVC update with previously unknown resourceName
                                 should ignore the update for the purpose it was designed. For example - a controller that
                                 only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid
                                 resources associated with PVC.
-
 
                                 This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
                               type: object
@@ -3884,9 +3818,7 @@ spec:
                             This field is effectively required, but due to backwards compatibility is
                             allowed to be empty. Instances of this type with an empty value here are
                             almost certainly wrong.
-                            TODO: Add other useful fields. apiVersion, kind, uid?
                             More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                            TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                           type: string
                         optional:
                           description: Specify whether the ConfigMap or its key must be defined
@@ -3924,9 +3856,7 @@ spec:
                             description: |-
                               By is an optional list of labels for grouping input series.
 
-
                               See also Without.
-
 
                               If neither By nor Without are set, then the Outputs are calculated
                               individually per each input time series.
@@ -3939,7 +3869,6 @@ spec:
                           drop_input_labels:
                             description: |-
                               DropInputLabels is an optional list with labels, which must be dropped before further processing of input samples.
-
 
                               Labels are dropped before de-duplication and aggregation.
                             items:
@@ -4039,7 +3968,6 @@ spec:
                             description: |-
                               Match is a label selector (or list of label selectors) for filtering time series for the given selector.
 
-
                               If the match isn't set, then all the input time series are processed.
                             x-kubernetes-preserve-unknown-fields: true
                           no_align_flush_to_interval:
@@ -4123,9 +4051,7 @@ spec:
                             description: |-
                               Outputs is a list of output aggregate functions to produce.
 
-
                               The following names are allowed:
-
 
                               - total - aggregates input counters
                               - increase - counts the increase over input counters
@@ -4141,9 +4067,7 @@ spec:
                               - histogram_bucket - creates VictoriaMetrics histogram for input samples
                               - quantiles(phi1, ..., phiN) - quantiles' estimation for phi in the range [0..1]
 
-
                               The output time series will have the following names:
-
 
                                 input_name:aggr_<interval>_<output>
                             items:
@@ -4158,9 +4082,7 @@ spec:
                             description: |-
                               Without is an optional list of labels, which must be excluded when grouping input series.
 
-
                               See also By.
-
 
                               If neither By nor Without are set, then the Outputs are calculated
                               individually per each input time series.
@@ -4297,9 +4219,7 @@ spec:
                           RecursiveReadOnly specifies whether read-only mounts should be handled
                           recursively.
 
-
                           If ReadOnly is false, this field has no meaning and must be unspecified.
-
 
                           If ReadOnly is true, and this field is set to Disabled, the mount is not made
                           recursively read-only.  If this field is set to IfPossible, the mount is made
@@ -4308,10 +4228,8 @@ spec:
                           supported by the container runtime, otherwise the pod will not be started and
                           an error will be generated to indicate the reason.
 
-
                           If this field is set to IfPossible or Enabled, MountPropagation must be set to
                           None (or be unspecified, which defaults to None).
-
 
                           If this field is not specified, it is treated as an equivalent of Disabled.
                         type: string
@@ -4351,13 +4269,17 @@ spec:
               description: VMAgentStatus defines the observed state of VMAgent
               properties:
                 availableReplicas:
-                  description: |-
-                    AvailableReplicas Total number of available pods (ready for at least minReadySeconds)
-                    targeted by this VMAlert cluster.
+                  description: Deprecated
                   format: int32
                   type: integer
+                observedGeneration:
+                  description: |-
+                    ObservedGeneration defines current generation picked by operator for the
+                    reconcile
+                  format: int64
+                  type: integer
                 reason:
-                  description: Reason defines fail reason for update process, effective only for statefulMode
+                  description: Reason defines fail reason for reconcile process
                   type: string
                 replicas:
                   description: ReplicaCount Total number of pods targeted by this VMAgent
@@ -4371,16 +4293,14 @@ spec:
                   format: int32
                   type: integer
                 unavailableReplicas:
-                  description: UnavailableReplicas Total number of unavailable pods targeted by this VMAgent cluster.
+                  description: Deprecated
                   format: int32
                   type: integer
                 updateStatus:
-                  description: UpdateStatus defines a status for update rollout, effective only for statefulMode
+                  description: UpdateStatus defines a status for update rollout
                   type: string
                 updatedReplicas:
-                  description: |-
-                    UpdatedReplicas Total number of non-terminated pods targeted by this VMAgent
-                    cluster that have the desired version spec.
+                  description: Deprecated
                   format: int32
                   type: integer
               type: object

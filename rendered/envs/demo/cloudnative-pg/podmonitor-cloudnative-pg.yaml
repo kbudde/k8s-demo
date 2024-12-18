@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cloudnative-pg
-    app.kubernetes.io/version: 1.24.0
-    helm.sh/chart: cloudnative-pg-0.22.0
+    app.kubernetes.io/version: 1.24.1
+    helm.sh/chart: cloudnative-pg-0.22.1
   name: cloudnative-pg
 spec:
   podMetricsEndpoints:

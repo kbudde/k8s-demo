@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: cloudnative-pg
+            repository:
+                url: https://cloudnative-pg.github.io/charts
+            version: 0.22.1
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-cloudnative-pg-0.22.1-853ddc0b235a8b08/data
+      permissions: null
+kind: Config

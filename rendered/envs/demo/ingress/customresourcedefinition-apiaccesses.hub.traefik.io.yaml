@@ -14,7 +14,9 @@ spec:
     singular: apiaccess
   scope: Namespaced
   versions:
-    - name: v1alpha1
+    - deprecated: true
+      deprecationWarning: APIAccess is deprecated in favor of APICatalogItems and ManagedSubscription
+      name: v1alpha1
       schema:
         openAPIV3Schema:
           description: APIAccess defines who can access to a set of APIs.

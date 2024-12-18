@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 12b2d86361f16ff445aaaa82bf7d7fe863d489032cb7b512a6bcfdb219c4f345
+    helmChart:
+      appVersion: 11.4.0
+      version: 8.8.2
+    path: .
+  path: .myks/vendir-cache/helm-grafana-8.8.2-26e54328e09ea466/data
+kind: LockConfig

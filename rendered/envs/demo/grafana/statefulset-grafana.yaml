@@ -6,10 +6,9 @@ metadata:
     reloader.stakater.com/auto: "true"
   labels:
     app.kubernetes.io/instance: grafana
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 11.2.1
-    helm.sh/chart: grafana-8.5.2
+    app.kubernetes.io/version: 11.4.0
+    helm.sh/chart: grafana-8.8.2
   name: grafana
   namespace: grafana
 spec:
@@ -22,13 +21,15 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 1734d37b4e3c356f71767b78156485df13c4c0ca610e7324dc641ea8e42f9c4f
+        checksum/config: cc9a4ccf751b8d4efbe12af8e6b3def4337c0a99f4f60d6532a1d9cc0b2ea691
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 5fcd185be0c94a9028f80bed77574387312a4578e6e36d9bb0830770ff768eee
+        checksum/sc-dashboard-provider-config: 1beb8ca3cde8ea6c00b27be07ef79c47a6a3eb9cfd122d20b287dec7eba26cad
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
         app.kubernetes.io/name: grafana
+        app.kubernetes.io/version: 11.4.0
+        helm.sh/chart: grafana-8.8.2
     spec:
       automountServiceAccountToken: true
       containers:
@@ -57,7 +58,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/alerting/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.27.4
+          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-alerts
           securityContext:
@@ -95,7 +96,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/dashboards/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.27.4
+          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-dashboard
           securityContext:
@@ -133,7 +134,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/datasources/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.27.4
+          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-datasources
           securityContext:
@@ -171,7 +172,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/notifications/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.27.4
+          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-notifiers
           securityContext:
@@ -209,7 +210,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/plugins/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.27.4
+          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-plugins
           securityContext:
@@ -256,7 +257,7 @@ spec:
               value: /etc/grafana/provisioning
             - name: GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS
               value: victorialogs-datasource
-          image: docker.io/grafana/grafana:11.2.1
+          image: docker.io/grafana/grafana:11.4.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
@@ -276,6 +277,9 @@ spec:
             - containerPort: 9094
               name: gossip-udp
               protocol: UDP
+            - containerPort: 6060
+              name: profiling
+              protocol: TCP
           readinessProbe:
             httpGet:
               path: /api/health
