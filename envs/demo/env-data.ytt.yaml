@@ -1,5 +1,5 @@
 #@data/values
-#@ branch="develop/demo"
+#@ branch="main"
 ---
 environment:
   id: demo

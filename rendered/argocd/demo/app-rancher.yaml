@@ -18,7 +18,7 @@ spec:
     plugin:
       name: argocd-vault-plugin
     repoURL: https://github.com/kbudde/k8s-demo
-    targetRevision: develop/demo
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
