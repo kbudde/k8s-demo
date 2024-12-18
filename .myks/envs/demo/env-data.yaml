@@ -1,4 +1,5 @@
 application: {}
+prototypes: []
 argocd:
   enabled: true
   namespace: argocd
@@ -80,7 +81,7 @@ yttPkg:
 render:
   includeNamespace: false
 myks:
-  gitRepoBranch: main
+  gitRepoBranch: update_argo
   gitRepoUrl: https://github.com/kbudde/k8s-demo
   context:
     app: ""
