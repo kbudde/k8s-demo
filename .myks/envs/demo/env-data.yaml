@@ -80,7 +80,7 @@ yttPkg:
 render:
   includeNamespace: false
 myks:
-  gitRepoBranch: main
+  gitRepoBranch: renovate/migrate-config
   gitRepoUrl: https://github.com/kbudde/k8s-demo
   context:
     app: ""
