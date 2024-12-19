@@ -41,7 +41,7 @@ spec:
   logLevel: info
   paused: false
   portName: http-web
-  replicas: 2
+  replicas: 3
   retention: 120h
   routePrefix: /
   securityContext:

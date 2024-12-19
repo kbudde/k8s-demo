@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: openproject
+            repository:
+                url: https://charts.openproject.org
+            version: 8.3.2
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-openproject-8.3.2-30d3abb0b08bceda/data
+      permissions: null
+kind: Config
