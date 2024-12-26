@@ -75,7 +75,7 @@ spec:
             - sh
             - -c
             - chown 1000:1000 /data
-          image: busybox:1.36
+          image: busybox:1.37
           name: volume-permissions
           volumeMounts:
             - mountPath: /data
