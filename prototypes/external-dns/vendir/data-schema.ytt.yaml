@@ -1,0 +1,46 @@
+#! This file define a schema for all ytt data files. It can also contain default values.
+#! Top-level keys are scopes, e.g. application, argocd, environment, helm.
+#!
+#! Content of the `application` scope can be freely modified. More scopes can be added.
+#!
+#! All other scopes and their keys defined in this file are used by myks.
+#! Values of these keys can be modified, but the keys should not be removed.
+#! It is fine, however, to add new keys to these scopes.
+
+#@data/values-schema
+---
+#@schema/title "List of vendored applications managed by myks"
+#@schema/desc "Each vendored application is a git repository or a helm chart."
+#@overlay/match missing_ok=True
+prototypes:
+- #@schema/title "Prototype name"
+  #@schema/desc "For helm charts, this is the helm chart name."
+  #@schema/validation min_len=1
+  name: ""
+  #@schema/title "Protoytpe kind"
+  #@schema/desc "Depending of the vendored kind, further processing is done. For example, for helm charts, the chart is rendered."
+  #@schema/validation one_of=["ytt", "helm", "static", "ytt-pkg"]
+  kind: ""
+  #@schema/title "Prototype repo type as used by vendir"
+  #@schema/desc "Supports git and helm repositories."
+  #@schema/validation one_of=["git", "helmChart"]
+  repo: ""
+  #@schema/title "Url to the application source"
+  #@schema/desc "For git repositories, this is the git url. For helm charts, this is the helm chart url."
+  #@schema/validation min_len=1
+  url: ""
+  #@schema/title "Lazy vendoring"
+  #@schema/desc "If true, the vendored application is not vendored until it is needed."
+  lazy: true
+  #@schema/title "Version of the prototype"
+  #@schema/desc "For git repositories, this is the git ref. For helm charts, this is the helm chart version."
+  #@schema/validation min_len=1
+  version: ""
+  #@schema/title "root path in the vendored application"
+  #@schema/desc "For git repositories, this is the root path in the git repository."
+  newRootPath: ""
+  #@schema/title "include files"
+  #@schema/desc "For git repositories, this is the list of files to include in the vendored application."
+  includePaths:
+    - includes.yaml
+

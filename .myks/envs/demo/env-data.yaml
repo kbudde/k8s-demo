@@ -1,5 +1,4 @@
 application: {}
-prototypes: []
 argocd:
   enabled: true
   namespace: argocd

@@ -1,5 +1,5 @@
 #@data/values-schema
 ---
 myks:
-  gitRepoBranch: develop/demo
+  gitRepoBranch: main
   gitRepoUrl: git@github.com:kbudde/k8s-demo.git

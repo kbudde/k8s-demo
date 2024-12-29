@@ -1,7 +1,5 @@
-#! This file is managed by myks
 #@data/values
 ---
-#@overlay/match-child-defaults missing_ok=True
 prototypes:
   - name: crossplane
     kind: helm

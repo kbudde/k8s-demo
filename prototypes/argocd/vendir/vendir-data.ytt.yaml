@@ -1,8 +1,5 @@
-#! This file is managed by myks
 #@data/values
 ---
-#@overlay/match-child-defaults missing_ok=True
-#! TODO: add renovate config
 prototypes:
     - name: argocd
       kind: ytt
