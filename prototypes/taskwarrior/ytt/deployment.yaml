@@ -1,3 +1,5 @@
+#@ load("@ytt:data", "data")
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,7 +25,7 @@ spec:
           persistentVolumeClaim:
             claimName: task
       containers:
-      - image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
+      - image: #@ data.values.application.image.taskchampionSyncServer
         name: taskchampion-sync-server
         args:
           - "--data-dir"

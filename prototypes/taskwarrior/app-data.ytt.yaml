@@ -1,0 +1,6 @@
+#@data/values-schema
+---
+#@overlay/match-child-defaults missing_ok=True
+application:
+  image:
+    taskchampionSyncServer: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:0.5.0
