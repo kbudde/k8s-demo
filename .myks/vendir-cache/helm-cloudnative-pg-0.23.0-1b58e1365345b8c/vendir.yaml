@@ -5,9 +5,9 @@ directories:
             name: cloudnative-pg
             repository:
                 url: https://cloudnative-pg.github.io/charts
-            version: 0.22.1
+            version: 0.23.0
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-cloudnative-pg-0.22.1-853ddc0b235a8b08/data
+      path: .myks/vendir-cache/helm-cloudnative-pg-0.23.0-1b58e1365345b8c/data
       permissions: null
 kind: Config
