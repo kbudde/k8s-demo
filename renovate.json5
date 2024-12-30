@@ -43,7 +43,7 @@
         // See https://docs.renovatebot.com/modules/versioning/docker/
         '#!\\s+renovate:\\s+datasource=(?<datasource>docker)(?: versioning=(?<versioning>[a-z-]+?))?\\s+[a-z0-9]+:\\s+[\'"]?(?<depName>\\S+):(?<currentValue>[^\'"\\s]+)[\'"]?',
         // #! renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
-        // version: 1.14.0 
+        // version: 1.14.0
         '#!\\s+renovate:\\s+datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)\\s+[a-z0-9]+:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
       ],
     },
@@ -83,6 +83,22 @@
         '(^|/)vendir-data\\.ytt\\.yaml$',
       ],
       matchStrings: [
+      // - name: rabbitmq-cluster-operator
+      //   kind: helm
+      //   repo: docker
+      //   url: oci://registry-1.docker.io/bitnamicharts
+      //   version: 4.4.1
+        'name:\\s+(?<name>[^\'"\\s]+)\\s+kind:\\s+([^\'"\\s]+)\\s+repo:\\s+(?<datasource>docker)\\s+url:\\s+[\'"]?oci://(?<namespace>[^\'"\\s]+)[\'"]?\\s+version:\\s+(?<currentValue>[^\'"\\s]+)[\'"]?',
+      ],
+      depNameTemplate: '{{{name}}}',
+      packageNameTemplate: '{{{namespace}}}/{{{name}}}',
+    },
+    {
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)vendir-data\\.ytt\\.yaml$',
+      ],
+      matchStrings: [
         // #! renovate: datasource=git-tags
         // url: https://github.com/argoproj/argo-cd
         // version: v2.6.6
@@ -93,24 +109,6 @@
         // version: "1.3.1"
         '#!\\s+renovate:\\s+datasource=(?<datasource>helm)\\s+name:\\s+[\'"]?(?<depName>[^\'"\\s]+)[\'"]?\\s+url:\\s+[\'"]?(?<registryUrl>[^\'"\\s]+)[\'"]?\\s+version:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
       ],
-    },
-    {
-      // Helm charts in OCI format require special treatment.
-      // In particular, the registry must be a part of the package name.
-      // See https://github.com/renovatebot/renovate/discussions/25056#discussioncomment-7200797
-      customType: 'regex',
-      fileMatch: [
-        '(^|/)vendir-data\\.ytt\\.yaml$',
-      ],
-      matchStrings: [
-        // #! renovate: datasource=docker
-        // name: postgresql
-        // url: oci://registry-1.docker.io/bitnamicharts
-        // version: 13.2.24
-        '#!\\s+renovate:\\s+datasource=(?<datasource>docker)\\s+name:\\s+[\'"]?(?<product>[^\'"\\s]+)[\'"]?\\s+url:\\s+[\'"]?oci://(?<namespace>[^\'"\\s]+)[\'"]?\\s+version:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
-      ],
-      depNameTemplate: '{{product}}',
-      packageNameTemplate: '{{namespace}}/{{product}}',
     },
   ],
 }
