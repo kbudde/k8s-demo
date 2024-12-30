@@ -7,10 +7,34 @@ metadata:
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cloudnative-pg
-    app.kubernetes.io/version: 1.24.1
-    helm.sh/chart: cloudnative-pg-0.22.1
+    app.kubernetes.io/version: 1.25.0
+    helm.sh/chart: cloudnative-pg-0.23.0
   name: cloudnative-pg
 rules:
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - admissionregistration.k8s.io
+    resources:
+      - mutatingwebhookconfigurations
+      - validatingwebhookconfigurations
+    verbs:
+      - get
+      - patch
+  - apiGroups:
+      - postgresql.cnpg.io
+    resources:
+      - clusterimagecatalogs
+    verbs:
+      - get
+      - list
+      - watch
   - apiGroups:
       - ""
     resources:
@@ -44,14 +68,6 @@ rules:
   - apiGroups:
       - ""
     resources:
-      - nodes
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
       - persistentvolumeclaims
       - pods
       - pods/exec
@@ -79,14 +95,6 @@ rules:
       - patch
       - update
       - watch
-  - apiGroups:
-      - admissionregistration.k8s.io
-    resources:
-      - mutatingwebhookconfigurations
-      - validatingwebhookconfigurations
-    verbs:
-      - get
-      - patch
   - apiGroups:
       - apps
     resources:
@@ -146,8 +154,11 @@ rules:
     resources:
       - backups
       - clusters
+      - databases
       - poolers
+      - publications
       - scheduledbackups
+      - subscriptions
     verbs:
       - create
       - delete
@@ -160,7 +171,10 @@ rules:
       - postgresql.cnpg.io
     resources:
       - backups/status
+      - databases/status
+      - publications/status
       - scheduledbackups/status
+      - subscriptions/status
     verbs:
       - get
       - patch
@@ -168,7 +182,6 @@ rules:
   - apiGroups:
       - postgresql.cnpg.io
     resources:
-      - clusterimagecatalogs
       - imagecatalogs
     verbs:
       - get
