@@ -4,6 +4,6 @@ prototypes:
   - name: rabbitmq-cluster-operator
     kind: helm
     repo: helmChart
-    url: https://charts.bitnami.com/bitnami
-    version: 4.3.24
+    url: oci://registry-1.docker.io/bitnamicharts 
+    version: 4.4.1
 

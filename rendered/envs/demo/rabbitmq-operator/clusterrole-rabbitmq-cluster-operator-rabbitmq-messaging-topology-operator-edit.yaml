@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
-    app.kubernetes.io/version: 1.14.2
-    helm.sh/chart: rabbitmq-cluster-operator-4.3.24
+    app.kubernetes.io/version: 1.15.0
+    helm.sh/chart: rabbitmq-cluster-operator-4.4.1
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
   name: rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator-edit
 rules:
