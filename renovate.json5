@@ -53,12 +53,29 @@
         '(^|/)vendir-data\\.ytt\\.yaml$',
       ],
       matchStrings: [
+        // name: argocd
+        // kind: ytt
         // repo: git
         // url: https://github.com/argoproj/argo-cd
         // version: v2.13.2
-        'repo:\\s+(?<repo>(git|helmChart))\\s+url:\\s+[\'"]?(?<depName>[^\'"\\s]+)[\'"]?\\s+version:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
+        'repo:\\s+git\\s+url:\\s+[\'"]?(?<depName>[^\'"\\s]+)[\'"]?\\s+version:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
       ],
-      "datasourceTemplate": '{{#if (equals repo "git")}}git-tags{{else}}helm{{/if}}',
+      "datasourceTemplate": 'git-tags',
+    },
+    {
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)vendir-data\\.ytt\\.yaml$',
+      ],
+      matchStrings: [
+        //- name: cert-manager
+        //  kind: helm
+        //  repo: helmChart
+        //  url: https://charts.jetstack.io
+        //  version: v1.16.2
+        'name:\\s+(?<depName>[^\'"\\s]+)\\s+kind:\\s+([^\'"\\s]+)\\s+repo:\\s+helmChart\\s+url:\\s+[\'"]?(?<registryUrl>[^\'"\\s]+)[\'"]?\\s+version:\\s+(?<currentValue>[^\'"\\s]+)[\'"]?',
+      ],
+      "datasourceTemplate": 'helm',
     },
     {
       customType: 'regex',
