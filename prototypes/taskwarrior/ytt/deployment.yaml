@@ -25,7 +25,7 @@ spec:
           persistentVolumeClaim:
             claimName: task
       containers:
-      - image: #@ data.values.application.image.taskchampionSyncServer
+      - image: #@ data.values.application.images.taskchampionSyncServer
         name: taskchampion-sync-server
         args:
           - "--data-dir"

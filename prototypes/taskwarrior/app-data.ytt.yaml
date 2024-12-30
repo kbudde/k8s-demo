@@ -2,5 +2,6 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 application:
-  image:
+  images:
+    #! renovate: datasource=docker
     taskchampionSyncServer: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:0.5.0
