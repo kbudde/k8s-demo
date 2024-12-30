@@ -23,7 +23,7 @@ spec:
             - /data
             - --allow-client-id
             - <path:static/taskwarrior.yaml#client-id>
-          image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
+          image: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:0.5.0
           imagePullPolicy: Always
           name: taskchampion-sync-server
           ports:
