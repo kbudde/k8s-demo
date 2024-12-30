@@ -53,6 +53,19 @@
         '(^|/)vendir-data\\.ytt\\.yaml$',
       ],
       matchStrings: [
+        // repo: git
+        // url: https://github.com/argoproj/argo-cd
+        // version: v2.13.2
+        'repo:\\s+(?<repo>(git|helmChart))\\s+url:\\s+[\'"]?(?<depName>[^\'"\\s]+)[\'"]?\\s+version:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
+      ],
+      "datasourceTemplate": '{{#if (equals repo "git")}}git-tags{{else}}helm{{/if}}',
+    },
+    {
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)vendir-data\\.ytt\\.yaml$',
+      ],
+      matchStrings: [
         // #! renovate: datasource=git-tags
         // url: https://github.com/argoproj/argo-cd
         // version: v2.6.6
