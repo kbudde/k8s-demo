@@ -5,9 +5,9 @@ directories:
             name: rancher
             repository:
                 url: https://releases.rancher.com/server-charts/latest
-            version: 2.10.0
+            version: 2.10.1
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-rancher-2.10.0-c261933ccb93c55a/data
+      path: .myks/vendir-cache/helm-rancher-2.10.1-c25e8f3ccb9188b7/data
       permissions: null
 kind: Config

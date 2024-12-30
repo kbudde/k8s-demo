@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: rancher
-      version: 2.10.0
+      version: 2.10.1
       repository:
         url: https://releases.rancher.com/server-charts/latest
     lazy: true
