@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: cc15964966f4d2ab7241607bab5c8d53f35d47cad76f5fb82b481fca78f3b8ce
+    helmChart:
+      appVersion: 2.12.0
+      version: 4.4.1
+    path: .
+  path: .myks/vendir-cache/helm-rabbitmq-cluster-operator-4.4.1-5b0888c18f152f6e/data
+kind: LockConfig
