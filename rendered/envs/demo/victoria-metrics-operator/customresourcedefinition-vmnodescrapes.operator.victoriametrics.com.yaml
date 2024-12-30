@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.16.4
+    controller-gen.kubebuilder.io/version: v0.16.5
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.50.0
-    helm.sh/chart: victoria-metrics-operator-0.39.1
+    app.kubernetes.io/version: v0.51.2
+    helm.sh/chart: victoria-metrics-operator-0.40.2
   name: vmnodescrapes.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -27,10 +27,10 @@ spec:
         - jsonPath: .metadata.creationTimestamp
           name: Age
           type: date
-        - jsonPath: .status.status
+        - jsonPath: .status.updateStatus
           name: Status
           type: string
-        - jsonPath: .status.lastSyncError
+        - jsonPath: .status.reason
           name: Sync Error
           type: string
       name: v1beta1
@@ -919,11 +919,78 @@ spec:
             status:
               description: ScrapeObjectStatus defines the observed state of ScrapeObjects
               properties:
-                lastSyncError:
-                  description: LastSyncError contains error message for unsuccessful config generation
+                conditions:
+                  description: 'Known .status.conditions.type are: "Available", "Progressing", and "Degraded"'
+                  items:
+                    description: Condition defines status condition of the resource
+                    properties:
+                      lastTransitionTime:
+                        description: lastTransitionTime is the last time the condition transitioned from one status to another.
+                        format: date-time
+                        type: string
+                      lastUpdateTime:
+                        description: |-
+                          LastUpdateTime is the last time of given type update.
+                          This value is used for status TTL update and removal
+                        format: date-time
+                        type: string
+                      message:
+                        description: |-
+                          message is a human readable message indicating details about the transition.
+                          This may be an empty string.
+                        maxLength: 32768
+                        type: string
+                      observedGeneration:
+                        description: |-
+                          observedGeneration represents the .metadata.generation that the condition was set based upon.
+                          For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                          with respect to the current state of the instance.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      reason:
+                        description: |-
+                          reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                          Producers of specific condition types may define expected values and meanings for this field,
+                          and whether the values are considered a guaranteed API.
+                          The value should be a CamelCase string.
+                          This field may not be empty.
+                        maxLength: 1024
+                        minLength: 1
+                        type: string
+                      status:
+                        description: status of the condition, one of True, False, Unknown.
+                        enum:
+                          - "True"
+                          - "False"
+                          - Unknown
+                        type: string
+                      type:
+                        description: Type of condition in CamelCase or in name.namespace.resource.victoriametrics.com/CamelCase.
+                        maxLength: 316
+                        type: string
+                    required:
+                      - lastTransitionTime
+                      - lastUpdateTime
+                      - reason
+                      - status
+                      - type
+                    type: object
+                  type: array
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
+                observedGeneration:
+                  description: |-
+                    ObservedGeneration defines current generation picked by operator for the
+                    reconcile
+                  format: int64
+                  type: integer
+                reason:
+                  description: Reason defines human readadble error reason
                   type: string
-                status:
-                  description: Status defines update status of resource
+                updateStatus:
+                  description: UpdateStatus defines a status for update rollout
                   type: string
               type: object
           type: object

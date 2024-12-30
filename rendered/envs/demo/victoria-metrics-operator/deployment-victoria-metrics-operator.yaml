@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.50.0
-    helm.sh/chart: victoria-metrics-operator-0.39.1
+    app.kubernetes.io/version: v0.51.2
+    helm.sh/chart: victoria-metrics-operator-0.40.2
   name: victoria-metrics-operator
   namespace: victoria-metrics-operator
 spec:
@@ -25,6 +25,7 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: victoria-metrics-operator
     spec:
+      automountServiceAccountToken: true
       containers:
         - args:
             - --zap-log-level=info
@@ -40,7 +41,7 @@ spec:
               value: victoria-metrics-operator
             - name: VM_ENABLEDPROMETHEUSCONVERTEROWNERREFERENCES
               value: "false"
-          image: victoriametrics/operator:v0.50.0
+          image: victoriametrics/operator:v0.51.2
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3

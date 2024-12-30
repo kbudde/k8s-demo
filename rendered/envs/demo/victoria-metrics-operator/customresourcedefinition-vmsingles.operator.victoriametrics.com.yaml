@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.16.4
+    controller-gen.kubebuilder.io/version: v0.16.5
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,20 +11,10 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.50.0
-    helm.sh/chart: victoria-metrics-operator-0.39.1
+    app.kubernetes.io/version: v0.51.2
+    helm.sh/chart: victoria-metrics-operator-0.40.2
   name: vmsingles.operator.victoriametrics.com
 spec:
-  conversion:
-    strategy: Webhook
-    webhook:
-      clientConfig:
-        service:
-          name: webhook-service
-          namespace: vm
-          path: /convert
-      conversionReviewVersions:
-        - v1
   group: operator.victoriametrics.com
   names:
     kind: VMSingle
@@ -295,6 +285,9 @@ spec:
                     Using license key is supported starting from VictoriaMetrics v1.94.0.
                     See [here](https://docs.victoriametrics.com/enterprise)
                   properties:
+                    forceOffline:
+                      description: Enforce offline verification of the license key.
+                      type: boolean
                     key:
                       description: |-
                         Enterprise license key. This flag is available only in [VictoriaMetrics enterprise](https://docs.victoriametrics.com/enterprise).
@@ -322,6 +315,9 @@ spec:
                         - key
                       type: object
                       x-kubernetes-map-type: atomic
+                    reloadInterval:
+                      description: Interval to be used for checking for license key changes. Note that this is only applicable when using KeyRef.
+                      type: string
                   type: object
                 livenessProbe:
                   description: LivenessProbe that will be added CRD pod
@@ -342,6 +338,29 @@ spec:
                     - FATAL
                     - PANIC
                   type: string
+                managedMetadata:
+                  description: |-
+                    ManagedMetadata defines metadata that will be added to the all objects
+                    created by operator for the given CustomResource
+                  properties:
+                    annotations:
+                      additionalProperties:
+                        type: string
+                      description: |-
+                        Annotations is an unstructured key value map stored with a resource that may be
+                        set by external tools to store and retrieve arbitrary metadata. They are not
+                        queryable and should be preserved when modifying objects.
+                        More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+                      type: object
+                    labels:
+                      additionalProperties:
+                        type: string
+                      description: |-
+                        Labels Map of string keys and values that can be used to organize and categorize
+                        (scope and select) objects.
+                        More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+                      type: object
+                  type: object
                 minReadySeconds:
                   description: |-
                     MinReadySeconds defines a minim number os seconds to wait before starting update next pod
@@ -444,6 +463,12 @@ spec:
                               Name must match the name of one entry in pod.spec.resourceClaims of
                               the Pod where this field is used. It makes that resource available
                               inside a container.
+                            type: string
+                          request:
+                            description: |-
+                              Request is the name chosen for a request in the referenced claim.
+                              If empty, everything from the claim is made available, otherwise
+                              only the result of this request.
                             type: string
                         required:
                           - name
@@ -760,7 +785,7 @@ spec:
                         set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource
                         exists.
                         More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/
-                        (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+                        (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).
                       type: string
                     volumeMode:
                       description: |-
@@ -1401,6 +1426,12 @@ spec:
                                   the Pod where this field is used. It makes that resource available
                                   inside a container.
                                 type: string
+                              request:
+                                description: |-
+                                  Request is the name chosen for a request in the referenced claim.
+                                  If empty, everything from the claim is made available, otherwise
+                                  only the result of this request.
+                                type: string
                             required:
                               - name
                             type: object
@@ -1603,9 +1634,70 @@ spec:
               description: VMSingleStatus defines the observed state of VMSingle
               properties:
                 availableReplicas:
-                  description: AvailableReplicas Total number of available pods (ready for at least minReadySeconds) targeted by this VMSingle.
+                  description: deprecated and will be removed at v0.52.0
                   format: int32
                   type: integer
+                conditions:
+                  description: 'Known .status.conditions.type are: "Available", "Progressing", and "Degraded"'
+                  items:
+                    description: Condition defines status condition of the resource
+                    properties:
+                      lastTransitionTime:
+                        description: lastTransitionTime is the last time the condition transitioned from one status to another.
+                        format: date-time
+                        type: string
+                      lastUpdateTime:
+                        description: |-
+                          LastUpdateTime is the last time of given type update.
+                          This value is used for status TTL update and removal
+                        format: date-time
+                        type: string
+                      message:
+                        description: |-
+                          message is a human readable message indicating details about the transition.
+                          This may be an empty string.
+                        maxLength: 32768
+                        type: string
+                      observedGeneration:
+                        description: |-
+                          observedGeneration represents the .metadata.generation that the condition was set based upon.
+                          For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                          with respect to the current state of the instance.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      reason:
+                        description: |-
+                          reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                          Producers of specific condition types may define expected values and meanings for this field,
+                          and whether the values are considered a guaranteed API.
+                          The value should be a CamelCase string.
+                          This field may not be empty.
+                        maxLength: 1024
+                        minLength: 1
+                        type: string
+                      status:
+                        description: status of the condition, one of True, False, Unknown.
+                        enum:
+                          - "True"
+                          - "False"
+                          - Unknown
+                        type: string
+                      type:
+                        description: Type of condition in CamelCase or in name.namespace.resource.victoriametrics.com/CamelCase.
+                        maxLength: 316
+                        type: string
+                    required:
+                      - lastTransitionTime
+                      - lastUpdateTime
+                      - reason
+                      - status
+                      - type
+                    type: object
+                  type: array
+                  x-kubernetes-list-map-keys:
+                    - type
+                  x-kubernetes-list-type: map
                 observedGeneration:
                   description: |-
                     ObservedGeneration defines current generation picked by operator for the
@@ -1613,21 +1705,24 @@ spec:
                   format: int64
                   type: integer
                 reason:
-                  description: Reason defines fail reason for reconcile process
+                  description: Reason defines human readadble error reason
                   type: string
                 replicas:
-                  description: ReplicaCount Total number of non-terminated pods targeted by this VMSingle.
+                  description: deprecated and will be removed at v0.52.0
                   format: int32
                   type: integer
+                singleStatus:
+                  description: LegacyStatus is deprecated and will be removed at v0.52.0 version
+                  type: string
                 unavailableReplicas:
-                  description: UnavailableReplicas Total number of unavailable pods targeted by this VMSingle.
+                  description: deprecated and will be removed at v0.52.0
                   format: int32
                   type: integer
                 updateStatus:
                   description: UpdateStatus defines a status for update rollout
                   type: string
                 updatedReplicas:
-                  description: UpdatedReplicas Total number of non-terminated pods targeted by this VMSingle.
+                  description: deprecated and will be removed at v0.52.0
                   format: int32
                   type: integer
               type: object
