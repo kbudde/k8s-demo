@@ -68,14 +68,16 @@
         '(^|/)vendir-data\\.ytt\\.yaml$',
       ],
       matchStrings: [
-        //- name: cert-manager
-        //  kind: helm
-        //  repo: helmChart
-        //  url: https://charts.jetstack.io
-        //  version: v1.16.2
-        'name:\\s+(?<depName>[^\'"\\s]+)\\s+kind:\\s+([^\'"\\s]+)\\s+repo:\\s+helmChart\\s+url:\\s+[\'"]?(?<registryUrl>[^\'"\\s]+)[\'"]?\\s+version:\\s+(?<currentValue>[^\'"\\s]+)[\'"]?',
+        // - name: rabbitmq-cluster-operator
+        //   kind: helm
+        //   repo: helmChart
+        //   url: oci://registry-1.docker.io/bitnamicharts
+        //   version: 4.4.1
+        'name:\\s+[\'"]?(?<name>[^\'"\\s]+)[\'"]?\\s+kind:\\s+[\'"]?helm[\'"]?\\s+repo:\\s+[\'"]?helmChart[\'"]?\\s+url:\\s+[\'"]?oci://(?<namespace>[^\'"\\s]+)[\'"]?\\s+version:\\s+[\'"]?(?<currentValue>[^\'"\\s]+)[\'"]?',
       ],
-      "datasourceTemplate": 'helm',
+      datasourceTemplate: 'docker',
+      depNameTemplate: '{{{name}}}',
+      packageNameTemplate: '{{{namespace}}}/{{{name}}}',
     },
     {
       customType: 'regex',
@@ -83,15 +85,14 @@
         '(^|/)vendir-data\\.ytt\\.yaml$',
       ],
       matchStrings: [
-      // - name: rabbitmq-cluster-operator
-      //   kind: helm
-      //   repo: docker
-      //   url: oci://registry-1.docker.io/bitnamicharts
-      //   version: 4.4.1
-        'name:\\s+(?<name>[^\'"\\s]+)\\s+kind:\\s+([^\'"\\s]+)\\s+repo:\\s+(?<datasource>docker)\\s+url:\\s+[\'"]?oci://(?<namespace>[^\'"\\s]+)[\'"]?\\s+version:\\s+(?<currentValue>[^\'"\\s]+)[\'"]?',
+        //- name: cert-manager
+        //  kind: helm
+        //  repo: helmChart
+        //  url: https://charts.jetstack.io
+        //  version: v1.16.2
+        'name:\\s+(?<depName>[^\'"\\s]+)\\s+kind:\\s+([^\'"\\s]+)\\s+repo:\\s+helmChart\\s+url:\\s+[\'"]?(?<registryUrl>http[^\'"\\s]+)[\'"]?\\s+version:\\s+(?<currentValue>[^\'"\\s]+)[\'"]?',
       ],
-      depNameTemplate: '{{{name}}}',
-      packageNameTemplate: '{{{namespace}}}/{{{name}}}',
+      "datasourceTemplate": 'helm',
     },
     {
       customType: 'regex',
