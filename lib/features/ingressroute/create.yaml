@@ -1,0 +1,32 @@
+#@ load("@ytt:data", "data")
+#@ if data.values.myks.context.step=="render-ytt":
+
+#@ addon = data.values.addon if hasattr(data.values,"addon") else {}
+#@ ao = addon.ingressroute if hasattr(addon, "ingressroute") else {}
+
+#@ if hasattr(ao, "name") and ao.name != '':
+#@ domain = "{}.{}".format(ao.name, data.values.shared.domain)
+#@ traefikLB = ao.cname + "." + data.values.shared.domain
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: #@ ao.name
+  annotations:
+    #@ if/end ao.cname:
+    external-dns.alpha.kubernetes.io/target: #@ traefikLB
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: #@ "Host(`{}`)".format(domain)
+    priority: 10
+    services:
+    - name: #@ ao.service
+      #@ if/end ao.port:
+      port: #@ ao.port
+
+#@ end #! -- addon enabled
+#@ end #! -- render-ytt step

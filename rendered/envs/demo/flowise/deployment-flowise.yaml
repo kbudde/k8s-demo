@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: flowise
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: flowise
+    app.kubernetes.io/version: 2.0.7
+    helm.sh/chart: flowise-3.10.0
+  name: flowise
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: flowise
+      app.kubernetes.io/name: flowise
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        checksum/secret: f1aca73a6e70d0c86b40d4f21c37fb7c44c740a50a8c4623863db86fdf1fe4fc
+      labels:
+        app.kubernetes.io/instance: flowise
+        app.kubernetes.io/name: flowise
+    spec:
+      containers:
+        - env:
+            - name: PORT
+              value: "3000"
+            - name: FLOWISE_USERNAME
+              value: kbudde
+            - name: FLOWISE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: flowise
+            - name: APIKEY_PATH
+              value: /data
+            - name: BLOB_STORAGE_PATH
+              value: /data/storage
+            - name: SECRETKEY_PATH
+              value: /data
+            - name: DATABASE_PATH
+              value: /data
+            - name: DATABASE_TYPE
+              value: postgres
+            - name: DATABASE_HOST
+              value: flow-psql
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_USER
+              value: app
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: flow-psql-app
+            - name: DATABASE_NAME
+              value: app
+            - name: DISABLE_FLOWISE_TELEMETRY
+              value: "true"
+          image: docker.io/flowiseai/flowise:2.2.1
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /api/v1/ping
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: flowise
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /api/v1/ping
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      initContainers:
+        - command:
+            - /bin/sh
+            - -ec
+            - |
+              wait4x postgresql "postgres://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${POSTGRESQL_DATABASE}?sslmode=disable" --timeout 0
+          env:
+            - name: POSTGRESQL_HOST
+              value: flow-psql
+            - name: POSTGRESQL_PORT
+              value: "5432"
+            - name: POSTGRESQL_USERNAME
+              value: app
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: flow-psql-app
+            - name: POSTGRESQL_DATABASE
+              value: app
+          image: docker.io/atkrad/wait4x:2.14.1
+          imagePullPolicy: IfNotPresent
+          name: wait-postgresql
+          resources: {}
+          securityContext: {}
+          volumeMounts: null
+      securityContext: {}
+      serviceAccountName: flowise
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: flowise

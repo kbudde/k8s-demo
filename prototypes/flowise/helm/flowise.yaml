@@ -1,0 +1,32 @@
+#@ load("@ytt:data", "data")
+#@ app = data.values.application
+---
+config:
+  username: #@ app.username
+  password: #@ app.password
+
+persistence:
+  enabled: true
+  size: 1Gi
+
+externalPostgresql:
+  #! @param externalPostgresql.enabled Whether to use an external PostgreSQL
+  enabled: true
+
+  #! @param externalPostgresql.host External PostgreSQL host
+  host: flow-psql
+
+  #! @param externalPostgresql.port External PostgreSQL port
+  port: 5432
+
+  #! @param externalPostgresql.username External PostgreSQL user
+  username: app
+
+  #! @param externalPostgresql.existingSecret Name of existing Secret to use
+  existingSecret: "flow-psql-app"
+
+  #! @param externalPostgresql.existingSecretKeyPassword Key in existing Secret that contains PostgreSQL password
+  existingSecretKeyPassword: password
+
+  #! @param externalPostgresql.database External PostgreSQL database
+  database: app

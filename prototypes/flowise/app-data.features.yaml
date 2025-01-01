@@ -1,0 +1,10 @@
+#@data/values
+---
+addon:
+  postgres:
+    name: flow-psql
+    size: 1Gi
+  ingressroute:
+    name: flowise
+    service: flowise
+    port: 3000
