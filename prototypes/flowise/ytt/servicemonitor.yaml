@@ -9,8 +9,9 @@ metadata:
 spec:
   endpoints:
     - port: http
+      #! TODO: this endpoint is exposed to the world. Nothing critical but not ideal.
+      path: /api/v1/metrics/
   selector:
     matchLabels:
       app.kubernetes.io/instance: flowise
       app.kubernetes.io/name: flowise
-  fallbackScrapeProtocol: PrometheusText1.0.0

@@ -6,8 +6,8 @@ metadata:
   name: flowise
 spec:
   endpoints:
-    - port: http
-  fallbackScrapeProtocol: PrometheusText1.0.0
+    - path: /api/v1/metrics/
+      port: http
   selector:
     matchLabels:
       app.kubernetes.io/instance: flowise
