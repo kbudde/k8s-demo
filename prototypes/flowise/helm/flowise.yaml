@@ -14,7 +14,7 @@ externalPostgresql:
   enabled: true
 
   #! @param externalPostgresql.host External PostgreSQL host
-  host: flow-psql
+  host: flow-psql-rw
 
   #! @param externalPostgresql.port External PostgreSQL port
   port: 5432
