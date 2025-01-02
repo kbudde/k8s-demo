@@ -49,7 +49,7 @@ spec:
             - name: DATABASE_TYPE
               value: postgres
             - name: DATABASE_HOST
-              value: flow-psql
+              value: flow-psql-rw
             - name: DATABASE_PORT
               value: "5432"
             - name: DATABASE_USER
@@ -101,7 +101,7 @@ spec:
               wait4x postgresql "postgres://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${POSTGRESQL_DATABASE}?sslmode=disable" --timeout 0
           env:
             - name: POSTGRESQL_HOST
-              value: flow-psql
+              value: flow-psql-rw
             - name: POSTGRESQL_PORT
               value: "5432"
             - name: POSTGRESQL_USERNAME
