@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: flowise
+            repository:
+                url: https://cowboysysop.github.io/charts/
+            version: 3.10.0
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-flowise-3.10.0-7c7528504ffe2d5a/data
+      permissions: null
+kind: Config

@@ -1,0 +1,8 @@
+#@data/values
+---
+prototypes:
+  - name: flowise
+    kind: helm
+    repo: helmChart
+    url: https://cowboysysop.github.io/charts/
+    version: 3.10.0

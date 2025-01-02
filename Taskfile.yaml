@@ -7,8 +7,8 @@ set: [pipefail]
 shopt: [globstar]
 
 tasks:
-  default: ${GOTASK_BIN:-task} run 
-  
+  default: ${GOTASK_BIN:-task} run
+
   run:
     desc: Run myks to download, render and validate the manifests
     summary: |
@@ -57,3 +57,28 @@ tasks:
                   --jq '"origin/" + .baseRefName + "...origin/" + .headRefName' \
                   {{ $pr_number }} \
               ){{ range $pr_args }} {{ .|shellQuote }}{{ end }}"
+
+  prototype:create:
+    desc: Create a new prototype
+    summary: |
+      Creates a new prototype.
+      Example:
+
+        task prototype:create -- name of prototype
+    vars:
+      PROTO: "{{.CLI_ARGS}}"
+      PATH: "prototypes/{{.CLI_ARGS}}"
+    preconditions:
+      - sh: test -n "{{.PROTO}}"
+        msg: "Please provide a name for the prototype"
+      - sh: test ! -e '{{.PATH}}'
+        msg: "Prototype '{{.PROTO}}' already exists"
+    cmds:
+      - cp -r prototypes/.template '{{.PATH}}'
+      - mv '{{.PATH}}/helm/prototype.yaml' '{{.PATH}}/helm/{{.PROTO}}.yaml'
+      - find '{{.PATH}}' -type f -exec sed -i 's/<<prototype>>/{{.PROTO}}/' {} \;
+      - find '{{.PATH}}' -name '.template-keep' -exec rm {} \;
+      - test -n '{{.EDITOR}}' && '{{.EDITOR}}' '{{.PATH}}/vendir/vendir-data.ytt.yaml'
+      - echo "Prototype '{{.PROTO}}' created at '{{.PATH}}'"
+
+

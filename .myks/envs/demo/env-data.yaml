@@ -65,6 +65,8 @@ environment:
     name: ""
   - proto: victoria-metrics-operator
     name: ""
+  - proto: flowise
+    name: ""
   branch: main
 helm:
   buildDependencies: false

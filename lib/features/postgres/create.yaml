@@ -1,0 +1,27 @@
+#@ load("@ytt:data", "data")
+#@ if data.values.myks.context.step=="render-ytt":
+#@ addon = data.values.addon if hasattr(data.values,"addon") else {}
+#@ pg = addon.postgres if hasattr(addon, "postgres") else {}
+#@ if/end hasattr(pg, "name") and pg.name != '':
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: #@ pg.name
+spec:
+  instances: #@ pg.instances
+  storage:
+    size: #@ pg.size
+  maxSyncReplicas: 0
+  minSyncReplicas: 0
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+  primaryUpdateMethod: switchover
+  replicationSlots:
+    highAvailability:
+      enabled: true
+#@ end

@@ -1,6 +1,0 @@
-{
-  "sops.creationEnabled": true,
-  "files.readonlyInclude": {
-    "rendered/**/*.yaml": true
-  }
-}
