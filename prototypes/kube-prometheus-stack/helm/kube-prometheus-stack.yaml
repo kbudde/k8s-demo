@@ -11,3 +11,12 @@ alertmanager:
 
 grafana:
   enabled: false
+
+prometheus:
+  prometheusSpec:
+    #! read all selectors by default. Not just the ones defined by the chart.
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    scrapeConfigSelectorNilUsesHelmValues: false

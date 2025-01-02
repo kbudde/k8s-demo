@@ -48,25 +48,17 @@ spec:
   logLevel: info
   paused: false
   podMonitorNamespaceSelector: {}
-  podMonitorSelector:
-    matchLabels:
-      release: kube-prometheus-stack
+  podMonitorSelector: {}
   portName: http-web
   probeNamespaceSelector: {}
-  probeSelector:
-    matchLabels:
-      release: kube-prometheus-stack
+  probeSelector: {}
   replicas: 1
   retention: 10d
   routePrefix: /
   ruleNamespaceSelector: {}
-  ruleSelector:
-    matchLabels:
-      release: kube-prometheus-stack
+  ruleSelector: {}
   scrapeConfigNamespaceSelector: {}
-  scrapeConfigSelector:
-    matchLabels:
-      release: kube-prometheus-stack
+  scrapeConfigSelector: {}
   securityContext:
     fsGroup: 2000
     runAsGroup: 2000
@@ -76,9 +68,7 @@ spec:
       type: RuntimeDefault
   serviceAccountName: kube-prometheus-stack-prometheus
   serviceMonitorNamespaceSelector: {}
-  serviceMonitorSelector:
-    matchLabels:
-      release: kube-prometheus-stack
+  serviceMonitorSelector: {}
   shards: 1
   tsdb:
     outOfOrderTimeWindow: 0s
