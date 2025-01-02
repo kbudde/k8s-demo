@@ -63,6 +63,9 @@ spec:
               value: app
             - name: DISABLE_FLOWISE_TELEMETRY
               value: "true"
+          envFrom:
+            - secretRef:
+                name: flowise-config
           image: docker.io/flowiseai/flowise:2.2.2
           imagePullPolicy: IfNotPresent
           livenessProbe:

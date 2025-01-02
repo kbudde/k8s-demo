@@ -1,0 +1,15 @@
+#@ load("@ytt:data", "data")
+#@ app = data.values.application
+#@ if/end app.monitoring=="prometheus":
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flowise
+spec:
+  endpoints:
+    - port: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: flowise
+      app.kubernetes.io/name: flowise

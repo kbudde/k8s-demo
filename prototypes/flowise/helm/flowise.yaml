@@ -30,3 +30,6 @@ externalPostgresql:
 
   #! @param externalPostgresql.database External PostgreSQL database
   database: app
+
+extraEnvVarsSecret: flowise-config
+

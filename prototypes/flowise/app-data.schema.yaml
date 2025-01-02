@@ -5,4 +5,11 @@ application:
   #@schema/validation min_len=1
   username: ""
   #@schema/validation min_len=1
-  password: "<path:static/flowise.yaml#password>"
+  password: ""
+  #@schema/desc "Enable monitoring"
+  #@schema/validation one_of=["none", "prometheus"]
+  monitoring: prometheus
+  #@schema/desc "Configure log level"
+  #@schema/validation one_of=["debug", "verbose", "info", "error"]
+  logLevel: info
+
