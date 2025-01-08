@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/name: prometheus-node-exporter
     app.kubernetes.io/part-of: prometheus-node-exporter
     app.kubernetes.io/version: 1.8.2
-    helm.sh/chart: prometheus-node-exporter-4.42.0
+    helm.sh/chart: prometheus-node-exporter-4.43.1
     release: kube-prometheus-stack
   name: kube-prometheus-stack-prometheus-node-exporter
   namespace: kube-prometheus-stack
@@ -32,10 +32,23 @@ spec:
         app.kubernetes.io/name: prometheus-node-exporter
         app.kubernetes.io/part-of: prometheus-node-exporter
         app.kubernetes.io/version: 1.8.2
-        helm.sh/chart: prometheus-node-exporter-4.42.0
+        helm.sh/chart: prometheus-node-exporter-4.43.1
         jobLabel: node-exporter
         release: kube-prometheus-stack
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: eks.amazonaws.com/compute-type
+                    operator: NotIn
+                    values:
+                      - fargate
+                  - key: type
+                    operator: NotIn
+                    values:
+                      - virtual-kubelet
       automountServiceAccountToken: false
       containers:
         - args:
