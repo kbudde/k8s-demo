@@ -1,8 +1,7 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - use container port instead of service one in `vm.host` template, while appIdx is defined
-    - expect tls extraArg parameter as boolean value
+    - quote collection values in arguments
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -26,4 +25,4 @@ name: victoria-metrics-common
 sources:
 - https://github.com/VictoriaMetrics/helm-charts
 type: library
-version: 0.0.33
+version: 0.0.37

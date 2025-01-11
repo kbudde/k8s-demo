@@ -75,7 +75,11 @@ HTTP GET probe path
 HTTP GET probe scheme
 */ -}}
 {{- define "vm.probe.http.scheme" -}}
-  {{- ternary "HTTPS" "HTTP" (.app.extraArgs.tls | default false) -}}
+  {{- $isSecure := false -}}
+  {{- with ((.app).extraArgs).tls -}}
+    {{- $isSecure = eq (toString .) "true" -}}
+  {{- end -}}
+  {{- ternary "HTTPS" "HTTP" $isSecure -}}
 {{- end -}}
 
 {{- /*
@@ -86,12 +90,12 @@ Net probe port
 {{- end -}}
 
 {{- define "vm.arg" -}}
-  {{- if and (empty .value) (not (kindIs "bool" .value)) }}
+  {{- if and (empty .value) (kindIs "string" .value) }}
     {{- .key -}}
-  {{- else if and (kindIs "bool" .value) .value -}}
+  {{- else if eq (toString .value) "true" -}}
     -{{ ternary "" "-" (eq (len .key) 1) }}{{ .key }}
   {{- else -}}
-    -{{ ternary "" "-" (eq (len .key) 1) }}{{ .key }}={{ .value }}
+    -{{ ternary "" "-" (eq (len .key) 1) }}{{ .key }}={{ ternary (toJson .value | squote) .value (has (kindOf .value) (list "map" "slice")) }}
   {{- end -}}
 {{- end -}}
 
