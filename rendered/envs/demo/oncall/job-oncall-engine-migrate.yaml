@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/instance: oncall
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: oncall
-    app.kubernetes.io/version: v1.13.11
-    helm.sh/chart: oncall-1.13.11
+    app.kubernetes.io/version: v1.14.0
+    helm.sh/chart: oncall-1.14.0
   name: oncall-engine-migrate
 spec:
   backoffLimit: 15
@@ -134,7 +134,7 @@ spec:
               value: amqp
             - name: RABBITMQ_VHOST
               value: /
-          image: grafana/oncall:v1.13.11
+          image: grafana/oncall:v1.14.0
           imagePullPolicy: Always
           name: oncall-migrate
           resources: {}
