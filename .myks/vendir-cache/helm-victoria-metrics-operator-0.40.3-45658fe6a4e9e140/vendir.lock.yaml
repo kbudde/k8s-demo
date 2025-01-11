@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 6ed0b1a712d1592a5abea42964c7baa057e443c2e127f55f3ba959f3271f1290
+    helmChart:
+      appVersion: v0.51.2
+      version: 0.40.3
+    path: .
+  path: .myks/vendir-cache/helm-victoria-metrics-operator-0.40.3-45658fe6a4e9e140/data
+kind: LockConfig
