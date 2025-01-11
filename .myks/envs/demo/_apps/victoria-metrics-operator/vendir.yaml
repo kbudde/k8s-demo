@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: victoria-metrics-operator
-      version: 0.40.2
+      version: 0.40.3
       repository:
         url: https://victoriametrics.github.io/helm-charts/
     lazy: true

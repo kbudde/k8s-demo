@@ -1,9 +1,8 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - add option to enable hostNetwork for custom CNI based deployments
-    - updated common dependency 0.0.35 -> 0.0.36
-    - updates operator to [v0.51.2](https://github.com/VictoriaMetrics/operator/releases/tag/v0.51.2) version
+    - updated common dependency 0.0.36 -> 0.0.37
+    - support templating in `.Values.extraObjects`
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -44,4 +43,4 @@ sources:
 - https://github.com/VictoriaMetrics/helm-charts
 - https://github.com/VictoriaMetrics/operator
 type: application
-version: 0.40.2
+version: 0.40.3
