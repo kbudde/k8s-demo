@@ -4,7 +4,7 @@
 application:
   images:
     #! renovate: datasource=docker
-    n8n: n8nio/n8n:1.73.1
+    n8n: n8nio/n8n:1.74.0
     #! renovate: datasource=docker
     busybox: busybox:1.37
 
