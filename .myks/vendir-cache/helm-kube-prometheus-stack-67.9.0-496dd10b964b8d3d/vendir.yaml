@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: kube-prometheus-stack
+            repository:
+                url: https://prometheus-community.github.io/helm-charts
+            version: 67.9.0
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-kube-prometheus-stack-67.9.0-496dd10b964b8d3d/data
+      permissions: null
+kind: Config
