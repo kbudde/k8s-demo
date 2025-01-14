@@ -12,8 +12,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 67.8.0
-    chart: kube-prometheus-stack-67.8.0
+    app.kubernetes.io/version: 68.1.0
+    chart: kube-prometheus-stack-68.1.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-admission-patch
@@ -28,8 +28,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
         app.kubernetes.io/part-of: kube-prometheus-stack
-        app.kubernetes.io/version: 67.8.0
-        chart: kube-prometheus-stack-67.8.0
+        app.kubernetes.io/version: 68.1.0
+        chart: kube-prometheus-stack-68.1.0
         heritage: Helm
         release: kube-prometheus-stack
       name: kube-prometheus-stack-admission-patch
