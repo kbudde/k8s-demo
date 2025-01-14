@@ -2,16 +2,16 @@ installCRDs: true
 
 prometheus:
   servicemonitor:
-    enabled: false
+    enabled: true
 
-replicaCount: 1
+replicaCount: 2
 podDisruptionBudget:
   enabled: true
 
 webhook:
-  replicaCount: 1
+  replicaCount: 2
   podDisruptionBudget:
-    enabled: false
+    enabled: true
 
 dns01RecursiveNameservers: 185.116.244.45:53,185.116.244.46:53
 dns01RecursiveNameserversOnly: true
