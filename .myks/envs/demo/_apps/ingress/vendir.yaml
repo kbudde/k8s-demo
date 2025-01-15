@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: traefik
-      version: 33.2.1
+      version: 34.1.0
       repository:
         url: https://traefik.github.io/charts
     lazy: true
