@@ -4,6 +4,3 @@
 application:
   bootstrapPassword: "<path:static/rancher.yaml#bootstrapPassword>"
 
-#! overwritten as rancher does not support 1.31.0 and there is no easy way to overwrite it per env for only rancher
-helm:
-  kubeVersion: 1.30.2
