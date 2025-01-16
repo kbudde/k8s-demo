@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.51.2
-    helm.sh/chart: victoria-metrics-operator-0.40.3
+    app.kubernetes.io/version: v0.51.3
+    helm.sh/chart: victoria-metrics-operator-0.40.4
   name: vmclusters.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -473,7 +473,7 @@ spec:
                       type: string
                     minReadySeconds:
                       description: |-
-                        MinReadySeconds defines a minim number os seconds to wait before starting update next pod
+                        MinReadySeconds defines a minimum number of seconds to wait before starting update next pod
                         if previous in healthy state
                         Has no effect for VLogs and VMSingle
                       format: int32
@@ -1568,7 +1568,7 @@ spec:
                       type: string
                     minReadySeconds:
                       description: |-
-                        MinReadySeconds defines a minim number os seconds to wait before starting update next pod
+                        MinReadySeconds defines a minimum number of seconds to wait before starting update next pod
                         if previous in healthy state
                         Has no effect for VLogs and VMSingle
                       format: int32
@@ -3128,7 +3128,7 @@ spec:
                       type: array
                     minReadySeconds:
                       description: |-
-                        MinReadySeconds defines a minim number os seconds to wait before starting update next pod
+                        MinReadySeconds defines a minimum number of seconds to wait before starting update next pod
                         if previous in healthy state
                         Has no effect for VLogs and VMSingle
                       format: int32
@@ -4018,7 +4018,7 @@ spec:
                   format: int64
                   type: integer
                 reason:
-                  description: Reason defines human readadble error reason
+                  description: Reason defines human readable error reason
                   type: string
                 updateFailCount:
                   description: Deprecated.
