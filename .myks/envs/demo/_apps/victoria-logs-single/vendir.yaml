@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: victoria-logs-single
-      version: 0.8.12
+      version: 0.8.13
       repository:
         url: https://victoriametrics.github.io/helm-charts/
     lazy: true

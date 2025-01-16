@@ -1,10 +1,7 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - updated common dependency 0.0.34 -> 0.0.37
-    - Exclude markdown files from package
-    - 'victorialogs version: v1.3.2 -> v1.4.0'
-    - support templating in `.Values.extraObjects`
+    - 'victorialogs version: v1.4.0 -> v1.5.0'
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -16,7 +13,7 @@ annotations:
     - name: Changelog
       url: https://docs.victoriametrics.com/victorialogs/changelog
 apiVersion: v2
-appVersion: v1.4.0
+appVersion: v1.5.0
 dependencies:
 - condition: vector.enabled
   name: vector
@@ -41,4 +38,4 @@ name: victoria-logs-single
 sources:
 - https://github.com/VictoriaMetrics/helm-charts
 type: application
-version: 0.8.12
+version: 0.8.13
