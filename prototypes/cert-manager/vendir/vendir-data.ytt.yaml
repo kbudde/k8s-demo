@@ -5,5 +5,5 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://charts.jetstack.io
-    version: v1.16.2
+    version: v1.16.3
 
