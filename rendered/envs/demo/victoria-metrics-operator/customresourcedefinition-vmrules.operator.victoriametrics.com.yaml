@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
     app.kubernetes.io/version: v0.51.3
-    helm.sh/chart: victoria-metrics-operator-0.40.4
+    helm.sh/chart: victoria-metrics-operator-0.40.5
   name: vmrules.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
