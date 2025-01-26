@@ -1,7 +1,8 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - 'victorialogs version: v1.4.0 -> v1.5.0'
+    - update victorialogs version to v1.6.1
+    - add `.Values.statefulSet.updateStrategy`. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/1928) for details.
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -13,7 +14,7 @@ annotations:
     - name: Changelog
       url: https://docs.victoriametrics.com/victorialogs/changelog
 apiVersion: v2
-appVersion: v1.5.0
+appVersion: v1.6.1
 dependencies:
 - condition: vector.enabled
   name: vector
@@ -38,4 +39,4 @@ name: victoria-logs-single
 sources:
 - https://github.com/VictoriaMetrics/helm-charts
 type: application
-version: 0.8.13
+version: 0.8.14
