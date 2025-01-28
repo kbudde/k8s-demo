@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: flowise
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: flowise
-    app.kubernetes.io/version: 2.0.7
-    helm.sh/chart: flowise-3.10.3
+    app.kubernetes.io/version: 2.2.4
+    helm.sh/chart: flowise-3.11.0
   name: flowise
 spec:
   replicas: 1
@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/secret: c60f683eea54d18eae7d76ad235a9274aefef19935a5b255f812471186d6846e
+        checksum/secret: e4e0d20f49b53768cff88b02aa7c733b61b8ffaa4b8d4ed556935b4f6bfcfb70
       labels:
         app.kubernetes.io/instance: flowise
         app.kubernetes.io/name: flowise
