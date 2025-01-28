@@ -5,4 +5,4 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://cowboysysop.github.io/charts/
-    version: 3.10.3
+    version: 3.11.0
