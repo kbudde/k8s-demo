@@ -5,9 +5,9 @@ directories:
             name: rabbitmq-cluster-operator
             repository:
                 url: oci://registry-1.docker.io/bitnamicharts
-            version: 4.4.2
+            version: 4.4.3
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-rabbitmq-cluster-operator-4.4.2-5b0bc8c18f17d205/data
+      path: .myks/vendir-cache/helm-rabbitmq-cluster-operator-4.4.3-5b0ec4c18f1a0110/data
       permissions: null
 kind: Config

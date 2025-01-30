@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
-    app.kubernetes.io/version: 2.12.0
-    helm.sh/chart: rabbitmq-cluster-operator-4.4.2
+    app.kubernetes.io/version: 2.12.1
+    helm.sh/chart: rabbitmq-cluster-operator-4.4.3
   name: rabbitmq-cluster-operator
   namespace: rabbitmq-operator
 rules:
