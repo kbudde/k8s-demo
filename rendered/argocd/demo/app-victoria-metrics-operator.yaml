@@ -1,18 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  annotations:
+    app.kubernetes.io/source: https://github.com/kbudde/k8s-demo
+    myks.dev/environment: demo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   name: demo-victoria-metrics-operator
   namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-  annotations:
-    myks.dev/environment: demo
-    app.kubernetes.io/source: https://github.com/kbudde/k8s-demo
 spec:
-  project: demo
   destination:
     name: demo
     namespace: victoria-metrics-operator
+  ignoreDifferences:
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor
+      kind: Deployment
+    - group: apps
+      jqPathExpressions:
+        - .spec.volumeClaimTemplates[]?.apiVersion
+        - .spec.volumeClaimTemplates[]?.kind
+      kind: StatefulSet
+  info:
+    - name: 'environment:'
+      value: demo
+    - name: 'source:'
+      value: https://github.com/kbudde/k8s-demo
+  project: demo
   source:
     path: rendered/envs/demo/victoria-metrics-operator
     plugin:
@@ -23,30 +38,15 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
-    - PruneLast=true
-    - RespectIgnoreDifferences=true
-    - ApplyOutOfSyncOnly=true
     retry:
-      limit: -1
       backoff:
         duration: 5s
         factor: 2
         maxDuration: 10m
-  info:
-  - name: 'environment:'
-    value: demo
-  - name: 'source:'
-    value: https://github.com/kbudde/k8s-demo
-  ignoreDifferences:
-  - group: apps
-    kind: Deployment
-    jqPathExpressions:
-    - .spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor
-  - group: apps
-    kind: StatefulSet
-    jqPathExpressions:
-    - .spec.volumeClaimTemplates[]?.apiVersion
-    - .spec.volumeClaimTemplates[]?.kind
+      limit: -1
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
