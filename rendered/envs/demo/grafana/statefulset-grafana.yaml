@@ -7,8 +7,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 11.4.0
-    helm.sh/chart: grafana-8.8.5
+    app.kubernetes.io/version: 11.5.1
+    helm.sh/chart: grafana-8.9.0
   name: grafana
   namespace: grafana
 spec:
@@ -21,15 +21,15 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 2a01f96aea28acfa408a1b33071377e3fbcb8f34b4b534ac1fa3f8432eca894d
+        checksum/config: 174a0e61c276c15b2597f50a8b7a427257794037be716dfb809f021baaca5d3a
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 35e68f6e591bd655c5dc4203b37e214012405446cb3166f65141312cac36df93
+        checksum/sc-dashboard-provider-config: 3888c54c6ec9a3b6cc57a02310b970776aaaf1f122bee3bad7d860d7f7d07bfe
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
         app.kubernetes.io/name: grafana
-        app.kubernetes.io/version: 11.4.0
-        helm.sh/chart: grafana-8.8.5
+        app.kubernetes.io/version: 11.5.1
+        helm.sh/chart: grafana-8.9.0
     spec:
       automountServiceAccountToken: true
       containers:
@@ -257,7 +257,7 @@ spec:
               value: /etc/grafana/provisioning
             - name: GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS
               value: victorialogs-datasource
-          image: docker.io/grafana/grafana:11.4.0
+          image: docker.io/grafana/grafana:11.5.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10

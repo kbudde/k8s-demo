@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: grafana
-      version: 8.8.5
+      version: 8.9.0
       repository:
         url: https://grafana.github.io/helm-charts
     lazy: true
