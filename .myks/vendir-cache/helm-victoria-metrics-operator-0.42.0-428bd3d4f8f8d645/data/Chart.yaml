@@ -1,8 +1,7 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - Made certManager certificates commonName and duration configurable. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/1924).
-    - Add pod priority class configuration for operator. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/1929).
+    - updates operator to [v0.53.0](https://github.com/VictoriaMetrics/operator/releases/tag/v0.53.0) version
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -15,7 +14,7 @@ annotations:
       url: https://docs.victoriametrics.com/operator/changelog
   artifacthub.io/operator: "true"
 apiVersion: v2
-appVersion: v0.51.3
+appVersion: v0.53.0
 dependencies:
 - name: victoria-metrics-common
   repository: https://victoriametrics.github.io/helm-charts
@@ -43,4 +42,4 @@ sources:
 - https://github.com/VictoriaMetrics/helm-charts
 - https://github.com/VictoriaMetrics/operator
 type: application
-version: 0.40.5
+version: 0.42.0
