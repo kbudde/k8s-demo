@@ -1,0 +1,8 @@
+#@data/values
+---
+prototypes:
+  - name: netbird
+    kind: helm #! ytt, helm, static, ytt-pkg
+    repo: helmChart #! helmChart or git
+    url: https://totmicro.github.io/helms
+    version: 1.5.6

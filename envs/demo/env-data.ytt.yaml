@@ -30,6 +30,7 @@ environment:
   #!  - proto: gitpod
   - proto: victoria-metrics-operator
   - proto: flowise
+  #! - proto: netbird
 shared:
   domain: "demo.budd.ee"
 
