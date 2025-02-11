@@ -4,7 +4,7 @@ annotations:
     url: https://cowboysysop.github.io/charts/pgp-public-key-2022-02-19.asc
   kubeVersion: '>=1.24'
 apiVersion: v2
-appVersion: 2.0.7
+appVersion: 2.2.4
 dependencies:
 - name: common
   repository: https://charts.bitnami.com/bitnami/
@@ -27,4 +27,4 @@ name: flowise
 sources:
 - https://github.com/FlowiseAI/Flowise
 - https://github.com/cowboysysop/charts/tree/master/charts/flowise
-version: 3.10.3
+version: 3.11.0
