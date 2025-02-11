@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: rabbitmq-cluster-operator
+            repository:
+                url: oci://registry-1.docker.io/bitnamicharts
+            version: 4.4.3
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-rabbitmq-cluster-operator-4.4.3-5b0ec4c18f1a0110/data
+      permissions: null
+kind: Config
