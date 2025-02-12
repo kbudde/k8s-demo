@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 809d3f2ca4ba246a4c71fde432d2e6a10981649a18c0ccc0cd21b5fd476da91b
+    git:
+      commitTitle: Bump version to 2.14.2 on release-2.14 branch (#21797)...
+      sha: ad2724661b66ede607db9b5bd4c3c26491f5be67
+      tags:
+      - stable
+    path: .
+  path: .myks/vendir-cache/git-argo-cd-v2.14.2-79c214ec05fbd12e/data
+kind: LockConfig
