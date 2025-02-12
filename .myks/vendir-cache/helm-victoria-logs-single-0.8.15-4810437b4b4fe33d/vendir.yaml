@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: victoria-logs-single
+            repository:
+                url: https://victoriametrics.github.io/helm-charts/
+            version: 0.8.15
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-victoria-logs-single-0.8.15-4810437b4b4fe33d/data
+      permissions: null
+kind: Config

@@ -2,7 +2,7 @@
 #@ traefikLB = "lb." + data.values.shared.domain
 ---
 deployment:
-  replicas: 1
+  replicas: 2
 
 podDisruptionBudget:
   enabled: false
@@ -19,6 +19,19 @@ globalArguments:
 - "--global.checknewversion"
 #! - "--global.sendanonymoususage"
 - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+- "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+
+ports:
+  web:
+    proxyProtocol:
+      trustedIPs:
+        - "192.168.1.0/24"
+  websecure:
+    http3: 
+      enabled: true
+    proxyProtocol:
+      trustedIPs:
+        - "192.168.1.0/24"
 
 experimental:
 #! https://plugins.traefik.io/plugins/628c9f24ffc0cd18356a97bd/query-paramter-modification
@@ -37,13 +50,12 @@ service:
   enabled: true
   #!# -- Single service is using `MixedProtocolLBService` feature gate.
   #!# -- When set to false, it will create two Service, one for TCP and one for UDP.
-  single: false
+  single: true
   annotations:
     external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
+    loadbalancer.openstack.org/keep-floatingip: "true"
+    loadbalancer.openstack.org/proxy-protocol: v2
 
 ingressRoute:
   dashboard:
     enabled: false
-
-image:
-  tag: "v3.0.1"
