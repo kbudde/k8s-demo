@@ -2,13 +2,13 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
     - contents:
         - git:
-            ref: v2.13.3
+            ref: v2.14.2
             url: https://github.com/argoproj/argo-cd
           includePaths:
             - manifests/ha/install.yaml
           lazy: true
           newRootPath: manifests/ha
           path: .
-      path: .myks/vendir-cache/git-argo-cd-v2.13.3-145d91ffbf0b7bc8/data
+      path: .myks/vendir-cache/git-argo-cd-v2.14.2-79c214ec05fbd12e/data
       permissions: null
 kind: Config
