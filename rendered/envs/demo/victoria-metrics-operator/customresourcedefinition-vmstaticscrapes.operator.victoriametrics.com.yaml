@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.51.3
-    helm.sh/chart: victoria-metrics-operator-0.40.5
+    app.kubernetes.io/version: v0.53.0
+    helm.sh/chart: victoria-metrics-operator-0.42.0
   name: vmstaticscrapes.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com

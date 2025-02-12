@@ -69,6 +69,10 @@ fullnameOverride: ""
 # -- VM operator log level. Possible values: info and error.
 logLevel: "info"
 
+allowedMetricsEndpoints:
+  - /metrics
+  - /metrics/resources
+
 rbac:
   # -- Specifies whether the RBAC resources should be created
   create: true
@@ -92,10 +96,18 @@ annotations: {}
 # -- Pod's security context. Details are [here](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 podSecurityContext:
   enabled: true
+  fsGroup: 2000
+  runAsNonRoot: true
+  runAsUser: 1000
 
 # -- Security context to be added to server pods
 securityContext:
   enabled: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
 
 operator:
   # -- By default, operator converts prometheus-operator objects.
@@ -265,6 +277,7 @@ admissionWebhooks:
     # -- Certificate parameters
     cert:
       duration: 45800h0m0s
+      commonName: ""
   keepTLSSecret: true
   # tls specifies TLS cert/key for the webhook
   tls:
