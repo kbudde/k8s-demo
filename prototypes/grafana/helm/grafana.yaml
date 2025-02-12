@@ -26,6 +26,7 @@ admin:
   passwordKey: password
 
 env:
+  GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED: "true" #! https://github.com/grafana/oncall/issues/5410
   GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: "victorialogs-datasource"
 #!   GF_INSTALL_PLUGINS: "https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/v0.2.1/victorialogs-datasource-v0.2.1.zip;victorialogs-datasource"
 
@@ -59,8 +60,11 @@ grafana.ini:
     domain: #@ domain
     root_url: #@ "https://" + domain
   feature_toggles:
-    externalServiceAccounts: true
+    #! externalServiceAccounts: true
     featureToggleAdminPage: true
+    enable: 'correlations autoMigrateOldPanels traceQLStreaming externalServiceAccounts'
+    #! https://github.com/grafana/oncall/issues/4850#issuecomment-2476124885
+    accessControlOnCall: "false"
   feature_management:
     allow_editing: true
 
