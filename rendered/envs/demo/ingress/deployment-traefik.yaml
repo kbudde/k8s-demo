@@ -40,6 +40,7 @@ spec:
         - args:
             - --global.checknewversion
             - --entrypoints.web.http.redirections.entrypoint.scheme=https
+            - --entrypoints.web.http.redirections.entrypoint.to=websecure
             - --entryPoints.metrics.address=:9100/tcp
             - --entryPoints.traefik.address=:8080/tcp
             - --entryPoints.web.address=:8000/tcp

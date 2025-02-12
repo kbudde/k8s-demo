@@ -19,6 +19,7 @@ globalArguments:
 - "--global.checknewversion"
 #! - "--global.sendanonymoususage"
 - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+- "--entrypoints.web.http.redirections.entrypoint.to=websecure"
 
 ports:
   web:
