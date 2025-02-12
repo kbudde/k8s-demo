@@ -20,6 +20,16 @@ globalArguments:
 #! - "--global.sendanonymoususage"
 - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
 
+ports:
+  web:
+    proxyProtocol:
+      trustedIPs:
+        - "192.168.1.0/24"
+  websecure:
+    proxyProtocol:
+      trustedIPs:
+        - "192.168.1.0/24"
+
 experimental:
 #! https://plugins.traefik.io/plugins/628c9f24ffc0cd18356a97bd/query-paramter-modification
   plugins:
@@ -40,10 +50,9 @@ service:
   single: false
   annotations:
     external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
+    loadbalancer.openstack.org/keep-floatingip: "true"
+    loadbalancer.openstack.org/proxy-protocol: v2
 
 ingressRoute:
   dashboard:
     enabled: false
-
-image:
-  tag: "v3.0.1"
