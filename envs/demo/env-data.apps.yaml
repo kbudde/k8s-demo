@@ -1,0 +1,28 @@
+#@data/values
+---
+environment:
+  applications:
+  - proto: argocd
+  - proto: cert-manager
+  #!- proto: crossplane
+  #!- proto: crossplane-openstack
+  #!- proto: crossplane-rancher-cluster
+  - proto: designate-certmanager-webhook
+  - proto: external-dns
+  - proto: goldpinger
+  - proto: ingress/traefik
+    name: ingress
+  - proto: kube-prometheus-stack
+  - proto: rancher
+  - proto: reloader
+  - proto: victoria-logs-single
+  - proto: rabbitmq-operator
+  - proto: cloudnative-pg
+  - proto: oncall
+  - proto: taskwarrior
+  - proto: grafana
+  - proto: n8n
+  #!  - proto: gitpod
+  - proto: victoria-metrics-operator
+  - proto: flowise
+  - proto: authelia

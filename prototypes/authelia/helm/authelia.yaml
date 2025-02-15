@@ -1,0 +1,174 @@
+#@ load("@ytt:data", "data")
+#@ load("app.star", "namespace")
+---
+pod:
+  kind: StatefulSet
+  replicas: 2
+
+  resources:
+    requests:
+      cpu: 0.25
+      memory: 50Mi
+    limits:
+      memory: 55Mi
+  env:
+  - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE
+    value: /secrets/authelia-db-app/storage.postgres.password.txt
+
+secret:
+  existingSecret: 'authelia'
+  additionalSecrets:
+    authelia-db-app:
+      items:
+       - key: password
+         path: storage.postgres.password.txt
+
+configMap:
+  #! extraConfigs:
+  #!  - configuration.oidc.yaml #! TODO: mount
+  log:
+    format: json
+  telemetry:
+    metrics:
+      enabled: true
+
+  authentication_backend:
+    password_reset:
+      disable: true
+    file:
+      enabled: true
+      path: '/config/users_database.yml'
+      watch: true #! TODO: test if we can skip restart
+
+  session:
+    cookies:
+      - domain: #@ data.values.shared.domain
+        subdomain: auth
+
+  storage:
+    postgres:
+      enabled: true
+      deploy: false
+      address: #@ "tcp://authelia-db-rw.{}.svc.cluster.local:5432".format(namespace())
+      timeout: '5 seconds'
+      database: 'app'
+      schema: 'public'
+      username: 'app'
+      password:
+        #!# Disables this secret and leaves configuring it entirely up to you.
+        disabled: true
+
+        #!# The secret name. The ~ name is special as it is the secret we generate either automatically or via the
+        #!# secret_value option below.
+        secret_name: ~
+
+        #!# The value of a generated secret when using the ~ secret_name.
+        value: ''
+
+        #!# The path to the secret. If it has a '/' prefix it's assumed to be an absolute path within the pod. Otherwise
+        #!# it uses the format '{mountPath}/{secret_name}/{path}' where '{mountPath}' refers to the 'secret.mountPath'
+        #!# value, '{secret_name}' is the secret_name above, and '{path}' is this value.
+        path: 'storage.postgres.password.txt'
+      tls:
+        enabled: false
+
+        #!# The server subject name to check the servers certificate against during the validation process.
+        #!# This option is not required if the certificate has a SAN which matches the host option.
+        server_name: ''
+
+        #!# Skip verifying the server certificate entirely. In preference to setting this we strongly recommend you add the
+        #!# certificate or the certificate of the authority signing the certificate to the certificates directory which is
+        #!# defined by the `certificates_directory` option at the top of the configuration.
+        #!# It's important to note the public key should be added to the directory, not the private key.
+        #!# This option is strongly discouraged but may be useful in some self-signed situations where validation is not
+        #!# important to the administrator.
+        skip_verify: false
+
+        #!# Minimum TLS version for the connection.
+        minimum_version: 'TLS1.2'
+
+        #!# Maximum TLS version for the connection.
+        maximum_version: 'TLS1.3'
+
+  notifier:
+      #!#
+      #!# SMTP (Notification Provider)
+      #!#
+      #!# Use a SMTP server for sending notifications. Authelia uses the PLAIN or LOGIN methods to authenticate.
+      #!# [Security] By default Authelia will:
+      #!#   - force all SMTP connections over TLS including unauthenticated connections
+      #!#      - use the disable_require_tls boolean value to disable this requirement
+      #!#        (only works for unauthenticated connections)
+      #!#   - validate the SMTP server x509 certificate during the TLS handshake against the hosts trusted certificates
+      #!#     (configure in tls section)
+      smtp:
+        enabled: true
+        enabledSecret: false
+        address: 'submission://box.budd.ee:587'
+        timeout: '5 seconds'
+        sender: 'Authelia <admin@example.com>'
+
+        #!# HELO/EHLO Identifier. Some SMTP Servers may reject the default of localhost.
+        identifier: 'authelia'
+
+        #!# Subject configuration of the emails sent.
+        #!# {title} is replaced by the text from the notifier
+        subject: '[Authelia] {title}'
+
+        #!# This address is used during the startup check to verify the email configuration is correct.
+        #!# It's not important what it is except if your email server only allows local delivery.
+        startup_check_address: 'authelia@budd.ee'
+
+        #!# Disables sending HTML formatted emails.
+        disable_html_emails: false
+
+        #!# By default we require some form of TLS. This disables this check though is not advised.
+        disable_require_tls: false
+
+        #!# Some SMTP servers ignore SMTP specifications and claim to support STARTTLS when they in fact do not. For
+        #!# security reasons Authelia refuses to send messages to these servers. This option disables this measure and is
+        #!# enabled AT YOUR OWN RISK. It’s strongly recommended that instead of enabling this option you either fix the
+        #!# issue with the SMTP server’s configuration or have the administrators of the server fix it. If the issue can’t
+        #!# be fixed by configuration we recommend lodging an issue with the authors of the SMTP server. See [security] for
+        #!# more information.
+        disable_starttls: false
+
+        username: 'authelia@budd.ee'
+        password:
+          #!# Disables this secret and leaves configuring it entirely up to you.
+          disabled: false
+
+          #!# The secret name. The ~ name is special as it is the secret we generate either automatically or via the
+          #!# secret_value option below.
+          secret_name: ~
+
+          #!# The value of a generated secret when using the ~ secret_name.
+          value: ''
+
+          #!# The path to the secret. If it has a '/' prefix it's assumed to be an absolute path within the pod. Otherwise
+          #!# it uses the format '{mountPath}/{secret_name}/{path}' where '{mountPath}' refers to the 'secret.mountPath'
+          #!# value, '{secret_name}' is the secret_name above, and '{path}' is this value.
+          path: 'notifier.smtp.password.txt'
+
+        tls:
+          #!# The server subject name to check the servers certificate against during the validation process.
+          #!# This option is not required if the certificate has a SAN which matches the host option.
+          server_name: ''
+
+          #!# Skip verifying the server certificate entirely. In preference to setting this we strongly recommend you add the
+          #!# certificate or the certificate of the authority signing the certificate to the certificates directory which is
+          #!# defined by the `certificates_directory` option at the top of the configuration.
+          #!# It's important to note the public key should be added to the directory, not the private key.
+          #!# This option is strongly discouraged but may be useful in some self-signed situations where validation is not
+          #!# important to the administrator.
+          skip_verify: false
+
+          #!# Minimum TLS version for the connection.
+          minimum_version: 'TLS1.2'
+
+          #!# Maximum TLS version for the connection.
+          maximum_version: 'TLS1.3'
+
+persistence:
+  enabled: true
+  size: '100Mi'

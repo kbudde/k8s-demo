@@ -68,6 +68,8 @@ environment:
     name: ""
   - proto: flowise
     name: ""
+  - proto: authelia
+    name: ""
   branch: main
 helm:
   buildDependencies: false

@@ -1,0 +1,10 @@
+#@data/values
+---
+addon:
+  postgres:
+    name: authelia-db
+    size: 1Gi
+  ingressroute:
+    name: auth
+    service: authelia
+    port: 80

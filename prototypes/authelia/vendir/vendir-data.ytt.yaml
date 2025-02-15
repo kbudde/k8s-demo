@@ -1,0 +1,9 @@
+#@data/values
+---
+prototypes:
+  - name: authelia
+    kind: helm #! ytt, helm, static, ytt-pkg
+    repo: helmChart #! helmChart or git
+    url: https://charts.authelia.com
+    version: 0.9.16
+
