@@ -1,9 +1,8 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - added ability to override default headless service .Values.server.service.clusterIP with empty value
-    - vector chart 0.37.x -> 0.40.x
-    - updated common dependency 0.0.37 -> 0.0.39
+    - add `.Values.server.vmServiceScrape` for [VMOperator](https://docs.victoriametrics.com/operator/) [VMServiceScrape](https://docs.victoriametrics.com/operator/api/#vmservicescrape) resource
+    - update victorialogs version to [v1.8.0](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.8.0-victorialogs)
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -15,7 +14,7 @@ annotations:
     - name: Changelog
       url: https://docs.victoriametrics.com/victorialogs/changelog
 apiVersion: v2
-appVersion: v1.6.1
+appVersion: v1.8.0
 dependencies:
 - condition: vector.enabled
   name: vector
@@ -40,4 +39,4 @@ name: victoria-logs-single
 sources:
 - https://github.com/VictoriaMetrics/helm-charts
 type: application
-version: 0.8.15
+version: 0.8.16
