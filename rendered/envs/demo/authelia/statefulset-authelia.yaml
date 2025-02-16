@@ -102,9 +102,6 @@ spec:
             successThreshold: 1
             timeoutSeconds: 5
           volumeMounts:
-            - mountPath: /config
-              name: authelia
-              readOnly: false
             - mountPath: /configuration.yaml
               name: config
               readOnly: true
@@ -123,9 +120,6 @@ spec:
       hostNetwork: false
       hostPID: false
       volumes:
-        - name: authelia
-          persistentVolumeClaim:
-            claimName: authelia
         - configMap:
             items:
               - key: configuration.yaml
