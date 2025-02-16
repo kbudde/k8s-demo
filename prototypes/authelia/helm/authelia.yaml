@@ -8,12 +8,13 @@ pod:
   resources:
     requests:
       cpu: 0.25
-      memory: 50Mi
+      memory: 150Mi
     limits:
-      memory: 55Mi
+      memory: 155Mi
   env:
   - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE
     value: /secrets/authelia-db-app/storage.postgres.password.txt
+
 
 secret:
   existingSecret: 'authelia'
@@ -22,6 +23,9 @@ secret:
       items:
        - key: password
          path: storage.postgres.password.txt
+    authelia-users:
+      items:
+      - key: users_database.yaml
 
 configMap:
   #! extraConfigs:
@@ -37,7 +41,7 @@ configMap:
       disable: true
     file:
       enabled: true
-      path: '/config/users_database.yml'
+      path: /secrets/authelia-users/users_database.yaml
       watch: true #! TODO: test if we can skip restart
 
   session:
@@ -106,7 +110,7 @@ configMap:
         enabledSecret: false
         address: 'submission://box.budd.ee:587'
         timeout: '5 seconds'
-        sender: 'Authelia <admin@example.com>'
+        sender: 'Authelia <authelia@budd.ee>'
 
         #!# HELO/EHLO Identifier. Some SMTP Servers may reject the default of localhost.
         identifier: 'authelia'

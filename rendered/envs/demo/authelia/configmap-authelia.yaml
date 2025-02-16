@@ -84,7 +84,7 @@ data:
         disable: true
         custom_url: ''
       file:
-        path: '/config/users_database.yml'
+        path: '/secrets/authelia-users/users_database.yaml'
         watch: true
         search:
           email: false
@@ -153,7 +153,7 @@ data:
         address: 'submission://box.budd.ee:587'
         timeout: '5 seconds'
         username: 'authelia@budd.ee'
-        sender: 'Authelia <admin@example.com>'
+        sender: 'Authelia <authelia@budd.ee>'
         identifier: 'authelia'
         subject: '[Authelia] {title}'
         startup_check_address: 'authelia@budd.ee'

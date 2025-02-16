@@ -23,7 +23,7 @@ spec:
   template:
     metadata:
       annotations:
-        authelia.com/checksum-config: fff89b4212c4645b793d75f01a81cf518fb3e058eb3be9a99ff6341a87c49af7
+        authelia.com/checksum-config: f647237e2cc299b468fa7adeb1ac067772489512784310905f332010f2b07b3f
       labels:
         app.kubernetes.io/instance: authelia
         app.kubernetes.io/managed-by: Helm
@@ -87,10 +87,10 @@ spec:
             timeoutSeconds: 5
           resources:
             limits:
-              memory: 55Mi
+              memory: 155Mi
             requests:
               cpu: 0.25
-              memory: 50Mi
+              memory: 150Mi
           startupProbe:
             failureThreshold: 6
             httpGet:
@@ -114,6 +114,9 @@ spec:
               readOnly: true
             - mountPath: /secrets/authelia-db-app
               name: secret-authelia-db-app
+              readOnly: true
+            - mountPath: /secrets/authelia-users
+              name: secret-authelia-users
               readOnly: true
       enableServiceLinks: false
       hostIPC: false
@@ -147,6 +150,12 @@ spec:
               - key: password
                 path: storage.postgres.password.txt
             secretName: authelia-db-app
+        - name: secret-authelia-users
+          secret:
+            items:
+              - key: users_database.yaml
+                path: users_database.yaml
+            secretName: authelia-users
   updateStrategy:
     rollingUpdate:
       partition: 0
