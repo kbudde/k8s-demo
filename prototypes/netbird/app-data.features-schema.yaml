@@ -1,0 +1,10 @@
+#@data/values-schema
+---
+#@overlay/match missing_ok=True
+addon:
+  #! Each feature will be enabled by providing a non-empty value for the name
+  postgres:
+    #@schema/nullable
+    name: ""
+    instances: 2
+    size: 5Gi

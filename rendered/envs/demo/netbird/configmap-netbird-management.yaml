@@ -1,0 +1,85 @@
+apiVersion: v1
+data:
+  management.json: |-
+    {
+      "Stuns": [
+        {
+          "Proto": "udp",
+          "URI": "{{ .STUN_SERVER }}",
+          "Username": "",
+          "Password": ""
+        }
+      ],
+      "TURNConfig": {
+        "TimeBasedCredentials": false,
+        "CredentialsTTL": "12h0m0s",
+        "Secret": "secret",
+        "Turns": [
+          {
+            "Proto": "udp",
+            "URI": "{{ .TURN_SERVER }}",
+            "Username": "{{ .TURN_SERVER_USER }}",
+            "Password": "{{ .TURN_SERVER_PASSWORD }}"
+          }
+        ]
+      },
+      "Relay": {
+        "Addresses": ["{{ .NB_EXPOSED_ADDRESS }}"],
+        "CredentialsTTL": "24h",
+        "Secret": "{{ .RELAY_PASSWORD }}"
+      },
+      "Signal": {
+        "Proto": "https",
+        "URI": "{{ .NB_SIGNAL_ADDRESS }}",
+        "Username": "",
+        "Password": ""
+      },
+      "Datadir": "/var/lib/netbird/",
+      "DataStoreEncryptionKey": "{{ .DATASTORE_ENCRYPTION_KEY }}",
+      "HttpConfig": {
+        "CertFile": "",
+        "CertKey": "",
+        "AuthAudience": "{{ .IDP_CLIENT_ID }}",
+        "AuthIssuer": "https://idp.demo.budd.ee",
+        "AuthUserIDClaim": "",
+        "AuthKeysLocation": "https://idp.demo.budd.ee/jwks.json",
+        "OIDCConfigEndpoint": "https://idp.demo.budd.ee/.well-known/openid-configuration",
+        "IdpSignKeyRefreshEnabled": true
+      },
+      "IdpManagerConfig": {},
+      "DeviceAuthorizationFlow": {},
+      "PKCEAuthorizationFlow": {
+        "ProviderConfig": {
+          "Audience": "{{ .IDP_CLIENT_ID }}",
+          "ClientID": "{{ .IDP_CLIENT_ID }}",
+          "ClientSecret": "{{ .IDP_CLIENT_SECRET }}",
+          "Domain": "",
+          "AuthorizationEndpoint": "https://idp.demo.budd.ee/api/oidc/authroization/",
+          "TokenEndpoint": "https://idp.demo.budd.ee/api/oidc/token/",
+          "Scope": "openid email profile",
+          "UseIDToken": false,
+          "RedirectURLs": ["http://localhost:53000"],
+          "UseIDToken": true
+        }
+      },
+      "StoreConfig": {
+        "Engine": "postgres"
+      },
+      "ReverseProxy": {
+        "TrustedHTTPProxies": null,
+        "TrustedHTTPProxiesCount": 0,
+        "TrustedPeers": null
+      }
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: netbird
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: netbird-management
+    app.kubernetes.io/version: 0.36.3
+    helm.sh/chart: netbird-1.5.6
+  name: netbird-management
+  namespace: netbird

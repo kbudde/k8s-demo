@@ -1,0 +1,24 @@
+netbird_client: ENC[AES256_GCM,data:HL5O8oNY8w==,iv:HCn/+EpzDMGp+y1yUzL2N2FwdHqAaVMkAzPP3fyNG0g=,tag:O3ryeRsV3CUwH4IjuN21sQ==,type:str]
+netbird_client_secret: ENC[AES256_GCM,data:U1EzdLzd6jZ3Mt3Vg81cVtrbdPWVIKCI9y3Njr6pGE+ntxkbhZ8acg6UKZPpG6drIhrVaYGV85Lq0WLtX52yTMH7IpqP5HEv,iv:lZyKJc2ZURqfgyq/P73N0TXzt3UvbYVmZvCKtsSfw2E=,tag:IKlihI1jLeBeuSgR22GMtA==,type:str]
+netbird_relayPassword: ENC[AES256_GCM,data:WJlPWUjOWg7nmCqGkmKai+iwDDftcA7O,iv:/gdaulylYexE53+atT43GNAEzX0Le0zklmEZklKhqZA=,tag:Ljnvle5hlkRSt0eRAWwPgg==,type:str]
+netbird_turnServerPassword: ENC[AES256_GCM,data:ZqiULoD/ns6ixnv8WK4Ruzy2Dc2Z6k753ZH0u1arBw==,iv:rzBUUHkTgODNx8MnKm0U96Je1rhlwlsKzcBe799ExpM=,tag:leiLsgFzqNcXYEySpeeyVQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18vdqq99qpl8gyql3ggu2d4ull2d0694sv9v9keg687jh8csjm5rqws9rmk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByMXlScXpQaFIwOHI3aXpN
+            NUZLTEZHUTF0WG1lNnZIVUpOOXl0Q3U0NUdZCisyRmVlSStzK0pzVXJmeE5qZXZa
+            SnBmc2lqWWxGaGF3dFRRMWJaQ2p0bkkKLS0tIEF0bmtSMGZDeDJjalVzODdURE9x
+            TFBVR3hnRXozZjRpVkZpdEIyUlByVTAKwf4TsRpTxQGM97/7BrEY5SP0KwxhbvPe
+            fouuhQofrWan2P/OeETRuuLhtOWPQa37vsc5lT49jzbhHqpt2Q5jzA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-16T22:17:19Z"
+    mac: ENC[AES256_GCM,data:yb8JUuY4j7fkCVsIysEBvVTl0T8aObYDNT4zCcu3ll0R19pGKddsBU3EqTwUGftE9CzjpxW25SQ8WR1QCvLqgyym3/Smh6H3qqP9Wxz45g4WupLNbGHHJ8em3Ejx/qBt2+uXZ67X4JvstMJ0lhgPyqU3u/i2y2gmlvVYQOYkFDw=,iv:2qwDB7y2Gb5VwMlE2x6zha4lFLmFwJPz21Dgt6fkSgA=,tag:H7LhlrooZn9sepXYNzmkIA==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.9.4

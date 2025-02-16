@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: netbird
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: netbird-dashboard
+    helm.sh/chart: netbird-1.5.6
+  name: netbird-dashboard
+  namespace: netbird
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: netbird
+      app.kubernetes.io/name: netbird-dashboard
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: netbird
+        app.kubernetes.io/name: netbird-dashboard
+    spec:
+      containers:
+        - env:
+            - name: AUTH_AUDIENCE
+              value: none
+            - name: AUTH_AUTHORITY
+              value: https://auth.demo.budd.ee
+            - name: AUTH_REDIRECT_URI
+              value: /peers
+            - name: AUTH_SILENT_REDIRECT_URI
+              value: /add-peers
+            - name: AUTH_SUPPORTED_SCOPES
+              value: openid email profile
+            - name: NETBIRD_MGMT_API_ENDPOINT
+              value: https://netbird.demo.budd.ee:443
+            - name: NETBIRD_MGMT_GRPC_API_ENDPOINT
+              value: https://netbird.demo.budd.ee:443
+            - name: NETBIRD_TOKEN_SOURCE
+              value: idToken
+            - name: USE_AUTH0
+              value: "false"
+            - name: AUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: idpClientID
+                  name: netbird
+            - name: AUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: idpClientSecret
+                  name: netbird
+          image: netbirdio/dashboard:v2.9.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 5
+          name: netbird
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources: {}
+          securityContext: {}
+      securityContext: {}
+      serviceAccountName: netbird-dashboard

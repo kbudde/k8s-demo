@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 5031119cc622a919eb503abc1611537ced27ddbf4747098fafc9a3b3a673afcb
+    helmChart:
+      appVersion: 0.36.3
+      version: 1.5.6
+    path: .
+  path: .myks/vendir-cache/helm-netbird-1.5.6-f9dc154e12e45a4c/data
+kind: LockConfig
