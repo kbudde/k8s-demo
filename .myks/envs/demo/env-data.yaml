@@ -68,6 +68,8 @@ environment:
     name: ""
   - proto: flowise
     name: ""
+  - proto: netbird
+    name: ""
   - proto: authelia
     name: ""
   branch: main

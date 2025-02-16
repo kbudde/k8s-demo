@@ -50,7 +50,7 @@ spec:
             - name: AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE
               value: /secrets/internal/storage.encryption.key
             - name: X_AUTHELIA_CONFIG
-              value: /configuration.yaml
+              value: /configuration.yaml,/secrets/authelia-clients/configuration.oidc.yaml
             - name: X_AUTHELIA_CONFIG_FILTERS
               value: template
             - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE
@@ -109,6 +109,9 @@ spec:
             - mountPath: /secrets/internal
               name: secrets
               readOnly: true
+            - mountPath: /secrets/authelia-clients
+              name: secret-authelia-clients
+              readOnly: true
             - mountPath: /secrets/authelia-db-app
               name: secret-authelia-db-app
               readOnly: true
@@ -138,6 +141,12 @@ spec:
               - key: storage.encryption.key
                 path: storage.encryption.key
             secretName: authelia
+        - name: secret-authelia-clients
+          secret:
+            items:
+              - key: configuration.oidc.yaml
+                path: configuration.oidc.yaml
+            secretName: authelia-clients
         - name: secret-authelia-db-app
           secret:
             items:

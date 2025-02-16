@@ -1,0 +1,6 @@
+#@data/values
+---
+addon:
+  postgres:
+    name: netbird-db
+    size: 1Gi

@@ -25,4 +25,5 @@ environment:
   #!  - proto: gitpod
   - proto: victoria-metrics-operator
   - proto: flowise
+  - proto: netbird
   - proto: authelia

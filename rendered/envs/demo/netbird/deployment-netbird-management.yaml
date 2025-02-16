@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: netbird
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: netbird-management
+    app.kubernetes.io/version: 0.36.3
+    helm.sh/chart: netbird-1.5.6
+  name: netbird-management
+  namespace: netbird
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: netbird
+      app.kubernetes.io/name: netbird-management
+  template:
+    metadata:
+      annotations:
+        checksum/config: 5414cabff93c326911c68a3cf2215ec47255f77bc862c3bdf83274beeb99034c
+      labels:
+        app.kubernetes.io/instance: netbird
+        app.kubernetes.io/name: netbird-management
+    spec:
+      containers:
+        - args:
+            - --port=80
+            - --log-file=console
+            - --log-level=info
+            - --disable-anonymous-metrics=false
+            - --single-account-mode-domain=netbird.example.com
+            - --dns-domain=netbird.selfhosted
+          env:
+            - name: NB_SIGNAL_ADDRESS
+              value: netbird.demo.budd.ee:443
+            - name: DATASTORE_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: datastoreEncryptionKey
+                  name: netbird
+            - name: IDP_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: idpClientID
+                  name: netbird
+            - name: IDP_SERVICE_ACCOUNT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: idpServiceAccountPassword
+                  name: netbird
+            - name: IDP_SERVICE_ACCOUNT_USER
+              valueFrom:
+                secretKeyRef:
+                  key: idpServiceAccountUser
+                  name: netbird
+            - name: NB_EXPOSED_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  key: relayAddress
+                  name: netbird
+            - name: NETBIRD_STORE_ENGINE_POSTGRES_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: uri
+                  name: netbird-db-app
+            - name: RELAY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: relayPassword
+                  name: netbird
+            - name: STUN_SERVER
+              valueFrom:
+                secretKeyRef:
+                  key: stunServer
+                  name: netbird
+            - name: TURN_SERVER
+              valueFrom:
+                secretKeyRef:
+                  key: turnServer
+                  name: netbird
+            - name: TURN_SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: turnServerPassword
+                  name: netbird
+            - name: TURN_SERVER_USER
+              valueFrom:
+                secretKeyRef:
+                  key: turnServerUser
+                  name: netbird
+          image: netbirdio/management:0.36.3
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            tcpSocket:
+              port: http
+            timeoutSeconds: 3
+          name: netbird-management
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+            - containerPort: 33073
+              name: grpc
+              protocol: TCP
+            - containerPort: 9090
+              name: metrics
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            tcpSocket:
+              port: http
+            timeoutSeconds: 3
+          resources: {}
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /etc/netbird
+              name: config
+            - mountPath: /var/lib/netbird
+              name: management
+      securityContext: {}
+      serviceAccountName: netbird-management
+      volumes:
+        - configMap:
+            name: netbird-management
+          name: config
+        - emptyDir: {}
+          name: management

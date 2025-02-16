@@ -25,10 +25,13 @@ secret:
     authelia-users:
       items:
       - key: users_database.yaml
+    authelia-clients:
+      items:
+      - key: configuration.oidc.yaml
 
 configMap:
-  #! extraConfigs:
-  #!  - configuration.oidc.yaml #! TODO: mount
+  extraConfigs:
+  - /secrets/authelia-clients/configuration.oidc.yaml
   log:
     format: json
   telemetry:
