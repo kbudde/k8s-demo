@@ -5,9 +5,9 @@ directories:
             name: kube-prometheus-stack
             repository:
                 url: https://prometheus-community.github.io/helm-charts
-            version: 69.2.3
+            version: 69.3.1
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-kube-prometheus-stack-69.2.3-c7d4c56f0b80b683/data
+      path: .myks/vendir-cache/helm-kube-prometheus-stack-69.3.1-49b41366c83da604/data
       permissions: null
 kind: Config
