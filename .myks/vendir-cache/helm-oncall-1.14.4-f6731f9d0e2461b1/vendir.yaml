@@ -5,9 +5,9 @@ directories:
             name: oncall
             repository:
                 url: https://grafana.github.io/helm-charts
-            version: 1.14.3
+            version: 1.14.4
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-oncall-1.14.3-f67d5f9d0e2d22f6/data
+      path: .myks/vendir-cache/helm-oncall-1.14.4-f6731f9d0e2461b1/data
       permissions: null
 kind: Config

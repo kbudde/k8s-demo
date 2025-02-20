@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: oncall
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: oncall
-    app.kubernetes.io/version: v1.14.3
-    helm.sh/chart: oncall-1.14.3
+    app.kubernetes.io/version: v1.14.4
+    helm.sh/chart: oncall-1.14.4
   name: oncall-engine
 spec:
   ports:
