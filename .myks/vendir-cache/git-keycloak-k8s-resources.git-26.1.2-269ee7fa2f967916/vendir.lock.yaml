@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 2783ac9113e10a8a86c12a5b3f48c0e1886dcde54a43af336c9bcbae0c70492b
+    git:
+      commitTitle: Automatic update to 26.1.2
+      sha: 73b2866bb5160cde070f56706fb281d902f02bd2
+      tags:
+      - 26.1.2
+    path: .
+  path: .myks/vendir-cache/git-keycloak-k8s-resources.git-26.1.2-269ee7fa2f967916/data
+kind: LockConfig

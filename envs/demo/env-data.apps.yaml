@@ -26,4 +26,5 @@ environment:
   - proto: victoria-metrics-operator
   - proto: flowise
   - proto: netbird
+  #!- proto: crossplane-keycloak
   - proto: keycloak

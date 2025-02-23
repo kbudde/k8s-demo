@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    app.quarkus.io/build-timestamp: 2025-02-18 - 15:18:03 +0000
+    app.quarkus.io/quarkus-version: 3.15.3
+    app.quarkus.io/vcs-uri: https://github.com/keycloak/keycloak.git
+  labels:
+    app.kubernetes.io/managed-by: quarkus
+    app.kubernetes.io/name: keycloak-operator
+    app.kubernetes.io/version: 26.1.2
+  name: keycloak-operator
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: keycloak-operator
+  type: ClusterIP
