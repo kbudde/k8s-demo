@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 5414cabff93c326911c68a3cf2215ec47255f77bc862c3bdf83274beeb99034c
+        checksum/config: ba6c9fdbf7563ad28981a09bf38b01e055d9ef28bda91708e44018cbb1c75512
       labels:
         app.kubernetes.io/instance: netbird
         app.kubernetes.io/name: netbird-management
