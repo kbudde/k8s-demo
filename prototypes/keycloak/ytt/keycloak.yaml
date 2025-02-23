@@ -1,7 +1,7 @@
 #@ load("@ytt:data", "data")
 #@ domain = data.values.shared.domain
-#@ frontend = "auth." + domain
-#@ admin =  "keycloak." + domain
+#@ frontend = "https://auth." + domain
+#@ admin =  "https://keycloak." + domain
 ---
 apiVersion: k8s.keycloak.org/v2alpha1
 kind: Keycloak

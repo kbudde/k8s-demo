@@ -20,8 +20,8 @@ spec:
       name: keycloak-psql-app
     vendor: postgres
   hostname:
-    admin: keycloak.demo.budd.ee
-    hostname: auth.demo.budd.ee
+    admin: https://keycloak.demo.budd.ee
+    hostname: https://auth.demo.budd.ee
   http:
     httpEnabled: true
     httpPort: 8080
