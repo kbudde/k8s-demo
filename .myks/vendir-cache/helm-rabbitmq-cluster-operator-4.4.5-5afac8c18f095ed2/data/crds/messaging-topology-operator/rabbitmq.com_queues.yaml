@@ -1,28 +1,28 @@
-# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_policies.yaml
-# Version: 1.15.0
+# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_queues.yaml
+# Version: 1.16.0
 # VersionOf: rmq-messaging-topology-operator
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.15.0
-  name: policies.rabbitmq.com
+    controller-gen.kubebuilder.io/version: v0.17.1
+  name: queues.rabbitmq.com
 spec:
   group: rabbitmq.com
   names:
     categories:
     - rabbitmq
-    kind: Policy
-    listKind: PolicyList
-    plural: policies
-    singular: policy
+    kind: Queue
+    listKind: QueueList
+    plural: queues
+    singular: queue
   scope: Namespaced
   versions:
   - name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Policy is the Schema for the policies API
+        description: Queue is the Schema for the queues API
         properties:
           apiVersion:
             description: |-
@@ -42,44 +42,34 @@ spec:
           metadata:
             type: object
           spec:
-            description: |-
-              PolicySpec defines the desired state of Policy
-              https://www.rabbitmq.com/parameters.html#policies
+            description: QueueSpec defines the desired state of Queue
             properties:
-              applyTo:
-                default: all
+              arguments:
                 description: |-
-                  What this policy applies to: 'queues', 'classic_queues', 'quorum_queues', 'streams', 'exchanges', or 'all'.
-                  Default to 'all'.
-                enum:
-                - queues
-                - classic_queues
-                - quorum_queues
-                - streams
-                - exchanges
-                - all
-                type: string
-              definition:
-                description: Policy definition. Required property.
+                  Queue arguments in the format of KEY: VALUE. e.g. x-delivery-limit: 10000.
+                  Configuring queues through arguments is not recommended because they cannot be updated once set; we recommend configuring queues through policies instead.
                 type: object
                 x-kubernetes-preserve-unknown-fields: true
+              autoDelete:
+                description: when set to true, queues that have had at least one consumer
+                  before are deleted after the last consumer unsubscribes.
+                type: boolean
+              deleteIfEmpty:
+                description: when set to true, queues are deleted only if empty.
+                type: boolean
+              deleteIfUnused:
+                description: when set to true, queues are delete only if they have
+                  no consumer.
+                type: boolean
+              durable:
+                description: When set to false queues does not survive server restart.
+                type: boolean
               name:
-                description: Required property; cannot be updated
+                description: Name of the queue; required property.
                 type: string
-              pattern:
-                description: |-
-                  Regular expression pattern used to match queues and exchanges, e.g. "^amq.".
-                  Required property.
-                type: string
-              priority:
-                default: 0
-                description: |-
-                  Default to '0'.
-                  In the event that more than one policy can match a given exchange or queue, the policy with the greatest priority applies.
-                type: integer
               rabbitmqClusterReference:
                 description: |-
-                  Reference to the RabbitmqCluster that the policy will be created in.
+                  Reference to the RabbitmqCluster that the queue will be created in.
                   Required property.
                 properties:
                   connectionSecret:
@@ -95,9 +85,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -112,18 +100,18 @@ spec:
                       Defaults to the namespace of the requested resource if omitted.
                     type: string
                 type: object
+              type:
+                type: string
               vhost:
                 default: /
-                description: Default to vhost '/'; cannot be updated
+                description: Default to vhost '/'
                 type: string
             required:
-            - definition
             - name
-            - pattern
             - rabbitmqClusterReference
             type: object
           status:
-            description: PolicyStatus defines the observed state of Policy
+            description: QueueStatus defines the observed state of Queue
             properties:
               conditions:
                 items:
@@ -153,8 +141,8 @@ spec:
                 type: array
               observedGeneration:
                 description: |-
-                  observedGeneration is the most recent successful generation observed for this Policy. It corresponds to the
-                  Policy's generation, which is updated on mutation by the API Server.
+                  observedGeneration is the most recent successful generation observed for this Queue. It corresponds to the
+                  Queue's generation, which is updated on mutation by the API Server.
                 format: int64
                 type: integer
             type: object

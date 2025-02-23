@@ -1,28 +1,29 @@
-# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_superstreams.yaml
-# Version: 1.15.0
+# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_schemareplications.yaml
+# Version: 1.16.0
 # VersionOf: rmq-messaging-topology-operator
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.15.0
-  name: superstreams.rabbitmq.com
+    controller-gen.kubebuilder.io/version: v0.17.1
+  name: schemareplications.rabbitmq.com
 spec:
   group: rabbitmq.com
   names:
-    categories:
-    - rabbitmq
-    kind: SuperStream
-    listKind: SuperStreamList
-    plural: superstreams
-    singular: superstream
+    kind: SchemaReplication
+    listKind: SchemaReplicationList
+    plural: schemareplications
+    singular: schemareplication
   scope: Namespaced
   versions:
-  - name: v1alpha1
+  - name: v1beta1
     schema:
       openAPIV3Schema:
-        description: SuperStream is the Schema for the queues API
+        description: |-
+          SchemaReplication is the Schema for the schemareplications API
+          This feature requires Tanzu RabbitMQ with schema replication plugin.
+          For more information, see: https://tanzu.vmware.com/rabbitmq and https://www.rabbitmq.com/definitions-standby.html.
         properties:
           apiVersion:
             description: |-
@@ -42,21 +43,18 @@ spec:
           metadata:
             type: object
           spec:
-            description: SuperStreamSpec defines the desired state of SuperStream
+            description: SchemaReplicationSpec defines the desired state of SchemaReplication
             properties:
-              name:
-                description: Name of the queue; required property.
+              endpoints:
+                description: |-
+                  endpoints should be one or multiple endpoints separated by ','.
+                  Must provide either spec.endpoints or endpoints in spec.upstreamSecret.
+                  When endpoints are provided in both spec.endpoints and spec.upstreamSecret, spec.endpoints takes
+                  precedence.
                 type: string
-              partitions:
-                default: 3
-                description: |-
-                  Number of partitions to create within this super stream.
-                  Defaults to '3'.
-                type: integer
               rabbitmqClusterReference:
-                description: |-
-                  Reference to the RabbitmqCluster that the SuperStream will be created in.
-                  Required property.
+                description: Reference to the RabbitmqCluster that schema replication
+                  would be set for. Must be an existing cluster.
                 properties:
                   connectionSecret:
                     description: |-
@@ -71,9 +69,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -88,23 +84,43 @@ spec:
                       Defaults to the namespace of the requested resource if omitted.
                     type: string
                 type: object
-              routingKeys:
+              secretBackend:
+                description: Set to fetch user credentials from K8s external secret
+                  stores to be used for schema replication.
+                properties:
+                  vault:
+                    properties:
+                      secretPath:
+                        description: |-
+                          Path in Vault to access a KV (Key-Value) secret with the fields username and password to be used for replication.
+                          For example "secret/data/rabbitmq/config".
+                          Optional; if not provided, username and password will come from upstreamSecret instead.
+                          Have to set either secretBackend.vault.secretPath or upstreamSecret, but not both.
+                        type: string
+                    type: object
+                type: object
+              upstreamSecret:
                 description: |-
-                  Routing keys to use for each of the partitions in the SuperStream
-                  If unset, the routing keys for the partitions will be set to the index of the partitions
-                items:
-                  type: string
-                type: array
-              vhost:
-                default: /
-                description: Default to vhost '/'; cannot be updated
-                type: string
+                  Defines a Secret which contains credentials to be used for schema replication.
+                  The Secret must contain the keys `username` and `password` in its Data field, or operator will error.
+                  Have to set either secretBackend.vault.secretPath or spec.upstreamSecret, but not both.
+                properties:
+                  name:
+                    default: ""
+                    description: |-
+                      Name of the referent.
+                      This field is effectively required, but due to backwards compatibility is
+                      allowed to be empty. Instances of this type with an empty value here are
+                      almost certainly wrong.
+                      More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                    type: string
+                type: object
+                x-kubernetes-map-type: atomic
             required:
-            - name
             - rabbitmqClusterReference
             type: object
           status:
-            description: SuperStreamStatus defines the observed state of SuperStream
+            description: SchemaReplicationStatus defines the observed state of SchemaReplication
             properties:
               conditions:
                 items:
@@ -134,16 +150,10 @@ spec:
                 type: array
               observedGeneration:
                 description: |-
-                  observedGeneration is the most recent successful generation observed for this SuperStream. It corresponds to the
-                  SuperStream's generation, which is updated on mutation by the API Server.
+                  observedGeneration is the most recent successful generation observed for this Queue. It corresponds to the
+                  Queue's generation, which is updated on mutation by the API Server.
                 format: int64
                 type: integer
-              partitions:
-                description: Partitions are a list of the stream queue names which
-                  form the partitions of this SuperStream.
-                items:
-                  type: string
-                type: array
             type: object
         type: object
     served: true
