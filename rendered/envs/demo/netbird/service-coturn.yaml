@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: coturn
+    app.kubernetes.io/name: coturn
+  name: coturn
+spec:
+  ports:
+    - name: turn-port-udp
+      port: 3478
+      protocol: UDP
+      targetPort: 3478
+    - name: turn-port-tcp
+      port: 3478
+      protocol: TCP
+      targetPort: 3478
+    - name: turn-port-proxy
+      port: 5555
+      protocol: TCP
+      targetPort: 5555
+  selector:
+    app.kubernetes.io/instance: coturn
+    app.kubernetes.io/name: coturn
+  type: ClusterIP

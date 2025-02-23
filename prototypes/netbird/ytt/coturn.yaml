@@ -1,0 +1,93 @@
+#@ load("@ytt:data", "data")
+#! TODO: add prometheus monitoring
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coturn
+  labels:
+    app.kubernetes.io/name: coturn
+    app.kubernetes.io/instance: coturn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+          app.kubernetes.io/name: coturn
+          app.kubernetes.io/instance: coturn
+  template:
+    metadata:
+      labels:
+            app.kubernetes.io/name: coturn
+            app.kubernetes.io/instance: coturn
+    spec:
+      containers:
+        - name: coturn
+          image: coturn/coturn
+          imagePullPolicy: Always
+          ports:
+            - name: turn-port-udp
+              containerPort: 3478
+              #!hostPort: 3478
+              protocol: UDP
+            - name: turn-port-tcp
+              containerPort: 3478
+              #!hostPort: 3478
+              protocol: TCP
+            - name: turn-proxy
+              containerPort: 5555
+              #!hostPort: 5555
+              protocol: TCP
+          env:
+            - name: TURN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: netbird
+                  key: turnServerUser
+            - name: TURN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: netbird
+                  key: turnServerPassword
+          args:
+            - -v
+            - --tcp-proxy-port
+            - 5555
+            - --prometheus
+            - --prometheus-username-labels
+            - --web-admin #! listening on 127.0.0..:8080
+            - -u
+            - "$TURN_USER:$TURN_PASSWORD"
+            - --no-udp-relay
+            #! How to handle udp port range?
+            #! - --min-port
+            #! - 49512 #! default
+            #! - --max-port
+            #! - 65535 #! default
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: coturn
+  labels:
+       app.kubernetes.io/name: coturn
+       app.kubernetes.io/instance: coturn
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3478
+      targetPort: 3478
+      protocol: UDP
+      name: turn-port-udp
+    - port: 3478
+      targetPort: 3478
+      protocol: TCP
+      name: turn-port-tcp
+    - port: 5555
+      targetPort: 5555
+      protocol: TCP
+      name: turn-port-proxy
+  selector:
+       app.kubernetes.io/name: coturn
+       app.kubernetes.io/instance: coturn

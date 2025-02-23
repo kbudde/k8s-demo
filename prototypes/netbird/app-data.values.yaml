@@ -1,4 +1,5 @@
 #@data/values
 ---
-application: {}
-
+application:
+  #! renovate: datasource=docker
+  image: coturn/coturn:4.6.3
