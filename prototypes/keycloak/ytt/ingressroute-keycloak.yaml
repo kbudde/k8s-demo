@@ -1,8 +1,12 @@
+#@ load("@ytt:data", "data")
+#@ domain = data.values.shared.domain
+#@ frontend = "auth." + domain
+#@ admin =  "keycloak." + domain
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   annotations:
-    a8r.io/repository: https://github.com/kbudde/k8s-demo
     external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
     kubernetes.io/ingress.class: traefik
   name: keycloak
@@ -12,13 +16,13 @@ spec:
     - websecure-http3
   routes:
     - kind: Rule
-      match: Host(`auth.demo.budd.ee`)
+      match: #@ "Host(`{}`)".format(frontend)
       priority: 10
       services:
         - name: keycloak-service
           port: 8080
     - kind: Rule
-      match: Host(`keycloak.demo.budd.ee`)
+      match: #@ "Host(`{}`)".format(admin)
       priority: 10
       services:
         - name: keycloak-service

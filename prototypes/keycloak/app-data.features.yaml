@@ -4,7 +4,3 @@ addon:
   postgres:
     name: keycloak-psql
     size: 2Gi
-  ingressroute:
-    name: keycloak
-    service: keycloak-service
-    port: 8080
