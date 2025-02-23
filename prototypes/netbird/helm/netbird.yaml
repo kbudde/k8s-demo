@@ -86,8 +86,8 @@ management:
     TURN_SERVER_PASSWORD: netbird/turnServerPassword
     RELAY_PASSWORD: netbird/relayPassword
     IDP_CLIENT_ID: netbird/idpClientID
-    IDP_SERVICE_ACCOUNT_USER: netbird/idpServiceAccountUser
-    IDP_SERVICE_ACCOUNT_PASSWORD: netbird/idpServiceAccountPassword
+    #! IDP_SERVICE_ACCOUNT_USER: netbird/idpServiceAccountUser
+    #! IDP_SERVICE_ACCOUNT_PASSWORD: netbird/idpServiceAccountPassword
     DATASTORE_ENCRYPTION_KEY: netbird/datastoreEncryptionKey
     NB_EXPOSED_ADDRESS: netbird/relayAddress
   env:

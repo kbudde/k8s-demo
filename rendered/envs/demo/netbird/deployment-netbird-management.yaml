@@ -47,16 +47,6 @@ spec:
                 secretKeyRef:
                   key: idpClientID
                   name: netbird
-            - name: IDP_SERVICE_ACCOUNT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: idpServiceAccountPassword
-                  name: netbird
-            - name: IDP_SERVICE_ACCOUNT_USER
-              valueFrom:
-                secretKeyRef:
-                  key: idpServiceAccountUser
-                  name: netbird
             - name: NB_EXPOSED_ADDRESS
               valueFrom:
                 secretKeyRef:
