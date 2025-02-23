@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.15.0
+    controller-gen.kubebuilder.io/version: v0.17.1
   name: shovels.rabbitmq.com
 spec:
   group: rabbitmq.com
@@ -90,6 +90,9 @@ spec:
                 destQueue:
                   description: amqp091 configuration
                   type: string
+                destQueueArgs:
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
                 name:
                   description: Required property; cannot be updated
                   type: string
@@ -113,9 +116,7 @@ spec:
                             This field is effectively required, but due to backwards compatibility is
                             allowed to be empty. Instances of this type with an empty value here are
                             almost certainly wrong.
-                            TODO: Add other useful fields. apiVersion, kind, uid?
                             More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                            TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                           type: string
                       type: object
                       x-kubernetes-map-type: atomic
@@ -157,6 +158,9 @@ spec:
                 srcQueue:
                   description: amqp091 configuration
                   type: string
+                srcQueueArgs:
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
                 uriSecret:
                   description: |-
                     Secret contains the AMQP URI(s) to configure Shovel destination and source.
@@ -171,9 +175,7 @@ spec:
                         This field is effectively required, but due to backwards compatibility is
                         allowed to be empty. Instances of this type with an empty value here are
                         almost certainly wrong.
-                        TODO: Add other useful fields. apiVersion, kind, uid?
                         More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                        TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                       type: string
                   type: object
                   x-kubernetes-map-type: atomic

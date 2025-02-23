@@ -1,28 +1,28 @@
-# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_queues.yaml
-# Version: 1.15.0
+# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_exchanges.yaml
+# Version: 1.16.0
 # VersionOf: rmq-messaging-topology-operator
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.15.0
-  name: queues.rabbitmq.com
+    controller-gen.kubebuilder.io/version: v0.17.1
+  name: exchanges.rabbitmq.com
 spec:
   group: rabbitmq.com
   names:
     categories:
     - rabbitmq
-    kind: Queue
-    listKind: QueueList
-    plural: queues
-    singular: queue
+    kind: Exchange
+    listKind: ExchangeList
+    plural: exchanges
+    singular: exchange
   scope: Namespaced
   versions:
   - name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Queue is the Schema for the queues API
+        description: Exchange is the Schema for the exchanges API
         properties:
           apiVersion:
             description: |-
@@ -42,34 +42,23 @@ spec:
           metadata:
             type: object
           spec:
-            description: QueueSpec defines the desired state of Queue
+            description: ExchangeSpec defines the desired state of Exchange
             properties:
               arguments:
-                description: |-
-                  Queue arguments in the format of KEY: VALUE. e.g. x-delivery-limit: 10000.
-                  Configuring queues through arguments is not recommended because they cannot be updated once set; we recommend configuring queues through policies instead.
                 type: object
                 x-kubernetes-preserve-unknown-fields: true
               autoDelete:
-                description: when set to true, queues that have had at least one consumer
-                  before are deleted after the last consumer unsubscribes.
-                type: boolean
-              deleteIfEmpty:
-                description: when set to true, queues are deleted only if empty.
-                type: boolean
-              deleteIfUnused:
-                description: when set to true, queues are delete only if they have
-                  no consumer.
+                description: Cannot be updated
                 type: boolean
               durable:
-                description: When set to false queues does not survive server restart.
+                description: Cannot be updated
                 type: boolean
               name:
-                description: Name of the queue; required property.
+                description: Required property; cannot be updated
                 type: string
               rabbitmqClusterReference:
                 description: |-
-                  Reference to the RabbitmqCluster that the queue will be created in.
+                  Reference to the RabbitmqCluster that the exchange will be created in.
                   Required property.
                 properties:
                   connectionSecret:
@@ -85,9 +74,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -103,17 +90,19 @@ spec:
                     type: string
                 type: object
               type:
+                default: direct
+                description: Cannot be updated
                 type: string
               vhost:
                 default: /
-                description: Default to vhost '/'
+                description: Default to vhost '/'; cannot be updated
                 type: string
             required:
             - name
             - rabbitmqClusterReference
             type: object
           status:
-            description: QueueStatus defines the observed state of Queue
+            description: ExchangeStatus defines the observed state of Exchange
             properties:
               conditions:
                 items:
@@ -143,8 +132,8 @@ spec:
                 type: array
               observedGeneration:
                 description: |-
-                  observedGeneration is the most recent successful generation observed for this Queue. It corresponds to the
-                  Queue's generation, which is updated on mutation by the API Server.
+                  observedGeneration is the most recent successful generation observed for this Exchange. It corresponds to the
+                  Exchange's generation, which is updated on mutation by the API Server.
                 format: int64
                 type: integer
             type: object

@@ -1,28 +1,28 @@
-# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_exchanges.yaml
-# Version: 1.15.0
+# Source: https://raw.githubusercontent.com/rabbitmq/messaging-topology-operator/v{version}/config/crd/bases/rabbitmq.com_federations.yaml
+# Version: 1.16.0
 # VersionOf: rmq-messaging-topology-operator
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.15.0
-  name: exchanges.rabbitmq.com
+    controller-gen.kubebuilder.io/version: v0.17.1
+  name: federations.rabbitmq.com
 spec:
   group: rabbitmq.com
   names:
     categories:
     - rabbitmq
-    kind: Exchange
-    listKind: ExchangeList
-    plural: exchanges
-    singular: exchange
+    kind: Federation
+    listKind: FederationList
+    plural: federations
+    singular: federation
   scope: Namespaced
   versions:
   - name: v1beta1
     schema:
       openAPIV3Schema:
-        description: Exchange is the Schema for the exchanges API
+        description: Federation is the Schema for the federations API
         properties:
           apiVersion:
             description: |-
@@ -42,23 +42,34 @@ spec:
           metadata:
             type: object
           spec:
-            description: ExchangeSpec defines the desired state of Exchange
+            description: |-
+              FederationSpec defines the desired state of Federation
+              For how to configure federation upstreams, see: https://www.rabbitmq.com/federation-reference.html.
             properties:
-              arguments:
-                type: object
-                x-kubernetes-preserve-unknown-fields: true
-              autoDelete:
-                description: Cannot be updated
-                type: boolean
-              durable:
-                description: Cannot be updated
-                type: boolean
+              ackMode:
+                enum:
+                - on-confirm
+                - on-publish
+                - no-ack
+                type: string
+              exchange:
+                type: string
+              expires:
+                type: integer
+              maxHops:
+                type: integer
+              messageTTL:
+                type: integer
               name:
                 description: Required property; cannot be updated
                 type: string
+              prefetch-count:
+                type: integer
+              queue:
+                type: string
               rabbitmqClusterReference:
                 description: |-
-                  Reference to the RabbitmqCluster that the exchange will be created in.
+                  Reference to the RabbitmqCluster that this federation upstream will be created in.
                   Required property.
                 properties:
                   connectionSecret:
@@ -74,9 +85,7 @@ spec:
                           This field is effectively required, but due to backwards compatibility is
                           allowed to be empty. Instances of this type with an empty value here are
                           almost certainly wrong.
-                          TODO: Add other useful fields. apiVersion, kind, uid?
                           More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-                          TODO: Drop `kubebuilder:default` when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
                         type: string
                     type: object
                     x-kubernetes-map-type: atomic
@@ -91,10 +100,28 @@ spec:
                       Defaults to the namespace of the requested resource if omitted.
                     type: string
                 type: object
-              type:
-                default: direct
-                description: Cannot be updated
-                type: string
+              reconnectDelay:
+                type: integer
+              trustUserId:
+                type: boolean
+              uriSecret:
+                description: |-
+                  Secret contains the AMQP URI(s) for the upstream.
+                  The Secret must contain the key `uri` or operator will error.
+                  `uri` should be one or multiple uris separated by ','.
+                  Required property.
+                properties:
+                  name:
+                    default: ""
+                    description: |-
+                      Name of the referent.
+                      This field is effectively required, but due to backwards compatibility is
+                      allowed to be empty. Instances of this type with an empty value here are
+                      almost certainly wrong.
+                      More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                    type: string
+                type: object
+                x-kubernetes-map-type: atomic
               vhost:
                 default: /
                 description: Default to vhost '/'; cannot be updated
@@ -102,9 +129,10 @@ spec:
             required:
             - name
             - rabbitmqClusterReference
+            - uriSecret
             type: object
           status:
-            description: ExchangeStatus defines the observed state of Exchange
+            description: FederationStatus defines the observed state of Federation
             properties:
               conditions:
                 items:
@@ -134,8 +162,8 @@ spec:
                 type: array
               observedGeneration:
                 description: |-
-                  observedGeneration is the most recent successful generation observed for this Exchange. It corresponds to the
-                  Exchange's generation, which is updated on mutation by the API Server.
+                  observedGeneration is the most recent successful generation observed for this Federation. It corresponds to the
+                  Federation's generation, which is updated on mutation by the API Server.
                 format: int64
                 type: integer
             type: object
