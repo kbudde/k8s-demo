@@ -13,6 +13,8 @@ spec:
   routes:
     - kind: Rule
       match: Host(`auth.demo.budd.ee`)
+      middlewares:
+        - name: forwarded-headers
       priority: 10
       services:
         - name: keycloak-service
@@ -20,6 +22,8 @@ spec:
           port: 8080
     - kind: Rule
       match: Host(`keycloak.demo.budd.ee`)
+      middlewares:
+        - name: forwarded-headers
       priority: 10
       services:
         - name: keycloak-service
