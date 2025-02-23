@@ -1,0 +1,28 @@
+#@ load("@ytt:data", "data")
+#@ domain = data.values.shared.domain
+#@ frontend = "auth." + domain
+#@ admin =  "keycloak." + domain
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+spec:
+  db:
+    vendor: postgres
+    url: jdbc:postgresql://keycloak-psql-rw.keycloak:5432/app
+    usernameSecret:
+      name: keycloak-psql-app
+      key: user
+    passwordSecret:
+      name: keycloak-psql-app
+      key: password
+  hostname:
+    admin: #@ admin
+    hostname: #@ frontend
+  bootstrapAdmin:
+    service:
+      secret: keycloak-bootstrap
+    user:
+      secret: keycloak-bootstrap
+  instances: 2

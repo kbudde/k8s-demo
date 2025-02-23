@@ -15,4 +15,4 @@ spec:
       priority: 10
       services:
         - name: keycloak
-          port: 80
+          port: 8080
