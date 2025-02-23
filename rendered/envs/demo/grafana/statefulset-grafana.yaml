@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 11.5.1
-    helm.sh/chart: grafana-8.9.0
+    helm.sh/chart: grafana-8.10.0
   name: grafana
   namespace: grafana
 spec:
@@ -21,15 +21,15 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 2767e8caf58502a6960ed01b7526623b4257556f7fadf2851068ce85376ee30d
+        checksum/config: 601cc344aa81281b90da367dcf5eb3b694336570480f93329c73f1b8a6016a2e
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 3888c54c6ec9a3b6cc57a02310b970776aaaf1f122bee3bad7d860d7f7d07bfe
+        checksum/sc-dashboard-provider-config: b7f5ab812201de88cfcf4d276637635c767eb70687b9acd4621f18428430c946
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
         app.kubernetes.io/name: grafana
         app.kubernetes.io/version: 11.5.1
-        helm.sh/chart: grafana-8.9.0
+        helm.sh/chart: grafana-8.10.0
     spec:
       automountServiceAccountToken: true
       containers:
@@ -58,7 +58,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/alerting/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
+          image: quay.io/kiwigrid/k8s-sidecar:1.30.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-alerts
           securityContext:
@@ -96,7 +96,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/dashboards/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
+          image: quay.io/kiwigrid/k8s-sidecar:1.30.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-dashboard
           securityContext:
@@ -134,7 +134,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/datasources/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
+          image: quay.io/kiwigrid/k8s-sidecar:1.30.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-datasources
           securityContext:
@@ -172,7 +172,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/notifications/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
+          image: quay.io/kiwigrid/k8s-sidecar:1.30.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-notifiers
           securityContext:
@@ -210,7 +210,7 @@ spec:
               value: http://localhost:3000/api/admin/provisioning/plugins/reload
             - name: REQ_METHOD
               value: POST
-          image: quay.io/kiwigrid/k8s-sidecar:1.28.0
+          image: quay.io/kiwigrid/k8s-sidecar:1.30.0
           imagePullPolicy: IfNotPresent
           name: grafana-sc-plugins
           securityContext:
@@ -341,6 +341,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 472
       serviceAccountName: grafana
+      shareProcessNamespace: false
       volumes:
         - configMap:
             name: grafana
