@@ -9,33 +9,34 @@ metadata:
 spec:
   entryPoints:
     - websecure
+    - websecure-http3
   routes:
     - kind: Rule
       match: Host(`netbird.demo.budd.ee`) && !PathPrefix(`/api`) && !PathPrefix(`/management`) && !PathPrefix(`/signalexchange`) && !PathPrefix(`/relay`)
       services:
         - name: netbird-traefik-dashboard
-          namespace: netbird-traefik
+          namespace: netbird
           passHostHeader: true
           port: 80
     - kind: Rule
       match: Host(`netbird.demo.budd.ee`) && PathPrefix(`/api`)
       services:
         - name: netbird-traefik-management
-          namespace: netbird-traefik
+          namespace: netbird
           passHostHeader: true
           port: 80
     - kind: Rule
       match: Host(`netbird.demo.budd.ee`) && PathPrefix(`/relay`)
       services:
         - name: netbird-traefik-relay
-          namespace: netbird-traefik
+          namespace: netbird
           passHostHeader: true
           port: 33080
     - kind: Rule
       match: Host(`netbird.demo.budd.ee`) && PathPrefix(`/management`)
       services:
         - name: netbird-traefik-management
-          namespace: netbird-traefik
+          namespace: netbird
           passHostHeader: true
           port: 80
           scheme: h2c
@@ -43,7 +44,17 @@ spec:
       match: Host(`netbird.demo.budd.ee`) && PathPrefix(`/signalexchange`)
       services:
         - name: netbird-traefik-signal
-          namespace: netbird-traefik
+          namespace: netbird
           passHostHeader: true
           port: 80
           scheme: h2c
+    - kind: Rule
+      match: Host(`turn.demo.budd.ee`)
+      services:
+        - name: coturn
+          namespace: netbird
+          passHostHeader: true
+          port: 55555
+          proxyProtocol:
+            version: 1
+          scheme: http
