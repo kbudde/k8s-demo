@@ -21,9 +21,11 @@ spec:
       services:
         - name: keycloak-service
           port: 8080
+          passHostHeader: true
     - kind: Rule
       match: #@ "Host(`{}`)".format(admin)
       priority: 10
       services:
         - name: keycloak-service
           port: 8080
+          passHostHeader: true
