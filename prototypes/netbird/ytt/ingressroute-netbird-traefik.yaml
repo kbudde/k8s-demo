@@ -59,7 +59,7 @@ spec:
         - name: coturn
           namespace: #@ namespace()
           passHostHeader: true
-          proxyProtocol:
-            version: 1
+          #!proxyProtocol:
+          #!  version: 1
           port: 55555
           scheme: http

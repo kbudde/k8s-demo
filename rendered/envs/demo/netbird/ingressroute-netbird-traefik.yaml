@@ -55,6 +55,4 @@ spec:
           namespace: netbird
           passHostHeader: true
           port: 55555
-          proxyProtocol:
-            version: 1
           scheme: http

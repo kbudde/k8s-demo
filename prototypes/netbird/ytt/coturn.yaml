@@ -51,7 +51,7 @@ spec:
           args:
             - -v
             - --tcp-proxy-port
-            - 5555
+            - "5555"
             - --prometheus
             - --prometheus-username-labels
             - --web-admin #! listening on 127.0.0..:8080
