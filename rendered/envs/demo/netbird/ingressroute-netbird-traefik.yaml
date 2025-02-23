@@ -9,7 +9,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-    - websecure-http3
   routes:
     - kind: Rule
       match: Host(`netbird.demo.budd.ee`) && !PathPrefix(`/api`) && !PathPrefix(`/management`) && !PathPrefix(`/signalexchange`) && !PathPrefix(`/relay`)
