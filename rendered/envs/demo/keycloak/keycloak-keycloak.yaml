@@ -24,4 +24,6 @@ spec:
     hostname: https://auth.demo.budd.ee
   http:
     httpEnabled: true
+  ingress:
+    enabled: false
   instances: 2

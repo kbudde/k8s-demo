@@ -28,3 +28,5 @@ spec:
     user:
       secret: keycloak-bootstrap
   instances: 2
+  ingress:
+    enabled: false
