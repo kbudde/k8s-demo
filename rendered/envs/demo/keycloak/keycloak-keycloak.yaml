@@ -1,0 +1,21 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: keycloak
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: keycloak
+spec:
+  db:
+    passwordSecret:
+      key: password
+      name: keycloak-psql-app
+    url: jdbc:postgresql://keycloak-psql-rw.keycloak:5432/app
+    usernameSecret:
+      key: user
+      name: keycloak-psql-app
+    vendor: postgres
+  hostname:
+    admin: keycloak.demo.budd.ee
+    hostname: auth.demo.budd.ee
+  ingress: null
+  instances: 2
