@@ -27,3 +27,5 @@ spec:
   ingress:
     enabled: false
   instances: 2
+  proxy:
+    headers: forwarded

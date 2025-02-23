@@ -27,6 +27,8 @@ spec:
       secret: keycloak-bootstrap
     user:
       secret: keycloak-bootstrap
+  proxy:
+    headers: forwarded
   instances: 2
   ingress:
     enabled: false
