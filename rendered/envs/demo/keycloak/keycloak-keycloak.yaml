@@ -24,5 +24,4 @@ spec:
     hostname: https://auth.demo.budd.ee
   http:
     httpEnabled: true
-    httpPort: 8080
   instances: 2
