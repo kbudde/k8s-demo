@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: reloader
-      version: 1.2.1
+      version: 1.3.0
       repository:
         url: https://stakater.github.io/stakater-charts
     lazy: true
