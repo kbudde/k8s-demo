@@ -8,7 +8,7 @@ metadata:
   labels:
     app: reloader-reloader
     app.kubernetes.io/managed-by: Helm
-    chart: reloader-1.2.1
+    chart: reloader-1.3.0
     heritage: Helm
     release: reloader
   name: reloader-reloader-role
@@ -46,6 +46,9 @@ rules:
       - jobs
     verbs:
       - create
+      - delete
+      - list
+      - get
   - apiGroups:
       - ""
     resources:
