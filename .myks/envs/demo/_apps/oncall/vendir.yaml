@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: oncall
-      version: 1.14.4
+      version: 1.15.0
       repository:
         url: https://grafana.github.io/helm-charts
     lazy: true
