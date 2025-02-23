@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: crossplane
+            repository:
+                url: https://charts.crossplane.io/stable
+            version: 1.19.0
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-crossplane-1.19.0-21d44cee922bfb0a/data
+      permissions: null
+kind: Config

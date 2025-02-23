@@ -36,6 +36,10 @@ environment:
     name: ""
   - proto: cert-manager
     name: ""
+  - proto: crossplane
+    name: ""
+  - proto: crossplane-openstack
+    name: ""
   - proto: designate-certmanager-webhook
     name: ""
   - proto: external-dns
@@ -70,7 +74,7 @@ environment:
     name: ""
   - proto: netbird
     name: ""
-  - proto: authelia
+  - proto: keycloak
     name: ""
   branch: netbird
 helm:

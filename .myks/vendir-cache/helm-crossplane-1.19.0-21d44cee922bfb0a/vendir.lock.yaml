@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 0c8f81d23ef3922db2ef460cbbf3137a4b303bcfca09651d97db829b8b9a527b
+    helmChart:
+      appVersion: 1.19.0
+      version: 1.19.0
+    path: .
+  path: .myks/vendir-cache/helm-crossplane-1.19.0-21d44cee922bfb0a/data
+kind: LockConfig

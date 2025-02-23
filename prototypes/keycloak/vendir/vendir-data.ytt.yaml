@@ -1,0 +1,8 @@
+#@data/values
+---
+prototypes: []
+  #!  - name: keycloak
+  #!  kind: helm
+  #!  repo: helmchart
+  #!  url:
+  #!  version:
