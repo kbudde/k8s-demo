@@ -33,7 +33,7 @@ spec:
     plugin:
       name: argocd-vault-plugin
     repoURL: https://github.com/kbudde/k8s-demo
-    targetRevision: main
+    targetRevision: netbird
   syncPolicy:
     automated:
       prune: true
