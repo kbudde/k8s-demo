@@ -74,8 +74,6 @@ environment:
     name: ""
   - proto: netbird
     name: ""
-  - proto: keycloak-operator
-    name: ""
   - proto: keycloak
     name: ""
   branch: netbird

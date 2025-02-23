@@ -1,3 +1,9 @@
 #@data/values
 ---
-prototypes: []
+prototypes:
+  - name: keycloak
+    kind: ytt
+    repo: git
+    url: https://github.com/keycloak/keycloak-k8s-resources.git
+    version: 26.1.2
+    newRootPath: kubernetes
