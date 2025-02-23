@@ -1,0 +1,10 @@
+#@data/values
+---
+addon:
+  postgres:
+    name: keycloak-psql
+    size: 2Gi
+  ingressroute:
+    name: keycloak
+    service: keycloak
+    port: 80

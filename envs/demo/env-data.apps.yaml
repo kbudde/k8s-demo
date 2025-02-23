@@ -27,4 +27,5 @@ environment:
   - proto: flowise
   - proto: netbird
   #!- proto: crossplane-keycloak
+  - proto: keycloak-operator
   - proto: keycloak
