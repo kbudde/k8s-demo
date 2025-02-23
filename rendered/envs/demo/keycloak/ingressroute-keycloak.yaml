@@ -14,5 +14,5 @@ spec:
       match: Host(`keycloak.demo.budd.ee`)
       priority: 10
       services:
-        - name: keycloak
+        - name: keycloak-service
           port: 8080
