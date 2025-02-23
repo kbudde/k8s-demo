@@ -17,6 +17,9 @@ spec:
     passwordSecret:
       name: keycloak-psql-app
       key: password
+  http:
+    httpEnabled: true
+    httpPort: 8080
   hostname:
     admin: #@ admin
     hostname: #@ frontend
