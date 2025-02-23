@@ -5,6 +5,11 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
   name: keycloak
 spec:
+  bootstrapAdmin:
+    service:
+      secret: keycloak-bootstrap
+    user:
+      secret: keycloak-bootstrap
   db:
     passwordSecret:
       key: password
@@ -17,5 +22,4 @@ spec:
   hostname:
     admin: keycloak.demo.budd.ee
     hostname: auth.demo.budd.ee
-  ingress: null
   instances: 2
