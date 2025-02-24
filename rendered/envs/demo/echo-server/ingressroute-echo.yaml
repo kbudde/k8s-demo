@@ -12,10 +12,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`echo.demo.budd.ee`)
-      middlewares:
-        - name: forwarded-headers
       priority: 10
       services:
         - name: echo-server
+          passHostHeader: true
           port: 8080
           scheme: http
