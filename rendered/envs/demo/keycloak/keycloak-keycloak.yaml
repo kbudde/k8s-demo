@@ -28,4 +28,4 @@ spec:
     enabled: false
   instances: 2
   proxy:
-    headers: forwarded
+    headers: xforwarded

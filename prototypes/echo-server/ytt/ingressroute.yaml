@@ -21,17 +21,3 @@ spec:
         port: 8080
         scheme: http
         passHostHeader: true
-    #!middlewares:
-    #!  - name: forwarded-headers
-
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: forwarded-headers
-spec:
-  headers:
-    customRequestHeaders:
-      X-Forwarded-Proto: "https"
-      X-Forwarded-For: "{{ .Request.RemoteAddr }}"
-      X-Real-IP: "{{ .Request.RemoteAddr }}"
