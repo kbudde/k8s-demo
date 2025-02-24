@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: echo-server
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: echo-server

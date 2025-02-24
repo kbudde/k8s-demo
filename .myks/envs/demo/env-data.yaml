@@ -76,6 +76,8 @@ environment:
     name: ""
   - proto: keycloak
     name: ""
+  - proto: echo-server
+    name: ""
   branch: netbird
 helm:
   buildDependencies: false

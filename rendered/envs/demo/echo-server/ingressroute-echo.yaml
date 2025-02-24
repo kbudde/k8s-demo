@@ -5,24 +5,17 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
     kubernetes.io/ingress.class: traefik
-  name: keycloak
+  name: echo
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`auth.demo.budd.ee`)
+      match: Host(`echo.demo.budd.ee`)
       middlewares:
         - name: forwarded-headers
       priority: 10
       services:
-        - name: keycloak-service
+        - name: echo-server
           port: 8080
-    - kind: Rule
-      match: Host(`keycloak.demo.budd.ee`)
-      middlewares:
-        - name: forwarded-headers
-      priority: 10
-      services:
-        - name: keycloak-service
-          port: 8080
+          scheme: http

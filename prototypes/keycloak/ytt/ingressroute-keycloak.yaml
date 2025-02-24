@@ -20,7 +20,7 @@ spec:
       services:
         - name: keycloak-service
           port: 8080
-          passHostHeader: true
+          #! passHostHeader: true
       middlewares:
         - name: forwarded-headers
     - kind: Rule
@@ -29,7 +29,7 @@ spec:
       services:
         - name: keycloak-service
           port: 8080
-          passHostHeader: true
+          #! passHostHeader: true
       middlewares:
         - name: forwarded-headers
 

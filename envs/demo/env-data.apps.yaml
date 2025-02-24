@@ -28,3 +28,4 @@ environment:
   - proto: netbird
   #!- proto: crossplane-keycloak
   - proto: keycloak
+  - proto: echo-server
