@@ -27,7 +27,7 @@ ports:
       trustedIPs:
         - "192.168.1.0/24"
   websecure:
-    http3: 
+    http3:
       enabled: true
     proxyProtocol:
       trustedIPs:
@@ -50,7 +50,7 @@ service:
   enabled: true
   #!# -- Single service is using `MixedProtocolLBService` feature gate.
   #!# -- When set to false, it will create two Service, one for TCP and one for UDP.
-  single: true
+  single: false
   annotations:
     external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
     loadbalancer.openstack.org/keep-floatingip: "true"
