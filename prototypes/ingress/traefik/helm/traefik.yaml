@@ -28,7 +28,7 @@ ports:
         - "192.168.1.0/24"
   websecure:
     http3:
-      enabled: false
+      enabled: true
     proxyProtocol:
       trustedIPs:
         - "192.168.1.0/24"
@@ -47,7 +47,7 @@ logs:
     enabled: true
 
 service:
-  enabled: true
+  enabled: false
   #!# -- Single service is using `MixedProtocolLBService` feature gate.
   #!# -- When set to false, it will create two Service, one for TCP and one for UDP.
   single: false
@@ -56,7 +56,7 @@ service:
     loadbalancer.openstack.org/keep-floatingip: "true"
     loadbalancer.openstack.org/proxy-protocol: v2
     loadbalancer.openstack.org/enable-health-monitor: "false"
-    #!loadbalancer.openstack.org/load-balancer-id: 26fdade6-958f-4161-9dcf-3fc7d318f04c
+    loadbalancer.openstack.org/load-balancer-id: 06fdade6-958f-4061-9dcf-3fc7d318f04c
 
 ingressRoute:
   dashboard:

@@ -7,19 +7,14 @@ metadata:
     loadbalancer.openstack.org/enable-health-monitor: "false"
     loadbalancer.openstack.org/keep-floatingip: "true"
     loadbalancer.openstack.org/load-balancer-id: 06fdade6-958f-4061-9dcf-3fc7d318f04c
-    loadbalancer.openstack.org/proxy-protocol: v2
-  name: traefik
+  name: traefik-udp
   namespace: ingress
 spec:
   ports:
-    - name: web
-      port: 80
-      protocol: TCP
-      targetPort: web
-    - name: websecure
+    - name: websecure-http3
       port: 443
-      protocol: TCP
-      targetPort: websecure
+      protocol: UDP
+      targetPort: websecure-http3
   selector:
     app.kubernetes.io/instance: traefik-ingress
     app.kubernetes.io/name: traefik

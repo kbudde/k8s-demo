@@ -1,0 +1,52 @@
+#@ load("@ytt:data", "data")
+#@ traefikLB = "lb." + data.values.shared.domain
+#@ loadbalancerid = "06fdade6-958f-4061-9dcf-3fc7d318f04c"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
+    loadbalancer.openstack.org/enable-health-monitor: "false"
+    loadbalancer.openstack.org/keep-floatingip: "true"
+    loadbalancer.openstack.org/load-balancer-id: #@ loadbalancerid
+    loadbalancer.openstack.org/proxy-protocol: v2
+  name: traefik
+  namespace: ingress
+spec:
+  ports:
+    - name: web
+      port: 80
+      protocol: TCP
+      targetPort: web
+    - name: websecure
+      port: 443
+      protocol: TCP
+      targetPort: websecure
+  selector:
+    app.kubernetes.io/instance: traefik-ingress
+    app.kubernetes.io/name: traefik
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
+    loadbalancer.openstack.org/enable-health-monitor: "false"
+    loadbalancer.openstack.org/keep-floatingip: "true"
+    loadbalancer.openstack.org/load-balancer-id: #@ loadbalancerid
+    #! proxy protocol is not supported
+    #! loadbalancer.openstack.org/proxy-protocol: v2
+  name: traefik-udp
+  namespace: ingress
+spec:
+  ports:
+    - name: websecure-http3
+      port: 443
+      protocol: UDP
+      targetPort: websecure-http3
+  selector:
+    app.kubernetes.io/instance: traefik-ingress
+    app.kubernetes.io/name: traefik
+  type: LoadBalancer

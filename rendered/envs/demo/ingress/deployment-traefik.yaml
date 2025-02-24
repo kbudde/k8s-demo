@@ -55,6 +55,7 @@ spec:
             - --providers.kubernetescrd.allowEmptyServices=true
             - --entryPoints.web.proxyProtocol.trustedIPs=192.168.1.0/24
             - --entryPoints.websecure.http.tls=true
+            - --entryPoints.websecure.http3
             - --entryPoints.websecure.proxyProtocol.trustedIPs=192.168.1.0/24
             - --log.level=INFO
             - --accesslog=true
@@ -96,6 +97,9 @@ spec:
             - containerPort: 8443
               name: websecure
               protocol: TCP
+            - containerPort: 8443
+              name: websecure-http3
+              protocol: UDP
           readinessProbe:
             failureThreshold: 1
             httpGet:
