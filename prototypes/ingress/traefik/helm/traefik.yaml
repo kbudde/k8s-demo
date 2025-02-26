@@ -2,7 +2,7 @@
 #@ traefikLB = "lb." + data.values.shared.domain
 ---
 deployment:
-  replicas: 2
+  replicas: 1
 
 podDisruptionBudget:
   enabled: false
@@ -55,7 +55,7 @@ service:
     external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
     loadbalancer.openstack.org/keep-floatingip: "true"
     loadbalancer.openstack.org/proxy-protocol: v2
-    loadbalancer.openstack.org/enable-health-monitor: "false"
+    loadbalancer.openstack.org/enable-health-monitor: "true"
     loadbalancer.openstack.org/load-balancer-id: 06fdade6-958f-4061-9dcf-3fc7d318f04c
 
 ingressRoute:

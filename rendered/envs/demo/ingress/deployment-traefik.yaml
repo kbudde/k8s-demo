@@ -13,7 +13,7 @@ metadata:
   namespace: ingress
 spec:
   minReadySeconds: 0
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/instance: traefik-ingress
