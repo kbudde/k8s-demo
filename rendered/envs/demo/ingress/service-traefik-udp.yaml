@@ -6,7 +6,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: lb.demo.budd.ee
     loadbalancer.openstack.org/enable-health-monitor: "true"
     loadbalancer.openstack.org/keep-floatingip: "true"
-    loadbalancer.openstack.org/load-balancer-id: 06fdade6-958f-4061-9dcf-3fc7d318f04c
+    loadbalancer.openstack.org/load-balancer-id: df2268f6-26b6-44c0-a62f-475855ce33c6
   name: traefik-udp
   namespace: ingress
 spec:

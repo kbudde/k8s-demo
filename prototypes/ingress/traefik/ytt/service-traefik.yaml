@@ -1,6 +1,6 @@
 #@ load("@ytt:data", "data")
 #@ traefikLB = "lb." + data.values.shared.domain
-#@ loadbalancerid = "06fdade6-958f-4061-9dcf-3fc7d318f04c"
+#@ loadbalancerid = "df2268f6-26b6-44c0-a62f-475855ce33c6"
 ---
 apiVersion: v1
 kind: Service
