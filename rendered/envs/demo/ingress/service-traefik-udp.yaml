@@ -4,7 +4,7 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     external-dns.alpha.kubernetes.io/hostname: lb.demo.budd.ee
-    loadbalancer.openstack.org/enable-health-monitor: "false"
+    loadbalancer.openstack.org/enable-health-monitor: "true"
     loadbalancer.openstack.org/keep-floatingip: "true"
     loadbalancer.openstack.org/load-balancer-id: 06fdade6-958f-4061-9dcf-3fc7d318f04c
   name: traefik-udp

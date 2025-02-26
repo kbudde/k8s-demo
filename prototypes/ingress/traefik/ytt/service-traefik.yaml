@@ -7,7 +7,7 @@ kind: Service
 metadata:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
-    loadbalancer.openstack.org/enable-health-monitor: "false"
+    loadbalancer.openstack.org/enable-health-monitor: "true"
     loadbalancer.openstack.org/keep-floatingip: "true"
     loadbalancer.openstack.org/load-balancer-id: #@ loadbalancerid
     loadbalancer.openstack.org/proxy-protocol: v2
@@ -33,7 +33,7 @@ kind: Service
 metadata:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: #@ traefikLB
-    loadbalancer.openstack.org/enable-health-monitor: "false"
+    loadbalancer.openstack.org/enable-health-monitor: "true"
     loadbalancer.openstack.org/keep-floatingip: "true"
     loadbalancer.openstack.org/load-balancer-id: #@ loadbalancerid
     #! proxy protocol is not supported
