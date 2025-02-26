@@ -11,6 +11,7 @@ metadata:
   name: traefik
   namespace: ingress
 spec:
+  externalTrafficPolicy: Local
   ports:
     - name: web
       port: 80

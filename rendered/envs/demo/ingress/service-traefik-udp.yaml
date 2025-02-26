@@ -10,6 +10,7 @@ metadata:
   name: traefik-udp
   namespace: ingress
 spec:
+  externalTrafficPolicy: Local
   ports:
     - name: websecure-http3
       port: 443
