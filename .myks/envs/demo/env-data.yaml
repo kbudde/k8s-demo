@@ -72,8 +72,6 @@ environment:
     name: ""
   - proto: flowise
     name: ""
-  - proto: netbird
-    name: ""
   - proto: keycloak
     name: ""
   - proto: echo-server
