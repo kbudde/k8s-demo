@@ -4,27 +4,23 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.1
-  name: apiversions.hub.traefik.io
+  name: apis.hub.traefik.io
 spec:
   group: hub.traefik.io
   names:
-    kind: APIVersion
-    listKind: APIVersionList
-    plural: apiversions
-    singular: apiversion
+    kind: API
+    listKind: APIList
+    plural: apis
+    singular: api
   scope: Namespaced
   versions:
-  - additionalPrinterColumns:
-    - jsonPath: .spec.title
-      name: Title
-      type: string
-    - jsonPath: .spec.release
-      name: Release
-      type: string
-    name: v1alpha1
+  - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: APIVersion defines a version of an API.
+        description: |-
+          API defines an HTTP interface that is exposed to external clients. It specifies the supported versions
+          and provides instructions for accessing its documentation. Once instantiated, an API object is associated
+          with an Ingress, IngressRoute, or HTTPRoute resource, enabling the exposure of the described API to the outside world.
         properties:
           apiVersion:
             description: |-
@@ -44,8 +40,58 @@ spec:
           metadata:
             type: object
           spec:
-            description: The desired behavior of this APIVersion.
+            description: APISpec describes the API.
             properties:
+              cors:
+                description: Cors defines the Cross-Origin Resource Sharing configuration.
+                properties:
+                  addVaryHeader:
+                    description: AddVaryHeader defines whether the Vary header is
+                      automatically added/updated when the AllowOriginsList is set.
+                    type: boolean
+                  allowCredentials:
+                    description: AllowCredentials defines whether the request can
+                      include user credentials.
+                    type: boolean
+                  allowHeadersList:
+                    description: AllowHeadersList defines the Access-Control-Request-Headers
+                      values sent in preflight response.
+                    items:
+                      type: string
+                    type: array
+                  allowMethodsList:
+                    description: AllowMethodsList defines the Access-Control-Request-Method
+                      values sent in preflight response.
+                    items:
+                      type: string
+                    type: array
+                  allowOriginListRegex:
+                    description: AllowOriginListRegex is a list of allowable origins
+                      written following the Regular Expression syntax (https://golang.org/pkg/regexp/).
+                    items:
+                      type: string
+                    type: array
+                  allowOriginsList:
+                    description: AllowOriginsList is a list of allowable origins.
+                      Can also be a wildcard origin "*".
+                    items:
+                      type: string
+                    type: array
+                  exposeHeadersList:
+                    description: ExposeHeadersList defines the Access-Control-Expose-Headers
+                      values sent in preflight response.
+                    items:
+                      type: string
+                    type: array
+                  maxAge:
+                    description: MaxAge defines the time that a preflight request
+                      may be cached.
+                    format: int64
+                    type: integer
+                type: object
+              description:
+                description: Description explains what the API does.
+                type: string
               openApiSpec:
                 description: OpenAPISpec defines the API contract as an OpenAPI specification.
                 properties:
@@ -166,26 +212,32 @@ spec:
                 x-kubernetes-validations:
                 - message: path or url must be defined
                   rule: has(self.path) || has(self.url)
-              release:
-                description: |-
-                  Release is the version number of the API.
-                  This value must follow the SemVer format: https://semver.org/
-                maxLength: 100
-                type: string
-                x-kubernetes-validations:
-                - message: must be a valid semver version
-                  rule: self.matches(r"""^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$""")
               title:
-                description: Title is the public facing name of the APIVersion.
+                description: Title is the human-readable name of the API that will
+                  be used on the portal.
+                maxLength: 253
                 type: string
-            required:
-            - release
+              versions:
+                description: Versions are the different APIVersions available.
+                items:
+                  description: APIVersionRef references an APIVersion.
+                  properties:
+                    name:
+                      description: Name of the APIVersion.
+                      maxLength: 253
+                      type: string
+                  required:
+                  - name
+                  type: object
+                maxItems: 100
+                minItems: 1
+                type: array
             type: object
           status:
-            description: The current status of this APIVersion.
+            description: The current status of this API.
             properties:
               hash:
-                description: Hash is a hash representing the APIVersion.
+                description: Hash is a hash representing the API.
                 type: string
               syncedAt:
                 format: date-time
@@ -196,4 +248,3 @@ spec:
         type: object
     served: true
     storage: true
-    subresources: {}
