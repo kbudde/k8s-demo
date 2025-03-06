@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+    - contents:
+        - helmChart:
+            name: rancher
+            repository:
+                url: https://releases.rancher.com/server-charts/latest
+            version: 2.10.3
+          lazy: true
+          path: .
+      path: .myks/vendir-cache/helm-rancher-2.10.3-c265533ccb974171/data
+      permissions: null
+kind: Config
