@@ -5,9 +5,9 @@ directories:
             name: victoria-metrics-operator
             repository:
                 url: https://victoriametrics.github.io/helm-charts/
-            version: 0.42.1
+            version: 0.42.4
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-victoria-metrics-operator-0.42.1-428fcfd4f8fcb850/data
+      path: .myks/vendir-cache/helm-victoria-metrics-operator-0.42.4-427ed3d4f8ee4be9/data
       permissions: null
 kind: Config

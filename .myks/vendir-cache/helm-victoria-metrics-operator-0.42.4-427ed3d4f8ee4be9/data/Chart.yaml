@@ -1,8 +1,7 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - updated common dependency 0.0.37 -> 0.0.39
-    - added fullname prefix for victoriametrics:admin and victoriametrics:view roles to avoid collision during while deploying more than one operator. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/2012).
+    - add support for ServiceScrape `proxyURL`. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/2029).
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -43,4 +42,4 @@ sources:
 - https://github.com/VictoriaMetrics/helm-charts
 - https://github.com/VictoriaMetrics/operator
 type: application
-version: 0.42.1
+version: 0.42.4
