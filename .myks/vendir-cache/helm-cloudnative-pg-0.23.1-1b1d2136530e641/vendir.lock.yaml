@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 5992acedba1453495ca60648404218671bf9c3e9785d6ac1cb2012a54775215c
+    helmChart:
+      appVersion: 1.25.0
+      version: 0.23.1
+    path: .
+  path: .myks/vendir-cache/helm-cloudnative-pg-0.23.1-1b1d2136530e641/data
+kind: LockConfig
