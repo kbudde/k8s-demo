@@ -5,9 +5,9 @@ directories:
             name: reloader
             repository:
                 url: https://stakater.github.io/stakater-charts
-            version: 1.2.1
+            version: 2.0.0
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-reloader-1.2.1-3be62d0f07f91f74/data
+      path: .myks/vendir-cache/helm-reloader-2.0.0-74306713bf3c0e84/data
       permissions: null
 kind: Config
