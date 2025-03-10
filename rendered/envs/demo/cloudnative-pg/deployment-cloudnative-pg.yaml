@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cloudnative-pg
-    app.kubernetes.io/version: 1.25.0
-    helm.sh/chart: cloudnative-pg-0.23.1
+    app.kubernetes.io/version: 1.25.1
+    helm.sh/chart: cloudnative-pg-0.23.2
   name: cloudnative-pg
   namespace: cloudnative-pg
 spec:
@@ -21,9 +21,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 31844124280868de949b74c53d63c6df096838350c32f641627f2de692e1f5fb
-        checksum/monitoring-config: 3cfcfcddb84ad11cc19e95adaa7d190fbfeed4c6cf9168ad1f8865854d9f3aad
-        checksum/rbac: 6b2438edd4867faa4740f44d14c4203456b4c1380d34cf27e6b5c0fd7de4838c
+        checksum/config: 7dad51430e5c58c17de5de05012804bf156fd40d60072f1dad3eb89e59053151
+        checksum/monitoring-config: bbf136891bbaa9d3d77302723f8190ee32997e6c27981ce4a488a21e40c31a64
+        checksum/rbac: cd0b2d408dc527973823e1bf7f1ae7bad28ae8641208a3fb3552386d030e435e
       labels:
         app.kubernetes.io/instance: cloudnative-pg
         app.kubernetes.io/name: cloudnative-pg
@@ -39,14 +39,14 @@ spec:
             - /manager
           env:
             - name: OPERATOR_IMAGE_NAME
-              value: ghcr.io/cloudnative-pg/cloudnative-pg:1.25.0
+              value: ghcr.io/cloudnative-pg/cloudnative-pg:1.25.1
             - name: OPERATOR_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: MONITORING_QUERIES_CONFIGMAP
               value: cnpg-default-monitoring
-          image: ghcr.io/cloudnative-pg/cloudnative-pg:1.25.0
+          image: ghcr.io/cloudnative-pg/cloudnative-pg:1.25.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -79,6 +79,13 @@ spec:
             runAsUser: 10001
             seccompProfile:
               type: RuntimeDefault
+          startupProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /readyz
+              port: 9443
+              scheme: HTTPS
+            periodSeconds: 5
           volumeMounts:
             - mountPath: /controller
               name: scratch-data
