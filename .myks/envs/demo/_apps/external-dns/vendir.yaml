@@ -6,6 +6,6 @@ directories:
   - path: .
     git:
       url: https://github.com/kubernetes-sigs/external-dns
-      ref: v0.15.1
+      ref: v0.16.0
     lazy: true
     newRootPath: charts/external-dns
