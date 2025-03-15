@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: flowise
     app.kubernetes.io/version: 2.2.4
-    helm.sh/chart: flowise-3.11.2
+    helm.sh/chart: flowise-3.11.3
   name: flowise
 spec:
   replicas: 1
@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/secret: 2331a5e8e293e9948a1f6e9cf54c1c3ef971ec99251ee57d0fd5044b3b8970f0
+        checksum/secret: 07692c3d79d6ac30a069e7a01e314ed9a08d4d84f252ffefe9203dc874d2f5e0
       labels:
         app.kubernetes.io/instance: flowise
         app.kubernetes.io/name: flowise
@@ -66,7 +66,7 @@ spec:
           envFrom:
             - secretRef:
                 name: flowise-config
-          image: docker.io/flowiseai/flowise:2.2.6
+          image: docker.io/flowiseai/flowise:2.2.7
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
