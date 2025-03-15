@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 4eac954a201e63aacb76954c945e873ee98c291b17e24e2968ad33fb34b4e0cc
+    git:
+      commitTitle: 'fix(cloudflare): infinite loop with more than 50 custom hostnames
+        (#5181)...'
+      sha: 017f7687ca393138b565e51757a6fa8010902066
+      tags:
+      - v0.16.1
+    path: .
+  path: .myks/vendir-cache/git-external-dns-v0.16.1-4d38405a6bbab096/data
+kind: LockConfig
