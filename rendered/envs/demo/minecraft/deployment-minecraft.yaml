@@ -39,8 +39,6 @@ spec:
               value: 1.21.1
             - name: DIFFICULTY
               value: easy
-            - name: WHITELIST
-              value: K_E_B,Apfelbir,ribbimine
             - name: MODE
               value: survival
             - name: MOTD
@@ -56,7 +54,7 @@ spec:
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
               value: none
             - name: ONLINE_MODE
-              value: "false"
+              value: "true"
             - name: MEMORY
               value: 8192M
             - name: ENABLE_RCON
