@@ -14,7 +14,7 @@ minecraftServer:
   ## ref: https://docker-minecraft-server.readthedocs.io/en/latest/types-and-platforms
   type: "NEOFORGE"
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
-  forgeVersion: "21.1.73"
+  forgeVersion:
   # If type is set to FORGE, this sets the URL to download the Forge installer
   forgeInstallerUrl:
   # If type is set to SPONGEVANILLA, this sets the version
@@ -261,7 +261,7 @@ minecraftServer:
 ## Values can be either variable values or `valueFrom` yaml
 ##
 extraEnv:
-  {}
+  NEOFORGE_VERSION: "21.1.73"
   # some_variable: some value
   # another_variable:
   #   valueFrom:

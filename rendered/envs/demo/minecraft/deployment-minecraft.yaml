@@ -72,6 +72,8 @@ spec:
               value: all-the-mods-9
             - name: CF_PARALLEL_DOWNLOADS
               value: "4"
+            - name: NEOFORGE_VERSION
+              value: 21.1.73
           image: itzg/minecraft-server:latest
           imagePullPolicy: Always
           livenessProbe:
