@@ -23,10 +23,6 @@ spec:
       port: 443
       protocol: TCP
       targetPort: websecure
-    - name: websecure-http3
-      port: 443
-      protocol: UDP
-      targetPort: websecure-http3
   selector:
     app.kubernetes.io/instance: traefik-ingress
     app.kubernetes.io/name: traefik
