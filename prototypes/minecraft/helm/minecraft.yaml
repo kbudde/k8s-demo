@@ -156,8 +156,8 @@ minecraftServer:
 
   # A list of Modrinth project slugs with optional version after colon
   modrinth:
-    projects:
-    - cobblemon-fabric #better-mc-forge-bmc4
+    projects: []
+    # - cobblemon-fabric #better-mc-forge-bmc4
     # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
     downloadDependencies: required
     # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
@@ -262,7 +262,8 @@ minecraftServer:
 ## Values can be either variable values or `valueFrom` yaml
 ##
 extraEnv:
-  NEOFORGE_VERSION: "21.1.73"
+  MODRINTH_MODPACK: better-mc-forge-bmc4
+  # NEOFORGE_VERSION: "21.1.73"
   # some_variable: some value
   # another_variable:
   #   valueFrom:

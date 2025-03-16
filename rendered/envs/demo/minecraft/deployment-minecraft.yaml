@@ -51,8 +51,6 @@ spec:
               value: DEFAULT
             - name: LEVEL
               value: world
-            - name: MODRINTH_PROJECTS
-              value: cobblemon-fabric
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
               value: required
             - name: ONLINE_MODE
@@ -68,8 +66,8 @@ spec:
                   name: minecraft-curseforge
             - name: CF_PARALLEL_DOWNLOADS
               value: "4"
-            - name: NEOFORGE_VERSION
-              value: 21.1.73
+            - name: MODRINTH_MODPACK
+              value: better-mc-forge-bmc4
           image: itzg/minecraft-server:latest
           imagePullPolicy: Always
           livenessProbe:
