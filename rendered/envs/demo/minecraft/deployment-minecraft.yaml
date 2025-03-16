@@ -34,7 +34,7 @@ spec:
             - name: EULA
               value: "TRUE"
             - name: TYPE
-              value: NEOFORGE
+              value: FORGE
             - name: VERSION
               value: 1.21.1
             - name: DIFFICULTY
@@ -51,12 +51,10 @@ spec:
               value: DEFAULT
             - name: LEVEL
               value: world
-            - name: MODS
-              value: https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
-            - name: PLUGINS
-              value: https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip,https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar,https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar,https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar
+            - name: MODRINTH_PROJECTS
+              value: better-mc-forge-bmc4
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
-              value: none
+              value: optional
             - name: ONLINE_MODE
               value: "true"
             - name: MEMORY
@@ -68,8 +66,6 @@ spec:
                 secretKeyRef:
                   key: cf-api-key
                   name: minecraft-curseforge
-            - name: CF_SLUG
-              value: all-the-mods-9
             - name: CF_PARALLEL_DOWNLOADS
               value: "4"
             - name: NEOFORGE_VERSION
