@@ -34,7 +34,7 @@ spec:
             - name: EULA
               value: "TRUE"
             - name: TYPE
-              value: NEOFORGE
+              value: AUTO_CURSEFORGE
             - name: VERSION
               value: 1.21.1
             - name: DIFFICULTY
