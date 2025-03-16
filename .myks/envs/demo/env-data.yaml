@@ -16,7 +16,7 @@ argocd:
       plugin:
         name: argocd-vault-plugin
       repoURL: https://github.com/kbudde/k8s-demo
-      targetRevision: netbird
+      targetRevision: main
   env:
     name: ""
     prefix: ""
@@ -70,7 +70,7 @@ environment:
     name: ""
   - proto: authelia
     name: ""
-  branch: netbird
+  branch: main
 helm:
   buildDependencies: false
   capabilities:
@@ -85,7 +85,7 @@ yttPkg:
 render:
   includeNamespace: false
 myks:
-  gitRepoBranch: netbird
+  gitRepoBranch: main
   gitRepoUrl: https://github.com/kbudde/k8s-demo
   context:
     app: ""

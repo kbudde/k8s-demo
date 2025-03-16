@@ -1,5 +1,5 @@
 #@data/values
-#@ branch="netbird"
+#@ branch="main"
 ---
 environment:
   id: demo
