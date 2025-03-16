@@ -12,7 +12,7 @@ minecraftServer:
   ## Common types: "VANILLA", "FABRIC", "FORGE", "SPIGOT", "BUKKIT", "PAPER",
   ## "FTBA", "SPONGEVANILLA", "AUTO_CURSEFORGE"
   ## ref: https://docker-minecraft-server.readthedocs.io/en/latest/types-and-platforms
-  type: "NEOFORGE"
+  type: "FORGE"
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
   forgeVersion:
   # If type is set to FORGE, this sets the URL to download the Forge installer
@@ -138,13 +138,13 @@ minecraftServer:
 
   # List with URLs and paths to jar files, additionally may be a directory with jars
   # This works for both mods and plugins depending on server type
-  modUrls:
-  - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
-  pluginUrls:
-  - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
-  - https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar
-  - https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar
-  - https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar
+  modUrls: []
+  # - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
+  pluginUrls: []
+  # - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
+  # - https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar
+  # - https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar
+  # - https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar
   # - https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot
   # - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
 
@@ -156,9 +156,10 @@ minecraftServer:
 
   # A list of Modrinth project slugs with optional version after colon
   modrinth:
-    projects: []
+    projects:
+    - better-mc-forge-bmc4
     # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
-    downloadDependencies: none
+    downloadDependencies: optional
     # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
     allowedVersionType: default
 
@@ -173,7 +174,7 @@ minecraftServer:
     # NOTE: In case of specific file - do not point at server file
     pageUrl: ""
     # Unique id of modpack, can be used instead of url
-    slug: "all-the-mods-9"
+    slug: ""
     # Id used to specify which exact modpack file needs to be downloaded
     # NOTE: Do not use server file id
     fileId: ""
