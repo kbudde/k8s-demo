@@ -20,7 +20,7 @@ spec:
       protocol: TCP
       targetPort: minecraft
     - name: bedrock
-      port: null
+      port: 19132
       protocol: UDP
       targetPort: bedrock
   selector:

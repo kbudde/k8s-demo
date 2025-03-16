@@ -223,6 +223,7 @@ minecraftServer:
       embedded: true
       annotations: {}
       type: LoadBalancer
+      port: 19132
     # These options allow you to expose another port from the Minecraft server, plugins such
     # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
     #
