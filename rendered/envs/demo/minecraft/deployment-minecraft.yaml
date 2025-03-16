@@ -52,9 +52,9 @@ spec:
             - name: LEVEL
               value: world
             - name: MODRINTH_PROJECTS
-              value: better-mc-forge-bmc4
+              value: cobblemon-fabric
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
-              value: optional
+              value: required
             - name: ONLINE_MODE
               value: "true"
             - name: MEMORY
