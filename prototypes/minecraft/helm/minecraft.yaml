@@ -139,9 +139,9 @@ minecraftServer:
   # List with URLs and paths to jar files, additionally may be a directory with jars
   # This works for both mods and plugins depending on server type
   modUrls: []
-  pluginUrls:
-  - https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot
-  - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
+  pluginUrls: []
+  # - https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot
+  # - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
 
   # A list of Spigot resources/plugins IDs to download.
   spigetResources: []
@@ -214,16 +214,7 @@ minecraftServer:
   ## set this to false to not have colorized logs
   tty: true
 
-  extraPorts:
-  - name: bedrock
-    containerPort: 19132
-    protocol: UDP
-    service:
-      enabled: true
-      embedded: true
-      annotations: {}
-      type: LoadBalancer
-      port: 19132
+  extraPorts: []
     # These options allow you to expose another port from the Minecraft server, plugins such
     # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
     #

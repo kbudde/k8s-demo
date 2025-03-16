@@ -19,10 +19,6 @@ spec:
       port: 25565
       protocol: TCP
       targetPort: minecraft
-    - name: bedrock
-      port: 19132
-      protocol: UDP
-      targetPort: bedrock
   selector:
     app: minecraft
   type: LoadBalancer

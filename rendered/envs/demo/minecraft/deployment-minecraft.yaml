@@ -51,8 +51,6 @@ spec:
               value: DEFAULT
             - name: LEVEL
               value: world
-            - name: PLUGINS
-              value: https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot,https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
               value: none
             - name: ONLINE_MODE
@@ -86,9 +84,6 @@ spec:
             - containerPort: 25565
               name: minecraft
               protocol: TCP
-            - containerPort: 19132
-              name: bedrock
-              protocol: UDP
           readinessProbe:
             exec:
               command:
