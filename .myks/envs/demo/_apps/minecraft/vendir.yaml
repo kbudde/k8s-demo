@@ -1,0 +1,11 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/minecraft
+  contents:
+  - path: .
+    git:
+      url: https://github.com/itzg/minecraft-server-charts.git
+      ref: minecraft-4.25.1
+    lazy: true
+    newRootPath: charts/minecraft

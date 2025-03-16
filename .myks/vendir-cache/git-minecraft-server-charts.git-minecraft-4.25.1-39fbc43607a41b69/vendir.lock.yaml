@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 884a5bd843fbd3a6f0872acd0d2057106c011efc237dfee5f4c9e00ad81aef60
+    git:
+      commitTitle: Fix charts.version for OCI chart rendering (#255)
+      sha: 4f823294702f48bd38e475aa5296bc49d72f5642
+      tags:
+      - minecraft-4.25.1
+    path: .
+  path: .myks/vendir-cache/git-minecraft-server-charts.git-minecraft-4.25.1-39fbc43607a41b69/data
+kind: LockConfig

@@ -1,0 +1,135 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app: minecraft
+    app.kubernetes.io/instance: minecraft
+    app.kubernetes.io/name: minecraft
+    app.kubernetes.io/version: 4.25.1
+    chart: minecraft-4.25.1
+    heritage: Helm
+    release: minecraft
+  name: minecraft
+  namespace: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: minecraft
+        app.kubernetes.io/instance: minecraft
+        app.kubernetes.io/name: minecraft
+        app.kubernetes.io/version: 4.25.1
+    spec:
+      containers:
+        - env:
+            - name: EULA
+              value: "TRUE"
+            - name: TYPE
+              value: AUTO_CURSEFORGE
+            - name: VERSION
+              value: LATEST
+            - name: DIFFICULTY
+              value: easy
+            - name: WHITELIST
+              value: K_E_B,apfelbir,ribbimine
+            - name: MODE
+              value: survival
+            - name: MOTD
+              value: Welcome to Minecraft on Kubernetes!
+            - name: PVP
+              value: "false"
+            - name: LEVEL_TYPE
+              value: DEFAULT
+            - name: LEVEL
+              value: world
+            - name: PLUGINS
+              value: https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot,https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
+            - name: MODRINTH_DOWNLOAD_DEPENDENCIES
+              value: none
+            - name: ONLINE_MODE
+              value: "false"
+            - name: MEMORY
+              value: 8192M
+            - name: ENABLE_RCON
+              value: "false"
+            - name: CF_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: cf-api-key
+                  name: minecraft-curseforge
+            - name: CF_SLUG
+              value: all-the-mods-9
+            - name: CF_PARALLEL_DOWNLOADS
+              value: "4"
+          image: itzg/minecraft-server:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            exec:
+              command:
+                - mc-health
+            failureThreshold: 20
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: minecraft
+          ports:
+            - containerPort: 25565
+              name: minecraft
+              protocol: TCP
+            - containerPort: 19132
+              name: bedrock
+              protocol: UDP
+          readinessProbe:
+            exec:
+              command:
+                - mc-health
+            failureThreshold: 20
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 10400Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          stdin: true
+          tty: true
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /data
+              name: datadir
+            - mountPath: /backups
+              name: backupdir
+              readOnly: true
+      securityContext:
+        fsGroup: 2000
+        runAsGroup: 3000
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - emptyDir: {}
+          name: tmp
+        - name: datadir
+          persistentVolumeClaim:
+            claimName: minecraft-datadir
+        - emptyDir: {}
+          name: backupdir

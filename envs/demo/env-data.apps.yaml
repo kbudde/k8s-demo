@@ -26,3 +26,4 @@ environment:
   - proto: victoria-metrics-operator
   - proto: flowise
   - proto: authelia
+  - proto: minecraft

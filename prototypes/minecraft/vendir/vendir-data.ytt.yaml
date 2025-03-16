@@ -1,0 +1,9 @@
+#@data/values
+---
+prototypes:
+  - name: minecraft
+    kind: helm
+    repo: git
+    url: https://github.com/itzg/minecraft-server-charts.git
+    version:  minecraft-4.25.1
+    newRootPath: charts/minecraft
