@@ -40,7 +40,7 @@ spec:
             - name: DIFFICULTY
               value: easy
             - name: WHITELIST
-              value: K_E_B,apfelbir,ribbimine
+              value: K_E_B,Apfelbir,ribbimine
             - name: MODE
               value: survival
             - name: MOTD

@@ -44,7 +44,7 @@ minecraftServer:
   # One of: peaceful, easy, normal, and hard
   difficulty: easy
   # A comma-separated list of player names to whitelist.
-  whitelist: K_E_B,apfelbir,ribbimine
+  whitelist: K_E_B,Apfelbir,ribbimine
   # A comma-separated list of player names who should be admins.
   ops:
   # A server icon URL for server listings. Auto-scaled and transcoded.
