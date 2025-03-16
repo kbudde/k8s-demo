@@ -138,9 +138,9 @@ minecraftServer:
 
   # List with URLs and paths to jar files, additionally may be a directory with jars
   # This works for both mods and plugins depending on server type
-  modUrls: []
-  pluginUrls:
+  modUrls:
   - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
+  pluginUrls:
   - https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar
   - https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar
   - https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar

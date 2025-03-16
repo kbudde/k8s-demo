@@ -49,8 +49,10 @@ spec:
               value: DEFAULT
             - name: LEVEL
               value: world
+            - name: MODS
+              value: https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
             - name: PLUGINS
-              value: https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip,https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar,https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar,https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar
+              value: https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar,https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar,https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
               value: none
             - name: ONLINE_MODE
