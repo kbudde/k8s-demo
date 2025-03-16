@@ -36,7 +36,7 @@ spec:
             - name: TYPE
               value: FORGE
             - name: VERSION
-              value: LATEST
+              value: 1.21.1
             - name: DIFFICULTY
               value: easy
             - name: WHITELIST
