@@ -12,9 +12,9 @@ minecraftServer:
   ## Common types: "VANILLA", "FABRIC", "FORGE", "SPIGOT", "BUKKIT", "PAPER",
   ## "FTBA", "SPONGEVANILLA", "AUTO_CURSEFORGE"
   ## ref: https://docker-minecraft-server.readthedocs.io/en/latest/types-and-platforms
-  type: "AUTO_CURSEFORGE"
+  type: "NEOFORGE"
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
-  forgeVersion:
+  forgeVersion: "21.1.73"
   # If type is set to FORGE, this sets the URL to download the Forge installer
   forgeInstallerUrl:
   # If type is set to SPONGEVANILLA, this sets the version
@@ -44,7 +44,7 @@ minecraftServer:
   # One of: peaceful, easy, normal, and hard
   difficulty: easy
   # A comma-separated list of player names to whitelist.
-  # whitelist: K_E_B,Apfelbir,ribbimine
+  whitelist: K_E_B,Apfelbir,ribbimine
   # A comma-separated list of player names who should be admins.
   ops:
   # A server icon URL for server listings. Auto-scaled and transcoded.
@@ -141,6 +141,7 @@ minecraftServer:
   modUrls:
   - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
   pluginUrls:
+  - https://mediafilez.forgecdn.net/files/5864/384/All%20the%20Mods%2010-1.15.zip
   - https://mediafilez.forgecdn.net/files/5857/37/Structory_Towers_1.21.x_v1.0.9.jar
   - https://mediafilez.forgecdn.net/files/5857/33/Structory_1.21.x_v1.3.7.jar
   - https://mediafilez.forgecdn.net/files/5768/932/imfast-1.0.1.jar
