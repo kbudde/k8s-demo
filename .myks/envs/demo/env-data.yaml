@@ -70,6 +70,8 @@ environment:
     name: ""
   - proto: authelia
     name: ""
+  - proto: minecraft
+    name: ""
   branch: main
 helm:
   buildDependencies: false
