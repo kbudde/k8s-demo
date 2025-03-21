@@ -67,7 +67,7 @@ spec:
             - name: CF_PARALLEL_DOWNLOADS
               value: "4"
             - name: PACKWIZ_URL
-              value: https://8ef8-2a02-810b-468a-ab00-9e30-bb74-d63e-f007.ngrok-free.app/pack.toml
+              value: https://7b49-2a02-810b-468a-ab00-9e30-bb74-d63e-f007.ngrok-free.app/pack.toml
           image: itzg/minecraft-server:latest
           imagePullPolicy: Always
           livenessProbe:

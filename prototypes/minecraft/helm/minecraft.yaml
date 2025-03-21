@@ -263,7 +263,7 @@ minecraftServer:
 ##
 extraEnv:
   #MODRINTH_MODPACK: better-mc-forge-bmc4
-  PACKWIZ_URL: https://8ef8-2a02-810b-468a-ab00-9e30-bb74-d63e-f007.ngrok-free.app/pack.toml
+  PACKWIZ_URL: https://7b49-2a02-810b-468a-ab00-9e30-bb74-d63e-f007.ngrok-free.app/pack.toml
   # NEOFORGE_VERSION: "21.1.73"
   # some_variable: some value
   # another_variable:
