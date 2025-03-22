@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: a3c8299cce8356d6ec586e88c95385268eda42d5360f0a00967ca1c85a9e2983
+    helmChart:
+      appVersion: 2.2.4
+      version: 3.11.3
+    path: .
+  path: .myks/vendir-cache/helm-flowise-3.11.3-2a62b249482945f8/data
+kind: LockConfig
