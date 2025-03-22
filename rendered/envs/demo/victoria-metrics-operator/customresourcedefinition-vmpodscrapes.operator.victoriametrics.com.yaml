@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.17.2
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.53.0
-    helm.sh/chart: victoria-metrics-operator-0.42.5
+    app.kubernetes.io/version: v0.54.1
+    helm.sh/chart: victoria-metrics-operator-0.43.0
   name: vmpodscrapes.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -417,6 +417,12 @@ spec:
                       port:
                         description: Name of the port exposed at Pod.
                         type: string
+                      portNumber:
+                        description: PortNumber defines the `Pod` port number which exposes the endpoint.
+                        format: int32
+                        maximum: 65535
+                        minimum: 1
+                        type: integer
                       proxyURL:
                         description: ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.
                         type: string
@@ -521,8 +527,8 @@ spec:
                           - type: integer
                           - type: string
                         description: |-
-                          TargetPort
-                          Name or number of the pod port this endpoint refers to. Mutually exclusive with port.
+                          TargetPort defines name or number of the pod port this endpoint refers to.
+                          Mutually exclusive with Port and PortNumber.
                         x-kubernetes-int-or-string: true
                       tlsConfig:
                         description: TLSConfig configuration to use when scraping the endpoint
