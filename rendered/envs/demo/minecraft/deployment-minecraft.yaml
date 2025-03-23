@@ -34,7 +34,7 @@ spec:
             - name: EULA
               value: "TRUE"
             - name: TYPE
-              value: NEOFORGE
+              value: AUTO_CURSEFORGE
             - name: VERSION
               value: 1.21.1
             - name: DIFFICULTY
@@ -58,7 +58,12 @@ spec:
             - name: MEMORY
               value: 8192M
             - name: ENABLE_RCON
-              value: "false"
+              value: "true"
+            - name: RCON_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: rcon-password
+                  name: minecraft-rcon
             - name: CF_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -66,8 +71,10 @@ spec:
                   name: minecraft-curseforge
             - name: CF_PARALLEL_DOWNLOADS
               value: "4"
-            - name: PACKWIZ_URL
-              value: https://7b49-2a02-810b-468a-ab00-9e30-bb74-d63e-f007.ngrok-free.app/pack.toml
+            - name: CF_MODPACK_ZIP
+              value: /modpacks/Create-Ultimate Selection MC 1.20.1-4.7.0.zip
+            - name: CF_PAGE_URL
+              value: https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection
           image: itzg/minecraft-server:latest
           imagePullPolicy: Always
           livenessProbe:
@@ -83,6 +90,9 @@ spec:
           ports:
             - containerPort: 25565
               name: minecraft
+              protocol: TCP
+            - containerPort: 25575
+              name: rcon
               protocol: TCP
           readinessProbe:
             exec:

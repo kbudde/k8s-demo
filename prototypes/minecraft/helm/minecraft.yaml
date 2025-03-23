@@ -12,7 +12,7 @@ minecraftServer:
   ## Common types: "VANILLA", "FABRIC", "FORGE", "SPIGOT", "BUKKIT", "PAPER",
   ## "FTBA", "SPONGEVANILLA", "AUTO_CURSEFORGE"
   ## ref: https://docker-minecraft-server.readthedocs.io/en/latest/types-and-platforms
-  type: "NEOFORGE"
+  type: "AUTO_CURSEFORGE"
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
   forgeVersion:
   # If type is set to FORGE, this sets the URL to download the Forge installer
@@ -198,7 +198,7 @@ minecraftServer:
 
   rcon:
     # If you enable this, make SURE to change your password below.
-    enabled: false
+    enabled: true
     # By default, the container will generate a random password at startup
     # to ensure internal RCON tooling, including a backup container,
     # can be used, but the password is secure.
@@ -263,13 +263,14 @@ minecraftServer:
 ##
 extraEnv:
   #MODRINTH_MODPACK: better-mc-forge-bmc4
-  PACKWIZ_URL: https://7b49-2a02-810b-468a-ab00-9e30-bb74-d63e-f007.ngrok-free.app/pack.toml
   # NEOFORGE_VERSION: "21.1.73"
   # some_variable: some value
   # another_variable:
   #   valueFrom:
   #     fieldRef:
   #       fieldPath: status.hostIP
+  CF_PAGE_URL: https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection
+  CF_MODPACK_ZIP: /modpacks/Create-Ultimate Selection MC 1.20.1-4.7.0.zip
 
 ## Additional environment variables to add to the minecraft container from
 ## ConfigMaps and Secrets
