@@ -270,7 +270,7 @@ extraEnv:
   #     fieldRef:
   #       fieldPath: status.hostIP
   CF_PAGE_URL: https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection
-  CF_MODPACK_ZIP: /modpacks/Create-Ultimate\ Selection\ MC\ 1.20.1-4.7.0.zip
+  CF_MODPACK_ZIP: /modpacks/Create-Ultimate_Selection_MC_1.20.1-4.7.0.zip
 
 ## Additional environment variables to add to the minecraft container from
 ## ConfigMaps and Secrets

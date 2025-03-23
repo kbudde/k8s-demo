@@ -72,7 +72,7 @@ spec:
             - name: CF_PARALLEL_DOWNLOADS
               value: "4"
             - name: CF_MODPACK_ZIP
-              value: /modpacks/Create-Ultimate\ Selection\ MC\ 1.20.1-4.7.0.zip
+              value: /modpacks/Create-Ultimate_Selection_MC_1.20.1-4.7.0.zip
             - name: CF_PAGE_URL
               value: https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection
           image: itzg/minecraft-server:latest
