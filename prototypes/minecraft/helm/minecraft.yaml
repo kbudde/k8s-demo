@@ -1,3 +1,6 @@
+image:
+  repository: kbudde/tmp
+  tag: imc
 resources:
   requests:
     memory: 10400Mi
