@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
     app.kubernetes.io/version: v0.54.1
-    helm.sh/chart: victoria-metrics-operator-0.43.0
+    helm.sh/chart: victoria-metrics-operator-0.43.1
   name: vmalertmanagerconfigs.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -324,7 +324,7 @@ spec:
                                   description: TLS configuration for the client.
                                   properties:
                                     ca:
-                                      description: Stuct containing the CA cert to use for the targets.
+                                      description: Struct containing the CA cert to use for the targets.
                                       properties:
                                         configMap:
                                           description: ConfigMap containing data to use for the targets.
@@ -594,7 +594,7 @@ spec:
                               description: TLS configuration
                               properties:
                                 ca:
-                                  description: Stuct containing the CA cert to use for the targets.
+                                  description: Struct containing the CA cert to use for the targets.
                                   properties:
                                     configMap:
                                       description: ConfigMap containing data to use for the targets.
@@ -957,7 +957,7 @@ spec:
                                   description: TLS configuration for the client.
                                   properties:
                                     ca:
-                                      description: Stuct containing the CA cert to use for the targets.
+                                      description: Struct containing the CA cert to use for the targets.
                                       properties:
                                         configMap:
                                           description: ConfigMap containing data to use for the targets.
@@ -1842,7 +1842,7 @@ spec:
                                   description: TLS configuration for the client.
                                   properties:
                                     ca:
-                                      description: Stuct containing the CA cert to use for the targets.
+                                      description: Struct containing the CA cert to use for the targets.
                                       properties:
                                         configMap:
                                           description: ConfigMap containing data to use for the targets.
@@ -2391,7 +2391,7 @@ spec:
                                   description: TLS configuration for the client.
                                   properties:
                                     ca:
-                                      description: Stuct containing the CA cert to use for the targets.
+                                      description: Struct containing the CA cert to use for the targets.
                                       properties:
                                         configMap:
                                           description: ConfigMap containing data to use for the targets.
@@ -2772,7 +2772,7 @@ spec:
                                   description: TLS configuration for the client.
                                   properties:
                                     ca:
-                                      description: Stuct containing the CA cert to use for the targets.
+                                      description: Struct containing the CA cert to use for the targets.
                                       properties:
                                         configMap:
                                           description: ConfigMap containing data to use for the targets.
@@ -3236,7 +3236,7 @@ spec:
                                   description: TLS configuration for the client.
                                   properties:
                                     ca:
-                                      description: Stuct containing the CA cert to use for the targets.
+                                      description: Struct containing the CA cert to use for the targets.
                                       properties:
                                         configMap:
                                           description: ConfigMap containing data to use for the targets.
