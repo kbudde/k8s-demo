@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.17.2
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.53.0
-    helm.sh/chart: victoria-metrics-operator-0.42.5
+    app.kubernetes.io/version: v0.54.1
+    helm.sh/chart: victoria-metrics-operator-0.43.0
   name: vmalerts.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -266,6 +266,14 @@ spec:
                   required:
                     - url
                   type: object
+                disableAutomountServiceAccountToken:
+                  description: |-
+                    DisableAutomountServiceAccountToken whether to disable serviceAccount auto mount by Kubernetes (available from v0.54.0).
+                    Operator will conditionally create volumes and volumeMounts for containers if it requires k8s API access.
+                    For example, vmagent and vm-config-reloader requires k8s API access.
+                    Operator creates volumes with name: "kube-api-access", which can be used as volumeMount for extraContainers if needed.
+                    And also adds VolumeMounts at /var/run/secrets/kubernetes.io/serviceaccount.
+                  type: boolean
                 disableSelfServiceScrape:
                   description: |-
                     DisableSelfServiceScrape controls creation of VMServiceScrape by operator
@@ -299,9 +307,12 @@ spec:
                         description: PodDNSConfigOption defines DNS resolver options of a pod.
                         properties:
                           name:
-                            description: Required.
+                            description: |-
+                              Name is this DNS resolver option's name.
+                              Required.
                             type: string
                           value:
+                            description: Value is this DNS resolver option's value.
                             type: string
                         type: object
                       type: array
@@ -1773,10 +1784,6 @@ spec:
             status:
               description: VMAlertStatus defines the observed state of VMAlert
               properties:
-                availableReplicas:
-                  description: Deprecated
-                  format: int32
-                  type: integer
                 conditions:
                   description: 'Known .status.conditions.type are: "Available", "Progressing", and "Degraded"'
                   items:
@@ -1847,21 +1854,9 @@ spec:
                 reason:
                   description: Reason defines human readable error reason
                   type: string
-                replicas:
-                  description: Deprecated
-                  format: int32
-                  type: integer
-                unavailableReplicas:
-                  description: Deprecated
-                  format: int32
-                  type: integer
                 updateStatus:
                   description: UpdateStatus defines a status for update rollout
                   type: string
-                updatedReplicas:
-                  description: Deprecated
-                  format: int32
-                  type: integer
               type: object
           type: object
       served: true
