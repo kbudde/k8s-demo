@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 684128ea2e1fe2e0392de7ec9c4af64aaecc0957552aba868c59d94abc658903
+    helmChart:
+      appVersion: v0.81.0
+      version: 70.3.0
+    path: .
+  path: .myks/vendir-cache/helm-kube-prometheus-stack-70.3.0-9497188a2008ca67/data
+kind: LockConfig

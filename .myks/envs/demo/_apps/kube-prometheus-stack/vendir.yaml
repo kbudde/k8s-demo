@@ -6,7 +6,7 @@ directories:
   - path: .
     helmChart:
       name: kube-prometheus-stack
-      version: 69.8.1
+      version: 70.3.0
       repository:
         url: https://prometheus-community.github.io/helm-charts
     lazy: true
