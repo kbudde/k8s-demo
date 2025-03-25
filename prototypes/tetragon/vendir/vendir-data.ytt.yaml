@@ -5,5 +5,5 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://helm.cilium.io
-    version: 1.3.0
+    version: 1.4.0
 
