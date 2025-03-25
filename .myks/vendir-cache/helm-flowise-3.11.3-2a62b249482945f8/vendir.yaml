@@ -5,9 +5,9 @@ directories:
             name: flowise
             repository:
                 url: https://cowboysysop.github.io/charts/
-            version: 3.11.2
+            version: 3.11.3
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-flowise-3.11.2-2a5f76494826aa2d/data
+      path: .myks/vendir-cache/helm-flowise-3.11.3-2a62b249482945f8/data
       permissions: null
 kind: Config
