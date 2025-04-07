@@ -5,9 +5,9 @@ directories:
             name: traefik
             repository:
                 url: https://traefik.github.io/charts
-            version: 34.5.0
+            version: 35.0.0
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-traefik-34.5.0-1db82a48f516cf1b/data
+      path: .myks/vendir-cache/helm-traefik-35.0.0-bdd010bdc1e83c7b/data
       permissions: null
 kind: Config
