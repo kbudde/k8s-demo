@@ -19,6 +19,9 @@ auditLog:
   maxBackup: 1
   maxSize: 100
 
+  # Set pod resource requests/limits for Audit log sidecar (ONLY used if destination=sidecar).
+  resources: {}
+
   # Image for collecting rancher audit logs.
   # Important: update pkg/image/export/resolve.go when this default image is changed, so that it's reflected accordingly in rancher-images.txt generated for air-gapped setups.
   image:
@@ -33,9 +36,6 @@ addLocal: "true"
 
 # Add debug flag to Rancher server
 debug: false
-
-# When starting Rancher for the first time, bootstrap the admin as restricted-admin
-restrictedAdmin: false
 
 # Control how the Rancher agents validate TLS connections
 # Valid options: strict, or system-store
@@ -96,7 +96,7 @@ letsEncrypt:
     # options: traefik, nginx
     class: ""
 # If you are using certs signed by a private CA set to 'true' and set the 'tls-ca'
-# in the 'rancher-system' namespace. See the README.md for details
+# in the 'cattle-system' namespace. See the README.md for details
 privateCA: false
 
 # http[s] proxy server passed into rancher server.
@@ -163,7 +163,7 @@ postDelete:
   enabled: true
   image:
     repository: rancher/shell
-    tag: v0.3.1
+    tag: v0.4.0
   namespaceList:
     - cattle-fleet-system
     - cattle-system
@@ -184,6 +184,14 @@ startupProbe:
 
 # Additional taints to tolerate
 extraTolerations: {}
+
+# Additional node selector terms for the rancher deployment
+# Ex:
+#  - key: topology.kubernetes.io/zone
+#    operator: In
+#    values:
+#      - us-north-42
+extraNodeSelectorTerms: {}
 
 livenessProbe:
   timeoutSeconds: 5
