@@ -1,8 +1,7 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - updated common dependency 0.0.39 -> 0.0.42
-    - 'add `.Values.crds.annotations` when `.Values.crds.plain: false`. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/2073).'
+    - updates operator to [v0.55.0](https://github.com/VictoriaMetrics/operator/releases/tag/v0.55.0) version
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -15,7 +14,7 @@ annotations:
       url: https://docs.victoriametrics.com/operator/changelog
   artifacthub.io/operator: "true"
 apiVersion: v2
-appVersion: v0.54.1
+appVersion: v0.55.0
 dependencies:
 - name: victoria-metrics-common
   repository: https://victoriametrics.github.io/helm-charts
@@ -43,4 +42,4 @@ sources:
 - https://github.com/VictoriaMetrics/helm-charts
 - https://github.com/VictoriaMetrics/operator
 type: application
-version: 0.43.1
+version: 0.44.0
