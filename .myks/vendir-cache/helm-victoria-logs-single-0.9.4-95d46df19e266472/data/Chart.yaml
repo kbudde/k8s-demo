@@ -1,8 +1,8 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - Upgraded dashboard
-    - fixed usage of existingClaim in statefulSet mode. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/2056).
+    - updated common dependency 0.0.39 -> 0.0.42
+    - add .Values.service.extraPorts. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/2111).
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -39,4 +39,4 @@ name: victoria-logs-single
 sources:
 - https://github.com/VictoriaMetrics/helm-charts
 type: application
-version: 0.9.3
+version: 0.9.4

@@ -66,6 +66,8 @@ server:
   replicaCount: 1
   # -- Name of Priority Class
   priorityClassName: ""
+  # -- Overrides the full name of server component
+  fullnameOverride: ""
   # -- Data retention period. Possible units character: h(ours), d(ays), w(eeks), y(ears), if no unit character specified - month. The minimum retention period is 24h. See these [docs](https://docs.victoriametrics.com/victorialogs/#retention)
   retentionPeriod: 1
   # -- Data retention max capacity. Default unit is GiB. See these [docs](https://docs.victoriametrics.com/victorialogs/#retention-by-disk-space-usage)
@@ -155,7 +157,7 @@ server:
     # -- Array of access modes. Must match those of existing PV or dynamic provisioner. Details are [here](http://kubernetes.io/docs/user-guide/persistent-volumes/)
     accessModes:
       - ReadWriteOnce
-    # -- Persistant volume annotations
+    # -- Persistent volume annotations
     annotations: {}
 
     # -- StorageClass to use for persistent volume. Requires server.persistentVolume.enabled: true. If defined, PVC created automatically
@@ -284,6 +286,8 @@ server:
     # nodePort: 30000
     # -- Service type
     type: ClusterIP
+    # -- Extra service ports
+    extraPorts: []
     # -- Service external traffic policy. Check [here](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip) for details
     externalTrafficPolicy: ""
     # -- Health check node port for a service. Check [here](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip) for details
