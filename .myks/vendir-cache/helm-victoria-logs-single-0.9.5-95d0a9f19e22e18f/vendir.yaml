@@ -5,9 +5,9 @@ directories:
             name: victoria-logs-single
             repository:
                 url: https://victoriametrics.github.io/helm-charts/
-            version: 0.9.4
+            version: 0.9.5
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-victoria-logs-single-0.9.4-95d46df19e266472/data
+      path: .myks/vendir-cache/helm-victoria-logs-single-0.9.5-95d0a9f19e22e18f/data
       permissions: null
 kind: Config

@@ -1,8 +1,7 @@
 annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
-    - updated common dependency 0.0.39 -> 0.0.42
-    - add .Values.service.extraPorts. See [this issue](https://github.com/VictoriaMetrics/helm-charts/issues/2111).
+    - TODO
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Sources
@@ -14,7 +13,7 @@ annotations:
     - name: Changelog
       url: https://docs.victoriametrics.com/victorialogs/changelog
 apiVersion: v2
-appVersion: v1.16.0
+appVersion: v1.18.0
 dependencies:
 - condition: vector.enabled
   name: vector
@@ -39,4 +38,4 @@ name: victoria-logs-single
 sources:
 - https://github.com/VictoriaMetrics/helm-charts
 type: application
-version: 0.9.4
+version: 0.9.5
