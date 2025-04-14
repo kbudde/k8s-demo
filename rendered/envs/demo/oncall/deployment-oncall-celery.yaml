@@ -9,8 +9,8 @@ metadata:
     app.kubernetes.io/instance: oncall
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: oncall
-    app.kubernetes.io/version: v1.15.3
-    helm.sh/chart: oncall-1.15.3
+    app.kubernetes.io/version: v1.15.4
+    helm.sh/chart: oncall-1.15.4
   name: oncall-celery
 spec:
   replicas: 1
@@ -144,7 +144,7 @@ spec:
               value: amqp
             - name: RABBITMQ_VHOST
               value: /
-          image: grafana/oncall:v1.15.3
+          image: grafana/oncall:v1.15.4
           imagePullPolicy: Always
           livenessProbe:
             exec:
@@ -240,7 +240,7 @@ spec:
               value: amqp
             - name: RABBITMQ_VHOST
               value: /
-          image: grafana/oncall:v1.15.3
+          image: grafana/oncall:v1.15.4
           imagePullPolicy: Always
           name: wait-for-db
           resources: {}
