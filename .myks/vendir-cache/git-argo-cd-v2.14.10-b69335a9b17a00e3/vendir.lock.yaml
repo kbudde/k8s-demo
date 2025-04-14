@@ -1,0 +1,13 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - configDigest: 8a46410ba2be76a5ac99620759e43afdb66f1bfc2f6a33b486532700949817d4
+    git:
+      commitTitle: 'fix: respect delete confirmation for argocd app deletion (cherry-pick
+        #22657) (#22664)...'
+      sha: 3b308d66e2747dbe7028f95bbae8c7bdc8c2cbcc
+      tags:
+      - v2.14.10
+    path: .
+  path: .myks/vendir-cache/git-argo-cd-v2.14.10-b69335a9b17a00e3/data
+kind: LockConfig
