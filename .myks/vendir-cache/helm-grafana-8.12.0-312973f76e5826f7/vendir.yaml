@@ -5,9 +5,9 @@ directories:
             name: grafana
             repository:
                 url: https://grafana.github.io/helm-charts
-            version: 8.11.0
+            version: 8.12.0
           lazy: true
           path: .
-      path: .myks/vendir-cache/helm-grafana-8.11.0-d75425ef401b3430/data
+      path: .myks/vendir-cache/helm-grafana-8.12.0-312973f76e5826f7/data
       permissions: null
 kind: Config
