@@ -9,7 +9,7 @@ deployNodeAgent: true
 configuration:
   features: EnableCSI
 
-  defaultVolumesToFsBackup: true
+  #!defaultVolumesToFsBackup: true
   backupStorageLocation:
     - name: s3
       provider: aws
