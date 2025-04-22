@@ -6,6 +6,8 @@ kind: Schedule
 metadata:
   name: #@ data.values. myks.context.app
   namespace: velero
+  annotations:
+    velero.io/csi-volumesnapshot-class_disk.csi.cloud.com: cinder-csi-snapshot-class
 spec:
   schedule: '17 2 * * *'
   template:

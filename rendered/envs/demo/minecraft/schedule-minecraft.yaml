@@ -3,6 +3,7 @@ kind: Schedule
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
+    velero.io/csi-volumesnapshot-class_disk.csi.cloud.com: cinder-csi-snapshot-class
   name: minecraft
   namespace: velero
 spec:
