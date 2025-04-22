@@ -1,4 +1,0 @@
-fullnameOverride: flowise
-postgresql:
-  enabled: true
-  fullnameOverride: postgresql

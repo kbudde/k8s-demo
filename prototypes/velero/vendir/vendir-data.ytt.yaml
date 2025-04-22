@@ -1,0 +1,8 @@
+#@data/values
+---
+prototypes:
+  - name: velero
+    kind: ytt
+    repo: helmChart
+    url: https://vmware-tanzu.github.io/helm-charts
+    version: 9.0.0
