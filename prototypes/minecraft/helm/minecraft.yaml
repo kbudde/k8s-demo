@@ -276,6 +276,8 @@ extraEnv:
   #!       fieldPath: status.hostIP
   CF_PAGE_URL: #@ data.values.application.cf.page
   CF_MODPACK_ZIP: #@ data.values.application.cf.zip
+  #@ if/end data.values.myks.context.app=="minecraft-2":
+  MODPACK_PLATFORM: AUTO_CURSEFORGE
 
 #!# Additional environment variables to add to the minecraft container from
 #!# ConfigMaps and Secrets
