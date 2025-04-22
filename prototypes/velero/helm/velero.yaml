@@ -15,6 +15,7 @@ configuration:
         region: fra
         s3ForcePathStyle: true
         s3Url: https://s3.es1.fra.optimist.gec.io
+        checksumAlgorithm: ""
   volumeSnapshotLocation:
     - name: s3
       provider: aws
