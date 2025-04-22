@@ -2,7 +2,7 @@
 ---
 prototypes:
   - name: velero
-    kind: ytt
+    kind: helm
     repo: helmChart
     url: https://vmware-tanzu.github.io/helm-charts
     version: 9.0.0

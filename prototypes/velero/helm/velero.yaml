@@ -1,0 +1,31 @@
+
+upgradeCRDs: false
+
+credentials:
+  existingSecret: velero-s3-credentials
+
+configuration:
+  defaultVolumesToFsBackup: true
+  backupStorageLocation:
+    - name: s3
+      provider: aws
+      bucket: velero
+      default: true
+      config:
+        region: fra
+        s3ForcePathStyle: true
+        s3Url: https://s3.es1.fra.optimist.gec.io
+  volumeSnapshotLocation:
+    - name: s3
+      provider: aws
+      config:
+        region: fra
+
+
+initContainers:
+  #! S3
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.12.0
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
