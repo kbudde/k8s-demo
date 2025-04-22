@@ -1,0 +1,10 @@
+#@data/values
+---
+application:
+  image:
+    repo: kbudde/tmp
+    tag: imc-81
+  cf:
+    page: https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection
+    zip: /modpacks/Create-Ultimate_Selection_MC_1.20.1-8.1.0.zip
+
