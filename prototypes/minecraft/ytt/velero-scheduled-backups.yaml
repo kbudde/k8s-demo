@@ -5,6 +5,7 @@ apiVersion: velero.io/v1
 kind: Schedule
 metadata:
   name: #@ data.values. myks.context.app
+  namespace: velero
 spec:
   schedule: '17 2 * * *'
   template:
@@ -15,4 +16,4 @@ spec:
     itemOperationTimeout: 1m
     metadata: {}
     ttl: 480h0m0s
-  useOwnerReferencesInBackup: false
+  useOwnerReferencesInBackup: true
