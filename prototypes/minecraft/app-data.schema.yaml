@@ -1,4 +1,10 @@
 #@data/values-schema
 ---
 #@overlay/match-child-defaults missing_ok=True
-application: {}
+application:
+  image:
+    repo: ""
+    tag: ""
+  cf:
+    page: "curseforge page url"
+    zip: "path to zip file containing modpack"

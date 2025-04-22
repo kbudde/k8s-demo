@@ -74,6 +74,8 @@ environment:
     name: ""
   - proto: velero
     name: ""
+  - proto: minecraft
+    name: minecraft-2
   branch: main
 helm:
   buildDependencies: false

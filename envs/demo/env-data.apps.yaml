@@ -28,3 +28,5 @@ environment:
   - proto: authelia
   - proto: minecraft
   - proto: velero
+  - proto: minecraft
+    name: minecraft-2
