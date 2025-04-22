@@ -52,7 +52,7 @@ spec:
             - name: LEVEL
               value: world
             - name: MODRINTH_DOWNLOAD_DEPENDENCIES
-              value: required
+              value: none
             - name: ONLINE_MODE
               value: "true"
             - name: MEMORY
@@ -75,8 +75,6 @@ spec:
               value: /modpacks/Create-Ultimate_Selection_MC_1.20.1-8.1.0.zip
             - name: CF_PAGE_URL
               value: https://www.curseforge.com/minecraft/modpacks/create-ultimate-selection
-            - name: MODPACK_PLATFORM
-              value: AUTO_CURSEFORGE
           image: kbudde/tmp:imc81
           imagePullPolicy: Always
           livenessProbe:

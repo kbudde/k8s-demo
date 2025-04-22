@@ -164,7 +164,7 @@ minecraftServer:
     projects: []
     #! - cobblemon-fabric #better-mc-forge-bmc4
     #! Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
-    downloadDependencies: required
+    downloadDependencies: none
     #! The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
     allowedVersionType: default
 
@@ -276,8 +276,6 @@ extraEnv:
   #!       fieldPath: status.hostIP
   CF_PAGE_URL: #@ data.values.application.cf.page
   CF_MODPACK_ZIP: #@ data.values.application.cf.zip
-  #@ if/end data.values.myks.context.app=="minecraft-2":
-  MODPACK_PLATFORM: AUTO_CURSEFORGE
 
 #!# Additional environment variables to add to the minecraft container from
 #!# ConfigMaps and Secrets
