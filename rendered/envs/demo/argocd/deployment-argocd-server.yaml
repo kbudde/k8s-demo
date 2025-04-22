@@ -314,7 +314,7 @@ spec:
                   key: hydrator.enabled
                   name: argocd-cmd-params-cm
                   optional: true
-          image: quay.io/argoproj/argocd:v2.14.9
+          image: quay.io/argoproj/argocd:v2.14.10
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
