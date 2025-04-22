@@ -4,6 +4,8 @@ upgradeCRDs: false
 credentials:
   existingSecret: velero-s3-credentials
 
+deployNodeAgent: true
+
 configuration:
   features: EnableCSI
 
