@@ -1,0 +1,17 @@
+#@ load("app.star", "namespace")
+#@ load("@ytt:data", "data")
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: #@ data.values. myks.context.app
+spec:
+  schedule: '17 2 * * *'
+  template:
+    csiSnapshotTimeout: 1m
+    hooks: {}
+    includedNamespaces: #@ namespace()
+    itemOperationTimeout: 1m
+    metadata: {}
+    ttl: 480h0m0s
+  useOwnerReferencesInBackup: false
