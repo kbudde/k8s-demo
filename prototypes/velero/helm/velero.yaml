@@ -5,6 +5,8 @@ credentials:
   existingSecret: velero-s3-credentials
 
 configuration:
+  features: EnableCSI
+
   defaultVolumesToFsBackup: true
   backupStorageLocation:
     - name: s3
