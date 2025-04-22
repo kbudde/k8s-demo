@@ -9,7 +9,8 @@ spec:
   template:
     csiSnapshotTimeout: 1m
     hooks: {}
-    includedNamespaces: minecraft
+    includedNamespaces:
+      - minecraft
     itemOperationTimeout: 1m
     metadata: {}
     ttl: 480h0m0s
