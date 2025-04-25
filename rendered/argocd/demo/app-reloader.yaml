@@ -29,7 +29,7 @@ spec:
     - group: apps
       jsonPointers:
         - /spec/replicas
-      kind: StatefuleSet
+      kind: StatefulSet
   info:
     - name: 'environment:'
       value: demo

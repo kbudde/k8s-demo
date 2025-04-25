@@ -29,6 +29,6 @@ spec:
     jsonPointers:
     - /spec/replicas
   - group: apps
-    kind: StatefuleSet
+    kind: StatefulSet
     jsonPointers:
     - /spec/replicas
