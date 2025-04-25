@@ -22,6 +22,14 @@ spec:
         - .spec.volumeClaimTemplates[]?.apiVersion
         - .spec.volumeClaimTemplates[]?.kind
       kind: StatefulSet
+    - group: apps
+      jsonPointers:
+        - /spec/replicas
+      kind: Deployment
+    - group: apps
+      jsonPointers:
+        - /spec/replicas
+      kind: StatefuleSet
   info:
     - name: 'environment:'
       value: demo

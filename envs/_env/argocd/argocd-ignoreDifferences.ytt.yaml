@@ -22,3 +22,13 @@ spec:
     jqPathExpressions:
       - '.spec.volumeClaimTemplates[]?.apiVersion'
       - '.spec.volumeClaimTemplates[]?.kind'
+
+  #! allow manually scaling
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: apps
+    kind: StatefuleSet
+    jsonPointers:
+    - /spec/replicas
