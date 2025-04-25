@@ -16,8 +16,8 @@ storage:
     name: "vaultwarden-data"
     enabled: true
     size: "2Gi"
-    class: "default"
     dataDir: "/data"
+    accessMode: "ReadWriteOnce"
 
 signupDomains: "budd.ee"
 
