@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/component: vaultwarden
+    app.kubernetes.io/instance: vaultwarden
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: vaultwarden
+    app.kubernetes.io/version: 1.33.2
+    helm.sh/chart: vaultwarden-0.31.8
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: vaultwarden
+      app.kubernetes.io/instance: vaultwarden
+      app.kubernetes.io/name: vaultwarden
+  serviceName: vaultwarden
+  template:
+    metadata:
+      annotations:
+        checksum/config: 00ccf9a5a6f60975bbfaafcd13d9fe1ea7fcd0b1
+        checksum/secret: aeb29001a1df97241a9734bf4d3e7985b0a83d6d
+      labels:
+        app.kubernetes.io/component: vaultwarden
+        app.kubernetes.io/instance: vaultwarden
+        app.kubernetes.io/name: vaultwarden
+    spec:
+      containers:
+        - env:
+            - name: SMTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_USERNAME
+                  name: vaultwarden
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: SMTP_PASSWORD
+                  name: vaultwarden
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: ADMIN_TOKEN
+                  name: vaultwarden
+          envFrom:
+            - configMapRef:
+                name: vaultwarden
+          image: docker.io/vaultwarden/server:1.33.2-alpine
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /alive
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: vaultwarden
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /alive
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+      serviceAccountName: vaultwarden-svc

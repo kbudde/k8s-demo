@@ -29,3 +29,4 @@ environment:
   - proto: velero
   - proto: minecraft
     name: minecraft-2
+  - proto: vaultwarden
