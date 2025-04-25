@@ -27,7 +27,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 00ccf9a5a6f60975bbfaafcd13d9fe1ea7fcd0b1
+        checksum/config: 953609dbf23bc3f053d4907af3d42fb56e4727ea
         checksum/secret: aeb29001a1df97241a9734bf4d3e7985b0a83d6d
       labels:
         app.kubernetes.io/component: vaultwarden
@@ -40,17 +40,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: SMTP_USERNAME
-                  name: vaultwarden
+                  name: vaultwarden-managed
             - name: SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: SMTP_PASSWORD
-                  name: vaultwarden
+                  name: vaultwarden-managed
             - name: ADMIN_TOKEN
               valueFrom:
                 secretKeyRef:
                   key: ADMIN_TOKEN
-                  name: vaultwarden
+                  name: vaultwarden-managed
           envFrom:
             - configMapRef:
                 name: vaultwarden
@@ -80,4 +80,24 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
           resources: {}
+          volumeMounts:
+            - mountPath: /data
+              name: null
       serviceAccountName: vaultwarden-svc
+  volumeClaimTemplates:
+    - metadata:
+        annotations:
+          meta.helm.sh/release-name: vaultwarden
+          meta.helm.sh/release-namespace: vaultwarden
+        labels:
+          app.kubernetes.io/component: vaultwarden
+          app.kubernetes.io/instance: vaultwarden
+          app.kubernetes.io/name: vaultwarden
+        name: null
+      spec:
+        accessModes:
+          - null
+        resources:
+          requests:
+            storage: 2Gi
+        storageClassName: default

@@ -12,10 +12,11 @@ ingress:
 domain: #@ "https://vault." + shared.domain
 
 storage:
-  enabled: true
-  size: "2Gi"
-  class: "default"
-  dataDir: "/data"
+  data:
+    enabled: true
+    size: "2Gi"
+    class: "default"
+    dataDir: "/data"
 
 signupDomains: "budd.ee"
 
@@ -27,7 +28,7 @@ smtp:
   authMechanism: #@ application.smtp.authentication
   security: #@ application.smtp.encryption
   #! @param smtp.existingSecret Name of an existing secret containing the SMTP username and password. Also set smtp.username.existingSecretKey and smtp.password.existingSecretKey.
-  existingSecret: "vaultwarden"
+  existingSecret: "vaultwarden-managed"
   username:
     existingSecretKey: "SMTP_USERNAME"
   password:
@@ -35,5 +36,5 @@ smtp:
 
 
 adminToken:
-  existingSecret: "vaultwarden"
+  existingSecret: "vaultwarden-managed"
   existingSecretKey: "ADMIN_TOKEN"
