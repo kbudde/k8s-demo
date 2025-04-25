@@ -70,8 +70,6 @@ environment:
     name: ""
   - proto: authelia
     name: ""
-  - proto: minecraft
-    name: ""
   - proto: velero
     name: ""
   - proto: minecraft

@@ -26,7 +26,6 @@ environment:
   - proto: victoria-metrics-operator
   - proto: flowise
   - proto: authelia
-  - proto: minecraft
   - proto: velero
   - proto: minecraft
     name: minecraft-2
