@@ -13,6 +13,7 @@ domain: #@ "https://vault." + shared.domain
 
 storage:
   data:
+    name: "vaultwarden-data"
     enabled: true
     size: "2Gi"
     class: "default"

@@ -82,7 +82,7 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /data
-              name: null
+              name: vaultwarden-data
       serviceAccountName: vaultwarden-svc
   volumeClaimTemplates:
     - metadata:
@@ -93,7 +93,7 @@ spec:
           app.kubernetes.io/component: vaultwarden
           app.kubernetes.io/instance: vaultwarden
           app.kubernetes.io/name: vaultwarden
-        name: null
+        name: vaultwarden-data
       spec:
         accessModes:
           - null
