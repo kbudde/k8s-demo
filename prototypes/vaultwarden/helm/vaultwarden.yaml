@@ -10,7 +10,7 @@ ingress:
   nginxIngressAnnotations: false
 
 domain: #@ "https://vault." + shared.domain
-replicas: 0
+replicas: 1
 storage:
   data:
     name: "vaultwarden-data"
