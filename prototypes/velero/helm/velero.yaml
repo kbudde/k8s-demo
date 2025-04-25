@@ -10,9 +10,9 @@ deployNodeAgent: true
 configuration:
   features: EnableCSI
 
-  #!defaultVolumesToFsBackup: true
+  defaultVolumesToFsBackup: #@ data.values.application.defaultVolumesToFsBackup
   backupStorageLocation:
-    - name: s3
+    - name: #@ "s3-" + data.values.environment.id
       provider: aws
       bucket: velero
       prefix: #@ data.values.environment.id
@@ -23,7 +23,7 @@ configuration:
         s3Url: https://s3.es1.fra.optimist.gec.io
         checksumAlgorithm: ""
   volumeSnapshotLocation:
-    - name: s3
+    - name: #@ "s3-" + data.values.environment.id
       provider: aws
       config:
         region: fra

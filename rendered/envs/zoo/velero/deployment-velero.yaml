@@ -39,6 +39,7 @@ spec:
         - args:
             - server
             - --uploader-type=kopia
+            - --default-volumes-to-fs-backup
             - --features=EnableCSI
             - --keep-latest-maintenance-jobs=3
           command:
