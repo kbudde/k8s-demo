@@ -1,0 +1,12 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: charts/velero
+  contents:
+  - path: .
+    helmChart:
+      name: velero
+      version: 9.0.0
+      repository:
+        url: https://vmware-tanzu.github.io/helm-charts
+    lazy: true
