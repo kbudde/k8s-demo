@@ -1,4 +1,5 @@
-
+#@ load("@ytt:data", "data")
+---
 upgradeCRDs: false
 
 credentials:
@@ -14,6 +15,7 @@ configuration:
     - name: s3
       provider: aws
       bucket: velero
+      prefix: #@ data.values.environment.id
       default: true
       config:
         region: fra

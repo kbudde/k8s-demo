@@ -20,4 +20,5 @@ spec:
   default: true
   objectStorage:
     bucket: velero
+    prefix: demo
   provider: aws
