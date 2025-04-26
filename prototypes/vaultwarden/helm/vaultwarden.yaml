@@ -4,7 +4,7 @@
 ---
 
 ingress:
-  enabled: true
+  enabled: false
   hostname: #@ "vault." + shared.domain
   class: ""
   nginxIngressAnnotations: false

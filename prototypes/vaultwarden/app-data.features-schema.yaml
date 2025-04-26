@@ -1,0 +1,26 @@
+#@data/values-schema
+---
+#@overlay/match missing_ok=True
+addon:
+  #! Each feature will be enabled by providing a non-empty value for the name
+  #@schema/nullable
+  postgres:
+    #@schema/nullable
+    name: ""
+    instances: 2
+    size: 5Gi
+
+  #@schema/title "simple traefik ingressroute definition to 'shared.domain'"
+  ingressroute:
+    #@schema/desc "The name of the ingressroute"
+    #@schema/nullable
+    name: ""
+    #@schema/desc "As traefik and external-dns are not working together, a custom domain can bew used to create a cname record in the external-dns zone."
+    cname: "lb"
+    #@schema/desc "The service name to route to"
+    #@schema/validation min_len=1
+    service: ""
+    #@schema/desc "The service port"
+    #@schema/validation min=1
+    port: 80
+

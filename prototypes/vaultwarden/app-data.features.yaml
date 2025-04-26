@@ -1,0 +1,7 @@
+#@data/values
+---
+addon:
+  ingressroute:
+    name: vaultwarden
+    service: vaultwarden
+    port: 80
