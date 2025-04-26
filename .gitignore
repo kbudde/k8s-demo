@@ -1,6 +1,2 @@
-.myks/tmp
-.myks/vendir-cache/**
-.myks/envs/**/helm
-.myks/envs/**/steps
-.myks/envs/**/argocd_defaults.ytt.yaml
+.myks/
 **/.decrypted~*
