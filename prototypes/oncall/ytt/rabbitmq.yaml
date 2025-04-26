@@ -1,4 +1,0 @@
-
-#@ load("@ytt:template", "template")
-#@ load("rabbitmq-cluster.lib.yaml", "rabbitmq_cluster")
---- #@ template.replace(rabbitmq_cluster(name="oncall-queue", instances=3, size="5Gi"))

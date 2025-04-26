@@ -1,7 +1,0 @@
-#@data/values-schema
----
-#@overlay/match-child-defaults missing_ok=True
-application:
-  images:
-    #! renovate: datasource=docker
-    taskchampionSyncServer: ghcr.io/gothenburgbitfactory/taskchampion-sync-server:0.5.0

@@ -56,10 +56,6 @@ environment:
     name: ""
   - proto: cloudnative-pg
     name: ""
-  - proto: oncall
-    name: ""
-  - proto: taskwarrior
-    name: ""
   - proto: grafana
     name: ""
   - proto: n8n
@@ -67,8 +63,6 @@ environment:
   - proto: victoria-metrics-operator
     name: ""
   - proto: flowise
-    name: ""
-  - proto: authelia
     name: ""
   - proto: velero
     name: ""

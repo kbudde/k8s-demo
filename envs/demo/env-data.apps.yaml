@@ -18,14 +18,10 @@ environment:
   - proto: victoria-logs-single
   - proto: rabbitmq-operator
   - proto: cloudnative-pg
-  - proto: oncall
-  - proto: taskwarrior
   - proto: grafana
   - proto: n8n
-  #!  - proto: gitpod
   - proto: victoria-metrics-operator
   - proto: flowise
-  - proto: authelia
   - proto: velero
   - proto: minecraft
     name: minecraft-2

@@ -1,9 +1,0 @@
-#@data/values
----
-prototypes:
-  - name: tetragon
-    kind: helm
-    repo: helmChart
-    url: https://helm.cilium.io
-    version: 1.4.0
-
