@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: kube-prometheus-stack
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 70.3.0
-    chart: kube-prometheus-stack-70.3.0
+    app.kubernetes.io/version: 70.7.0
+    chart: kube-prometheus-stack-70.7.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-prometheus
@@ -42,7 +42,7 @@ spec:
   enableAdminAPI: false
   externalUrl: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090
   hostNetwork: false
-  image: quay.io/prometheus/prometheus:v3.2.1
+  image: quay.io/prometheus/prometheus:v3.3.0
   listenLocal: false
   logFormat: logfmt
   logLevel: info
@@ -72,5 +72,5 @@ spec:
   shards: 1
   tsdb:
     outOfOrderTimeWindow: 0s
-  version: v3.2.1
+  version: v3.3.0
   walCompression: true
