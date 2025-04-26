@@ -22,5 +22,4 @@ spec:
   dnsNames:
     #!- #@ data.values.shared.domain
     - #@ "*." + data.values.shared.domain
-    - #@ "*.python." + data.values.shared.domain
 ---
