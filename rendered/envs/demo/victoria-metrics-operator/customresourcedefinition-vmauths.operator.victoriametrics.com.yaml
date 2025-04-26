@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.55.0
-    helm.sh/chart: victoria-metrics-operator-0.44.0
+    app.kubernetes.io/version: v0.56.0
+    helm.sh/chart: victoria-metrics-operator-0.45.0
   name: vmauths.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -659,6 +659,13 @@ spec:
                     type: object
                     x-kubernetes-preserve-unknown-fields: true
                   type: array
+                internalListenPort:
+                  description: |-
+                    InternalListenPort instructs vmauth to serve internal routes at given port
+                    available from v0.56.0 operator
+                    and v1.111.0 vmauth version
+                    related doc https://docs.victoriametrics.com/vmauth/#security
+                  type: string
                 license:
                   description: |-
                     License allows to configure license key to be used for enterprise features.
@@ -1379,6 +1386,11 @@ spec:
                   description: |-
                     UseDefaultResources controls resource settings
                     By default, operator sets built-in resource requirements
+                  type: boolean
+                useProxyProtocol:
+                  description: |-
+                    UseProxyProtocol enables proxy protocol for vmauth
+                    https://www.haproxy.org/download/2.3/doc/proxy-protocol.txt
                   type: boolean
                 useStrictSecurity:
                   description: |-
