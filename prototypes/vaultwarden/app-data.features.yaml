@@ -2,6 +2,6 @@
 ---
 addon:
   ingressroute:
-    name: vaultwarden
+    name: vault
     service: vaultwarden
     port: 80

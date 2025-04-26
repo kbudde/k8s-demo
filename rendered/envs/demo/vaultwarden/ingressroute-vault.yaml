@@ -5,13 +5,13 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
     kubernetes.io/ingress.class: traefik
-  name: vaultwarden
+  name: vault
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`vaultwarden.demo.budd.ee`)
+      match: Host(`vault.demo.budd.ee`)
       priority: 10
       services:
         - name: vaultwarden
