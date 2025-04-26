@@ -6,11 +6,11 @@ metadata:
     meta.helm.sh/release-name: reloader
     meta.helm.sh/release-namespace: reloader
   labels:
-    app: reloader-reloader
+    app.kubernetes.io/instance: reloader
     app.kubernetes.io/managed-by: Helm
-    chart: reloader-2.0.0
-    heritage: Helm
-    release: reloader
+    app.kubernetes.io/name: reloader
+    app.kubernetes.io/version: v1.4.1
+    helm.sh/chart: reloader-2.1.1
   name: reloader-reloader-role-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
