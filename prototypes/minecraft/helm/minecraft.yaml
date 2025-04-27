@@ -49,13 +49,13 @@ minecraftServer:
   #! One of: peaceful, easy, normal, and hard
   difficulty: easy
   #! A comma-separated list of player names to whitelist.
-  whitelist: K_E_B,Apfelbir,ribbimine
+  whitelist: K_E_B,Apfelbir,ribbimine,Yojironi
   #! A comma-separated list of player names who should be admins.
   ops:
   #! A server icon URL for server listings. Auto-scaled and transcoded.
   icon:
   #! Max connected players.
-  maxPlayers: default
+  maxPlayers: 5
   #! This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
   maxWorldSize: default
   #! Allows players to travel to the Nether.
@@ -89,7 +89,7 @@ minecraftServer:
   #! One of: creative, survival, adventure, spectator
   gameMode: survival
   #! Message of the Day
-  motd: "Welcome to Minecraft on Kubernetes!"
+  motd: "Welcome to Create 8.1!"
   #! If true, enable player-vs-player damage.
   pvp: false
   #! One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED

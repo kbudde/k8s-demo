@@ -40,11 +40,13 @@ spec:
             - name: DIFFICULTY
               value: easy
             - name: WHITELIST
-              value: K_E_B,Apfelbir,ribbimine
+              value: K_E_B,Apfelbir,ribbimine,Yojironi
+            - name: MAX_PLAYERS
+              value: "5"
             - name: MODE
               value: survival
             - name: MOTD
-              value: Welcome to Minecraft on Kubernetes!
+              value: Welcome to Create 8.1!
             - name: PVP
               value: "false"
             - name: LEVEL_TYPE
