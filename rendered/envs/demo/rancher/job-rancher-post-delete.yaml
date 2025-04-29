@@ -8,7 +8,7 @@ metadata:
     helm.sh/hook-weight: "3"
   labels:
     app: rancher
-    chart: rancher-2.11.0
+    chart: rancher-2.11.1
     heritage: Helm
     release: rancher
   name: rancher-post-delete
@@ -19,7 +19,7 @@ spec:
     metadata:
       labels:
         app: rancher
-        chart: rancher-2.11.0
+        chart: rancher-2.11.1
         heritage: Helm
         release: rancher
       name: rancher-post-delete

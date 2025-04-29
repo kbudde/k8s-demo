@@ -6,7 +6,7 @@ metadata:
     reloader.stakater.com/auto: "true"
   labels:
     app: rancher
-    chart: rancher-2.11.0
+    chart: rancher-2.11.1
     heritage: Helm
     release: rancher
   name: rancher
@@ -64,7 +64,7 @@ spec:
                   name: bootstrap-secret
             - name: IMPERATIVE_API_DIRECT
               value: "true"
-          image: rancher/rancher:v2.11.0
+          image: rancher/rancher:v2.11.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 5
