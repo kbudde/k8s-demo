@@ -2,7 +2,7 @@
 #@ if data.values.myks.context.step=="render-ytt":
 #@ addon = data.values.addon if hasattr(data.values,"addon") else {}
 #@ pg = addon.postgres if hasattr(addon, "postgres") else {}
-#@ if/end hasattr(pg, "name") and pg.name != '':
+#@ if hasattr(pg, "name") and pg.name != '':
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -24,4 +24,39 @@ spec:
   replicationSlots:
     highAvailability:
       enabled: true
-#@ end
+  #! added for coroot
+  inheritedMetadata:
+    labels:
+      coroot.com/postgres-scrape: "true"
+      coroot.com/postgres-scrape-port: "5432"
+      coroot.com/postgres-scrape-credentials-secret-name: #@ pg.name + "-coroot-user"
+      coroot.com/postgres-scrape-credentials-secret-username-key: "username"
+      coroot.com/postgres-scrape-credentials-secret-password-key: "password"
+  postgresql:
+    shared_preload_libraries: [pg_stat_statements]
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+  managed:
+    roles:
+    - name: coroot
+      ensure: present
+      login: true
+      inherit: true
+      connectionLimit: 2
+      inRoles:
+      - pg_monitor
+      passwordSecret:
+        name: pg-cluster
+---
+apiVersion: v1
+stringData:
+  username: <path:static/coroot.yaml#user>
+  password: <path:static/coroot.yaml#password>
+kind: Secret
+metadata:
+  name: #@ pg.name + "-coroot-user"
+type: kubernetes.io/basic-auth
+#! end added for coroot
+#@ end #! has pg.name
+#@ end #! render step
