@@ -5,7 +5,6 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     controller-gen.kubebuilder.io/version: v0.16.5
     coroot.com/custom-application-name: velero
-  creationTimestamp: null
   labels:
     component: velero
   name: deletebackuprequests.velero.io
