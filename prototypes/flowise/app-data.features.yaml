@@ -3,7 +3,7 @@
 addon:
   postgres:
     name: flow-psql
-    size: 1Gi
+    size: 2Gi
   ingressroute:
     name: flowise
     service: flowise
