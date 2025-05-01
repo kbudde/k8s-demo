@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/name: coroot-operator
+  name: coroot-operator
+  namespace: coroot
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: coroot-operator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: coroot-operator
+    spec:
+      containers:
+        - image: ghcr.io/coroot/coroot-operator:1.3.1
+          imagePullPolicy: IfNotPresent
+          name: operator
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          securityContext: {}
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: coroot-operator

@@ -1,4 +1,3 @@
-clickhouse-password: ENC[AES256_GCM,data:TvvbxfUDyvImqTS1X/VbJvWroJYYeJzFOQ==,iv:9r6UoiBS07Xb4B8B2AeYxFdMvhpcbIoqzqvALJSxzwg=,tag:LLUf1FHCVangnujq4rqSYg==,type:str]
 authBootstrapAdminPassword: ENC[AES256_GCM,data:VLbQq1c7cuSEHmSu,iv:YhVxt6lmrtYoLXZ8L0PSWwAs1uLcRYhlrNKFAd8kxJ4=,tag:IHFfrxab/PJrEypFuPiW5w==,type:str]
 sops:
     age:
@@ -11,7 +10,7 @@ sops:
             RnlIRHRpMFJ5M3BZREQ5ay8zWFUyY28K0dVRrjAgNJ0/xMDefjAKVwBleJQkZwYK
             QErl2kCyFm41JzXWCdzb+RsvyhpHugisOMBpLEHdZ+GGeHVBldZaHQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-01T08:52:28Z"
-    mac: ENC[AES256_GCM,data:iEfS2y9WLJHuE1UFkZXJktSmYuLChCmozPOZMwr4M1diNCxn5QLgmrLAAf+javRDrHv6T3uXspRrS77LdlTTNNgjWWdO7QyId+iFPwwAwheyJksguzELP6lZis8iyWPClZUZTSvUa2dels73BRSqh/W5tD9sbp16eMsJDebmmbk=,iv:nT0eZhWup8namsjiCGQjuqJW/gAugWE1GVO9G7+uFn0=,tag:vl8BetQFfAfg8IeIlVZeiA==,type:str]
+    lastmodified: "2025-05-01T09:01:53Z"
+    mac: ENC[AES256_GCM,data:kI9r9NiA9D5h1Hh7Z4bU8NEpKcEmZhL77RFnHRWNWSmZ8jQtkYv23nDwSJ0Bf+jz/Mse7ITh8YLKOr2/FuoeKxaL92bSOy1o7zyx1XAZsbhp9XyKIyLezgaLj/JsyeOHucfxlI+LeVuZYcT7lzzN/VGMGsJImtiUoqhRY7k0MxY=,iv:l/UqtXzQY8rO6bhLuyD/hpEGtHUvQ53wETrJ6DaOfzs=,tag:BcBhYjEoT7cQp5SyswldiA==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2

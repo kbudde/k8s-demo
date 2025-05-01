@@ -5,21 +5,15 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
   name: coroot
 spec:
-  apiKey: null
-  authAnonymousRole: null
   authBootstrapAdminPassword: <path:static/coroot.yaml#authBootstrapAdminPassword>
   clickhouse:
-    replicas: 1
-    shards: 1
+    replicas: 2
+    shards: 2
     storage:
-      size: 100Gi
-  clusterAgent: null
+      size: 50Gi
   metricsRefreshInterval: 15s
-  nodeAgent: null
   prometheus:
     storage:
-      size: 10Gi
-  resources: null
-  service: null
+      size: 20Gi
   storage:
     size: 10Gi

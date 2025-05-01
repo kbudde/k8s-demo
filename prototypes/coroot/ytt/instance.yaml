@@ -3,94 +3,19 @@ kind: Coroot
 metadata:
   name: coroot
 spec:
-  apiKey:
   metricsRefreshInterval: 15s
-  authAnonymousRole:
   authBootstrapAdminPassword: <path:static/coroot.yaml#authBootstrapAdminPassword>
-
-  #replicas: 1
-
-  service:
-  #  type: ClusterIP
-  #  port: 8080
-  #  nodePort:
-
-  #ingress:
-  #  className:
-  #  host:
-  #  path: /
-  #  tls:
 
   storage:
     size: 10Gi
-  #  className:
-
-  resources:
-  #  requests:
-  #    cpu: 1
-  #    memory: 4Gi
-  #  limits:
-  #    cpu:
-  #    memory:
-
-  #env:
-  #  - name:
-  #    value:
-
-  nodeAgent:
-  #  priorityClassName:
-  #  updateStrategy:
-  #    type: RollingUpdate
-  #    rollingUpdate:
-  #      maxUnavailable: 1
-  #  resources:
-  #    requests:
-  #      cpu:
-  #      memory:
-  #    limits:
-  #      cpu:
-  #      memory:
-  #  env:
-  #    - name:
-  #      value:
-
-  clusterAgent:
-  #  resources:
-  #    requests:
-  #      cpu:
-  #      memory:
-  #    limits:
-  #      cpu:
-  #      memory:
-  #  env:
-  #    - name:
-  #      value:
 
   prometheus:
     storage:
-      size: 10Gi
-  #    className:
+      size: 20Gi
 
   clickhouse:
-    shards: 1
-    replicas: 1
+    shards: 2
+    replicas: 2
     storage:
-      size: 100Gi
-  #    className:
+      size: 50Gi
 
-  #externalClickhouse:
-  #  address:
-  #  user:
-  #  password:
-  #  database:
-
-  #postgres:
-  #  host:
-  #  port: 5432
-  #  user:
-  #  password:
-  #  passwordSecret:
-  #    name:
-  #    key:
-  #    params:
-  #      sslmode: disable

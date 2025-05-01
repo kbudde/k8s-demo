@@ -1,7 +1,7 @@
 #@data/values
 ---
 prototypes:
-  - name: coroot
+  - name: coroot-operator
     kind: helm
     repo: helmChart
     url: https://coroot.github.io/helm-charts

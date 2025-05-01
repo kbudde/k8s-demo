@@ -1,3 +1,0 @@
-clickhouse:
-  auth:
-    password: "<path:static/coroot.yaml#clickhouse-password>"
