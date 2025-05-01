@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: coroot-cluster-agent-helm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: coroot-cluster-agent
+subjects:
+  - kind: ServiceAccount
+    name: coroot-cluster-agent
+    namespace: coroot

@@ -25,7 +25,7 @@ spec:
     metadata:
       annotations:
         checksum/config: 7e7cb279be4cca0d087d13ab75912b829bf8b3e93ecc452bcda7632233c945bd
-        checksum/config-extra: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+        checksum/config-extra: 3df4ef1c91091f26f16d4c1427ac131be95b583e900a1a447e9d5bfe4b1d3172
       labels:
         app.kubernetes.io/component: clickhouse
         app.kubernetes.io/instance: coroot
@@ -76,7 +76,7 @@ spec:
                   key: admin-password
                   name: coroot-clickhouse
           envFrom: null
-          image: docker.io/bitnami/clickhouse:23.3.1-debian-11-r0
+          image: docker.io/bitnami/clickhouse:24.12.3
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -126,6 +126,8 @@ spec:
               name: data
             - mountPath: /bitnami/clickhouse/etc/conf.d/default
               name: config
+            - mountPath: /bitnami/clickhouse/etc/conf.d/extra-configmap
+              name: extra-config
       initContainers: null
       securityContext:
         fsGroup: 1001
@@ -140,6 +142,9 @@ spec:
         - configMap:
             name: coroot-clickhouse
           name: config
+        - configMap:
+            name: coroot-clickhouse-extra
+          name: extra-config
   updateStrategy:
     type: RollingUpdate
   volumeClaimTemplates:

@@ -1,0 +1,58 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: coroot
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: coroot-cluster-agent
+    app.kubernetes.io/version: 1.2.1
+    helm.sh/chart: coroot-0.19.2
+  name: coroot-cluster-agent
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+      - nodes
+      - pods
+      - services
+      - endpoints
+      - persistentvolumeclaims
+      - persistentvolumes
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apps
+    resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+      - cronjobs
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - batch
+    resources:
+      - cronjobs
+      - jobs
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - storage.k8s.io
+    resources:
+      - storageclasses
+      - volumeattachments
+    verbs:
+      - get
+      - list
+      - watch

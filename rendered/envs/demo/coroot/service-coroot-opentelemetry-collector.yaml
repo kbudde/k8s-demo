@@ -6,24 +6,17 @@ metadata:
   labels:
     app.kubernetes.io/instance: coroot
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: opentelemetry-collector
-    app.kubernetes.io/version: 0.75.0
-    component: standalone-collector
-    helm.sh/chart: opentelemetry-collector-0.52.1
+    app.kubernetes.io/name: coroot
+    app.kubernetes.io/version: 1.10.2
+    helm.sh/chart: coroot-0.19.2
   name: coroot-opentelemetry-collector
 spec:
   ports:
-    - appProtocol: grpc
-      name: otlp
-      port: 4317
-      protocol: TCP
-      targetPort: 4317
-    - name: otlp-http
+    - name: otel-http
       port: 4318
       protocol: TCP
-      targetPort: 4318
+      targetPort: http
   selector:
     app.kubernetes.io/instance: coroot
-    app.kubernetes.io/name: opentelemetry-collector
-    component: standalone-collector
+    app.kubernetes.io/name: coroot
   type: ClusterIP

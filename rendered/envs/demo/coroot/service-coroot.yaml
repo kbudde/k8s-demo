@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/instance: coroot
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: coroot
-    app.kubernetes.io/version: 0.17.11
-    helm.sh/chart: coroot-0.3.1
+    app.kubernetes.io/version: 1.10.2
+    helm.sh/chart: coroot-0.19.2
   name: coroot
 spec:
   ports:

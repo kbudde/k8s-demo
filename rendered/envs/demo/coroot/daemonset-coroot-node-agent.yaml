@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: coroot
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: node-agent
-    app.kubernetes.io/version: 1.8.9
-    helm.sh/chart: node-agent-0.1.35
+    app.kubernetes.io/version: 1.23.17
+    helm.sh/chart: node-agent-0.2.17
   name: coroot-node-agent
 spec:
   selector:
@@ -29,12 +29,17 @@ spec:
       containers:
         - command:
             - coroot-node-agent
+            - --listen=0.0.0.0:80
             - --cgroupfs-root
             - /host/sys/fs/cgroup
           env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              value: http://coroot-opentelemetry-collector:4318/v1/traces
-          image: ghcr.io/coroot/coroot-node-agent:1.8.9
+            - name: TRACES_ENDPOINT
+              value: http://coroot:8080/v1/traces
+            - name: LOGS_ENDPOINT
+              value: http://coroot:8080/v1/logs
+            - name: PROFILES_ENDPOINT
+              value: http://coroot:8080/v1/profiles
+          image: ghcr.io/coroot/coroot-node-agent:1.23.17
           imagePullPolicy: IfNotPresent
           name: node-agent
           ports:
@@ -53,8 +58,14 @@ spec:
             - mountPath: /host/sys/fs/cgroup
               name: cgroupfs
               readOnly: true
+            - mountPath: /sys/kernel/tracing
+              name: tracefs
+              readOnly: false
             - mountPath: /sys/kernel/debug
               name: debugfs
+              readOnly: false
+            - mountPath: /tmp
+              name: tmp
               readOnly: false
       hostPID: true
       priorityClassName: null
@@ -65,5 +76,14 @@ spec:
             path: /sys/fs/cgroup
           name: cgroupfs
         - hostPath:
+            path: /sys/kernel/tracing
+          name: tracefs
+        - hostPath:
             path: /sys/kernel/debug
           name: debugfs
+        - emptyDir: {}
+          name: tmp
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate

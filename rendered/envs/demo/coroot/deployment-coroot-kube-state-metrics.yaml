@@ -34,8 +34,9 @@ spec:
       containers:
         - args:
             - --port=8080
-            - --resources=certificatesigningrequests,configmaps,cronjobs,daemonsets,deployments,endpoints,horizontalpodautoscalers,ingresses,jobs,limitranges,mutatingwebhookconfigurations,namespaces,networkpolicies,nodes,persistentvolumeclaims,persistentvolumes,poddisruptionbudgets,pods,replicasets,replicationcontrollers,resourcequotas,secrets,services,statefulsets,storageclasses,validatingwebhookconfigurations,volumeattachments
+            - --resources=namespaces,nodes,daemonsets,deployments,cronjobs,jobs,persistentvolumeclaims,persistentvolumes,pods,replicasets,services,endpoints,statefulsets,storageclasses,volumeattachments
             - --metric-labels-allowlist=pods=[*]
+            - --metric-annotations-allowlist=*=[coroot.com/application-category,coroot.com/custom-application-name]
             - --telemetry-port=8081
           image: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0
           imagePullPolicy: IfNotPresent

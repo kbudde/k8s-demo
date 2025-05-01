@@ -14,20 +14,6 @@ metadata:
   name: coroot-kube-state-metrics
 rules:
   - apiGroups:
-      - certificates.k8s.io
-    resources:
-      - certificatesigningrequests
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-    verbs:
-      - list
-      - watch
-  - apiGroups:
       - batch
     resources:
       - cronjobs
@@ -58,21 +44,6 @@ rules:
       - list
       - watch
   - apiGroups:
-      - autoscaling
-    resources:
-      - horizontalpodautoscalers
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - extensions
-      - networking.k8s.io
-    resources:
-      - ingresses
-    verbs:
-      - list
-      - watch
-  - apiGroups:
       - batch
     resources:
       - jobs
@@ -82,28 +53,7 @@ rules:
   - apiGroups:
       - ""
     resources:
-      - limitranges
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - admissionregistration.k8s.io
-    resources:
-      - mutatingwebhookconfigurations
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
       - namespaces
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - networking.k8s.io
-    resources:
-      - networkpolicies
     verbs:
       - list
       - watch
@@ -129,13 +79,6 @@ rules:
       - list
       - watch
   - apiGroups:
-      - policy
-    resources:
-      - poddisruptionbudgets
-    verbs:
-      - list
-      - watch
-  - apiGroups:
       - ""
     resources:
       - pods
@@ -147,27 +90,6 @@ rules:
       - apps
     resources:
       - replicasets
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - replicationcontrollers
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - resourcequotas
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - secrets
     verbs:
       - list
       - watch
@@ -189,13 +111,6 @@ rules:
       - storage.k8s.io
     resources:
       - storageclasses
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - admissionregistration.k8s.io
-    resources:
-      - validatingwebhookconfigurations
     verbs:
       - list
       - watch

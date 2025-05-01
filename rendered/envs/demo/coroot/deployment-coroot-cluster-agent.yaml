@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: coroot
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: coroot-cluster-agent
+    app.kubernetes.io/version: 1.2.1
+    helm.sh/chart: coroot-0.19.2
+  name: coroot-cluster-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: coroot
+      app.kubernetes.io/name: coroot-cluster-agent
+  template:
+    metadata:
+      annotations:
+        checksum/config: a4e5f655a5b53ffdcfb7fdb5d2fa52625f977e80ae43775ed656e29604599adb
+      labels:
+        app.kubernetes.io/instance: coroot
+        app.kubernetes.io/name: coroot-cluster-agent
+    spec:
+      containers:
+        - env:
+            - name: LISTEN
+              value: :8080
+            - name: COROOT_URL
+              value: http://coroot:8080
+            - name: API_KEY
+              value: ""
+            - name: CONFIG_UPDATE_INTERVAL
+              value: 60s
+            - name: CONFIG_UPDATE_TIMEOUT
+              value: 10s
+            - name: METRICS_SCRAPE_INTERVAL
+              value: 15s
+            - name: METRICS_SCRAPE_TIMEOUT
+              value: 10s
+            - name: METRICS_WAL_DIR
+              value: ""
+            - name: PROFILES_SCRAPE_INTERVAL
+              value: 1m
+            - name: PROFILES_SCRAPE_TIMEOUT
+              value: 10s
+          image: ghcr.io/coroot/coroot-cluster-agent:1.2.1
+          imagePullPolicy: IfNotPresent
+          name: cluster-agent
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+              readOnly: false
+      securityContext: {}
+      serviceAccountName: coroot-cluster-agent
+      volumes:
+        - emptyDir: {}
+          name: tmp

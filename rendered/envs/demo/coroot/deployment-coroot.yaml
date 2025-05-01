@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: coroot
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: coroot
-    app.kubernetes.io/version: 0.17.11
-    helm.sh/chart: coroot-0.3.1
+    app.kubernetes.io/version: 1.10.2
+    helm.sh/chart: coroot-0.19.2
   name: coroot
 spec:
   replicas: 1
@@ -18,9 +18,7 @@ spec:
       app.kubernetes.io/instance: coroot
       app.kubernetes.io/name: coroot
   strategy:
-    rollingUpdate:
-      maxSurge: 0
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       labels:
@@ -34,8 +32,6 @@ spec:
             - --bootstrap-prometheus-url=http://coroot-prometheus-server:80
             - --bootstrap-refresh-interval=15s
           env:
-            - name: BOOTSTRAP_PYROSCOPE_URL
-              value: http://coroot-pyroscope:4040
             - name: BOOTSTRAP_CLICKHOUSE_ADDRESS
               value: coroot-clickhouse:9000
             - name: BOOTSTRAP_CLICKHOUSE_PASSWORD
@@ -47,9 +43,7 @@ spec:
               value: default
             - name: BOOTSTRAP_CLICKHOUSE_DATABASE
               value: default
-            - name: BOOTSTRAP_CLICKHOUSE_TRACES_TABLE
-              value: otel_traces
-          image: ghcr.io/coroot/coroot:0.17.11
+          image: ghcr.io/coroot/coroot:1.10.2
           imagePullPolicy: IfNotPresent
           name: coroot
           ports:
@@ -68,7 +62,11 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
-      securityContext: {}
+      securityContext:
+        fsGroup: 65534
+        runAsGroup: 65534
+        runAsNonRoot: true
+        runAsUser: 65534
       serviceAccountName: coroot
       volumes:
         - name: data
