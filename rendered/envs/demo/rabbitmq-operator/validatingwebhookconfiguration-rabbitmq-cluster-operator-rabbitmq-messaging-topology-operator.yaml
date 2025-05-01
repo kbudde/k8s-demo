@@ -4,6 +4,7 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     cert-manager.io/inject-ca-from: rabbitmq-operator/rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator
+    coroot.com/custom-application-name: rabbitmq-operator
   labels:
     app.kubernetes.io/component: messaging-topology-operator
     app.kubernetes.io/instance: rabbitmq-cluster-operator

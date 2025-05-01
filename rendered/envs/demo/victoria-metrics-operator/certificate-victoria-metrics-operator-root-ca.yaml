@@ -3,6 +3,7 @@ kind: Certificate
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
+    coroot.com/custom-application-name: victoria-metrics-operator
   name: victoria-metrics-operator-root-ca
   namespace: victoria-metrics-operator
 spec:

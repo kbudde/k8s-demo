@@ -4,6 +4,7 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     api-approved.kubernetes.io: https://github.com/kubernetes-sigs/external-dns/pull/2007
+    coroot.com/custom-application-name: external-dns
   name: dnsendpoints.externaldns.k8s.io
 spec:
   group: externaldns.k8s.io

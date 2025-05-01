@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
+    coroot.com/custom-application-name: minecraft-2
     volume.alpha.kubernetes.io/storage-class: default
   labels:
     app: minecraft

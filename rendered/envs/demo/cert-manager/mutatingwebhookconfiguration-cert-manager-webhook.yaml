@@ -4,6 +4,7 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
+    coroot.com/custom-application-name: cert-manager
   labels:
     app: webhook
     app.kubernetes.io/component: webhook

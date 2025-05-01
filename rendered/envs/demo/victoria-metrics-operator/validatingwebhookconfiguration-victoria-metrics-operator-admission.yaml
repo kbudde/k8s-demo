@@ -5,6 +5,7 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     cert-manager.io/inject-ca-from: victoria-metrics-operator/victoria-metrics-operator-validation
     certmanager.k8s.io/inject-ca-from: victoria-metrics-operator/victoria-metrics-operator-validation
+    coroot.com/custom-application-name: victoria-metrics-operator
   labels:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm

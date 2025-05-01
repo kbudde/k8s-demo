@@ -3,6 +3,7 @@ kind: PodDisruptionBudget
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
+    coroot.com/custom-application-name: rabbitmq-operator
   labels:
     app.kubernetes.io/component: rabbitmq-operator
     app.kubernetes.io/instance: rabbitmq-cluster-operator
