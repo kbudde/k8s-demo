@@ -2,21 +2,21 @@
 
 set -e
 
+# check if we have two command line arguments
+if [ "$#" -eq 2 ]; then
+  MYKS_ENV="$1"
+  MYKS_APP="$2"
+  MYKS_RENDERED_APP_DIR="rendered/envs/$MYKS_ENV/$MYKS_APP"
+fi
+
 # "MYKS_ENV":              a.e.Id,
 # "MYKS_APP":              a.Name,
 # "MYKS_APP_PROTOTYPE":    a.Prototype,
 # "MYKS_ENV_DIR":          a.e.Dir,
 # "MYKS_RENDERED_APP_DIR": "rendered/envs/" + a.e.Id + "/" + a.Name, // TODO: provide func and use it everywher
-
+echo "Processing $MYKS_ENV/$MYKS_APP"
 myks all "$MYKS_ENV" "$MYKS_APP"
 echo "MYKS_RENDERED_APP_DIR: $MYKS_RENDERED_APP_DIR"
-
-# check manifests
-echo -n "lint manifests: "
-kube-linter lint --config .kubelint.yaml --with-color "$MYKS_RENDERED_APP_DIR" \
-  --ignore-paths "./$MYKS_RENDERED_APP_DIR/static/*"
-# --fail-on-invalid-resource # CRDs are not supported
-# --fail-if-no-objects-found # if only CRs are shipped, it will fail
 
 # check secrets
 (
@@ -36,3 +36,12 @@ kube-linter lint --config .kubelint.yaml --with-color "$MYKS_RENDERED_APP_DIR" \
     argocd-vault-plugin generate - >>/dev/null || (echo "❌Error generating $MYKS_APP failed" && exit 1)
   echo "✔️ passed"
 )
+
+# check manifests
+echo -n "lint manifests: "
+kube-linter lint --config .kubelint.yaml --with-color "$MYKS_RENDERED_APP_DIR" \
+  --ignore-paths "./$MYKS_RENDERED_APP_DIR/static/*"
+# --fail-on-invalid-resource # CRDs are not supported
+# --fail-if-no-objects-found # if only CRs are shipped, it will fail
+
+
