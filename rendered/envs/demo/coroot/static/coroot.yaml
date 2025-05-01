@@ -1,5 +1,4 @@
-clickhouse:
-    password: ENC[AES256_GCM,data:GqdNb9v3YIAmVW4CT+YCLoqrZXRJE5U=,iv:IP7XOyqoNtQGvpzvNoBD4/gngls5LNzGd0iIvFUByP4=,tag:XtRqhOrwSIMJSeFS7m+AfQ==,type:str]
+clickhouse-password: ENC[AES256_GCM,data:TvvbxfUDyvImqTS1X/VbJvWroJYYeJzFOQ==,iv:9r6UoiBS07Xb4B8B2AeYxFdMvhpcbIoqzqvALJSxzwg=,tag:LLUf1FHCVangnujq4rqSYg==,type:str]
 sops:
     age:
         - recipient: age18vdqq99qpl8gyql3ggu2d4ull2d0694sv9v9keg687jh8csjm5rqws9rmk
@@ -11,7 +10,7 @@ sops:
             RnlIRHRpMFJ5M3BZREQ5ay8zWFUyY28K0dVRrjAgNJ0/xMDefjAKVwBleJQkZwYK
             QErl2kCyFm41JzXWCdzb+RsvyhpHugisOMBpLEHdZ+GGeHVBldZaHQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-01T08:30:27Z"
-    mac: ENC[AES256_GCM,data:f2ITrJVxSn5OwQB9DDVE7XkhcF1JSoAeUSxiPbPjs+ZO2Dr1C5fb2VVjY1zmfLMNinDd1q7qvbgX9rNWpkay5I7wiHDotX/D9tcY0j3IeOyKfQdyiF04o9trAA2tVaETtzlnxUr3OREoTv71Bexm88wMRz3ku9n3BfMjhri/82o=,iv:0wudeFW9tjFgXb4uKdHKm6vKXLqKZqVRLfnS1+yQfs8=,tag:rPwxW74FLqrkjiZyxiBvSg==,type:str]
+    lastmodified: "2025-05-01T08:44:15Z"
+    mac: ENC[AES256_GCM,data:nghzC75ag1Tq7fiBxexY5DtGrehuwcjvk6Lk4y0U62ZdSEaH5SLDVE/zGnkbFjDLEwgB8FHRUmoVDnBRIiUe+4IydEqR7tWTTyn0BfAZpXTEKPz5JexQdpP3fzgZb7aGSqIIbTnh9aYXxWkaJ0NMlCWV+Y1zPQkqY5EH+lH3FC8=,iv:AyU5ezt2jz7yPiOEUFegHM2JnVbS9jvuuEcBBO8S5hg=,tag:FGwaiDu9gm+4xRUg35PLNA==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2
