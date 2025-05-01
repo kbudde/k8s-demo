@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: coroot
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: coroot
+    app.kubernetes.io/version: 0.17.11
+    helm.sh/chart: coroot-0.3.1
+  name: coroot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: coroot
+      app.kubernetes.io/name: coroot
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: coroot
+        app.kubernetes.io/name: coroot
+    spec:
+      containers:
+        - args:
+            - --listen=:8080
+            - --data-dir=/data
+            - --bootstrap-prometheus-url=http://coroot-prometheus-server:80
+            - --bootstrap-refresh-interval=15s
+          env:
+            - name: BOOTSTRAP_PYROSCOPE_URL
+              value: http://coroot-pyroscope:4040
+            - name: BOOTSTRAP_CLICKHOUSE_ADDRESS
+              value: coroot-clickhouse:9000
+            - name: BOOTSTRAP_CLICKHOUSE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: admin-password
+                  name: coroot-clickhouse
+            - name: BOOTSTRAP_CLICKHOUSE_USER
+              value: default
+            - name: BOOTSTRAP_CLICKHOUSE_DATABASE
+              value: default
+            - name: BOOTSTRAP_CLICKHOUSE_TRACES_TABLE
+              value: otel_traces
+          image: ghcr.io/coroot/coroot:0.17.11
+          imagePullPolicy: IfNotPresent
+          name: coroot
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      securityContext: {}
+      serviceAccountName: coroot
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: coroot-data

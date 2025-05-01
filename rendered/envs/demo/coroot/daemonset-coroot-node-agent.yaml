@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: coroot
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: node-agent
+    app.kubernetes.io/version: 1.8.9
+    helm.sh/chart: node-agent-0.1.35
+  name: coroot-node-agent
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: coroot
+      app.kubernetes.io/name: node-agent
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "80"
+        prometheus.io/scrape: "true"
+      labels:
+        app: coroot-node-agent
+        app.kubernetes.io/instance: coroot
+        app.kubernetes.io/name: node-agent
+    spec:
+      containers:
+        - command:
+            - coroot-node-agent
+            - --cgroupfs-root
+            - /host/sys/fs/cgroup
+          env:
+            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+              value: http://coroot-opentelemetry-collector:4318/v1/traces
+          image: ghcr.io/coroot/coroot-node-agent:1.8.9
+          imagePullPolicy: IfNotPresent
+          name: node-agent
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 50Mi
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /host/sys/fs/cgroup
+              name: cgroupfs
+              readOnly: true
+            - mountPath: /sys/kernel/debug
+              name: debugfs
+              readOnly: false
+      hostPID: true
+      priorityClassName: null
+      tolerations:
+        - operator: Exists
+      volumes:
+        - hostPath:
+            path: /sys/fs/cgroup
+          name: cgroupfs
+        - hostPath:
+            path: /sys/kernel/debug
+          name: debugfs

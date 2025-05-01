@@ -26,3 +26,4 @@ environment:
   - proto: minecraft
     name: minecraft-2
   - proto: vaultwarden
+  - proto: coroot

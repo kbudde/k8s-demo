@@ -1,0 +1,42 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app: prometheus
+    chart: prometheus-15.16.1
+    component: server
+    heritage: Helm
+    release: coroot
+  name: coroot-prometheus-server
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+      - nodes/proxy
+      - nodes/metrics
+      - services
+      - endpoints
+      - pods
+      - ingresses
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - extensions
+      - networking.k8s.io
+    resources:
+      - ingresses/status
+      - ingresses
+    verbs:
+      - get
+      - list
+      - watch
+  - nonResourceURLs:
+      - /metrics
+    verbs:
+      - get

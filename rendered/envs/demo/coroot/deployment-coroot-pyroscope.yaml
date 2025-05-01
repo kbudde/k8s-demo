@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: coroot
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: pyroscope
+    app.kubernetes.io/version: 0.37.2
+    helm.sh/chart: pyroscope-0.2.92
+  name: coroot-pyroscope
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: coroot
+      app.kubernetes.io/name: pyroscope
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        checksum/config: 550489f848eaa5eb885de439b98d7d8dbb56909a71caa6c27280fcc9b4b8bd7a
+      labels:
+        app.kubernetes.io/instance: coroot
+        app.kubernetes.io/name: pyroscope
+    spec:
+      containers:
+        - args:
+            - server
+            - -config
+            - /tmp/config.yaml
+          image: pyroscope/pyroscope:0.37.2
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 4040
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 30
+          name: pyroscope
+          ports:
+            - containerPort: 4040
+              name: api
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 4040
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 30
+          resources: {}
+          securityContext: {}
+          volumeMounts:
+            - mountPath: /tmp/config.yaml
+              name: config
+              subPath: config.yaml
+            - mountPath: /var/lib/pyroscope
+              name: storage
+      securityContext:
+        fsGroup: 101
+      serviceAccountName: coroot-pyroscope
+      volumes:
+        - configMap:
+            name: coroot-pyroscope
+          name: config
+        - name: storage
+          persistentVolumeClaim:
+            claimName: coroot-pyroscope
