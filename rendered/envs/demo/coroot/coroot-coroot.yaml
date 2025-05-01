@@ -1,0 +1,25 @@
+apiVersion: coroot.com/v1
+kind: Coroot
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  name: coroot
+spec:
+  apiKey: null
+  authAnonymousRole: null
+  authBootstrapAdminPassword: <path:static/coroot.yaml#authBootstrapAdminPassword>
+  clickhouse:
+    replicas: 1
+    shards: 1
+    storage:
+      size: 100Gi
+  clusterAgent: null
+  metricsRefreshInterval: 15s
+  nodeAgent: null
+  prometheus:
+    storage:
+      size: 10Gi
+  resources: null
+  service: null
+  storage:
+    size: 10Gi
