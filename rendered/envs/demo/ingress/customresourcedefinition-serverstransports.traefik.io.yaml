@@ -4,7 +4,6 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     controller-gen.kubebuilder.io/version: v0.16.1
-    coroot.com/custom-application-name: ingress
   name: serverstransports.traefik.io
 spec:
   group: traefik.io

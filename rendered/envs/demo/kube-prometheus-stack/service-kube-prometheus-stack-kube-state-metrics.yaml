@@ -3,7 +3,6 @@ kind: Service
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: kube-prometheus-stack
   labels:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/instance: kube-prometheus-stack

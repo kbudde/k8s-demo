@@ -3,7 +3,6 @@ kind: ClusterRoleBinding
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: designate-certmanager-webhook
   labels:
     app: designate-certmanager-webhook
     chart: designate-certmanager-webhook-0.6.1

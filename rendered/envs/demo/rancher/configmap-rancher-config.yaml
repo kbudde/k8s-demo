@@ -5,7 +5,6 @@ kind: ConfigMap
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: rancher
   labels:
     app: rancher
     app.kubernetes.io/part-of: rancher

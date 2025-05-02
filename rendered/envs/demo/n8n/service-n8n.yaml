@@ -3,7 +3,6 @@ kind: Service
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: n8n
   labels:
     service: n8n
   name: n8n
