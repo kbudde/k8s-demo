@@ -3,7 +3,6 @@ kind: Coroot
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: coroot
   name: coroot
 spec:
   authBootstrapAdminPassword: <path:static/coroot.yaml#authBootstrapAdminPassword>

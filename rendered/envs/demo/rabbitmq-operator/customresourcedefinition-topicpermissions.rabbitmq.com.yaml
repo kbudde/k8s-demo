@@ -4,7 +4,6 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     controller-gen.kubebuilder.io/version: v0.17.1
-    coroot.com/custom-application-name: rabbitmq-operator
   name: topicpermissions.rabbitmq.com
 spec:
   group: rabbitmq.com

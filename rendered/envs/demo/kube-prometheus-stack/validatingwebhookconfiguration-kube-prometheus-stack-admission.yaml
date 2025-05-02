@@ -3,7 +3,6 @@ kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: kube-prometheus-stack
   labels:
     app: kube-prometheus-stack-admission
     app.kubernetes.io/component: prometheus-operator-webhook

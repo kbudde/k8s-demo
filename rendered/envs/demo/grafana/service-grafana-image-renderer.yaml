@@ -3,7 +3,6 @@ kind: Service
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    coroot.com/custom-application-name: grafana
   labels:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/name: grafana-image-renderer
