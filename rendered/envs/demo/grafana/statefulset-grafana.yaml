@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/name: grafana
     app.kubernetes.io/version: 11.6.1
-    helm.sh/chart: grafana-8.14.0
+    helm.sh/chart: grafana-8.14.1
   name: grafana
   namespace: grafana
 spec:
@@ -21,15 +21,15 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: e42a908206e5718d9e9e6c85ff6aa802f1c7d6c8b0744d7db2a5d15a9034611e
+        checksum/config: df845104e5f2a77a10217a26dc5524c659916f642362270806235eadb15ae8e0
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 8bc391ff6749239f085e5789c9da0ce3c234e49ab8c850277de479b9351d7159
+        checksum/sc-dashboard-provider-config: 5e6f773e5150c9bdbeb6c9e1694776732dafa4f4c577c58d42d415cd94f23080
         kubectl.kubernetes.io/default-container: grafana
       labels:
         app.kubernetes.io/instance: grafana
         app.kubernetes.io/name: grafana
         app.kubernetes.io/version: 11.6.1
-        helm.sh/chart: grafana-8.14.0
+        helm.sh/chart: grafana-8.14.1
     spec:
       automountServiceAccountToken: true
       containers:
@@ -328,6 +328,7 @@ spec:
                 - CHOWN
               drop:
                 - NET_RAW
+            readOnlyRootFilesystem: true
             runAsNonRoot: false
             runAsUser: 0
             seccompProfile:
