@@ -5,5 +5,5 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://grafana.github.io/helm-charts
-    version: 8.14.1
+    version: 9.0.0
 
