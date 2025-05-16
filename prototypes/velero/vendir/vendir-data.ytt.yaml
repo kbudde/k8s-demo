@@ -5,4 +5,4 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://vmware-tanzu.github.io/helm-charts
-    version: 9.0.4
+    version: 9.1.2
