@@ -5,7 +5,7 @@ image:
   tag: #@ data.values.application.image.tag
 resources:
   requests:
-    memory: 13400Mi
+    memory: 12400Mi
     cpu: 2000m
 
 minecraftServer:
@@ -120,7 +120,7 @@ minecraftServer:
   #! Require public key to be signed by Mojang to join
   enforceSecureProfile: default
   #! If you adjust this, you may need to adjust resources.requests above to match.
-  memory: 11192M
+  memory: 10192M
   #! General JVM options to be passed to the Minecraft server invocation
   jvmOpts: ""
   #! Options like -X that need to proceed general JVM options

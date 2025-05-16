@@ -58,7 +58,7 @@ spec:
             - name: ONLINE_MODE
               value: "true"
             - name: MEMORY
-              value: 11192M
+              value: 10192M
             - name: ENABLE_RCON
               value: "true"
             - name: RCON_PASSWORD
@@ -108,7 +108,7 @@ spec:
           resources:
             requests:
               cpu: 2000m
-              memory: 13400Mi
+              memory: 12400Mi
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
