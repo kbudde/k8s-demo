@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
     app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 71.1.1
-    chart: kube-prometheus-stack-71.1.1
+    app.kubernetes.io/version: 72.5.0
+    chart: kube-prometheus-stack-72.5.0
     heritage: Helm
     release: kube-prometheus-stack
   name: kube-prometheus-stack-operator
@@ -33,8 +33,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: kube-prometheus-stack-prometheus-operator
         app.kubernetes.io/part-of: kube-prometheus-stack
-        app.kubernetes.io/version: 71.1.1
-        chart: kube-prometheus-stack-71.1.1
+        app.kubernetes.io/version: 72.5.0
+        chart: kube-prometheus-stack-72.5.0
         heritage: Helm
         release: kube-prometheus-stack
     spec:
@@ -45,7 +45,7 @@ spec:
             - --kubelet-endpoints=true
             - --kubelet-endpointslice=false
             - --localhost=127.0.0.1
-            - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.82.0
+            - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.82.2
             - --config-reloader-cpu-request=0
             - --config-reloader-cpu-limit=0
             - --config-reloader-memory-request=0
@@ -60,7 +60,7 @@ spec:
           env:
             - name: GOGC
               value: "30"
-          image: quay.io/prometheus-operator/prometheus-operator:v0.82.0
+          image: quay.io/prometheus-operator/prometheus-operator:v0.82.2
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
