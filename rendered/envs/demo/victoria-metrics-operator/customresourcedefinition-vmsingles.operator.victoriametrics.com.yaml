@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.56.0
-    helm.sh/chart: victoria-metrics-operator-0.45.0
+    app.kubernetes.io/version: v0.57.0
+    helm.sh/chart: victoria-metrics-operator-0.46.0
   name: vmsingles.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -561,10 +561,11 @@ spec:
                   type: object
                 retentionPeriod:
                   description: |-
-                    RetentionPeriod for the stored metrics
-                    Note VictoriaMetrics has data/ and indexdb/ folders
-                    metrics from data/ removed eventually as soon as partition leaves retention period
-                    reverse index data at indexdb rotates once at the half of configured [retention period](https://docs.victoriametrics.com/Single-server-VictoriaMetrics/#retention)
+                    RetentionPeriod defines how long to retain stored metrics, specified as a duration (e.g., "1d", "1w", "1m").
+                    Data with timestamps outside the RetentionPeriod is automatically deleted. The minimum allowed value is 1d, or 24h.
+                    The default value is 1 (one month).
+                    See [retention](https://docs.victoriametrics.com/victoriametrics/single-server-victoriametrics/#retention) docs for details.
+                  pattern: ^[0-9]+(h|d|y)?$
                   type: string
                 revisionHistoryLimitCount:
                   description: |-
@@ -1736,8 +1737,6 @@ spec:
                     type: object
                     x-kubernetes-preserve-unknown-fields: true
                   type: array
-              required:
-                - retentionPeriod
               type: object
             status:
               description: VMSingleStatus defines the observed state of VMSingle
