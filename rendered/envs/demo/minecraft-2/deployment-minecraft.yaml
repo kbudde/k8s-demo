@@ -43,6 +43,8 @@ spec:
               value: K_E_B,Apfelbir,ribbimine,Yojironi
             - name: MAX_PLAYERS
               value: "5"
+            - name: MAX_TICK_TIME
+              value: "180000"
             - name: MODE
               value: survival
             - name: MOTD
@@ -107,7 +109,7 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              cpu: 2000m
+              cpu: 4000m
               memory: 12400Mi
           securityContext:
             allowPrivilegeEscalation: false

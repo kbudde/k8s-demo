@@ -6,7 +6,7 @@ image:
 resources:
   requests:
     memory: 12400Mi
-    cpu: 2000m
+    cpu: 4000m
 
 minecraftServer:
   #! This must be overridden, since we can't accept this for the user.
@@ -73,7 +73,7 @@ minecraftServer:
   #! The maximum height in which building is allowed.
   maxBuildHeight: default
   #! The maximum number of milliseconds a single tick may take before the server watchdog stops the server with the message. -1 disables this entirely.
-  maxTickTime: default
+  maxTickTime: 180000
   #! Determines if animals will be able to spawn.
   spawnAnimals: default
   #! Determines if monsters will be spawned.
