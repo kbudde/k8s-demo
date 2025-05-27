@@ -4,7 +4,7 @@
 
 #@overlay/match by=overlay.subset({"kind": "ConfigMap", "metadata": {"name": "argocd-cm"}})
 ---
-#@overlay/match missing_ok=True
+#@overlay/match-child-defaults missing_ok=True
 data:
   application.resourceTrackingMethod: annotation+label
   application.instanceLabelKey: argocd.argoproj.io/instance

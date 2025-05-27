@@ -44,6 +44,12 @@ spec:
                   key: dexserver.log.level
                   name: argocd-cmd-params-cm
                   optional: true
+            - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+              valueFrom:
+                configMapKeyRef:
+                  key: log.format.timestamp
+                  name: argocd-cmd-params-cm
+                  optional: true
             - name: ARGOCD_DEX_SERVER_DISABLE_TLS
               valueFrom:
                 configMapKeyRef:
@@ -79,7 +85,7 @@ spec:
             - -n
             - /usr/local/bin/argocd
             - /shared/argocd-dex
-          image: quay.io/argoproj/argocd:v2.14.12
+          image: quay.io/argoproj/argocd:v3.0.3
           imagePullPolicy: Always
           name: copyutil
           securityContext:

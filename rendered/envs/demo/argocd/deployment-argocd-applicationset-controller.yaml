@@ -80,6 +80,12 @@ spec:
                   key: applicationsetcontroller.log.level
                   name: argocd-cmd-params-cm
                   optional: true
+            - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+              valueFrom:
+                configMapKeyRef:
+                  key: log.format.timestamp
+                  name: argocd-cmd-params-cm
+                  optional: true
             - name: ARGOCD_APPLICATIONSET_CONTROLLER_DRY_RUN
               valueFrom:
                 configMapKeyRef:
@@ -170,7 +176,7 @@ spec:
                   key: applicationsetcontroller.requeue.after
                   name: argocd-cmd-params-cm
                   optional: true
-          image: quay.io/argoproj/argocd:v2.14.12
+          image: quay.io/argoproj/argocd:v3.0.3
           imagePullPolicy: Always
           name: argocd-applicationset-controller
           ports:
