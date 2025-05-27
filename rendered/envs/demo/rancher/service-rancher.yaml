@@ -5,7 +5,7 @@ metadata:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
   labels:
     app: rancher
-    chart: rancher-2.11.1
+    chart: rancher-2.11.2
     heritage: Helm
     release: rancher
   name: rancher

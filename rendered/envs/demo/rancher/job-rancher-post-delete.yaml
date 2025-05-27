@@ -8,7 +8,7 @@ metadata:
     helm.sh/hook-weight: "3"
   labels:
     app: rancher
-    chart: rancher-2.11.1
+    chart: rancher-2.11.2
     heritage: Helm
     release: rancher
   name: rancher-post-delete
@@ -19,7 +19,7 @@ spec:
     metadata:
       labels:
         app: rancher
-        chart: rancher-2.11.1
+        chart: rancher-2.11.2
         heritage: Helm
         release: rancher
       name: rancher-post-delete
@@ -36,7 +36,7 @@ spec:
               value: "120"
             - name: IGNORETIMEOUTERROR
               value: "false"
-          image: rancher/shell:v0.4.0
+          image: rancher/shell:v0.4.1
           imagePullPolicy: IfNotPresent
           name: rancher-post-delete
           securityContext:
