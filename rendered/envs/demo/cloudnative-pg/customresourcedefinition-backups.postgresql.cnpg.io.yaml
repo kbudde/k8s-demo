@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.17.2
+    controller-gen.kubebuilder.io/version: v0.17.3
     helm.sh/resource-policy: keep
   name: backups.postgresql.cnpg.io
 spec:
@@ -34,7 +34,7 @@ spec:
       name: v1
       schema:
         openAPIV3Schema:
-          description: Backup is the Schema for the backups API
+          description: A Backup resource is a request for a PostgreSQL backup by the user.
           properties:
             apiVersion:
               description: |-
