@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cloudnative-pg
-    app.kubernetes.io/version: 1.25.1
-    helm.sh/chart: cloudnative-pg-0.23.2
+    app.kubernetes.io/version: 1.26.0
+    helm.sh/chart: cloudnative-pg-0.24.0
   name: cnpg-validating-webhook-configuration
 webhooks:
   - admissionReviewVersions:
@@ -73,6 +73,27 @@ webhooks:
           - UPDATE
         resources:
           - scheduledbackups
+    sideEffects: None
+  - admissionReviewVersions:
+      - v1
+    clientConfig:
+      service:
+        name: cnpg-webhook-service
+        namespace: cloudnative-pg
+        path: /validate-postgresql-cnpg-io-v1-database
+        port: 443
+    failurePolicy: Fail
+    name: vdatabase.cnpg.io
+    rules:
+      - apiGroups:
+          - postgresql.cnpg.io
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+          - UPDATE
+        resources:
+          - databases
     sideEffects: None
   - admissionReviewVersions:
       - v1
