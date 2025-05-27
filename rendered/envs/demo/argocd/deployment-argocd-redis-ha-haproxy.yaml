@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: e34e8124c38bcfd2f16e75620bbde30158686692b13bc449eecc44c51b207d54
+        checksum/config: cd6508bdf9819601c454d0cc491fb77a209e3a88761d92514d105b6681829953
         prometheus.io/path: /metrics
         prometheus.io/port: "9101"
         prometheus.io/scrape: "true"
@@ -35,6 +35,7 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: argocd-redis-ha-haproxy
               topologyKey: kubernetes.io/hostname
+      automountServiceAccountToken: true
       containers:
         - env:
             - name: AUTH
@@ -42,17 +43,19 @@ spec:
                 secretKeyRef:
                   key: auth
                   name: argocd-redis
-          image: public.ecr.aws/docker/library/haproxy:2.6.17-alpine
+          image: public.ecr.aws/docker/library/haproxy:3.0.8-alpine
           imagePullPolicy: IfNotPresent
           lifecycle: {}
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8888
+              port: probe
             initialDelaySeconds: 5
             periodSeconds: 3
           name: haproxy
           ports:
+            - containerPort: 8888
+              name: probe
             - containerPort: 6379
               name: redis
             - containerPort: 9101
@@ -60,7 +63,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /healthz
-              port: 8888
+              port: probe
             initialDelaySeconds: 5
             periodSeconds: 3
           securityContext:
@@ -81,7 +84,7 @@ spec:
             - argocd
             - admin
             - redis-initial-password
-          image: quay.io/argoproj/argocd:v2.14.12
+          image: quay.io/argoproj/argocd:v3.0.3
           imagePullPolicy: IfNotPresent
           name: secret-init
           securityContext:
@@ -97,7 +100,7 @@ spec:
             - /readonly/haproxy_init.sh
           command:
             - sh
-          image: public.ecr.aws/docker/library/haproxy:2.6.17-alpine
+          image: public.ecr.aws/docker/library/haproxy:3.0.8-alpine
           imagePullPolicy: IfNotPresent
           name: config-init
           securityContext:

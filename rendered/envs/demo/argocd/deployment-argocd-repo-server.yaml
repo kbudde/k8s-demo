@@ -61,6 +61,12 @@ spec:
                   key: reposerver.log.level
                   name: argocd-cmd-params-cm
                   optional: true
+            - name: ARGOCD_LOG_FORMAT_TIMESTAMP
+              valueFrom:
+                configMapKeyRef:
+                  key: log.format.timestamp
+                  name: argocd-cmd-params-cm
+                  optional: true
             - name: ARGOCD_REPO_SERVER_PARALLELISM_LIMIT
               valueFrom:
                 configMapKeyRef:
@@ -149,6 +155,12 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: otlp.headers
+                  name: argocd-cmd-params-cm
+                  optional: true
+            - name: ARGOCD_REPO_SERVER_OTLP_ATTRS
+              valueFrom:
+                configMapKeyRef:
+                  key: otlp.attrs
                   name: argocd-cmd-params-cm
                   optional: true
             - name: ARGOCD_REPO_SERVER_MAX_COMBINED_DIRECTORY_MANIFESTS_SIZE
@@ -241,7 +253,7 @@ spec:
               value: /helm-working-dir
             - name: HELM_DATA_HOME
               value: /helm-working-dir
-          image: quay.io/argoproj/argocd:v2.14.12
+          image: quay.io/argoproj/argocd:v3.0.3
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -313,7 +325,7 @@ spec:
             - -n
             - /usr/local/bin/argocd
             - /var/run/argocd/argocd-cmp-server
-          image: quay.io/argoproj/argocd:v2.14.12
+          image: quay.io/argoproj/argocd:v3.0.3
           name: copyutil
           securityContext:
             allowPrivilegeEscalation: false
