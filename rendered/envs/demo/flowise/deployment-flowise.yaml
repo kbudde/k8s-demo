@@ -8,11 +8,13 @@ metadata:
     app.kubernetes.io/instance: flowise
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: flowise
-    app.kubernetes.io/version: 2.2.4
-    helm.sh/chart: flowise-3.11.4
+    app.kubernetes.io/version: 3.0.0
+    helm.sh/chart: flowise-4.0.0
   name: flowise
+  namespace: flowise
 spec:
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app.kubernetes.io/instance: flowise
@@ -22,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/secret: 183792a4187df8454f7b2d829856576df5e9910be4afcb79a49e1a826bd5bf6a
+        checksum/secret: f612f86f747bb80b4ad2ace3209995fbe955945f6c7cd98bdf2d97be9734aee3
       labels:
         app.kubernetes.io/instance: flowise
         app.kubernetes.io/name: flowise
@@ -37,6 +39,11 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: password
+                  name: flowise
+            - name: FLOWISE_SECRETKEY_OVERWRITE
+              valueFrom:
+                secretKeyRef:
+                  key: encryption-key
                   name: flowise
             - name: APIKEY_PATH
               value: /data
@@ -61,12 +68,10 @@ spec:
                   name: flow-psql-app
             - name: DATABASE_NAME
               value: app
-            - name: DISABLE_FLOWISE_TELEMETRY
-              value: "true"
           envFrom:
             - secretRef:
                 name: flowise-config
-          image: docker.io/flowiseai/flowise:2.2.8
+          image: docker.io/flowiseai/flowise:3.0.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -96,6 +101,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
+      enableServiceLinks: false
       initContainers:
         - command:
             - /bin/sh
@@ -116,7 +122,7 @@ spec:
                   name: flow-psql-app
             - name: POSTGRESQL_DATABASE
               value: app
-          image: docker.io/atkrad/wait4x:2.14.1
+          image: docker.io/wait4x/wait4x:3.2.0
           imagePullPolicy: IfNotPresent
           name: wait-postgresql
           resources: {}
