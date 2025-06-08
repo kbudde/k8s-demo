@@ -51,6 +51,9 @@ spec:
             - --experimental.plugins.traefik-plugin-query-modification.version=v1.0.0
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowEmptyServices=true
+            - --entryPoints.web.http.redirections.entryPoint.to=:443
+            - --entryPoints.web.http.redirections.entryPoint.scheme=https
+            - --entryPoints.web.http.redirections.entryPoint.permanent=true
             - --entryPoints.web.proxyProtocol.trustedIPs=192.168.1.0/24
             - --entryPoints.websecure.http.tls=true
             - --entryPoints.websecure.proxyProtocol.trustedIPs=192.168.1.0/24
