@@ -1,3 +1,0 @@
-#@ load("cnpg-db.lib.yaml", "cnpg_db")
---- #@ cnpg_db(name="n8n-db", instances=2, size="5Gi")
-

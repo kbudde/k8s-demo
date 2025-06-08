@@ -1,5 +1,0 @@
-#@data/values
----
-application:
-  password: "<path:static/flowise.yaml#password>"
-
