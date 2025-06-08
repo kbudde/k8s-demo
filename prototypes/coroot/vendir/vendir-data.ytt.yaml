@@ -1,8 +1,0 @@
-#@data/values
----
-prototypes:
-  - name: coroot-operator
-    kind: helm
-    repo: helmChart
-    url: https://coroot.github.io/helm-charts
-    version: 0.3.2

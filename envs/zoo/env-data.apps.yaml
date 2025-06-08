@@ -1,6 +1,0 @@
-#@data/values
----
-environment:
-  applications:
-  - proto: velero
-
