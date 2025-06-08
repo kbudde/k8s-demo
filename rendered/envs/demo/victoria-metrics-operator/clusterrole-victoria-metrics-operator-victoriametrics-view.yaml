@@ -7,17 +7,23 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.58.0
-    helm.sh/chart: victoria-metrics-operator-0.47.0
+    app.kubernetes.io/version: v0.59.1
+    helm.sh/chart: victoria-metrics-operator-0.49.1
     rbac.authorization.k8s.io/aggregate-to-view: "true"
   name: victoria-metrics-operator-victoriametrics-view
 rules:
   - apiGroups:
       - operator.victoriametrics.com
     resources:
+      - vlclusters
+      - vlclusters/finalizers
+      - vlclusters/status
       - vlogs
       - vlogs/finalizers
       - vlogs/status
+      - vlsingles
+      - vlsingles/finalizers
+      - vlsingles/status
       - vmagents
       - vmagents/finalizers
       - vmagents/status

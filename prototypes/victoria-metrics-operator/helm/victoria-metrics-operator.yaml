@@ -1,4 +1,3 @@
 admissionWebhooks:
-  enabledCRDValidation:
   certManager:
     enabled: true
