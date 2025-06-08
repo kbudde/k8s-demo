@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
-    app.kubernetes.io/version: 1.17.0
-    helm.sh/chart: rabbitmq-cluster-operator-4.4.11
+    app.kubernetes.io/version: 1.17.1
+    helm.sh/chart: rabbitmq-cluster-operator-4.4.15
   name: rabbitmq-cluster-operator-rabbitmq-messaging-topology-operator
   namespace: rabbitmq-operator
 spec:
@@ -32,8 +32,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: rabbitmq-cluster-operator
         app.kubernetes.io/part-of: rabbitmq
-        app.kubernetes.io/version: 1.17.0
-        helm.sh/chart: rabbitmq-cluster-operator-4.4.11
+        app.kubernetes.io/version: 1.17.1
+        helm.sh/chart: rabbitmq-cluster-operator-4.4.15
     spec:
       affinity:
         nodeAffinity: null
@@ -60,7 +60,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
           envFrom: null
-          image: docker.io/bitnami/rmq-messaging-topology-operator:1.17.0-debian-12-r1
+          image: docker.io/bitnami/rmq-messaging-topology-operator:1.17.1-debian-12-r0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 5
