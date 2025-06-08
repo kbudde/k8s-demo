@@ -15,14 +15,13 @@ providers:
     publishedService:
       enabled: true
 
-globalArguments:
-- "--global.checknewversion"
-#! - "--global.sendanonymoususage"
-- "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-- "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-
 ports:
   web:
+    redirections:
+      entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
     proxyProtocol:
       trustedIPs:
         - "192.168.1.0/24"
