@@ -7,8 +7,8 @@ metadata:
   labels:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/name: grafana-image-renderer
-    app.kubernetes.io/version: 12.0.0-security-01
-    helm.sh/chart: grafana-9.2.1
+    app.kubernetes.io/version: 12.0.1
+    helm.sh/chart: grafana-9.2.2
   name: grafana-image-renderer
   namespace: grafana
 spec:
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 3e365193c3b0a697264ae50ec7ce6d3b2ef74e9b51f37182fc02b06a9355664b
+        checksum/config: 8783564655d2d6bc357a2bae7f5685e03b18c9f945442dbf119dcdffdacb8607
       labels:
         app.kubernetes.io/instance: grafana
         app.kubernetes.io/name: grafana-image-renderer
