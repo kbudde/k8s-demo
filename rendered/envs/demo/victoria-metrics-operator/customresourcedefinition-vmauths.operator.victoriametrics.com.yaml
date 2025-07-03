@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.17.2
+    controller-gen.kubebuilder.io/version: v0.18.0
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.59.2
-    helm.sh/chart: victoria-metrics-operator-0.49.2
+    app.kubernetes.io/version: v0.60.2
+    helm.sh/chart: victoria-metrics-operator-0.50.3
   name: vmauths.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -175,7 +175,7 @@ spec:
                     configuration must be inside secret key: config.yaml.
                     It must be created and managed manually.
                     If it's defined, configuration for vmauth becomes unmanaged and operator'll not create any related secrets/config-reloaders
-                    Deprecated, use externalConfig.secretRef instead
+                    Deprecated: use externalConfig.secretRef instead
                   type: string
                 containers:
                   description: |-
@@ -1099,7 +1099,7 @@ spec:
                   description: |-
                     UnauthorizedAccessConfig configures access for un authorized users
 
-                    Deprecated, use unauthorizedUserAccessSpec instead
+                    Deprecated: use unauthorizedUserAccessSpec instead
                     will be removed at v1.0 release
                   x-kubernetes-preserve-unknown-fields: true
                 unauthorizedUserAccessSpec:

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.17.2
+    controller-gen.kubebuilder.io/version: v0.18.0
     helm.sh/resource-policy: keep
     meta.helm.sh/release-name: victoria-metrics-operator
     meta.helm.sh/release-namespace: victoria-metrics-operator
@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.59.2
-    helm.sh/chart: victoria-metrics-operator-0.49.2
+    app.kubernetes.io/version: v0.60.2
+    helm.sh/chart: victoria-metrics-operator-0.50.3
   name: vmrules.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -91,7 +91,7 @@ spec:
                           ExtraFilterLabels optional list of label filters applied to every rule's
                           request within a group. Is compatible only with VM datasource.
                           See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements)
-                          Deprecated, use params instead
+                          Deprecated: use params instead
                         type: object
                       headers:
                         description: |-
