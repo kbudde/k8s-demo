@@ -9,12 +9,12 @@ metadata:
   labels:
     app: reloader-reloader
     app.kubernetes.io/managed-by: Helm
-    chart: reloader-2.1.3
+    chart: reloader-2.1.4
     group: com.stakater.platform
     heritage: Helm
     provider: stakater
     release: reloader
-    version: v1.4.2
+    version: v1.4.4
   name: reloader-reloader
   namespace: reloader
 spec:
@@ -29,12 +29,12 @@ spec:
       labels:
         app: reloader-reloader
         app.kubernetes.io/managed-by: Helm
-        chart: reloader-2.1.3
+        chart: reloader-2.1.4
         group: com.stakater.platform
         heritage: Helm
         provider: stakater
         release: reloader
-        version: v1.4.2
+        version: v1.4.4
     spec:
       containers:
         - args:
@@ -50,7 +50,7 @@ spec:
                 resourceFieldRef:
                   divisor: "1"
                   resource: limits.memory
-          image: ghcr.io/stakater/reloader:v1.4.2
+          image: ghcr.io/stakater/reloader:v1.4.4
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 5
