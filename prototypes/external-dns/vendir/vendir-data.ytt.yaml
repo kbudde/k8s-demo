@@ -6,5 +6,5 @@ prototypes:
       kind: helm
       repo: git
       url: https://github.com/kubernetes-sigs/external-dns
-      version: v0.17.0
+      version: v0.18.0
       newRootPath: charts/external-dns
