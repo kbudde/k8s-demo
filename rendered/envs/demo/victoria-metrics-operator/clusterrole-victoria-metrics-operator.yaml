@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.60.2
-    helm.sh/chart: victoria-metrics-operator-0.50.3
+    app.kubernetes.io/version: v0.61.2
+    helm.sh/chart: victoria-metrics-operator-0.51.4
   name: victoria-metrics-operator
 rules:
   - nonResourceURLs:
@@ -28,6 +28,7 @@ rules:
       - persistentvolumeclaims
       - persistentvolumeclaims/finalizers
       - pods
+      - pods/eviction
       - secrets
       - secrets/finalizers
       - services
@@ -132,6 +133,9 @@ rules:
   - apiGroups:
       - operator.victoriametrics.com
     resources:
+      - vlagents
+      - vlagents/finalizers
+      - vlagents/status
       - vlclusters
       - vlclusters/finalizers
       - vlclusters/status

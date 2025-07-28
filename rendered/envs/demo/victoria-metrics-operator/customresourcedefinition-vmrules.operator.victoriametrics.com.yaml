@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.60.2
-    helm.sh/chart: victoria-metrics-operator-0.50.3
+    app.kubernetes.io/version: v0.61.2
+    helm.sh/chart: victoria-metrics-operator-0.51.4
   name: vmrules.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -90,7 +90,7 @@ spec:
                         description: |-
                           ExtraFilterLabels optional list of label filters applied to every rule's
                           request within a group. Is compatible only with VM datasource.
-                          See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements)
+                          See more details [here](https://docs.victoriametrics.com/victoriametrics/#prometheus-querying-api-enhancements)
                           Deprecated: use params instead
                         type: object
                       headers:
@@ -192,7 +192,7 @@ spec:
                       tenant:
                         description: |-
                           Tenant id for group, can be used only with enterprise version of vmalert.
-                          See more details [here](https://docs.victoriametrics.com/vmalert#multitenancy).
+                          See more details [here](https://docs.victoriametrics.com/victoriametrics/vmalert#multitenancy).
                         type: string
                       type:
                         description: |-
