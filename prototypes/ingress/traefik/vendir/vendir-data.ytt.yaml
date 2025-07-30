@@ -5,5 +5,5 @@ prototypes:
     kind: helm
     repo: helmChart
     url: https://traefik.github.io/charts
-    version: 36.3.0
+    version: 37.0.0
 
