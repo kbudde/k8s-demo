@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/instance: traefik-ingress
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: traefik
-    helm.sh/chart: traefik-36.3.0
+    helm.sh/chart: traefik-37.0.0
   name: traefik-ingress
 rules:
   - apiGroups:
@@ -27,6 +27,12 @@ rules:
     verbs:
       - list
       - watch
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
   - apiGroups:
       - ""
     resources:
