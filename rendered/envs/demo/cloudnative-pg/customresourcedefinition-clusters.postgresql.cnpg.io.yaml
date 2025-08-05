@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    controller-gen.kubebuilder.io/version: v0.17.3
+    controller-gen.kubebuilder.io/version: v0.18.0
     helm.sh/resource-policy: keep
   name: clusters.postgresql.cnpg.io
 spec:
@@ -141,7 +141,6 @@ spec:
                                       pod labels will be ignored. The default value is empty.
                                       The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                       Also, matchLabelKeys cannot be set when labelSelector isn't set.
-                                      This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                     items:
                                       type: string
                                     type: array
@@ -156,7 +155,6 @@ spec:
                                       pod labels will be ignored. The default value is empty.
                                       The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                       Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
-                                      This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                     items:
                                       type: string
                                     type: array
@@ -317,7 +315,6 @@ spec:
                                   pod labels will be ignored. The default value is empty.
                                   The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                   Also, matchLabelKeys cannot be set when labelSelector isn't set.
-                                  This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                 items:
                                   type: string
                                 type: array
@@ -332,7 +329,6 @@ spec:
                                   pod labels will be ignored. The default value is empty.
                                   The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                   Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
-                                  This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                 items:
                                   type: string
                                 type: array
@@ -488,7 +484,6 @@ spec:
                                       pod labels will be ignored. The default value is empty.
                                       The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                       Also, matchLabelKeys cannot be set when labelSelector isn't set.
-                                      This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                     items:
                                       type: string
                                     type: array
@@ -503,7 +498,6 @@ spec:
                                       pod labels will be ignored. The default value is empty.
                                       The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                       Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
-                                      This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                     items:
                                       type: string
                                     type: array
@@ -664,7 +658,6 @@ spec:
                                   pod labels will be ignored. The default value is empty.
                                   The same key is forbidden to exist in both matchLabelKeys and labelSelector.
                                   Also, matchLabelKeys cannot be set when labelSelector isn't set.
-                                  This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                 items:
                                   type: string
                                 type: array
@@ -679,7 +672,6 @@ spec:
                                   pod labels will be ignored. The default value is empty.
                                   The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.
                                   Also, mismatchLabelKeys cannot be set when labelSelector isn't set.
-                                  This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
                                 items:
                                   type: string
                                 type: array
@@ -2168,7 +2160,7 @@ spec:
                     EnvFrom follows the EnvFrom format to pass environment variables
                     sources to the pods to be used by Env
                   items:
-                    description: EnvFromSource represents the source of a set of ConfigMaps
+                    description: EnvFromSource represents the source of a set of ConfigMaps or Secrets
                     properties:
                       configMapRef:
                         description: The ConfigMap to select from
@@ -2188,7 +2180,7 @@ spec:
                         type: object
                         x-kubernetes-map-type: atomic
                       prefix:
-                        description: An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
+                        description: Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.
                         type: string
                       secretRef:
                         description: The Secret to select from
@@ -3519,13 +3511,12 @@ spec:
                                         type: object
                                       trafficDistribution:
                                         description: |-
-                                          TrafficDistribution offers a way to express preferences for how traffic is
-                                          distributed to Service endpoints. Implementations can use this field as a
-                                          hint, but are not required to guarantee strict adherence. If the field is
-                                          not set, the implementation will apply its default routing strategy. If set
-                                          to "PreferClose", implementations should prioritize endpoints that are
-                                          topologically close (e.g., same zone).
-                                          This is a beta field and requires enabling ServiceTrafficDistribution feature.
+                                          TrafficDistribution offers a way to express preferences for how traffic
+                                          is distributed to Service endpoints. Implementations can use this field
+                                          as a hint, but are not required to guarantee strict adherence. If the
+                                          field is not set, the implementation will apply its default routing
+                                          strategy. If set to "PreferClose", implementations should prioritize
+                                          endpoints that are in the same zone.
                                         type: string
                                       type:
                                         description: |-
@@ -5436,7 +5427,6 @@ spec:
                           - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.
 
                           If this value is nil, the behavior is equivalent to the Honor policy.
-                          This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
                         type: string
                       nodeTaintsPolicy:
                         description: |-
@@ -5447,7 +5437,6 @@ spec:
                           - Ignore: node taints are ignored. All nodes are included.
 
                           If this value is nil, the behavior is equivalent to the Ignore policy.
-                          This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
                         type: string
                       topologyKey:
                         description: |-
@@ -5888,13 +5877,18 @@ spec:
                 firstRecoverabilityPoint:
                   description: |-
                     The first recoverability point, stored as a date in RFC3339 format.
-                    This field is calculated from the content of FirstRecoverabilityPointByMethod
+                    This field is calculated from the content of FirstRecoverabilityPointByMethod.
+
+                    Deprecated: the field is not set for backup plugins.
                   type: string
                 firstRecoverabilityPointByMethod:
                   additionalProperties:
                     format: date-time
                     type: string
-                  description: The first recoverability point, stored as a date in RFC3339 format, per backup method type
+                  description: |-
+                    The first recoverability point, stored as a date in RFC3339 format, per backup method type.
+
+                    Deprecated: the field is not set for backup plugins.
                   type: object
                 healthyPVC:
                   description: List of all the PVCs not dangling nor initializing
@@ -5947,7 +5941,10 @@ spec:
                   format: int32
                   type: integer
                 lastFailedBackup:
-                  description: Stored as a date in RFC3339 format
+                  description: |-
+                    Last failed backup, stored as a date in RFC3339 format.
+
+                    Deprecated: the field is not set for backup plugins.
                   type: string
                 lastPromotionToken:
                   description: |-
@@ -5956,14 +5953,19 @@ spec:
                   type: string
                 lastSuccessfulBackup:
                   description: |-
-                    Last successful backup, stored as a date in RFC3339 format
-                    This field is calculated from the content of LastSuccessfulBackupByMethod
+                    Last successful backup, stored as a date in RFC3339 format.
+                    This field is calculated from the content of LastSuccessfulBackupByMethod.
+
+                    Deprecated: the field is not set for backup plugins.
                   type: string
                 lastSuccessfulBackupByMethod:
                   additionalProperties:
                     format: date-time
                     type: string
-                  description: Last successful backup, stored as a date in RFC3339 format, per backup method type
+                  description: |-
+                    Last successful backup, stored as a date in RFC3339 format, per backup method type.
+
+                    Deprecated: the field is not set for backup plugins.
                   type: object
                 latestGeneratedNode:
                   description: ID of the latest generated node (used to avoid node name clashing)
@@ -6163,6 +6165,9 @@ spec:
                       description: InProgress indicates if there is an ongoing procedure of switching a cluster to a replica cluster.
                       type: boolean
                   type: object
+                systemID:
+                  description: SystemID is the latest detected PostgreSQL SystemID
+                  type: string
                 tablespacesStatus:
                   description: TablespacesStatus reports the state of the declarative tablespaces in the cluster
                   items:
