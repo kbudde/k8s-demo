@@ -1,5 +1,5 @@
-apiVersion: v1
-kind: ServiceAccount
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
@@ -15,5 +15,16 @@ metadata:
     helm.sh/chart: reloader-2.2.0
     heritage: Helm
     release: reloader
-  name: reloader-reloader
+  name: reloader-reloader-metadata-role
   namespace: reloader
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - list
+      - get
+      - watch
+      - create
+      - update
