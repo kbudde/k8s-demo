@@ -4,7 +4,6 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
     api-approved.kubernetes.io: https://github.com/kubernetes-sigs/external-dns/pull/2007
-    controller-gen.kubebuilder.io/version: v0.17.2
   name: dnsendpoints.externaldns.k8s.io
 spec:
   group: externaldns.k8s.io
@@ -18,6 +17,9 @@ spec:
     - name: v1alpha1
       schema:
         openAPIV3Schema:
+          description: |-
+            DNSEndpoint is a contract that a user-specified CRD must implement to be used as a source for external-dns.
+            The user-specified CRD should also have the status sub-resource.
           properties:
             apiVersion:
               description: |-
