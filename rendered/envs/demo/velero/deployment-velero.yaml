@@ -8,9 +8,9 @@ metadata:
     app.kubernetes.io/instance: velero
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: velero
-    app.kubernetes.io/version: 1.16.1
+    app.kubernetes.io/version: 1.16.2
     component: velero
-    helm.sh/chart: velero-10.0.12
+    helm.sh/chart: velero-10.1.0
   name: velero
   namespace: velero
 spec:
@@ -31,8 +31,8 @@ spec:
         app.kubernetes.io/instance: velero
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: velero
-        app.kubernetes.io/version: 1.16.1
-        helm.sh/chart: velero-10.0.12
+        app.kubernetes.io/version: 1.16.2
+        helm.sh/chart: velero-10.1.0
         name: velero
     spec:
       automountServiceAccountToken: true
@@ -62,7 +62,7 @@ spec:
               value: /credentials/cloud
             - name: ALIBABA_CLOUD_CREDENTIALS_FILE
               value: /credentials/cloud
-          image: velero/velero:v1.16.1
+          image: velero/velero:v1.16.2
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 5
