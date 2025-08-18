@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/name: rabbitmq-cluster-operator
     app.kubernetes.io/part-of: rabbitmq
     app.kubernetes.io/version: 2.16.0
-    helm.sh/chart: rabbitmq-cluster-operator-4.4.29
+    helm.sh/chart: rabbitmq-cluster-operator-4.4.31
   name: rabbitmq-cluster-operator
   namespace: rabbitmq-operator
 spec:
@@ -33,7 +33,7 @@ spec:
         app.kubernetes.io/name: rabbitmq-cluster-operator
         app.kubernetes.io/part-of: rabbitmq
         app.kubernetes.io/version: 2.16.0
-        helm.sh/chart: rabbitmq-cluster-operator-4.4.29
+        helm.sh/chart: rabbitmq-cluster-operator-4.4.31
     spec:
       affinity:
         nodeAffinity: null
@@ -60,11 +60,11 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: DEFAULT_RABBITMQ_IMAGE
-              value: docker.io/bitnami/rabbitmq:4.1.3-debian-12-r0
+              value: docker.io/bitnami/rabbitmq:4.1.3-debian-12-r1
             - name: DEFAULT_USER_UPDATER_IMAGE
-              value: docker.io/bitnami/rmq-default-credential-updater:1.0.7-debian-12-r1
+              value: docker.io/bitnami/rmq-default-credential-updater:1.0.7-debian-12-r2
           envFrom: null
-          image: docker.io/bitnami/rabbitmq-cluster-operator:2.16.0-debian-12-r0
+          image: docker.io/bitnami/rabbitmq-cluster-operator:2.16.0-debian-12-r1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 5
