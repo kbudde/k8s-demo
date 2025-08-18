@@ -3,6 +3,10 @@ kind: NetworkPolicy
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/component: repo-server
+    app.kubernetes.io/name: argocd-repo-server
+    app.kubernetes.io/part-of: argocd
   name: argocd-repo-server-network-policy
 spec:
   ingress:
