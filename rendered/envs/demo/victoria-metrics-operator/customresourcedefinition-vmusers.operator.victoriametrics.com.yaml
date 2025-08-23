@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.61.2
-    helm.sh/chart: victoria-metrics-operator-0.51.4
+    app.kubernetes.io/version: v0.62.0
+    helm.sh/chart: victoria-metrics-operator-0.52.1
   name: vmusers.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -287,7 +287,7 @@ spec:
                       static:
                         description: |-
                           Static - user defined url for traffic forward,
-                          for instance http://vmsingle:8429
+                          for instance http://vmsingle:8428
                         properties:
                           url:
                             description: URL http url for given staticRef.
