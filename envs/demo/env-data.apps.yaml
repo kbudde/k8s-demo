@@ -12,13 +12,11 @@ environment:
   - proto: goldpinger
   - proto: ingress/traefik
     name: ingress
-  - proto: rancher
+  #!- proto: rancher
   - proto: reloader
   - proto: rabbitmq-operator
   - proto: cloudnative-pg
   - proto: grafana
   - proto: victoria-metrics-operator
   - proto: velero
-  - proto: minecraft
-    name: minecraft-2
   - proto: vaultwarden
