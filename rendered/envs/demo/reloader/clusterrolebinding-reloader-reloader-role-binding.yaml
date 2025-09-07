@@ -10,9 +10,9 @@ metadata:
     app.kubernetes.io/instance: reloader
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: reloader
-    app.kubernetes.io/version: v1.4.6
-    chart: reloader-2.2.0
-    helm.sh/chart: reloader-2.2.0
+    app.kubernetes.io/version: v1.4.7
+    chart: reloader-2.2.2
+    helm.sh/chart: reloader-2.2.2
     heritage: Helm
     release: reloader
   name: reloader-reloader-role-binding
