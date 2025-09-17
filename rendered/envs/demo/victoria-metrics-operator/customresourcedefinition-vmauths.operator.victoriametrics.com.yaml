@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.61.2
-    helm.sh/chart: victoria-metrics-operator-0.51.4
+    app.kubernetes.io/version: v0.63.0
+    helm.sh/chart: victoria-metrics-operator-0.53.0
   name: vmauths.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -1156,7 +1156,7 @@ spec:
                       description: |-
                         LoadBalancingPolicy defines load balancing policy to use for backend urls.
                         Supported policies: least_loaded, first_available.
-                        See [here](https://docs.victoriametrics.com/victoriametrics/vmauth#load-balancing) for more details (default "least_loaded")
+                        See [here](https://docs.victoriametrics.com/victoriametrics/vmauth/#load-balancing) for more details (default "least_loaded")
                       enum:
                         - least_loaded
                         - first_available
