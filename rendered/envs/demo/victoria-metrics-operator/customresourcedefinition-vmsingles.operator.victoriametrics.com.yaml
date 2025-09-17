@@ -11,8 +11,8 @@ metadata:
     app.kubernetes.io/instance: victoria-metrics-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: victoria-metrics-operator
-    app.kubernetes.io/version: v0.61.2
-    helm.sh/chart: victoria-metrics-operator-0.51.4
+    app.kubernetes.io/version: v0.63.0
+    helm.sh/chart: victoria-metrics-operator-0.53.0
   name: vmsingles.operator.victoriametrics.com
 spec:
   group: operator.victoriametrics.com
@@ -933,6 +933,9 @@ spec:
                     ignoreFirstIntervals:
                       description: IgnoreFirstIntervals instructs to ignore first interval
                       type: integer
+                    ignoreFirstSampleInterval:
+                      description: IgnoreFirstSampleInterval sets interval for total and prometheus_total during which first samples will be ignored
+                      type: string
                     ignoreOldSamples:
                       description: IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
                       type: boolean
@@ -981,6 +984,9 @@ spec:
                           ignore_old_samples:
                             description: IgnoreOldSamples instructs to ignore samples with old timestamps outside the current aggregation interval.
                             type: boolean
+                          ignoreFirstSampleInterval:
+                            description: IgnoreFirstSampleInterval sets interval for total and prometheus_total during which first samples will be ignored
+                            type: string
                           input_relabel_configs:
                             description: |-
                               InputRelabelConfigs is an optional relabeling rules, which are applied on the input
