@@ -182,7 +182,7 @@ spec:
                   key: applicationsetcontroller.requeue.after
                   name: argocd-cmd-params-cm
                   optional: true
-          image: quay.io/argoproj/argocd:v3.1.0
+          image: quay.io/argoproj/argocd:v3.1.6
           imagePullPolicy: Always
           name: argocd-applicationset-controller
           ports:
