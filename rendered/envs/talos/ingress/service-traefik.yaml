@@ -26,4 +26,4 @@ spec:
   selector:
     app.kubernetes.io/instance: traefik-ingress
     app.kubernetes.io/name: traefik
-  type: LoadBalancer
+  type: NodePort
