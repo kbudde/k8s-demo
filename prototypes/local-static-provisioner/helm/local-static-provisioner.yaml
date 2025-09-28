@@ -1,0 +1,8 @@
+classes:
+- name: local-storage
+  hostDir: /var/data-local
+  volumeMode: Filesystem
+  accessMode: ReadWriteOnce
+  storageClass:
+    # create and set storage class as default
+    isDefaultClass: true

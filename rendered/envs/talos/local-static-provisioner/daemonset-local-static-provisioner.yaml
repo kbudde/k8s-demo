@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/instance: local-static-provisioner
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: local-static-provisioner
+    helm.sh/chart: local-static-provisioner-2.8.0
+  name: local-static-provisioner
+  namespace: local-static-provisioner
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: local-static-provisioner
+      app.kubernetes.io/name: local-static-provisioner
+  template:
+    metadata:
+      annotations:
+        checksum/config: f6692fc9567d3a9e3aef8bd14340fccfefac52c5e7bc338512e5ad649dcab5e3
+      labels:
+        app.kubernetes.io/instance: local-static-provisioner
+        app.kubernetes.io/name: local-static-provisioner
+    spec:
+      containers:
+        - env:
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MY_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: JOB_CONTAINER_IMAGE
+              value: registry.k8s.io/sig-storage/local-volume-provisioner:v2.7.0
+          image: registry.k8s.io/sig-storage/local-volume-provisioner:v2.7.0
+          name: provisioner
+          ports:
+            - containerPort: 8080
+              name: metrics
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /etc/provisioner/config
+              name: provisioner-config
+              readOnly: true
+            - mountPath: /dev
+              name: provisioner-dev
+            - mountPath: /var/data-local
+              mountPropagation: HostToContainer
+              name: local-storage
+      hostPID: false
+      nodeSelector:
+        kubernetes.io/os: linux
+      serviceAccountName: local-static-provisioner
+      volumes:
+        - configMap:
+            name: local-static-provisioner-config
+          name: provisioner-config
+        - hostPath:
+            path: /dev
+          name: provisioner-dev
+        - hostPath:
+            path: /var/data-local
+          name: local-storage
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate

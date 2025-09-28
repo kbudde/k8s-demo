@@ -21,3 +21,4 @@ environment:
   - proto: velero
   - proto: vaultwarden
   - proto: kube-prometheus-stack
+  - proto: local-static-provisioner
