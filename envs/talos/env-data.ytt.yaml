@@ -9,6 +9,7 @@ environment:
 
 shared:
   domain: "talos.budd.ee"
+  ip: "91.98.162.208"
 
 helm:
   capabilities:

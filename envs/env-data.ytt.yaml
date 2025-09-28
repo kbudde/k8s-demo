@@ -12,6 +12,7 @@
 shared:
   #@schema/validation min_len=1
   domain: ""
+  ip: ""
 
 environment:
   #@overlay/match missing_ok=True

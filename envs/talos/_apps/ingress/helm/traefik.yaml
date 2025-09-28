@@ -1,2 +1,6 @@
+#@ load("@ytt:data","data")
+---
 service:
   type: NodePort
+  externalIPs:
+  - #@ data.values.shared.ip
