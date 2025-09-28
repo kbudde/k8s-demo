@@ -1,0 +1,24 @@
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: velero
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: velero
+    helm.sh/chart: velero-10.1.3
+  name: s3-talos
+  namespace: velero
+spec:
+  accessMode: ReadWrite
+  config:
+    checksumAlgorithm: ""
+    region: fra
+    s3ForcePathStyle: "true"
+    s3Url: https://s3.es1.fra.optimist.gec.io
+  default: true
+  objectStorage:
+    bucket: velero
+    prefix: talos
+  provider: aws

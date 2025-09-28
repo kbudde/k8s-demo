@@ -1,0 +1,27 @@
+#@data/values
+#@ branch="main"
+---
+environment:
+  id: talos
+  #! source branch of app list: rendered/argocd/_talos_/
+  #! allows adding apps in a branch
+  branch: #@ branch
+
+shared:
+  domain: "talos.budd.ee"
+
+helm:
+  capabilities:
+    - "monitoring.coreos.com/v1"
+    - "policy/v1/PodDisruptionBudget"
+
+argocd:
+  env:
+    generateSecret: false
+  app:
+    source:
+      #! define the source branch of generated apps, rendered/envs/demo/_app_/
+      targetRevision: #@ branch
+
+myks:
+  gitRepoBranch: #@ branch

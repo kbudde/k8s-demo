@@ -1,0 +1,22 @@
+#@data/values
+---
+environment:
+  applications:
+  #!- proto: argocd
+  - proto: cert-manager
+  #!- proto: crossplane
+  #!- proto: crossplane-openstack
+  #!- proto: crossplane-rancher-cluster
+  #!- proto: designate-certmanager-webhook
+  #!- proto: external-dns
+  #!- proto: goldpinger
+  - proto: ingress/traefik
+    name: ingress
+  #!- proto: rancher
+  - proto: reloader
+  #!- proto: rabbitmq-operator
+  #!- proto: cloudnative-pg
+  #!- proto: grafana
+  #!- proto: victoria-metrics-operator
+  - proto: velero
+  - proto: vaultwarden
