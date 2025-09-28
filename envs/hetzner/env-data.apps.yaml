@@ -17,6 +17,7 @@ environment:
   #!- proto: rabbitmq-operator
   #!- proto: cloudnative-pg
   #!- proto: grafana
-  #!- proto: victoria-metrics-operator
+  - proto: victoria-metrics-operator
   - proto: velero
   - proto: vaultwarden
+  - proto: kube-prometheus-stack
