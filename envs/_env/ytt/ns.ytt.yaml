@@ -1,0 +1,16 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#@ set_ns=data.values.application.namespace.name or data.values.myks.context.app
+
+#! create namespace resource for each app
+#@ if/end data.values.application.namespace.create:
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: #@ set_ns
+  labels:
+    pod-security.kubernetes.io/enforce: #@ data.values.application.namespace.baseline.enforce or "baseline"
+    pod-security.kubernetes.io/audit: #@ data.values.application.namespace.baseline.audit or "baseline"
+    pod-security.kubernetes.io/warn: #@ data.values.application.namespace.baseline.warn or "baseline"

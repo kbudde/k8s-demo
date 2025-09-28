@@ -19,6 +19,17 @@ environment:
   #! allows adding apps in a branch
   branch: main
 
+#@overlay/match-child-defaults missing_ok=True
+application:
+  #@overlay/match-child-defaults missing_ok=True
+  namespace:
+    create: false
+    name: ""
+    baseline:
+      enforce: ""
+      audit: ""
+      warn: ""
+
 argocd:
   app:
     source:
