@@ -11,6 +11,6 @@ kind: Namespace
 metadata:
   name: #@ set_ns
   labels:
-    pod-security.kubernetes.io/enforce: #@ data.values.application.namespace.baseline.enforce or "baseline"
-    pod-security.kubernetes.io/audit: #@ data.values.application.namespace.baseline.audit or "baseline"
-    pod-security.kubernetes.io/warn: #@ data.values.application.namespace.baseline.warn or "baseline"
+    pod-security.kubernetes.io/enforce: #@ data.values.application.namespace.baseline.enforce
+    pod-security.kubernetes.io/audit: #@ data.values.application.namespace.baseline.audit
+    pod-security.kubernetes.io/warn: #@ data.values.application.namespace.baseline.warn

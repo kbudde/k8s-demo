@@ -26,9 +26,12 @@ application:
     create: false
     name: ""
     baseline:
-      enforce: ""
-      audit: ""
-      warn: ""
+      #@schema/validation one_of=["privileged", "baseline", "restricted"]
+      enforce: "baseline"
+      #@schema/validation one_of=["privileged", "baseline", "restricted"]
+      audit: "baseline"
+      #@schema/validation one_of=["privileged", "baseline", "restricted"]
+      warn: "baseline"
 
 argocd:
   app:
