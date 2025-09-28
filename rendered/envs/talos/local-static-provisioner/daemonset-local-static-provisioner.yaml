@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 4d73f77fcd9855e5a1d426e48f0eaaa76f220e962f7d49c01f746de2cb24a0e2
+        checksum/config: 7db694866dc5ecbcfb60025781d75a5ad94629fea784848d7b407d44ef44ed2f
       labels:
         app.kubernetes.io/instance: local-static-provisioner
         app.kubernetes.io/name: local-static-provisioner
@@ -49,6 +49,9 @@ spec:
               readOnly: true
             - mountPath: /dev
               name: provisioner-dev
+            - mountPath: /mnt/disks
+              mountPropagation: HostToContainer
+              name: local-storage
       hostPID: false
       nodeSelector:
         kubernetes.io/os: linux
@@ -60,6 +63,9 @@ spec:
         - hostPath:
             path: /dev
           name: provisioner-dev
+        - hostPath:
+            path: /mnt/disks
+          name: local-storage
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
