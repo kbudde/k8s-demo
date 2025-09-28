@@ -1,8 +1,12 @@
 classes:
 - name: local-storage
-  hostDir: /var/data-local
-  volumeMode: Filesystem
+  hostDir: /mnt/disks
   accessMode: ReadWriteOnce
+  blockCleanerCommand:
+  - "/scripts/quick_reset.sh"
+  volumeMode: Block
   storageClass:
-    # create and set storage class as default
+    provisioner: "local-provisioner"
     isDefaultClass: true
+serviceMonitor:
+  enabled: true

@@ -10,6 +10,6 @@ metadata:
     app.kubernetes.io/name: local-static-provisioner
     helm.sh/chart: local-static-provisioner-2.8.0
   name: local-storage
-provisioner: kubernetes.io/no-provisioner
+provisioner: local-provisioner
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
