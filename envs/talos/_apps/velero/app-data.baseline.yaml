@@ -4,6 +4,6 @@ application:
   namespace:
     create: true
     baseline:
-      enforce: priviliged
-      audit: priviliged
-      warn: priviliged
+      enforce: privileged
+      audit: privileged
+      warn: privileged

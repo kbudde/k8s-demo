@@ -4,7 +4,7 @@ metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
   labels:
-    pod-security.kubernetes.io/audit: priviliged
-    pod-security.kubernetes.io/enforce: priviliged
-    pod-security.kubernetes.io/warn: priviliged
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/warn: privileged
   name: velero
