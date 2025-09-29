@@ -148,6 +148,12 @@ spec:
                   key: controller.self.heal.backoff.cooldown.seconds
                   name: argocd-cmd-params-cm
                   optional: true
+            - name: ARGOCD_SYNC_WAVE_DELAY
+              valueFrom:
+                configMapKeyRef:
+                  key: controller.sync.wave.delay.seconds
+                  name: argocd-cmd-params-cm
+                  optional: true
             - name: ARGOCD_APPLICATION_CONTROLLER_SYNC_TIMEOUT
               valueFrom:
                 configMapKeyRef:
@@ -294,7 +300,7 @@ spec:
                   optional: true
             - name: KUBECACHEDIR
               value: /tmp/kubecache
-          image: quay.io/argoproj/argocd:v3.1.7
+          image: quay.io/argoproj/argocd:v3.2.0-rc1
           imagePullPolicy: Always
           name: argocd-application-controller
           ports:
