@@ -6,7 +6,7 @@ data:
       mountDir: /var/mnt/local-volume
       blockCleanerCommand:
         - "/scripts/quick_reset.sh"
-      volumeMode: FileSystem
+      volumeMode: Filesystem
 kind: ConfigMap
 metadata:
   annotations:

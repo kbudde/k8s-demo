@@ -4,7 +4,7 @@ classes:
   accessMode: ReadWriteOnce
   blockCleanerCommand:
   - "/scripts/quick_reset.sh"
-  volumeMode: FileSystem
+  volumeMode: Filesystem
   storageClass:
     provisioner: "local-provisioner"
     isDefaultClass: true
