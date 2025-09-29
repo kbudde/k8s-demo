@@ -6,7 +6,7 @@ classes:
   - "/scripts/quick_reset.sh"
   volumeMode: Filesystem
   storageClass:
-    provisioner: "local-provisioner"
+    provisioner: "local-storage"
     isDefaultClass: true
 serviceMonitor:
   enabled: true
