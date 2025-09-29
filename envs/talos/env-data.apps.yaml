@@ -20,5 +20,4 @@ environment:
   - proto: victoria-metrics-operator
   #!- proto: velero
   - proto: vaultwarden
-  - proto: kube-prometheus-stack
   - proto: local-path-provisioner
