@@ -36,6 +36,8 @@ spec:
             - name: AVP_VERSION
               value: #@ AVP_VERSION
           command: [sh, -c]
+          securityContext:
+            allowPrivilegeEscalation: false
           args:
             - '
               curl https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64

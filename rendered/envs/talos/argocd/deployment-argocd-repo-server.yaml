@@ -367,6 +367,8 @@ spec:
               value: 1.17.0
           image: registry.access.redhat.com/ubi8
           name: download-tools
+          securityContext:
+            allowPrivilegeEscalation: false
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools
