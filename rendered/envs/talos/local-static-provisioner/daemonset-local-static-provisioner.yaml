@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d0ac19d70aa41aeef4d6872b26eda3536b6a795552d75a3eb4141b2eaf17223f
+        checksum/config: fd8530f399fcc5013ec5be99dfa72a85ca7f8e922f9d7190b123abbf7acafe0e
       labels:
         app.kubernetes.io/instance: local-static-provisioner
         app.kubernetes.io/name: local-static-provisioner
