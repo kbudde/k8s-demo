@@ -22,6 +22,7 @@ spec:
     jqPathExpressions:
       - '.spec.volumeClaimTemplates[]?.apiVersion'
       - '.spec.volumeClaimTemplates[]?.kind'
+      - '.spec.volumeClaimTemplates[]?.metadata.creationTimestamp'
 
   #! allow manually scaling
   - group: apps
