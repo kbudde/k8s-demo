@@ -1,0 +1,10 @@
+#@data/values
+---
+prototypes:
+  - name: local-path-provisioner
+    kind: helm
+    repo: git
+    url: https://github.com/rancher/local-path-provisioner.git
+    version: v0.0.32
+    newRootPath: deploy/chart/local-path-provisioner
+

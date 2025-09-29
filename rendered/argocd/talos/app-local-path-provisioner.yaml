@@ -6,12 +6,12 @@ metadata:
     myks.dev/environment: talos
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  name: talos-local-static-provisioner
+  name: talos-local-path-provisioner
   namespace: argocd
 spec:
   destination:
     name: talos
-    namespace: local-static-provisioner
+    namespace: local-path-provisioner
   ignoreDifferences:
     - group: apps
       jqPathExpressions:
@@ -37,7 +37,7 @@ spec:
       value: https://github.com/kbudde/k8s-demo
   project: talos
   source:
-    path: rendered/envs/talos/local-static-provisioner
+    path: rendered/envs/talos/local-path-provisioner
     plugin:
       name: argocd-vault-plugin
     repoURL: https://github.com/kbudde/k8s-demo
