@@ -6,6 +6,7 @@ classes:
   - "/scripts/quick_reset.sh"
   volumeMode: Filesystem
   storageClass:
+    reclaimPolicy: Delete
     provisioner: "local-storage"
     isDefaultClass: true
 serviceMonitor:
