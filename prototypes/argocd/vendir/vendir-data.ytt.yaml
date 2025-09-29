@@ -7,5 +7,5 @@ prototypes:
       url: https://github.com/argoproj/argo-cd
       version: v3.2.0-rc1
       includePaths:
-        - manifests/ha/install.yaml
-      newRootPath: manifests/ha
+        - manifests/install.yaml
+      newRootPath: manifests

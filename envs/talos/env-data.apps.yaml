@@ -18,7 +18,7 @@ environment:
   #!- proto: cloudnative-pg
   #!- proto: grafana
   - proto: victoria-metrics-operator
-  - proto: velero
+  #!- proto: velero
   - proto: vaultwarden
   - proto: kube-prometheus-stack
   - proto: local-path-provisioner
