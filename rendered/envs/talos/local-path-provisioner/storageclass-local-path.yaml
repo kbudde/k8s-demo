@@ -15,4 +15,4 @@ metadata:
   name: local-path
 provisioner: cluster.local/local-path-provisioner
 reclaimPolicy: Delete
-volumeBindingMode: Immediate
+volumeBindingMode: WaitForFirstConsumer
