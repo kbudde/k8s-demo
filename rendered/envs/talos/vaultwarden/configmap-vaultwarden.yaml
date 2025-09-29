@@ -5,7 +5,7 @@ data:
   DATA_FOLDER: /data
   DATABASE_MAX_CONNS: "10"
   DB_CONNECTION_RETRIES: "15"
-  DOMAIN: https://vault.talos.budd.ee
+  DOMAIN: https://vault.demo.budd.ee
   EMAIL_CHANGE_ALLOWED: "true"
   EMERGENCY_ACCESS_ALLOWED: "true"
   EMERGENCY_NOTIFICATION_REMINDER_SCHEDULE: 0 3 * * * *

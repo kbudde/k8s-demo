@@ -3,7 +3,7 @@ kind: IngressRoute
 metadata:
   annotations:
     a8r.io/repository: https://github.com/kbudde/k8s-demo
-    external-dns.alpha.kubernetes.io/target: lb.talos.budd.ee
+    external-dns.alpha.kubernetes.io/target: lb.demo.budd.ee
     kubernetes.io/ingress.class: traefik
   name: vault
 spec:
@@ -11,7 +11,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`vault.talos.budd.ee`)
+      match: Host(`vault.demo.budd.ee`)
       priority: 10
       services:
         - name: vaultwarden

@@ -6,7 +6,7 @@ metadata:
   name: default-certificate
 spec:
   dnsNames:
-    - '*.talos.budd.ee'
+    - '*.demo.budd.ee'
   issuerRef:
     kind: ClusterIssuer
     name: designate

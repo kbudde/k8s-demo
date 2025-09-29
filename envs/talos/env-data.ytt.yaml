@@ -8,7 +8,7 @@ environment:
   branch: #@ branch
 
 shared:
-  domain: "talos.budd.ee"
+  domain: "demo.budd.ee"
   ip: "91.98.162.208"
 
 helm:

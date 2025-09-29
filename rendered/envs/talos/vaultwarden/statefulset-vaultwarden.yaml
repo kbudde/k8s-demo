@@ -27,7 +27,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 20e7a57cfa3be39b8784cc0277edd988a5ce2dbf
+        checksum/config: 99be032e450ae28a053f98eb52ed630cd50dbafe
         checksum/secret: 3e0548d35ddb8f2f3f1a2f6d8e64378e5ef621de
       labels:
         app.kubernetes.io/component: vaultwarden
