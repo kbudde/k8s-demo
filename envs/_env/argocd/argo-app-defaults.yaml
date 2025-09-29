@@ -16,6 +16,7 @@ spec:
     - RespectIgnoreDifferences=true #! When syncing changes, respect fields ignored by the ignoreDifferences configuration
     - ApplyOutOfSyncOnly=true #! Only sync out-of-sync resources, rather than applying every object in the application
     retry:
+      refresh: true #! allows to use newer revision on retry
       limit: -1 #! number of failed sync attempt retries; unlimited number of attempts if less than 01
       backoff:
         duration: 5s #! the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
