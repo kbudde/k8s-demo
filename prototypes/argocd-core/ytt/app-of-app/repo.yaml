@@ -1,0 +1,12 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: repo-main
+type: Opaque
+stringData:
+  type: git
+  url: #@ data.values.myks.gitRepoUrl + ".git"

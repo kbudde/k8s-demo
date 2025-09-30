@@ -1,0 +1,11 @@
+#@data/values
+---
+prototypes:
+    - name: argocd
+      kind: ytt
+      repo: git
+      url: https://github.com/argoproj/argo-cd
+      version: v3.2.0-rc1
+      includePaths:
+        - manifests/core-install.yaml
+      newRootPath: manifests

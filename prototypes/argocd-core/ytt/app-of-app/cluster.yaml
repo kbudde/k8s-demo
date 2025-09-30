@@ -1,0 +1,15 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    branch: #@ data.values.environment.branch
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: #@ "cluster-" + data.values.environment.id
+type: Opaque
+stringData:
+  name: #@ data.values.environment.id
+  project: #@ data.values.environment.id
+  server: https://kubernetes.default.svc

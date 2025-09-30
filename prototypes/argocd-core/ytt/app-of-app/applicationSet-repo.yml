@@ -1,0 +1,35 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: base
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      values:
+        branch: '{{index .metadata.annotations "branch"}}'
+        repo: '{{index .metadata.annotations "a8r.io/repository"}}'
+  template:
+    metadata:
+      name: 'cluster-{{.nameNormalized}}'
+    spec:
+      project: 'default'
+      source:
+        repoURL: '{{.values.repo}}.git'
+        targetRevision: '{{or .values.branch "HEAD" }}'
+        path: 'rendered/argocd/{{ .name }}' #! drop 'cluster-' prefix
+        plugin:
+          name: argocd-vault-plugin
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'argocd'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true

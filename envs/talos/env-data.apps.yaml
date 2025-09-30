@@ -2,7 +2,8 @@
 ---
 environment:
   applications:
-  - proto: argocd
+  - proto: argocd-core
+    name: argocd
   - proto: cert-manager
   #!- proto: crossplane
   #!- proto: crossplane-openstack
