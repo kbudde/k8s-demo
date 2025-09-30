@@ -2,7 +2,7 @@
 #@ traefikLB = "lb." + data.values.shared.domain
 ---
 deployment:
-  replicas: 2
+  replicas: 1
 
 podDisruptionBudget:
   enabled: false
