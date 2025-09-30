@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: syncthing
+  namespace: syncthing
+spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: syncthing
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: syncthing
+    spec:
+      containers:
+        - name: syncthing
+          image: docker.io/syncthing/syncthing:2.0.10
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 22000
+              name: syncthing-tcp
+              protocol: TCP
+            - containerPort: 22000
+              name: syncthing-udp
+              protocol: UDP
+            - containerPort: 8384
+              name: http
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /rest/noauth/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /rest/noauth/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          volumeMounts:
+            - mountPath: /data/var/syncthing/
+              name: syncthing-data
+  volumeClaimTemplates:
+    - metadata:
+        labels:
+          app.kubernetes.io/name: syncthing
+        name: syncthing-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi

@@ -1,0 +1,23 @@
+#@ load("@ytt:data","data")
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: syncthing
+  name: syncthing
+spec:
+  externalIPs:
+    - #@ data.values.shared.ip
+  ports:
+    - name: syncthing-tcp
+      port: 22000
+      protocol: TCP
+      targetPort: syncthing-tcp
+    - name: syncthing-udp
+      port: 22000
+      protocol: UDP
+      targetPort: syncthing-udp
+  selector:
+    app.kubernetes.io/name: syncthing
+  type: NodePort
