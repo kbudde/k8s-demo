@@ -44,6 +44,8 @@ spec:
             runAsNonRoot: true
             capabilities:
               drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           args:
             - '
               curl https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_${ARCH}
@@ -60,6 +62,11 @@ spec:
           securityContext:
             runAsNonRoot: true
             runAsUser: 999
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           volumeMounts:
             - name: var-files
               mountPath: /var/run/argocd
