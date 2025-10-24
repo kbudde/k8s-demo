@@ -358,17 +358,23 @@ spec:
             - mountPath: /var/run/argocd
               name: var-files
         - args:
-            - ' curl https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 --location --output /custom-tools/argocd-vault-plugin && chmod 0755 /custom-tools/argocd-vault-plugin'
+            - ' curl https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_${ARCH} --location --output /custom-tools/argocd-vault-plugin && chmod 0755 /custom-tools/argocd-vault-plugin'
           command:
             - sh
             - -c
           env:
             - name: AVP_VERSION
               value: 1.17.0
+            - name: ARCH
+              value: amd64
           image: registry.access.redhat.com/ubi8
           name: download-tools
           securityContext:
             allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools

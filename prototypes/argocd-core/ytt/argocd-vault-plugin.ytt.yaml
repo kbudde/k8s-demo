@@ -5,6 +5,7 @@
 #@ config_map_name = "cmp-plugin"
 #@ service_account = "argocd-repo-server"
 #@ AVP_VERSION = data.values.application.AVP_VERSION
+#@ AVP_ARCH = data.values.application.AVP_ARCH
 
 #! The following overlay is used to add the argocd-vault-plugin to ArgoCD.
 #! It is done by patching the argocd-repo-server deployment in the following way:
@@ -35,12 +36,17 @@ spec:
           env:
             - name: AVP_VERSION
               value: #@ AVP_VERSION
+            - name: ARCH
+              value: #@ AVP_ARCH
           command: [sh, -c]
           securityContext:
             allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
           args:
             - '
-              curl https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64
+              curl https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_${ARCH}
                 --location
                 --output /custom-tools/argocd-vault-plugin
               && chmod 0755 /custom-tools/argocd-vault-plugin'

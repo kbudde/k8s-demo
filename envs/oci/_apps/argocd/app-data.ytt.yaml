@@ -2,5 +2,4 @@
 ---
 #@overlay/match-child-defaults missing_ok=True
 application:
-  AVP_VERSION: 1.17.0
-  AVP_ARCH: amd64
+  AVP_ARCH: arm64
