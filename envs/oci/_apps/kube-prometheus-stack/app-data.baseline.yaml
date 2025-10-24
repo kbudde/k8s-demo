@@ -1,0 +1,9 @@
+#@data/values
+---
+application:
+  namespace:
+    create: true
+    baseline:
+      enforce: privileged
+      audit: privileged
+      warn: privileged

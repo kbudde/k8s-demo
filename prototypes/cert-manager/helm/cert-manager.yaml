@@ -4,12 +4,12 @@ prometheus:
   servicemonitor:
     enabled: true
 
-replicaCount: 2
+replicaCount: 1
 podDisruptionBudget:
   enabled: true
 
 webhook:
-  replicaCount: 2
+  replicaCount: 1
   podDisruptionBudget:
     enabled: true
 

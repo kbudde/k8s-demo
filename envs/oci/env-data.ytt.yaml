@@ -1,0 +1,28 @@
+#@data/values
+#@ branch="main"
+---
+environment:
+  id: newzoo
+  #! source branch of app list: rendered/argocd/_talos_/
+  #! allows adding apps in a branch
+  branch: #@ branch
+
+shared:
+  domain: "budd.ee"
+  ip: "130.61.220.225"
+
+helm:
+  capabilities:
+    - "monitoring.coreos.com/v1"
+    - "policy/v1/PodDisruptionBudget"
+
+argocd:
+  env:
+    generateSecret: false
+  app:
+    source:
+      #! define the source branch of generated apps, rendered/envs/demo/_app_/
+      targetRevision: #@ branch
+
+myks:
+  gitRepoBranch: #@ branch
