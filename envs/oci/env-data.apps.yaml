@@ -18,6 +18,7 @@ environment:
   #!- proto: rabbitmq-operator
   #!- proto: cloudnative-pg
   #!- proto: grafana
+  - proto: prometheus-operator-crds
   - proto: victoria-metrics-operator
   #!- proto: velero
   - proto: vaultwarden

@@ -1,0 +1,9 @@
+#@data/values
+---
+prototypes:
+  - name: prometheus-operator-crds
+    kind: helm
+    repo: helmChart
+    url: oci://ghcr.io/prometheus-community/charts
+    version: 24.0.2
+
