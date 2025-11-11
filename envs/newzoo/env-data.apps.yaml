@@ -22,5 +22,5 @@ environment:
   - proto: victoria-metrics-operator
   #!- proto: velero
   - proto: vaultwarden
-  - proto: local-path-provisioner
+  #!- proto: local-path-provisioner
   - proto: syncthing
