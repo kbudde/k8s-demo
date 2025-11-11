@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  default-setting.yaml: |-
+    priority-class: "longhorn-critical"
+    disable-revision-counter: "{\"v1\":\"true\"}"
+kind: ConfigMap
+metadata:
+  annotations:
+    a8r.io/repository: https://github.com/kbudde/k8s-demo
+  labels:
+    app.kubernetes.io/instance: longhorn
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: longhorn
+    app.kubernetes.io/version: v1.10.0
+    helm.sh/chart: longhorn-1.10.0
+  name: longhorn-default-setting
+  namespace: longhorn-system

@@ -24,3 +24,4 @@ environment:
   - proto: vaultwarden
   #!- proto: local-path-provisioner
   - proto: syncthing
+  - proto: longhorn-system

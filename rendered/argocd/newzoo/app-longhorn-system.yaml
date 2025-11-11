@@ -1,0 +1,62 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    app.kubernetes.io/source: https://github.com/kbudde/k8s-demo
+    myks.dev/environment: newzoo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  name: newzoo-longhorn-system
+  namespace: argocd
+spec:
+  destination:
+    name: newzoo
+    namespace: longhorn-system
+  ignoreDifferences:
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.spec.containers[].env[]?.valueFrom.resourceFieldRef.divisor
+      kind: Deployment
+    - group: apps
+      jqPathExpressions:
+        - .spec.volumeClaimTemplates[]?.apiVersion
+        - .spec.volumeClaimTemplates[]?.kind
+        - .spec.volumeClaimTemplates[]?.metadata.creationTimestamp
+      kind: StatefulSet
+    - group: apps
+      jsonPointers:
+        - /spec/replicas
+      kind: Deployment
+    - group: apps
+      jsonPointers:
+        - /spec/replicas
+      kind: StatefulSet
+  info:
+    - name: 'environment:'
+      value: newzoo
+    - name: 'source:'
+      value: https://github.com/kbudde/k8s-demo
+  project: newzoo
+  source:
+    path: rendered/envs/newzoo/longhorn-system
+    plugin:
+      name: argocd-vault-plugin
+    repoURL: https://github.com/kbudde/k8s-demo
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 10m
+      limit: -1
+      refresh: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
