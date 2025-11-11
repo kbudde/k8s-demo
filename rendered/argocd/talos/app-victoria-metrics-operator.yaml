@@ -60,3 +60,5 @@ spec:
       - PruneLast=true
       - RespectIgnoreDifferences=true
       - ApplyOutOfSyncOnly=true
+    terminate:
+      timeout: 15m

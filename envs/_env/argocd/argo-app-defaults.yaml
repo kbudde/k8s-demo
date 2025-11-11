@@ -11,6 +11,8 @@ spec:
   - name: 'source:'
     value: #@ data.values.myks.gitRepoUrl
   syncPolicy:
+    terminate:
+      timeout: 15m #! Overall timeout for the sync operation
     syncOptions:
     - PruneLast=true #! Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
     - RespectIgnoreDifferences=true #! When syncing changes, respect fields ignored by the ignoreDifferences configuration
