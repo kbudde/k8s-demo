@@ -60,6 +60,9 @@ spec:
             - --accesslog=true
             - --accesslog.fields.defaultmode=keep
             - --accesslog.fields.headers.defaultmode=drop
+            - --certificatesresolvers.le.acme.email=cluster@kris.budd.ee
+            - --certificatesresolvers.le.acme.storage=/data/acme.json
+            - --certificatesresolvers.le.acme.httpchallenge.entrypoint=web
           env:
             - name: POD_NAME
               valueFrom:

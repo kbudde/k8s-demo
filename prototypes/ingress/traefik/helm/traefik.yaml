@@ -15,6 +15,11 @@ providers:
     publishedService:
       enabled: true
 
+additionalArguments:
+- "--certificatesresolvers.le.acme.email=cluster@kris.budd.ee"
+- "--certificatesresolvers.le.acme.storage=/data/acme.json"
+- "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+
 ports:
   web:
     redirections:
