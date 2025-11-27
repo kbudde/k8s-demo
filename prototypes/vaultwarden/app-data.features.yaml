@@ -5,3 +5,4 @@ addon:
     name: vault
     service: vaultwarden
     port: 80
+    certResolver: le

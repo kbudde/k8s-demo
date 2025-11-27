@@ -18,6 +18,8 @@ spec:
       kind: TraefikService
     middlewares:
       - name: auth-dashboard
+  tls:
+    certResolver: le
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware

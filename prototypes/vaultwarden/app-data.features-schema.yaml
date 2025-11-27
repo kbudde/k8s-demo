@@ -23,4 +23,7 @@ addon:
     #@schema/desc "The service port"
     #@schema/validation min=1
     port: 80
+    #@schema/desc "The certificate resolver to use for TLS"
+    #@schema/nullable
+    certResolver: ""
 

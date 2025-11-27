@@ -27,6 +27,8 @@ spec:
     - name: #@ ao.service
       #@ if/end ao.port:
       port: #@ ao.port
-
+#@ if/end ao.certResolver:
+  tls:
+    certResolver: #@ ao.certResolver
 #@ end #! -- addon enabled
 #@ end #! -- render-ytt step
